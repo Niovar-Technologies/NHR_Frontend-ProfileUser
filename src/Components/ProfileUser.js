@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import LoginLayout from "../Containers/LoginLayout";
 import logo from '../static/img/logobig.jpeg'
-import profile from '../static/img/profile.css'
+import profile from '../static/css/profile.css'
 // import nopic from '../static/img/nopic.png';
 import {AlertCircle, Check} from 'react-feather';
 // import saveHistory from './SaveHistory';
