@@ -182,7 +182,7 @@ const ProfileUser = () => {
                       Kenneth Valdez
                     </div>
                   </div>
-                  <hr>
+                  <hr/>
                   <div className="row">
                     <div className="col-sm-3">
                       <h6 className="mb-0">Email</h6>
@@ -191,7 +191,7 @@ const ProfileUser = () => {
                       fip@jukmuh.al
                     </div>
                   </div>
-                  <hr>
+                  <hr/>
                   <div className="row">
                     <div className="col-sm-3">
                       <h6 className="mb-0">Phone</h6>
@@ -200,7 +200,7 @@ const ProfileUser = () => {
                       (239) 816-9029
                     </div>
                   </div>
-                  <hr>
+                  <hr/>
                   <div className="row">
                     <div className="col-sm-3">
                       <h6 className="mb-0">Mobile</h6>
@@ -209,7 +209,7 @@ const ProfileUser = () => {
                       (320) 380-4539
                     </div>
                   </div>
-                  <hr>
+                  <hr/>
                   <div className="row">
                     <div className="col-sm-3">
                       <h6 className="mb-0">Address</h6>
@@ -218,7 +218,7 @@ const ProfileUser = () => {
                       Bay Area, San Francisco, CA
                     </div>
                   </div>
-                  <hr>
+                  <hr/>
                   <div className="row">
                     <div className="col-sm-12">
                       <a className="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
