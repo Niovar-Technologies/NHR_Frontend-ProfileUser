@@ -132,6 +132,7 @@ const ProfileUser = () => {
     
           
 
+        </div>
     </div>    
        </>
     );
