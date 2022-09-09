@@ -15,9 +15,9 @@ import { createBrowserHistory } from 'history'
 const history = createBrowserHistory()
 
 function App() {
-    return (
+	return (
 		<Router history={history}>
-			<Route exact path='/profile' component={ProfileUser} />
+			<ProfileUser />
         </Router>
     );
 }
