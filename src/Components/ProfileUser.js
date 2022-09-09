@@ -122,7 +122,6 @@ const ProfileUser = () => {
         <div className="container">
     <div className="main-body">
     
-          <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" className="main-breadcrumb">
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -130,7 +129,6 @@ const ProfileUser = () => {
               <li className="breadcrumb-item active" aria-current="page">User Profile</li>
             </ol>
           </nav>
-          <!-- /Breadcrumb -->
     
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
