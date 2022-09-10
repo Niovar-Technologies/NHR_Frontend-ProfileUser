@@ -124,7 +124,7 @@ const ProfileUser = () => {
     <div className="col-md-4">      
         <div className="portlet light profile-sidebar-portlet bordered">
             <div className="profile-userpic">
-                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" className="img-responsive" alt=""> </div>
+                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" className="img-responsive" alt=""/> </div>
             <div className="profile-usertitle">
                 <div className="profile-usertitle-name"> Marcus Doe </div>
                 <div className="profile-usertitle-job"> Developer </div>
