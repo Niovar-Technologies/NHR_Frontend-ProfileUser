@@ -122,6 +122,20 @@ const history = useHistory();
        <>
  <div className="page-wrapper">
                 <div className="content container-fluid">
+					<div className="row">
+                        <div className="col-xl-12 col-sm-12 col-12">
+                            <div className="breadcrumb-path">
+                                <ul className="breadcrumb">
+                                    <li className="breadcrumb-item"><a onClick={() => {
+                                        window.location.href = "/"
+                                    }}>Accueil</a>
+                                    </li>
+                                    <li id="breadcrumbTitle" className="breadcrumb-item active">{ title }</li>
+                                </ul>
+                                <h3>{h3text}</h3>
+                            </div>
+                        </div>
+                    </div>
                     <div className="row">
                         <div className="col-xl-12 col-sm-12 col-12">
 						
