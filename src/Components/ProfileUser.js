@@ -162,7 +162,7 @@ const ProfileUser = () => {
             <div className="portlet-body">
                 <div>
                 
-                    <!-- Nav tabs -->
+                    
                     <ul className="nav nav-tabs" role="tablist">
                         <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Update</a></li>
                         <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
