@@ -170,7 +170,7 @@ const ProfileUser = () => {
                         <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
                     </ul>
                 
-                    <!-- Tab panes -->
+                  
                     <div className="tab-content">
                         <div role="tabpanel" className="tab-pane active" id="home">
                             <form>
