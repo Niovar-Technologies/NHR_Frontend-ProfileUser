@@ -129,7 +129,7 @@ const history = useHistory();
         <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
         <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a>
     </nav>
-    <hr className="mt-0 mb-4">
+    <hr className="mt-0 mb-4" />
     <div className="row">
         <div className="col-xl-4">
          
