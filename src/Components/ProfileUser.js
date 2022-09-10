@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import LoginLayout from "../Containers/LoginLayout";
 import logo from '../static/img/logobig.jpeg'
-import profile from '../static/css/profile.css'
+import profile '../static/img/profile.css'
 // import nopic from '../static/img/nopic.png';
 import {AlertCircle, Check} from 'react-feather';
 // import saveHistory from './SaveHistory';
@@ -22,7 +22,7 @@ let compagnie 	= cookies.get( "compagnie" );
 
 
 const ProfileUser = () => {
-	const history = useHistory();
+const history = useHistory();
 
 	const [nomEntreprise, setNomEntreprise]= useState(''); //	
 	const [texte, setTexte]= useState('Un instant ...'); //	
@@ -116,102 +116,93 @@ const ProfileUser = () => {
 		setVerified( verified );
 	}
 
-		
+	
+			
     return (
        <>
-<div className="col-md-12">  
-    <div className="col-md-4">      
-        <div className="portlet light profile-sidebar-portlet bordered">
-            <div className="profile-userpic">
-                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" className="img-responsive" alt=""/> </div>
-            <div className="profile-usertitle">
-                <div className="profile-usertitle-name"> Marcus Doe </div>
-                <div className="profile-usertitle-job"> Developer </div>
-            </div>
-            <div className="profile-userbuttons">
-                <button type="button" className="btn btn-info  btn-sm">Follow</button>
-                <button type="button" className="btn btn-info  btn-sm">Message</button>
-            </div>
-            <div className="profile-usermenu">
-                <ul className="nav">
-                    <li className="active">
-                        <a href="#">
-                            <i className="icon-home"></i> Ticket List </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i className="icon-settings"></i> Support Staff </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i className="icon-info"></i> Configurations </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div className="col-md-8"> 
-        <div className="portlet light bordered">
-            <div className="portlet-title tabbable-line">
-                <div className="caption caption-md">
-                    <i className="icon-globe theme-font hide"></i>
-                    <span className="caption-subject font-blue-madison bold uppercase">Your info</span>
-                </div>
-            </div>
-            <div className="portlet-body">
-                <div>
-                
-                    
-                    <ul className="nav nav-tabs" role="tablist">
-                        <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Update</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-                    </ul>
-                
-                  
-                    <div className="tab-content">
-                        <div role="tabpanel" className="tab-pane active" id="home">
-                            <form>
-                              <div className="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" className="form-control" id="inputName" placeholder="Name" />
-                              </div>
-                                <div className="form-group">
-                                <label for="inputLastName">Last Name</label>
-                                <input type="text" className="form-control" id="inputLastName" placeholder="Last Name" />
-                              </div>
-                              <div className="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Email" />
-                              </div>
-                              <div className="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                              </div>
-                              <div className="form-group">
-                                <label for="exampleInputFile">File input</label>
-                                <input type="file" id="exampleInputFile" />
-                                <p className="help-block">Example block-level help text here.</p>
-                              </div>
-                              <div className="checkbox">
-                                <label>
-                                  <input type="checkbox" /> Check me out
-                                </label>
-                              </div>
-                              <button type="submit" className="btn btn-default">Submit</button>
-                            </form>
+
+            <div className="page-wrapper">
+                <div className="content container-fluid">
+                    <div className="row">
+                        <div className="col-xl-12 col-sm-12 col-12">
+                            <div className="breadcrumb-path">
+                                <ul className="breadcrumb">
+                                    <li className="breadcrumb-item"><a onClick={() => {
+                                        window.location.href = "/"
+                                    }}>Accueil</a>
+                                    </li>
+                                    <li id="breadcrumbTitle" className="breadcrumb-item active">{ title }</li>
+                                </ul>
+                                <h3>{h3text}</h3>
+                            </div>
                         </div>
-                        <div role="tabpanel" className="tab-pane" id="profile">Profile</div>
-                        <div role="tabpanel" className="tab-pane" id="messages">Messages</div>
-                        <div role="tabpanel" className="tab-pane" id="settings">Settings</div>
                     </div>
-                
+					<div className="row">
+                        <div className="col-xl-12 col-sm-12 col-12 mb-4">
+                            <div className="row">
+                                <div className="col-sm-12 col-12 d-flex">
+                                    <div className="card flex-fill">
+										
+										
+										<div>
+				<div>
+					<div className="card-header" data-toggle="dropdown" style={{"height": "65px", "width": "100%", "backgroundColor": "#000032",}}>
+						<div className="employee-head" style={{"color": "#fff",}}><FileText/>Entreprise { nomEntreprise } -  { texteAnneeEnCours } {anneeCours}<a className="dropdown-toggle nav-link" ></a>
+						</div>
+					</div> 
+					<div className="card-body dropdown-menu" style={{"width" : "100%"}}>
+						<div className="employee-contents" ><div className="donut-chart-list charts3"><h5 style={{"width" : "50%"}}>{textNombreEnvoye}: {totalEnvoye}</h5></div><div className="donut-chart-list charts4"><h5>Total à envoyer: {totalAEnvoyer}</h5></div><div className="donut-chart-list charts2"></div> <div className="employee-sets"><a data-debut = "foo" onClick={handleClick} className="btn-addmembers"><Send/> {textBtnEnvoyer}</a></div></div>
+					</div>
+				</div>
+			</div>
+										
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+					<div className="row">
+						<div className="col-xl-6 col-sm-12 col-12 d-flex">
+							<div className="card flex-fill">
+								<select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>2022</option>
+									<option value={2021}>2021</option>
+									<option value={2020}>2020</option>
+								</select>
+							</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>  
+
+            <div className="customize_popup">
+                <div className="modal fade" id="edit" data-backdrop="static" data-keyboard="false" tabIndex="-1"
+                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div className="modal-dialog modal-lg modal-dialog-centered">
+                        <div className="modal-content ">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="staticBackdropLabel">Edit Office</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <div className=" col-md-12 p-0">
+                                    <div className=" form-popup">
+                                        <label>Office Nom</label>
+                                        <input type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-apply">Apply</button>
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
        </>
     );
 }
