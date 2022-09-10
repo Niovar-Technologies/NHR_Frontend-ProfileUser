@@ -119,7 +119,6 @@ const ProfileUser = () => {
 		
     return (
        <>
-        <div className="container"> 
 <div className="col-md-12">  
     <div className="col-md-4">      
         <div className="portlet light profile-sidebar-portlet bordered">
@@ -212,8 +211,7 @@ const ProfileUser = () => {
             </div>
         </div>
     </div>
-</div>
-</div>   
+</div>  
        </>
     );
 }
