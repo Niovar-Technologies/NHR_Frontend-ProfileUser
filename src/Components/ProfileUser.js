@@ -75,48 +75,7 @@ const history = useHistory();
 			console.log(err);
 		};
 	}
-	
-	// Mail token vérification
-	async function mailVerification(){
-		let title = "Vérification d'email";
-		let texte = "La vérification a échouée.";
-		let btnText = "Créer un compte";
-		let btnLink = appdomain + "/creation_de_compte-code_entreprise";
-		let verified = false;
-		if(	emailToken ){
 
-			try {
-				let res = await fetch( lbdomain + "/Accounts/verify-email", {
-					method: "POST",
-					body: JSON.stringify({
-						token: emailToken,
-					}),
-					headers: {'Content-Type': 'application/json'},
-				});
-			
-				let resJson = await res.json();
-			
-				if( resJson.message === true ){
-					title 	= "Bienvenue sur Niovar Paie";
-					texte 	= "Votre adresse email a bien été vérifiée. Si vous n'êtes pas un employé de la compagnie " + compagnie + ", veuillez nous contacter.";
-					btnText = "Visiter votre profile";
-					btnLink = appdomain + "/connexion";
-					verified = true;
-				}
-			} 
-			catch (err) {
-				alert( "Vérifiez votre connexion internet svp" );
-				console.log(err);
-			};
-		}
-		setTexte( texte );
-		setTitle( title );
-		setBtnText( btnText );
-		setBtnLink( btnLink );
-		setVerified( verified );
-	}
-
-	
 			
     return (
        <>
@@ -130,9 +89,9 @@ const history = useHistory();
                                         window.location.href = "/"
                                     }}>Accueil</a>
                                     </li>
-                                    <li id="breadcrumbTitle" className="breadcrumb-item active">{ title }</li>
+                                    <li id="breadcrumbTitle" className="breadcrumb-item active">Mon profile</li>
                                 </ul>
-                                <h3>{h3text}</h3>
+                                <h3>H3 Text</h3>
                             </div>
                         </div>
                     </div>
