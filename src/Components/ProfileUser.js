@@ -46,10 +46,6 @@ const history = useHistory();
 	 	GetNomEntreprise();
 	},[] );
 	
-	useEffect(() => {
-		mailVerification();
-	
-	}, []);
 	
 	// get company name
 	async function GetNomEntreprise(){
