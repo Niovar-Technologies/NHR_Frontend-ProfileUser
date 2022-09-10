@@ -121,7 +121,15 @@ const history = useHistory();
     return (
        <>
 
-           <div>foo bar</div>
+          <div className="page-wrapper">
+                <div className="content container-fluid">
+                    <div className="row">
+                        <div className="col-xl-12 col-sm-12 col-12">
+						foo bar
+						</div>
+					</div>
+				</div>
+		  </div>
        </>
     );
 }
