@@ -97,22 +97,22 @@ const history = useHistory();
            <div className="container-xl px-4 mt-4">
 
     <nav className="nav nav-borders">
-        <a className="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
-        <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a>
-        <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
-        <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a>
+        <a className="nav-link active ms-0" href="#" target="__blank">Profile</a>
+        <a className="nav-link" href="#" target="__blank">Activité récente</a>
+        <a className="nav-link" href="#" target="__blank">Performance</a>
+        <a className="nav-link" href="#"  target="__blank">Fichier</a>
     </nav>
     <hr className="mt-0 mb-4" />
     <div className="row">
         <div className="col-xl-4">
          
             <div className="card mb-4 mb-xl-0">
-                <div className="card-header">Profile Picture</div>
+                <div className="card-header">Photo du Profile</div>
                 <div className="card-body text-center">
                     
-                    <img className="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                    <img className="img-account-profile rounded-circle mb-2" src="https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg" alt="" />
                     
-                    <div className="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
                  
                     <button className="btn btn-primary" type="button">Upload new image</button>
                 </div>
@@ -121,7 +121,7 @@ const history = useHistory();
         <div className="col-xl-8">
            
             <div className="card mb-4">
-                <div className="card-header">Account Details</div>
+                <div className="card-header">Détails du profile</div>
                 <div className="card-body">
                     <form>
                         
