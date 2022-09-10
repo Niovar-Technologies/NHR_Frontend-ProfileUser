@@ -87,7 +87,7 @@ const history = useHistory();
                                     </li>
                                     <li id="breadcrumbTitle" className="breadcrumb-item active">Mon profile</li>
                                 </ul>
-                                <h3>H3 Text</h3>
+                                <h3>Profile</h3>
                             </div>
                         </div>
                     </div>
