@@ -121,88 +121,93 @@ const history = useHistory();
     return (
        <>
 
-            <div className="page-wrapper">
-                <div className="content container-fluid">
-                    <div className="row">
-                        <div className="col-xl-12 col-sm-12 col-12">
-                            <div className="breadcrumb-path">
-                                <ul className="breadcrumb">
-                                    <li className="breadcrumb-item"><a onClick={() => {
-                                        window.location.href = "/"
-                                    }}>Accueil</a>
-                                    </li>
-                                    <li id="breadcrumbTitle" className="breadcrumb-item active">{ title }</li>
-                                </ul>
-                                <h3>{h3text}</h3>
-                            </div>
-                        </div>
-                    </div>
-					<div className="row">
-                        <div className="col-xl-12 col-sm-12 col-12 mb-4">
-                            <div className="row">
-                                <div className="col-sm-12 col-12 d-flex">
-                                    <div className="card flex-fill">
-										
-										
-										<div>
-				<div>
-					<div className="card-header" data-toggle="dropdown" style={{"height": "65px", "width": "100%", "backgroundColor": "#000032",}}>
-						<div className="employee-head" style={{"color": "#fff",}}><FileText/>Entreprise { nomEntreprise } -  { texteAnneeEnCours } {anneeCours}<a className="dropdown-toggle nav-link" ></a>
-						</div>
-					</div> 
-					<div className="card-body dropdown-menu" style={{"width" : "100%"}}>
-						<div className="employee-contents" ><div className="donut-chart-list charts3"><h5 style={{"width" : "50%"}}>{textNombreEnvoye}: {totalEnvoye}</h5></div><div className="donut-chart-list charts4"><h5>Total à envoyer: {totalAEnvoyer}</h5></div><div className="donut-chart-list charts2"></div> <div className="employee-sets"><a data-debut = "foo" onClick={handleClick} className="btn-addmembers"><Send/> {textBtnEnvoyer}</a></div></div>
-					</div>
-				</div>
-			</div>
-										
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-					<div className="row">
-						<div className="col-xl-6 col-sm-12 col-12 d-flex">
-							<div className="card flex-fill">
-								<select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>2022</option>
-									<option value={2021}>2021</option>
-									<option value={2020}>2020</option>
-								</select>
-							</div>
-                        </div>
-                    </div>
+            <div className="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <nav className="nav nav-borders">
+        <a className="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
+        <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page" target="__blank">Billing</a>
+        <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page" target="__blank">Security</a>
+        <a className="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"  target="__blank">Notifications</a>
+    </nav>
+    <hr className="mt-0 mb-4">
+    <div className="row">
+        <div className="col-xl-4">
+            <!-- Profile picture card-->
+            <div className="card mb-4 mb-xl-0">
+                <div className="card-header">Profile Picture</div>
+                <div className="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img className="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <!-- Profile picture help block-->
+                    <div className="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                    <button className="btn btn-primary" type="button">Upload new image</button>
                 </div>
             </div>
-
-            <div className="customize_popup">
-                <div className="modal fade" id="edit" data-backdrop="static" data-keyboard="false" tabIndex="-1"
-                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-lg modal-dialog-centered">
-                        <div className="modal-content ">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="staticBackdropLabel">Edit Office</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+        </div>
+        <div className="col-xl-8">
+            <!-- Account details card-->
+            <div className="card mb-4">
+                <div className="card-header">Account Details</div>
+                <div className="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div className="mb-3">
+                            <label className="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
+                            <input className="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
+                        </div>
+                        <!-- Form Row-->
+                        <div className="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputFirstName">First name</label>
+                                <input className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
                             </div>
-                            <div className="modal-body">
-                                <div className=" col-md-12 p-0">
-                                    <div className=" form-popup">
-                                        <label>Office Nom</label>
-                                        <input type="text"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-apply">Apply</button>
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <!-- Form Group (last name)-->
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputLastName">Last name</label>
+                                <input className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
                             </div>
                         </div>
-                    </div>
+                        <!-- Form Row        -->
+                        <div className="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputOrgName">Organization name</label>
+                                <input className="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputLocation">Location</label>
+                                <input className="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Email address</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+                        </div>
+                        <!-- Form Row-->
+                        <div className="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputPhone">Phone number</label>
+                                <input className="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+                            </div>
+                            <!-- Form Group (birthday)-->
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputBirthday">Birthday</label>
+                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                            </div>
+                        </div>
+                        <!-- Save changes button-->
+                        <button className="btn btn-primary" type="button">Save changes</button>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
        </>
     );
 }
