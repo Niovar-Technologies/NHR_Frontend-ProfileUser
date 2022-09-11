@@ -237,7 +237,7 @@ const ProfileUser = () => {
                         
                             <div className="col-md-6">
                                 <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
-                                <DatePicker className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} />
+                                <DatePicker  locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} />
                             </div>
                            
                             <div className="col-md-6">
