@@ -5,7 +5,7 @@ import LoginLayout from "../Containers/LoginLayout";
 import logo from '../static/img/logobig.jpeg'
 import profile from '../static/css/profile.css'
 import checkboxStyle from '../static/css/checkboxStyle.css'
-import { Lock, Hash, DollarSign, ToggleLeft, Sunrise, Map, MapPin, Globe, Briefcase, Clipboard, Mail, Phone, Smartphone, AlertCircle, Check, User, Calendar, Trello } from 'react-feather';
+import { Users, Lock, Hash, DollarSign, ToggleLeft, Sun, Map, MapPin, Globe, Briefcase, Clipboard, Mail, Phone, Smartphone, AlertCircle, Check, User, Calendar, Trello } from 'react-feather';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -50,6 +50,19 @@ const ProfileUser = () => {
 	const [startDateEmbauche, setStartDateEmbauche] = useState(''); //
 	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
+	// const [ DepartementList, setDepartementList ];
+	
+	const DepartementList = [
+		{
+			id: 0,
+			name: " Non attribué"
+		},
+		{
+			id: 1,
+			name: " Santé"
+		},
+	];
+	
 	const WeekList = [
 		{
 			id: 0,
@@ -80,19 +93,28 @@ const ProfileUser = () => {
 			name: " Dimanche"
 		}
 	];
-	// const [checkboxData, setCheckboxData] = useState(
-		// WeekList.sort((a, b) => a.id - b.id)
-	// );
-	// const isVerified = useMemo(() => {
-		// return data.every((d) => d.checked);
-	// }, [data]);
+	
+	SexeList= [
+		{
+			id: 0,
+			name: " Homme"
+		},
+		{
+			id: 1,
+			name: " Femme"
+		},
+	]
 	
 	const handleClick = (e) => {
 		e.preventDefault();
 		location.replace( btnLink );
 	}
 
-  
+	const handleSelect = (e) => {
+		e.preventDefault();
+		alert( "foo" );
+	}
+
 	// get current url
 	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
@@ -177,7 +199,7 @@ const ProfileUser = () => {
         <div className="col-xl-8">
            
             <div className="card mb-4">
-                <div className="card-header">Détails du profile</div>
+                <div className="card-header">Détails de votre profile</div>
                 <div className="card-body">
                     <form>
                        <div className="row gx-3 mb-3">
@@ -202,13 +224,27 @@ const ProfileUser = () => {
                                 <input className="form-control" id="inputLastName" type="text" placeholder="Téléphone du domicile" value="" />
                             </div>
                         </div>
+						<div className="row gx-3 mb-3">
+							<div className="col-md-6">
+                                <Users /> <label className="small mb-1" for="inputOrgName">Genre </label>
+								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+									{SexeList.map((obj, index) => (
+										<option key={index} value={obj.id}>{obj.name}</option>
+									))}
+								</select>
+                            </div>
+                           <div className="col-md-6">
+                                <Phone /> <label className="small mb-1" for="inputLastName">Numéro d'employé</label>
+                                <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                            </div>
+                        </div>
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Clipboard /> <label className="small mb-1" for="inputLocation">Département</label>
-								<select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Santé</option>
-									<option value={2021}>Transport</option>
-									<option value={2020}>Agent Administratif</option>
+								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+									{DepartementList.map((obj, index) => (
+										<option key={index} value={obj.id}>{obj.name}</option>
+									))}
 								</select>
                             </div>
 							<div className="col-md-6">
@@ -248,23 +284,19 @@ const ProfileUser = () => {
                             </div>
                         </div>
 						<div className="mb-3">
-                            <Hash /> <label className="small mb-1" for="inputEmailAddress">Numéro d'employé</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
-                        </div>
-						<div className="mb-3">
                             <Globe /> <label className="small mb-1" for="inputEmailAddress">Pays</label>
                             <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
-									<option value={2021}>Etat unis</option>
+									<option value={2021}>Suede</option>
 							</select>
                         </div>
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
                             <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Canada</option>
-									<option value={2021}>Etat unis</option>
-									<option value={2021}>Etat unis</option>
+									<option value={2022}>Ontario</option>
+									<option value={2021}>Washington</option>
+									<option value={2021}>Balme</option>
 							</select>
                         </div>
 						<div className="mb-3">
@@ -276,7 +308,7 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
-                            <Sunrise /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
+                            <Sun /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
 							<div className="col-sm-8 checkbox-wrapper list-unstyled">
 							{WeekList.map((obj, index) => (
 								<li key={index}>
