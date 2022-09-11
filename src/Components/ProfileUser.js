@@ -210,7 +210,7 @@ const ProfileUser = () => {
                             </div>
                            <div className="col-md-6">
                                 <Mail /> <label className="small mb-1" for="inputLastName">Email</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Votre adresse courriel" value="" />
+                                <input className="form-control" id="inputLastName" type="email" placeholder="Votre adresse courriel" value="" />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
@@ -235,7 +235,7 @@ const ProfileUser = () => {
                             </div>
                            <div className="col-md-6">
                                 <Hash /> <label className="small mb-1" for="inputLastName">Numéro d'employé</label>
-                                <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                                <input className="form-control" id="inputEmailAddress" type="text" placeholder="Numéro d'employé" value="" />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
