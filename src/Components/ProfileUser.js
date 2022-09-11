@@ -183,28 +183,28 @@ const ProfileUser = () => {
                        <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <User /><label className="small mb-1" for="inputOrgName">Nom complet</label>
+                                <User /> <label className="small mb-1" for="inputOrgName">Nom complet</label>
                                 <input className="form-control" id="inputOrgName" type="text" placeholder="Votre nom complet" value="" />
                             </div>
                            <div className="col-md-6">
-                                <Mail /><label className="small mb-1" for="inputLastName">Email</label>
+                                <Mail /> <label className="small mb-1" for="inputLastName">Email</label>
                                 <input className="form-control" id="inputLastName" type="text" placeholder="Votre adresse courriel" value="" />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <Smartphone /><label className="small mb-1" for="inputOrgName">Téléphone </label>
+                                <Smartphone /> <label className="small mb-1" for="inputOrgName">Téléphone </label>
                                 <input className="form-control" id="inputOrgName" type="text" placeholder="Votre Téléphone" value="" />
                             </div>
                            <div className="col-md-6">
-                                <Phone /><label className="small mb-1" for="inputLastName">Téléphone domicile</label>
+                                <Phone /> <label className="small mb-1" for="inputLastName">Téléphone domicile</label>
                                 <input className="form-control" id="inputLastName" type="text" placeholder="Téléphone du domicile" value="" />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
-                                <Clipboard /><label className="small mb-1" for="inputLocation">Département</label>
+                                <Clipboard /> <label className="small mb-1" for="inputLocation">Département</label>
 								<select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Santé</option>
 									<option value={2021}>Transport</option>
@@ -223,7 +223,7 @@ const ProfileUser = () => {
 						<div className="row gx-3 mb-3">
 							
                             <div className="col-md-6">
-                                <DollarSign /> <label className="small mb-1" for="inputPhone">Type de salaire</label>
+                                <Trello /> <label className="small mb-1" for="inputPhone">Type de salaire</label>
                                 <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Taux horaire</option>
 									<option value={2021}>Salaire annuel</option>
@@ -231,28 +231,28 @@ const ProfileUser = () => {
                             </div>
                            
                             <div className="col-md-6">
-                                <Trello /><label className="small mb-1" for="inputBirthday">Salaire</label>
+                                <DollarSign /> <label className="small mb-1" for="inputBirthday">Salaire</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
                             </div>
                         </div>
 						<div className="row gx-3 mb-3">
                         
                             <div className="col-md-6">
-                                <Calendar /><label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
+                                <Calendar /> <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
                                 <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} />
                             </div>
                            
                             <div className="col-md-6">
-                                 <Calendar /><label className="small mb-1" for="dateDepart">Date de départ</label>
+                                 <Calendar /> <label className="small mb-1" for="dateDepart">Date de départ</label>
                                 <DatePicker locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} />
                             </div>
                         </div>
 						<div className="mb-3">
-                            <Hash /><label className="small mb-1" for="inputEmailAddress">Numéro d'employé</label>
+                            <Hash /> <label className="small mb-1" for="inputEmailAddress">Numéro d'employé</label>
                             <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
                         </div>
 						<div className="mb-3">
-                            <Globe /><label className="small mb-1" for="inputEmailAddress">Pays</label>
+                            <Globe /> <label className="small mb-1" for="inputEmailAddress">Pays</label>
                             <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
@@ -260,7 +260,7 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
-                            <Map /><label className="small mb-1" for="inputEmailAddress">Province</label>
+                            <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
                             <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
@@ -268,7 +268,7 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
-                            <MapPin /><label className="small mb-1" for="inputEmailAddress">Ville</label>
+                            <MapPin /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
                             <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
@@ -276,7 +276,7 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
-                            <Sunrise /><label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
+                            <Sunrise /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
 							<div className="col-sm-8 checkbox-wrapper list-unstyled">
 							{WeekList.map((obj, index) => (
 								<li key={index}>
@@ -293,7 +293,7 @@ const ProfileUser = () => {
 							</div>
                         </div>
 						<div className="mb-3">
-                            <ToggleLeft /><label className="small mb-1" for="inputEmailAddress">Statut</label>
+                            <ToggleLeft /> <label className="small mb-1" for="inputEmailAddress">Statut</label>
                             <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Non activé</option>
 									<option value={2021}>Activé</option>
@@ -301,12 +301,12 @@ const ProfileUser = () => {
                         </div>
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
-                                <Lock /><label className="small mb-1" for="inputPhone">Mot de passe</label>
+                                <Lock /> <label className="small mb-1" for="inputPhone">Mot de passe</label>
                                 <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
                             </div>
 							
                             <div className="col-md-6">
-                                <Lock /><label className="small mb-1" for="inputBirthday">Repeter le mot de passe</label>
+                                <Lock /> <label className="small mb-1" for="inputBirthday">Repeter le mot de passe</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
                             </div>
                         </div>
