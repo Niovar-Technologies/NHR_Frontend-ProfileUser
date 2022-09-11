@@ -149,7 +149,6 @@ const history = useHistory();
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <label className="small mb-1" for="inputLocation">Département</label>
-                                <div className="card flex-fill">
 								<select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Santé</option>
 									<option value={2021}>Transport</option>
