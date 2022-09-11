@@ -34,7 +34,7 @@ const ProfileUser = () => {
 	const [btnLink, setBtnLink]= useState(''); //
 	const [verified, setVerified]= useState(''); //
 	
-	const [startDate, setStartDate]= useState(''); //
+	const [startDate, setStartDate] = useState(new Date()); //
 	
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -187,12 +187,12 @@ const ProfileUser = () => {
                         
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Date d'embauche</label>
-                                <DatePicker id="dateEmbauche" selected={startdate} onChange={(date) => setStartDate(date)} />
+                                <DatePicker id="dateEmbauche" selected={startDate} onChange={(date) => setStartDate(date)} />
                             </div>
                            
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputBirthday">Date de départ</label>
-                                <DatePicker id="dateDepart" selected={startdate} onChange={(date) => setStartDate(date)} />
+                                <DatePicker id="dateDepart" selected={startDate} onChange={(date) => setStartDate(date)} />
                             </div>
                         </div>
 						<div className="mb-3">
