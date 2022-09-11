@@ -24,50 +24,49 @@ let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	= cookies.get( "compagnie" );
 
 const WeekList = [
-		{
-			id: 0,
-			name: "Lundi"
-		},
-		{
-			id: 1,
-			name: "Mardi"
-		},
-		{
-			id: 2,
-			name: "Mercredi"
-		},
-		{
-			id: 3,
-			name: "Jeudi"
-		},
-		{
-			id: 4,
-			name: "Vendredi"
-		},
-		{
-			id: 5,
-			name: "Samedi"
-		},
-		{
-			id: 6,
-			name: "Dimanche"
-		}
-	];
+	{
+		id: 0,
+		name: "Lundi"
+	},
+	{
+		id: 1,
+		name: "Mardi"
+	},
+	{
+		id: 2,
+		name: "Mercredi"
+	},
+	{
+		id: 3,
+		name: "Jeudi"
+	},
+	{
+		id: 4,
+		name: "Vendredi"
+	},
+	{
+		id: 5,
+		name: "Samedi"
+	},
+	{
+		id: 6,
+		name: "Dimanche"
+	}
+];
 	
-	const Checkbox = ({ obj, onChange }) => {
-		return (
-			<>
-				<input type="checkbox"
-					id={`custom-checkbox-${obj.index}`}
-					name={obj.name}
-					value={obj.checked}
-					className="form-control"
-					onChange={() => onChange({ ...obj, checked: !obj.checked })}
-				/>
-				{obj.name}
-			</>
-		);
-	};
+const Checkbox = ({ obj, onChange }) => {
+	return (
+		<>
+			<input type="checkbox"
+				id={`custom-checkbox-${obj.index}`}
+				name={obj.name}
+				value={obj.checked}
+				onChange={() => onChange({ ...obj, checked: !obj.checked })}
+			/>
+			{obj.name}
+		</>
+	);
+};
 	
 const ProfileUser = () => {
 	const history = useHistory();
