@@ -23,36 +23,7 @@ let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	= cookies.get( "compagnie" );
 
-const WeekList = [
-	{
-		id: 0,
-		name: "Lundi"
-	},
-	{
-		id: 1,
-		name: "Mardi"
-	},
-	{
-		id: 2,
-		name: "Mercredi"
-	},
-	{
-		id: 3,
-		name: "Jeudi"
-	},
-	{
-		id: 4,
-		name: "Vendredi"
-	},
-	{
-		id: 5,
-		name: "Samedi"
-	},
-	{
-		id: 6,
-		name: "Dimanche"
-	}
-];
+
 	
 const Checkbox = ({ obj, onChange }) => {
 	return (
@@ -81,9 +52,39 @@ const ProfileUser = () => {
 	const [startDateEmbauche, setStartDateEmbauche] = useState(new Date()); //
 	const [startDateDepart, setStartDateDepart] = useState(new Date()); //
 	
-	const [checkboxData, setCheckboxData] = useState(
-		WeekList.sort((a, b) => a.id - b.id)
-	);
+	const WeekList = [
+		{
+			id: 0,
+			name: "Lundi"
+		},
+		{
+			id: 1,
+			name: "Mardi"
+		},
+		{
+			id: 2,
+			name: "Mercredi"
+		},
+		{
+			id: 3,
+			name: "Jeudi"
+		},
+		{
+			id: 4,
+			name: "Vendredi"
+		},
+		{
+			id: 5,
+			name: "Samedi"
+		},
+		{
+			id: 6,
+			name: "Dimanche"
+		}
+	];
+	// const [checkboxData, setCheckboxData] = useState(
+		// WeekList.sort((a, b) => a.id - b.id)
+	// );
 	// const isVerified = useMemo(() => {
 		// return data.every((d) => d.checked);
 	// }, [data]);
@@ -278,7 +279,7 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Jour de disponibilité</label>
-							{checkboxData.map((obj, index) => (
+							{WeekList.map((obj, index) => (
 								<li key={index}>
 									<Checkbox
 										obj={obj}
