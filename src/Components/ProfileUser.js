@@ -83,7 +83,7 @@ const ProfileUser = () => {
 	const [startDateDepart, setStartDateDepart] = useState(new Date()); //
 	
 	const [checkboxData, setCheckboxData] = useState(
-		WeekList.sort((a, b) => a.order - b.order)
+		WeekList.sort((a, b) => a.id - b.id)
 	);
 	// const isVerified = useMemo(() => {
 		// return data.every((d) => d.checked);
@@ -279,12 +279,16 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Jour de disponibilité</label>
-                            <Checkbox
-								obj={obj}
-								onChange={(item) => {
-									setCheckboxData(data.map((d) => (d.order === item.order ? item : d)));
-								}}
-							/>
+							{checkboxData.map((obj, index) => (
+								<li key={index}>
+									<Checkbox
+										obj={obj}
+										onChange={(item) => {
+											setCheckboxData(data.map((d) => (d.order === item.order ? item : d)));
+										}}
+									/>
+								</li>
+							))}
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Statut</label>
