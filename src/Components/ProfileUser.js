@@ -275,7 +275,7 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
-							<div class="col-sm-8 checkbox-wrapper">
+							<div className="col-sm-8 checkbox-wrapper list-unstyled">
 							{WeekList.map((obj, index) => (
 								<li key={index}>
 									<div className="checkbox-inline">
