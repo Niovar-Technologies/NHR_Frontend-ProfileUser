@@ -234,7 +234,7 @@ const ProfileUser = () => {
 								</select>
                             </div>
                            <div className="col-md-6">
-                                <Phone /> <label className="small mb-1" for="inputLastName">Numéro d'employé</label>
+                                <Hash /> <label className="small mb-1" for="inputLastName">Numéro d'employé</label>
                                 <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
                             </div>
                         </div>
