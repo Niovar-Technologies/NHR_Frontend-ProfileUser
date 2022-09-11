@@ -100,7 +100,7 @@ const history = useHistory();
         <a className="nav-link active ms-0" href="#" target="__blank">Profile</a>
         <a className="nav-link" href="#" target="__blank">Activité récente</a>
         <a className="nav-link" href="#" target="__blank">Performance</a>
-        <a className="nav-link" href="#"  target="__blank">Fichier</a>
+        <a className="nav-link" href="#"  target="__blank">Dcuments</a>
     </nav>
     <hr className="mt-0 mb-4" />
     <div className="row">
@@ -114,7 +114,7 @@ const history = useHistory();
                     
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
                  
-                    <button className="btn btn-primary" type="button">Upload new image</button>
+                    <button className="btn btn-primary" type="button">Uploader une image</button>
                 </div>
             </div>
         </div>
