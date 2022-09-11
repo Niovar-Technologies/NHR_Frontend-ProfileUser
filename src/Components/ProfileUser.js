@@ -114,7 +114,7 @@ const history = useHistory();
                     
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
                  
-                    <button className="btn btn-primary" type="button">Uploader une image</button>
+                    <button className="btn btn-primary" type="button">Uploader une  image</button>
                 </div>
             </div>
         </div>
@@ -131,15 +131,13 @@ const history = useHistory();
                         </div>
                         
                         <div className="row gx-3 mb-3">
-                            
+                            <div className="mb-3">
+								<label className="small mb-1" for="inputUsername">Nom complet</label>
+								<input className="form-control" id="inputUsername" type="text" placeholder="Votre nom complet" value="" />
+							</div>
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputFirstName">Email</label>
                                 <input className="form-control" id="inputFirstName" type="text" placeholder="Votre adresse email" value="" />
-                            </div>
-                           
-                            <div className="col-md-6">
-                                <label className="small mb-1" for="inputLastName">Téléphone</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Votre Téléphone" value="" />
                             </div>
                         </div>
                        
@@ -149,20 +147,23 @@ const history = useHistory();
                                 <label className="small mb-1" for="inputOrgName">Téléphone domicile</label>
                                 <input className="form-control" id="inputOrgName" type="text" placeholder="Téléphone de votre domicile" value="" />
                             </div>
-                           
-                            <div className="col-md-6">
-                                <label className="small mb-1" for="inputLocation">Location</label>
-                                <input className="form-control" id="inputLocation" type="text" placeholder="Département" value="" />
+                           <div className="col-md-6">
+                                <label className="small mb-1" for="inputLastName">Téléphone</label>
+                                <input className="form-control" id="inputLastName" type="text" placeholder="Votre Téléphone" value="" />
                             </div>
                         </div>
-                      
-                        <div className="mb-3">
-                            <label className="small mb-1" for="inputEmailAddress">Poste</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
-                        </div>
-                        
                         <div className="row gx-3 mb-3">
-                        
+							<div className="col-md-6">
+                                <label className="small mb-1" for="inputLocation">Département</label>
+                                <input className="form-control" id="inputLocation" type="text" placeholder="Département" value="" />
+                            </div>
+							<div className="col-md-6">
+                                <label className="small mb-1" for="inputLocation">Poste</label>
+                                <input className="form-control" id="inputLocation" type="text" placeholder="Département" value="" />
+                            </div>
+						</div>
+						<div className="row gx-3 mb-3">
+							
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Type de salaire</label>
                                 <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
@@ -170,18 +171,6 @@ const history = useHistory();
                            
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputBirthday">Salaire</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
-                            </div>
-                        </div>
-						<div className="row gx-3 mb-3">
-                        
-                            <div className="col-md-6">
-                                <label className="small mb-1" for="inputPhone">Date d'embauche</label>
-                                <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
-                            </div>
-                           
-                            <div className="col-md-6">
-                                <label className="small mb-1" for="inputBirthday">Date de départ</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
                             </div>
                         </div>
