@@ -34,7 +34,8 @@ const ProfileUser = () => {
 	const [btnLink, setBtnLink]= useState(''); //
 	const [verified, setVerified]= useState(''); //
 	
-	const [startDate, setStartDate] = useState(new Date()); //
+	const [startDateEmbauche, setStartDateEmbauche] = useState(new Date()); //
+	const [startDateDepart, setStartDateDepart] = useState(new Date()); //
 	
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -186,13 +187,13 @@ const ProfileUser = () => {
 						<div className="row gx-3 mb-3">
                         
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputPhone">Date d'embauche</label>
-                                <DatePicker id="dateEmbauche" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
+                                <DatePicker className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => startDateEmbauche(date)} />
                             </div>
                            
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputBirthday">Date de départ</label>
-                                <DatePicker id="dateDepart" selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <label className="small mb-1" for="dateDepart">Date de départ</label>
+                                <DatePicker className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => startDateDepart(date)} />
                             </div>
                         </div>
 						<div className="mb-3">
