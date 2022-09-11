@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import LoginLayout from "../Containers/LoginLayout";
 import logo from '../static/img/logobig.jpeg'
 import profile from '../static/css/profile.css'
-import checkboxStyle from '../static/css/profile.css'
+import checkboxStyle from '../static/css/checkboxStyle.css'
 import {AlertCircle, Check} from 'react-feather';
 
 import DatePicker from "react-datepicker";
