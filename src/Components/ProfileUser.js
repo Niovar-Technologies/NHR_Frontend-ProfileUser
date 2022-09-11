@@ -51,31 +51,31 @@ const ProfileUser = () => {
 	const WeekList = [
 		{
 			id: 0,
-			name: "Lundi"
+			name: " Lundi"
 		},
 		{
 			id: 1,
-			name: "Mardi"
+			name: " Mardi"
 		},
 		{
 			id: 2,
-			name: "Mercredi"
+			name: " Mercredi"
 		},
 		{
 			id: 3,
-			name: "Jeudi"
+			name: " Jeudi"
 		},
 		{
 			id: 4,
-			name: "Vendredi"
+			name: " Vendredi"
 		},
 		{
 			id: 5,
-			name: "Samedi"
+			name: " Samedi"
 		},
 		{
 			id: 6,
-			name: "Dimanche"
+			name: " Dimanche"
 		}
 	];
 	// const [checkboxData, setCheckboxData] = useState(
