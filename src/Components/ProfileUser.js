@@ -284,7 +284,7 @@ const ProfileUser = () => {
 									<Checkbox
 										obj={obj}
 										onChange={(item) => {
-											setCheckboxData(data.map((d) => (d.order === item.order ? item : d)));
+											setCheckboxData(checkboxData.map((d) => (d.order === item.order ? item : d)));
 										}}
 									/>
 								</li>
