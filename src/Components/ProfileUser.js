@@ -114,7 +114,7 @@ const history = useHistory();
                     
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
                  
-                    <button className="btn btn-primary" type="button">Uploader une  image</button>
+                    <button className="btn btn-primary" type="button">Changer l'image</button>
                 </div>
             </div>
         </div>
@@ -124,26 +124,26 @@ const history = useHistory();
                 <div className="card-header">Détails du profile</div>
                 <div className="card-body">
                     <form>
-                        <div className="row gx-3 mb-3">
-                            <div className="mb-3">
-								<label className="small mb-1" for="inputUsername">Nom complet</label>
-								<input className="form-control" id="inputUsername" type="text" placeholder="Votre nom complet" value="" />
-							</div>
+                       <div className="row gx-3 mb-3">
+                           
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputFirstName">Email</label>
-                                <input className="form-control" id="inputFirstName" type="text" placeholder="Votre adresse email" value="" />
+                                <label className="small mb-1" for="inputOrgName">Nom complet</label>
+                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre nom complet" value="" />
+                            </div>
+                           <div className="col-md-6">
+                                <label className="small mb-1" for="inputLastName">Email</label>
+                                <input className="form-control" id="inputLastName" type="text" placeholder="Votre adresse courriel" value="" />
                             </div>
                         </div>
-                       
                         <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputOrgName">Téléphone domicile</label>
-                                <input className="form-control" id="inputOrgName" type="text" placeholder="Téléphone de votre domicile" value="" />
+                                <label className="small mb-1" for="inputOrgName">Téléphone </label>
+                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre Téléphone" value="" />
                             </div>
                            <div className="col-md-6">
-                                <label className="small mb-1" for="inputLastName">Téléphone</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Votre Téléphone" value="" />
+                                <label className="small mb-1" for="inputLastName">Téléphone domicile</label>
+                                <input className="form-control" id="inputLastName" type="text" placeholder="Téléphone du domicile" value="" />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
@@ -186,14 +186,14 @@ const history = useHistory();
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Pays</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Pays" value="" />
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Province</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Province" value="" />
                         </div>
 						<div className="mb-3">
-                            <label className="small mb-1" for="inputEmailAddress">Ville</label>
+                            <label className="small mb-1" for="inputEmailAddress">Ville</labelVille
                             <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
                         </div>
 						<div className="row gx-3 mb-3">
