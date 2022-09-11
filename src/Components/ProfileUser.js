@@ -124,12 +124,6 @@ const history = useHistory();
                 <div className="card-header">Détails du profile</div>
                 <div className="card-body">
                     <form>
-                        
-                        <div className="mb-3">
-                            <label className="small mb-1" for="inputUsername">Nom complet</label>
-                            <input className="form-control" id="inputUsername" type="text" placeholder="Votre nom complet" value="" />
-                        </div>
-                        
                         <div className="row gx-3 mb-3">
                             <div className="mb-3">
 								<label className="small mb-1" for="inputUsername">Nom complet</label>
