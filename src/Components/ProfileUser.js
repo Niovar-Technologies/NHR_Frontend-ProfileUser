@@ -149,18 +149,31 @@ const history = useHistory();
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <label className="small mb-1" for="inputLocation">Département</label>
-                                <input className="form-control" id="inputLocation" type="text" placeholder="Département" value="" />
+                                <div className="card flex-fill">
+								<select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Santé</option>
+									<option value={2021}>Transport</option>
+									<option value={2020}>Agent Administratif</option>
+								</select>
+							</div>
                             </div>
 							<div className="col-md-6">
                                 <label className="small mb-1" for="inputLocation">Poste</label>
-                                <input className="form-control" id="inputLocation" type="text" placeholder="Département" value="" />
+                                <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Responsable</option>
+									<option value={2021}>Chef de </option>
+									<option value={2020}>Agent Administratif</option>
+								</select>
                             </div>
 						</div>
 						<div className="row gx-3 mb-3">
 							
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Type de salaire</label>
-                                <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
+                                <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Taux horaire</option>
+									<option value={2021}>Salaire annuel</option>
+								</select>
                             </div>
                            
                             <div className="col-md-6">
@@ -186,24 +199,35 @@ const history = useHistory();
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Pays</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Pays" value="" />
+                            <select className="form-control" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Canada</option>
+									<option value={2021}>Etat unis</option>
+									<option value={2021}>Etat unis</option>
+							</select>
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Province</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Province" value="" />
+                            <select className="form-control" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Canada</option>
+									<option value={2021}>Etat unis</option>
+									<option value={2021}>Etat unis</option>
+							</select>
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Ville</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                            <select className="form-control" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Canada</option>
+									<option value={2021}>Etat unis</option>
+									<option value={2021}>Etat unis</option>
+							</select>
                         </div>
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Mot de passe</label>
                                 <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
                             </div>
-                           
                             <div className="col-md-6">
-                                <label className="small mb-1" for="inputBirthday">Mot de passe oublié</label>
+                                <label className="small mb-1" for="inputBirthday">Repeter le mot de passe</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
                             </div>
                         </div>
