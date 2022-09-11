@@ -25,7 +25,7 @@ let compagnie 	= cookies.get( "compagnie" );
 
 
 const ProfileUser = () => {
-const history = useHistory();
+	const history = useHistory();
 
 	const [nomEntreprise, setNomEntreprise]= useState(''); //	
 	const [texte, setTexte]= useState('Un instant ...'); //	
@@ -34,6 +34,13 @@ const history = useHistory();
 	const [btnLink, setBtnLink]= useState(''); //
 	const [verified, setVerified]= useState(''); //
 	
+	// const [startDate, setStartDate]= useState(new Date());; //
+	const DateEmbauche = () => {
+		const [startDate, setStartDate] = useState(new Date());
+		return (
+			<DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
+		);
+	};
 	
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -186,12 +193,12 @@ const history = useHistory();
                         
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Date d'embauche</label>
-                                <DatePicker id="dateEmbauche" selected={startdate} onChange={(date) => setStartDate(date)} />
+                                <DateEmbauche />
                             </div>
                            
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputBirthday">Date de départ</label>
-                                <DatePicker id="dateDepart" selected={startdate} onChange={(date) => setStartDate(date)} />
+                                <DateEmbauche />
                             </div>
                         </div>
 						<div className="mb-3">
