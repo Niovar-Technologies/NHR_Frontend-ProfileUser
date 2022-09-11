@@ -43,11 +43,11 @@ const WeekList = [
 		{
 			id: 4,
 			name: "Vendredi"
-		}
+		},
 		{
 			id: 5,
 			name: "Samedi"
-		}
+		},
 		{
 			id: 6,
 			name: "Dimanche"
