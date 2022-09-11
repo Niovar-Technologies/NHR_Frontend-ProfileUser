@@ -199,7 +199,7 @@ const history = useHistory();
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Pays</label>
-                            <select className="form-control" onChange={e => handleSelectAnnee(e.target.value)}>
+                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
 									<option value={2021}>Etat unis</option>
@@ -207,7 +207,7 @@ const history = useHistory();
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Province</label>
-                            <select className="form-control" onChange={e => handleSelectAnnee(e.target.value)}>
+                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
 									<option value={2021}>Etat unis</option>
@@ -215,7 +215,7 @@ const history = useHistory();
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Ville</label>
-                            <select className="form-control" onChange={e => handleSelectAnnee(e.target.value)}>
+                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
 									<option value={2022}>Canada</option>
 									<option value={2021}>Etat unis</option>
 									<option value={2021}>Etat unis</option>
