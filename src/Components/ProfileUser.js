@@ -221,16 +221,33 @@ const history = useHistory();
 									<option value={2021}>Etat unis</option>
 							</select>
                         </div>
+						<div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Jour de disponibilité</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                        </div>
+						<div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Statut</label>
+                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
+									<option value={2022}>Non activé</option>
+									<option value={2021}>Activé</option>
+							</select>
+                        </div>
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Mot de passe</label>
                                 <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
                             </div>
+							
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputBirthday">Repeter le mot de passe</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
                             </div>
                         </div>
+						<div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Numéro d'employé</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                        </div>
+
                         <button className="btn btn-primary" type="button">Enregistrer</button>
                     </form>
                 </div>
