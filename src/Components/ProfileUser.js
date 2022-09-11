@@ -47,8 +47,8 @@ const ProfileUser = () => {
 	const [btnLink, setBtnLink]= useState(''); //
 	const [verified, setVerified]= useState(''); //
 	
-	const [startDateEmbauche, setStartDateEmbauche] = useState(new Date()); //
-	const [startDateDepart, setStartDateDepart] = useState(new Date()); //
+	const [startDateEmbauche, setStartDateEmbauche] = useState(''); //
+	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
 	const WeekList = [
 		{
@@ -239,12 +239,12 @@ const ProfileUser = () => {
                         
                             <div className="col-md-6">
                                 <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
-                                <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} />
+                                <DatePicker placeholder="Choisir une date" locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} />
                             </div>
                            
                             <div className="col-md-6">
                                 <label className="small mb-1" for="dateDepart">Date de départ</label>
-                                <DatePicker locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} />
+                                <DatePicker placeholder="Choisir une date" locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} />
                             </div>
                         </div>
 						<div className="mb-3">
