@@ -94,7 +94,7 @@ const ProfileUser = () => {
 		}
 	];
 	
-	SexeList= [
+	const SexeList= [
 		{
 			id: 0,
 			name: " Homme"
