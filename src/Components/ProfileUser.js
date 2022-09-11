@@ -201,7 +201,29 @@ const history = useHistory();
                             <label className="small mb-1" for="inputEmailAddress">Numéro d'employé</label>
                             <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
                         </div>
-					  
+						<div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Pays</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                        </div>
+						<div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Province</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                        </div>
+						<div className="mb-3">
+                            <label className="small mb-1" for="inputEmailAddress">Ville</label>
+                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                        </div>
+						<div className="row gx-3 mb-3">
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputPhone">Mot de passe</label>
+                                <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
+                            </div>
+                           
+                            <div className="col-md-6">
+                                <label className="small mb-1" for="inputBirthday">Mot de passe oublié</label>
+                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
+                            </div>
+                        </div>
                         <button className="btn btn-primary" type="button">Enregistrer</button>
                     </form>
                 </div>
