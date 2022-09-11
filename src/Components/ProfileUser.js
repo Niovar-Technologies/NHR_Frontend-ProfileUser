@@ -4,15 +4,11 @@ import { useHistory } from 'react-router-dom';
 import LoginLayout from "../Containers/LoginLayout";
 import logo from '../static/img/logobig.jpeg'
 import profile from '../static/css/profile.css'
-// import nopic from '../static/img/nopic.png';
+import checkboxStyle from '../static/css/profile.css'
 import {AlertCircle, Check} from 'react-feather';
-// import saveHistory from './SaveHistory';
-	
-import {ChevronDown, Edit, Grid, List, Plus} from "react-feather";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
@@ -278,17 +274,21 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
-                            <label className="small mb-1" for="inputEmailAddress">Jour de disponibilité</label>
+                            <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
+							<div class="col-sm-8 checkbox-wrapper">
 							{WeekList.map((obj, index) => (
 								<li key={index}>
-									<Checkbox
-										obj={obj}
-										onChange={(item) => {
-											setCheckboxData(checkboxData.map((d) => (d.order === item.order ? item : d)));
-										}}
-									/>
+									<div className="checkbox-inline">
+										<Checkbox
+											obj={obj}
+											onChange={(item) => {
+												setCheckboxData(checkboxData.map((d) => (d.order === item.order ? item : d)));
+											}}
+										/>
+									</div>
 								</li>
 							))}
+							</div>
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Statut</label>
