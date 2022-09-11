@@ -10,6 +10,9 @@ import {AlertCircle, Check} from 'react-feather';
 	
 import {ChevronDown, Edit, Grid, List, Plus} from "react-feather";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
@@ -183,12 +186,12 @@ const history = useHistory();
                         
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputPhone">Date d'embauche</label>
-                                <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
+                                <DatePicker id="dateEmbauche" selected={startdate} onChange={(date) => setStartDate(date)} />
                             </div>
                            
                             <div className="col-md-6">
                                 <label className="small mb-1" for="inputBirthday">Date de départ</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
+                                <DatePicker id="dateDepart" selected={startdate} onChange={(date) => setStartDate(date)} />
                             </div>
                         </div>
 						<div className="mb-3">
