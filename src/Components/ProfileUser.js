@@ -19,7 +19,9 @@ let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	= cookies.get( "compagnie" );
 
-
+import { registerLocale, setDefaultLocale } from  "react-datepicker";
+import fr from 'date-fns/locale/fr';
+registerLocale('fr', fr)
 	
 const Checkbox = ({ obj, onChange }) => {
 	return (
