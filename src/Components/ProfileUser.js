@@ -193,7 +193,7 @@ const history = useHistory();
                             <input className="form-control" id="inputEmailAddress" type="email" placeholder="Province" value="" />
                         </div>
 						<div className="mb-3">
-                            <label className="small mb-1" for="inputEmailAddress">Ville</labelVille
+                            <label className="small mb-1" for="inputEmailAddress">Ville</label>
                             <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
                         </div>
 						<div className="row gx-3 mb-3">
