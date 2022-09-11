@@ -1,4 +1,4 @@
-import React, { useContext, createContext, state, useState, useEffect } from "react";
+import React, { useMemo, useContext, createContext, state, useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 
 import LoginLayout from "../Containers/LoginLayout";
@@ -23,7 +23,52 @@ let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	= cookies.get( "compagnie" );
 
-
+const WeekList = [
+		{
+			id: 0,
+			name: "Lundi"
+		},
+		{
+			id: 1,
+			name: "Mardi"
+		},
+		{
+			id: 2,
+			name: "Mercredi"
+		},
+		{
+			id: 3,
+			name: "Jeudi"
+		},
+		{
+			id: 4,
+			name: "Vendredi"
+		}
+		{
+			id: 5,
+			name: "Samedi"
+		}
+		{
+			id: 6,
+			name: "Dimanche"
+		}
+	];
+	
+	const Checkbox = ({ obj, onChange }) => {
+		return (
+			<>
+				<input type="checkbox"
+					id={`custom-checkbox-${obj.index}`}
+					name={obj.name}
+					value={obj.checked}
+					className="form-control"
+					onChange={() => onChange({ ...obj, checked: !obj.checked })}
+				/>
+				{obj.name}
+			</>
+		);
+	};
+	
 const ProfileUser = () => {
 	const history = useHistory();
 
@@ -37,11 +82,19 @@ const ProfileUser = () => {
 	const [startDateEmbauche, setStartDateEmbauche] = useState(new Date()); //
 	const [startDateDepart, setStartDateDepart] = useState(new Date()); //
 	
+	const [checkboxData, setCheckboxData] = useState(
+		WeekList.sort((a, b) => a.order - b.order)
+	);
+	// const isVerified = useMemo(() => {
+		// return data.every((d) => d.checked);
+	// }, [data]);
+	
 	const handleClick = (e) => {
 		e.preventDefault();
 		location.replace( btnLink );
 	}
 
+  
 	// get current url
 	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
@@ -226,7 +279,12 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Jour de disponibilité</label>
-                            <input className="form-control" id="inputEmailAddress" type="email" placeholder="Poste" value="" />
+                            <Checkbox
+								obj={obj}
+								onChange={(item) => {
+									setCheckboxData(data.map((d) => (d.order === item.order ? item : d)));
+								}}
+							/>
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Statut</label>
