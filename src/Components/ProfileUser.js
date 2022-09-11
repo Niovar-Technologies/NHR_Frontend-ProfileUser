@@ -5,7 +5,7 @@ import LoginLayout from "../Containers/LoginLayout";
 import logo from '../static/img/logobig.jpeg'
 import profile from '../static/css/profile.css'
 import checkboxStyle from '../static/css/checkboxStyle.css'
-import { Hash, DollarSign, ToggleLeft, Sunrise, Map, MapPin, Globe, Briefcase, Clipboard, Mail, Phone, Smartphone, AlertCircle, Check, User, Calendar, Trello } from 'react-feather';
+import { Lock, Hash, DollarSign, ToggleLeft, Sunrise, Map, MapPin, Globe, Briefcase, Clipboard, Mail, Phone, Smartphone, AlertCircle, Check, User, Calendar, Trello } from 'react-feather';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
