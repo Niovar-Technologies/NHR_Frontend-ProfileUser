@@ -47,8 +47,8 @@ const ProfileUser = () => {
 	const [btnLink, setBtnLink]= useState(''); //
 	const [verified, setVerified]= useState(''); //
 	
-	const [startDateEmbauche, setStartDateEmbauche] = useState('Choisir une date'); //
-	const [startDateDepart, setStartDateDepart] = useState('Choisir une date'); //
+	const [startDateEmbauche, setStartDateEmbauche] = useState(''); //
+	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
 	const WeekList = [
 		{
