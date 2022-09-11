@@ -275,9 +275,9 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
-							<div class="col-sm-8 checkbox-wrapper">
+							<ul className="list-unstyled" className="col-sm-8 checkbox-wrapper">
 							{WeekList.map((obj, index) => (
-								<span key={index}>
+								<li key={index}>
 									<div className="checkbox-inline">
 										<Checkbox
 											obj={obj}
@@ -286,9 +286,9 @@ const ProfileUser = () => {
 											}}
 										/>
 									</div>
-								</span>
+								</li>
 							))}
-							</div>
+							</ul>
                         </div>
 						<div className="mb-3">
                             <label className="small mb-1" for="inputEmailAddress">Statut</label>
