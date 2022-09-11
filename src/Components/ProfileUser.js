@@ -154,7 +154,6 @@ const history = useHistory();
 									<option value={2021}>Transport</option>
 									<option value={2020}>Agent Administratif</option>
 								</select>
-							</div>
                             </div>
 							<div className="col-md-6">
                                 <label className="small mb-1" for="inputLocation">Poste</label>
