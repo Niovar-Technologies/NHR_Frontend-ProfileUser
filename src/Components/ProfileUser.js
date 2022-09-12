@@ -51,7 +51,7 @@ const ProfileUser = () => {
 	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
-	
+	const [ PosteList, setPosteList ] = useState([]); //;
 	// const DepartementList = [
 		// {
 			// id: 0,
@@ -109,6 +109,11 @@ const ProfileUser = () => {
 		e.preventDefault();
 		location.replace( btnLink );
 	}
+	
+	const handleSelectDepartement = (value) => {
+		let departementId = value;
+		GetPostes()
+	}
 
 	const handleSelect = (e) => {
 		e.preventDefault();
@@ -138,6 +143,32 @@ const ProfileUser = () => {
 			if( resJson.statusCode === 200 ) {
 				let departements = resJson.departement;
 				setDepartementList( departements );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+	// get Postes
+	async function GetPostes( departementId ){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let postes = resJson.postes;
+				setPosteList( postes );
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -267,7 +298,7 @@ const ProfileUser = () => {
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Clipboard /> <label className="small mb-1" for="inputLocation">Département</label>
-								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+								<select className="custom-select" onChange={e => handleSelectDepartement(e.target.value)}>
 									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
 									))}
@@ -275,10 +306,10 @@ const ProfileUser = () => {
                             </div>
 							<div className="col-md-6">
                                 <Briefcase /> <label className="small mb-1" for="inputLocation">Poste</label>
-                                <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Responsable</option>
-									<option value={2021}>Chef de </option>
-									<option value={2020}>Agent Administratif</option>
+                                <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+									{PosteList.map((obj, index) => (
+										<option key={index} value={obj.id}>{obj.name}</option>
+									))}
 								</select>
                             </div>
 						</div>
