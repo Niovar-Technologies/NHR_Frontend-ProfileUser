@@ -167,7 +167,7 @@ const ProfileUser = () => {
 			
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
-				let postes = resJson.postes;
+				let postes = resJson.poste;
 				setPosteList( postes );
 			}
 			else {
