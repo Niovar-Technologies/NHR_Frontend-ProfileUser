@@ -50,7 +50,7 @@ const ProfileUser = () => {
 	const [startDateEmbauche, setStartDateEmbauche] = useState(''); //
 	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
-	const [ DepartementList, setDepartementList ];
+	const [ DepartementList, setDepartementList ] = useState([]); //;
 	
 	// const DepartementList = [
 		// {
