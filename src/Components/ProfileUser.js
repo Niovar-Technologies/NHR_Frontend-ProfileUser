@@ -121,11 +121,10 @@ const ProfileUser = () => {
 	// init some var
 	
 	useEffect(() => {
-	 	GetNomEntreprise();
+	 	// GetNomEntreprise();
 		GetDepartements();
 	},[] );
 	
-	DepartementList
 	// get company name
 	async function GetDepartements(){
 
