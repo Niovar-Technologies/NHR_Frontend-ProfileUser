@@ -112,7 +112,7 @@ const ProfileUser = () => {
 	
 	const handleSelectDepartement = (value) => {
 		let departementId = value;
-		GetPostes()
+		GetPostes(departementId);
 	}
 
 	const handleSelect = (e) => {
