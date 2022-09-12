@@ -50,18 +50,18 @@ const ProfileUser = () => {
 	const [startDateEmbauche, setStartDateEmbauche] = useState(''); //
 	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
-	// const [ DepartementList, setDepartementList ];
+	const [ DepartementList, setDepartementList ];
 	
-	const DepartementList = [
-		{
-			id: 0,
-			name: " Non attribué"
-		},
-		{
-			id: 1,
-			name: " Santé"
-		},
-	];
+	// const DepartementList = [
+		// {
+			// id: 0,
+			// name: " Non attribué"
+		// },
+		// {
+			// id: 1,
+			// name: " Santé"
+		// },
+	// ];
 	
 	const WeekList = [
 		{
@@ -122,8 +122,35 @@ const ProfileUser = () => {
 	
 	useEffect(() => {
 	 	GetNomEntreprise();
+		GetDepartements();
 	},[] );
 	
+	DepartementList
+	// get company name
+	async function GetDepartements(){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let departements = resJson.departement;
+				setDepartementList( departements );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
 	
 	// get company name
 	async function GetNomEntreprise(){
