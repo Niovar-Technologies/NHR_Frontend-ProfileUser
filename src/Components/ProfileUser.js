@@ -51,7 +51,11 @@ const ProfileUser = () => {
 	const [startDateDepart, setStartDateDepart] = useState(''); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
-	const [ PosteList, setPosteList ] = useState([]); //;
+	const [ PosteList, setPosteList ] = useState([]); //
+	const [ PaysList, setPaysList ] = useState([]); //
+	
+	
+
 	// const DepartementList = [
 		// {
 			// id: 0,
@@ -113,6 +117,16 @@ const ProfileUser = () => {
 	const handleSelectDepartement = (value) => {
 		let departementId = value;
 		GetPostes(departementId);
+	}
+
+	const handleSelectPays = (value) => {
+		let paysId = value;
+		GetProvinces(paysId);
+	}
+
+	const handleSelectProvince = (value) => {
+		let villeId = value;
+		GetVilles(villeId);
 	}
 
 	const handleSelect = (e) => {
@@ -182,6 +196,88 @@ const ProfileUser = () => {
 		};
 	}
 	
+	// Get ville
+	async function GetVilles( provinceId ){
+
+		try {
+
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays/VillesProvince/" + provinceId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let villes = resJson.ville;
+				setVilleList( villes );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+	// Get provinces
+	async function GetProvinces( paysId ){
+
+		try {
+
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays/ProvincesPays/" + paysId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let province = resJson.province;
+				setProvinceList( pays );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+
+	// Get pays
+	async function GetPays( departementId ){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let pays = resJson.pays;
+				setPaysList( pays );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+
+
 	// get company name
 	async function GetNomEntreprise(){
 
@@ -206,7 +302,6 @@ const ProfileUser = () => {
 			console.log(err);
 		};
 	}
-
 			
     return (
        <>
@@ -342,26 +437,26 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <Globe /> <label className="small mb-1" for="inputEmailAddress">Pays</label>
-                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Canada</option>
-									<option value={2021}>Etat unis</option>
-									<option value={2021}>Suede</option>
+							<select className="custom-select" onChange={e => handleSelectPays(e.target.value)}>
+								{PaysList.map((obj, index) => (
+									<option key={index} value={obj.id}>{obj.name}</option>
+								))}
 							</select>
-                        </div>
+                        </div>PaysList
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
-                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Ontario</option>
-									<option value={2021}>Washington</option>
-									<option value={2021}>Balme</option>
+                            <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
+								{ProvinceList.map((obj, index) => (
+									<option key={index} value={obj.id}>{obj.name}</option>
+								))}
 							</select>
                         </div>
 						<div className="mb-3">
                             <MapPin /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
-                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Canada</option>
-									<option value={2021}>Etat unis</option>
-									<option value={2021}>Etat unis</option>
+                            <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+								{VilleList.map((obj, index) => (
+									<option key={index} value={obj.id}>{obj.name}</option>
+								))}
 							</select>
                         </div>
 						<div className="mb-3">
