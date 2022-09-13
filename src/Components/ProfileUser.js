@@ -498,30 +498,31 @@ const ProfileUser = () => {
 								))}
 							</select>
                         </div>
-						<div className="mb-3">
 						{ ( !showProvince ) ? 
-							<span>&nbsp;</span> 
-							:
+						<div className="mb-3">&nbsp;</div> 
+						:
+						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
                             <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
 								{ProvinceList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
 								))}
 							</select>
-						}
                         </div>
-						<div className="mb-3">
+						}
 						{ ( !showVille ) ? 
-							<span>&nbsp;</span> 
-							:
+						
+						<div className="mb-3">&nbsp;</div> 
+						:
+						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 								{VilleList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
 								))}
 							</select>
-						}
                         </div>
+						}
 						<div className="mb-3">
                             <Sun /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
 							<div className="col-sm-8 checkbox-wrapper list-unstyled">
