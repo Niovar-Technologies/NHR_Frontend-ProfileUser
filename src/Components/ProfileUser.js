@@ -202,8 +202,7 @@ const ProfileUser = () => {
 	async function GetVilles( provinceId ){
 
 		try {
-
-			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays/VillesProvince/" + provinceId, {
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Province/VillesProvince/" + provinceId, {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'},
 			});
