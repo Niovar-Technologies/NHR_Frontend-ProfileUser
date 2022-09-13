@@ -55,7 +55,7 @@ const ProfileUser = () => {
 	
 	const [ PaysList, setPaysList ] = useState([]); //
 	const [ ProvinceList, setProvinceList ] = useState([]); //
-	const [ VIlleList, setVilleList ] = useState([]); //
+	const [ VilleList, setVilleList ] = useState([]); //
 
 	// const DepartementList = [
 		// {
