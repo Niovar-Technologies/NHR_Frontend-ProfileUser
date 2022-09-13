@@ -538,12 +538,12 @@ const ProfileUser = () => {
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" for="inputPhone">Mot de passe</label>
-                                <input className="form-control" id="inputPhone" type="tel" placeholder="Type de salaire" value="" />
+                                <input className="form-control" id="inputPhone" type="tel" placeholder="Mot de passe" value="" />
                             </div>
 							
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" for="inputBirthday">Repeter le mot de passe</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
+                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Repetition du mot de passe" value="" />
                             </div>
                         </div>
                         <button className="btn btn-primary" type="button">Enregistrer</button>
