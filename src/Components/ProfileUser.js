@@ -56,17 +56,6 @@ const ProfileUser = () => {
 	const [ PaysList, setPaysList ] = useState([]); //
 	const [ ProvinceList, setProvinceList ] = useState([]); //
 	const [ VilleList, setVilleList ] = useState([]); //
-
-	// const DepartementList = [
-		// {
-			// id: 0,
-			// name: " Non attribué"
-		// },
-		// {
-			// id: 1,
-			// name: " Santé"
-		// },
-	// ];
 	
 	const WeekList = [
 		{
@@ -108,7 +97,43 @@ const ProfileUser = () => {
 			id: 1,
 			name: " Femme"
 		},
-	]
+	];
+	
+	// Todo: set a backend
+	const StatusList= [
+		{
+			id: 0,
+			name: " Employé activé"
+		},
+		{
+			id: 1,
+			name: " Employé desactivé"
+		},
+		{
+			id: 2,
+			name: " Repartiteur"
+		},
+		{
+			id: 3,
+			name: " Gestionnaire"
+		},
+		{
+			id: 4,
+			name: " Administrateur"
+		},
+	];
+	
+	// Todo: set a backend
+	const SalaireTypeList = [
+		{
+			id: 0,
+			name: " Salaire horaire"
+		},
+		{
+			id: 1,
+			name: " Salaire annuel"
+		},
+	];
 	
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -278,7 +303,31 @@ const ProfileUser = () => {
 		};
 	}
 
+	// get company name
+	async function GetStatus(){
 
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let departements = resJson.departement;
+				setDepartementList( departements );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
 	// get company name
 	async function GetNomEntreprise(){
 
@@ -413,9 +462,10 @@ const ProfileUser = () => {
 							
                             <div className="col-md-6">
                                 <Trello /> <label className="small mb-1" for="inputPhone">Type de salaire</label>
-                                <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Taux horaire</option>
-									<option value={2021}>Salaire annuel</option>
+                                <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+									{SalaireTypeList.map((obj, index) => (
+										<option key={index} value={obj.id}>{obj.name}</option>
+									))}
 								</select>
                             </div>
                            
@@ -479,9 +529,10 @@ const ProfileUser = () => {
                         </div>
 						<div className="mb-3">
                             <ToggleLeft /> <label className="small mb-1" for="inputEmailAddress">Statut</label>
-                            <select className="custom-select" onChange={e => handleSelectAnnee(e.target.value)}>
-									<option value={2022}>Non activé</option>
-									<option value={2021}>Activé</option>
+                            <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+									{StatusList.map((obj, index) => (
+										<option key={index} value={obj.id}>{obj.name}</option>
+									))}
 							</select>
                         </div>
 						<div className="row gx-3 mb-3">
