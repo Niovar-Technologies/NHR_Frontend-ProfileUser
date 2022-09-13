@@ -238,7 +238,7 @@ const ProfileUser = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let province = resJson.province;
-				setProvinceList( pays );
+				setProvinceList( province );
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -444,7 +444,7 @@ const ProfileUser = () => {
 									<option key={index} value={obj.id}>{obj.name}</option>
 								))}
 							</select>
-                        </div>PaysList
+                        </div>
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
                             <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
