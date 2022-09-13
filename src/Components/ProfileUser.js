@@ -514,7 +514,7 @@ const ProfileUser = () => {
 						{ ( !showVille ) ? 
 							<span>&nbsp;</span> 
 							:
-                            <MapPin /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
+                            <Map /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 								{VilleList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
