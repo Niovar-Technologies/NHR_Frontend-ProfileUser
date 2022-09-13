@@ -499,7 +499,9 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
-						{ ( !showProvince ) ? &nbsp; :
+						{ ( !showProvince ) ? 
+							<span>&nbsp;</span> 
+							:
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
                             <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
 								{ProvinceList.map((obj, index) => (
@@ -509,7 +511,9 @@ const ProfileUser = () => {
 						}
                         </div>
 						<div className="mb-3">
-						{ ( !showVille ) ? &nbsp; :
+						{ ( !showVille ) ? 
+							<span>&nbsp;</span> 
+							:
                             <MapPin /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 								{VilleList.map((obj, index) => (
