@@ -499,7 +499,7 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						{ ( !showProvince ) ? 
-						<div className="mb-3">&nbsp;</div> 
+						<>&nbsp;</> 
 						:
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
@@ -511,8 +511,7 @@ const ProfileUser = () => {
                         </div>
 						}
 						{ ( !showVille ) ? 
-						
-						<div className="mb-3">&nbsp;</div> 
+						<>&nbsp;</> 
 						:
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
