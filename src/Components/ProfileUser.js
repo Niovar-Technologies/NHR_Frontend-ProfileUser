@@ -143,6 +143,7 @@ const ProfileUser = () => {
 	useEffect(() => {
 	 	// GetNomEntreprise();
 		GetDepartements();
+		GetPays();
 	},[] );
 	
 	// get company name
@@ -253,7 +254,7 @@ const ProfileUser = () => {
 	
 
 	// Get pays
-	async function GetPays( departementId ){
+	async function GetPays(){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
