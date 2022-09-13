@@ -56,7 +56,9 @@ const ProfileUser = () => {
 	const [ PaysList, setPaysList ] = useState([]); //
 	const [ ProvinceList, setProvinceList ] = useState([]); //
 	const [ VilleList, setVilleList ] = useState([]); //
-	
+	const [ showProvince, setShowProvince ] = useState(false); //
+	const [ showVille, setShowVille ] = useState(false); //
+			
 	const WeekList = [
 		{
 			id: 0,
@@ -236,6 +238,7 @@ const ProfileUser = () => {
 			if( resJson.statusCode === 200 ) {
 				let villes = resJson.ville;
 				setVilleList( villes );
+				setShowVille( true );
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -263,6 +266,7 @@ const ProfileUser = () => {
 			if( resJson.statusCode === 200 ) {
 				let province = resJson.province;
 				setProvinceList( province );
+				setShowProvince( true );
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -495,20 +499,24 @@ const ProfileUser = () => {
 							</select>
                         </div>
 						<div className="mb-3">
+						{ ( !showProvince ) ? &nbsp; :
                             <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
                             <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
 								{ProvinceList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
 								))}
 							</select>
+						}
                         </div>
 						<div className="mb-3">
+						{ ( !showVille ) ? &nbsp; :
                             <MapPin /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 								{VilleList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
 								))}
 							</select>
+						}
                         </div>
 						<div className="mb-3">
                             <Sun /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
