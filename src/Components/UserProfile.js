@@ -267,7 +267,7 @@ const UserProfile = () => {
 	}
 
 	// get user profile
-	function getUserProfile(){
+	async function  getUserProfile(){
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + user_id, {
 				method: "GET",
