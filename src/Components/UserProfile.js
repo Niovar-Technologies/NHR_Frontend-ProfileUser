@@ -54,7 +54,7 @@ const UserProfile = () => {
 	const history = useHistory();
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
-	const [ accountInfo, setAccountInfo ];
+	const [ accountInfo, setAccountInfo ] = useState([]); //;
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
