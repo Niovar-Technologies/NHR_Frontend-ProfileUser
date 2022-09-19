@@ -697,7 +697,7 @@ console.log( userProfile );
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire"  value = {userSalaire ? userSalaire : ""} />
                             </div>
                         </div>
-						<div className="row gx-3 mb-3">
+						<div className="row gx-3 mb-3"> 
                         
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
