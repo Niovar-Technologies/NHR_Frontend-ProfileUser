@@ -13,7 +13,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
 
+
 let role = cookies.get( "role" );
+let user_id = cookies.get( "userid" );
 
 let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
@@ -37,18 +39,17 @@ const Checkbox = ({ obj, onChange }) => {
 	);
 };
 	
-const ProfileUser = () => {
+const UserProfile = () => {
 	const history = useHistory();
 
 	const [nomEntreprise, setNomEntreprise]= useState(''); //	
-	const [texte, setTexte]= useState('Un instant ...'); //	
-	const [title, setTitle]= useState('...'); //	
+	
 	const [btnText, setBtnText]= useState('Btn'); //
 	const [btnLink, setBtnLink]= useState(''); //
 	const [verified, setVerified]= useState(''); //
 	
-	const [startDateEmbauche, setStartDateEmbauche] = useState(''); //
-	const [startDateDepart, setStartDateDepart] = useState(''); //
+	const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
+	const [ startDateDepart, setStartDateDepart ] = useState(''); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -58,34 +59,56 @@ const ProfileUser = () => {
 	const [ VilleList, setVilleList ] = useState([]); //
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
-			
-	const WeekList = [
+	
+	const [ userSexeId, setUserSexeId ] = useState(''); //
+	const [ userDepartementId, setUserDepartementId ] = useState(''); //
+	const [ userPosteId, setUserPosteId ] = useState(''); //
+	const [ userSalaryType, setUserSalaryType ] = useState(''); //
+	
+	const [ userPays, setUserPays ] = useState(''); //
+	const [ userProvince, setUserProvince ] = useState(''); //
+	const [ userVille, setUserVille ] = useState(''); //
+	const [ userTelephone01, setUserTelephone01 ] = useState(''); //
+	const [ userTelephone02, setUserTelephone02 ] = useState(''); //
+	
+	const [ userSalaire, setUserSalaire ] = useState(''); //
+	const [ userDateEmbauche, setUserDateEmbauche ] = useState(''); //
+	const [ userDateDepart, setUserDateDepart ] = useState(''); //
+	const [ userDateNaissance, setUserDateNaissance ] = useState(''); //
+	const [ userPhotoUrl, setUserPhotoUrl ] = useState(''); //
+	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
+	
+	const [ weekDays, setWeekDays ] = useState( days ); //
+	
+	const [ formType, setformType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
+
+	const days = [
 		{
-			id: 0,
+			id: 1,
 			name: " Lundi"
 		},
 		{
-			id: 1,
+			id: 2,
 			name: " Mardi"
 		},
 		{
-			id: 2,
+			id: 3,
 			name: " Mercredi"
 		},
 		{
-			id: 3,
+			id: 4,
 			name: " Jeudi"
 		},
 		{
-			id: 4,
+			id: 5,
 			name: " Vendredi"
 		},
 		{
-			id: 5,
+			id: 6,
 			name: " Samedi"
 		},
 		{
-			id: 6,
+			id: 0,
 			name: " Dimanche"
 		}
 	];
@@ -168,13 +191,141 @@ const ProfileUser = () => {
 	// init some var
 	
 	useEffect(() => {
-	 	// GetNomEntreprise();
-		GetDepartements();
-		GetPays();
+		getDepartements();
+		getPays();
+		// Get user profile data if exist and set default values
+		let profile = getProfileFromAccount();
+		if( profile ){
+			setformType( 1 ); // Modificatino de profile
+			setUserSexeId( profile.sexeId );
+			setUserDepartementId( profile.departementId );
+			setUserPosteId( profile.posteId );
+			setUserSalaryType( profile.posteId );
+			setUserPays( profile.paysId );
+			setUserProvince( profile.provinceId );
+			setUserVille( profile.villeId );
+			setUserTelephone01( telephone01 );
+			setUserTelephone02( telephone02 );
+			setUserSalaire( salaire );
+			setUserDateEmbauche( salaire );
+			setUserDateDepart( salaire );
+			setUserDateNaissance( salaire );
+			setUserPhotoUrl( photoUrl );
+			
+			let userJoursId = getUserJours();
+			// setUserJours( jours );
+			// create user weekdays
+			let userWeekDays = getUserWeekdays( userJoursId );
+			setWeekDays( userWeekDays ); 
+		}
 	},[] );
 	
+	// user week days Array
+	function getUserWeekdays( userJours ){
+		let userWeekDays 	= [];
+		let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
+		let dayObj 			= {};
+		let day 	= "";
+		
+		
+		for( i = 0; i < weekDaysId.length; i++ ){
+			let checked = false;
+			if( i == 0 ){
+				day = "Dimanche";
+			}
+			if( i == 1 ){
+				day = "Lundi";
+			}
+			if( i == 2 ){
+				day = "Mardi";
+			}
+			if( i == 3 ){
+				day = "Mercredi";
+			}
+			if( i == 4 ){
+				day = "Jeudi";
+			}
+			if( i == 5 ){
+				day = "Vendredi";
+			}
+			if( i == 6 ){
+				day = "Samedi";
+			}
+			
+			if( userJoursId.includes( i ) ){
+				checked = true;
+			}
+			
+			dayObj.id 		= i;
+			dayObj.cheched 	= checked;
+			dayObj.name 	= day;
+			
+			userWeekDays.push( dayObj );
+		}
+		
+		return userWeekDays;
+	}
+
+	// get user profile
+	function getUserProfile(){
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + user_id, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let userProfile	= resJson.userProfile;
+				// setUserProfile( result );
+console.log( userProfile );				
+				return userProfile;
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+	// 
+	function getUserJours(){
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + UserProfileId , {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let result 	= resJson.userProfileJours;
+				let count 	= result.length;
+				let userProfilJours = [];
+				for( var i = 0; i < count; i++ ){
+					let jourId = result[i].jourId;
+					userProfilJours.push( jourId );
+				}
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+	// get user 
 	// get company name
-	async function GetDepartements(){
+	async function getDepartements(){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
@@ -200,7 +351,7 @@ const ProfileUser = () => {
 	}
 	
 	// get Postes
-	async function GetPostes( departementId ){
+	async function getPostes( departementId ){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
@@ -336,7 +487,7 @@ const ProfileUser = () => {
 	async function GetNomEntreprise(){
 
 		try {
-			let res = await fetch( lbdomain + "/NiovarRH/EntrepriseMicroservices/Entreprise/nomEntreprise/" + code, {
+			let res = await fetch( lbdomain + "/NiovarRH/EntrepriseMicroservices/Entreprise/nomEntreprise/" + UserProfileId , {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'},
 			});
@@ -433,11 +584,27 @@ const ProfileUser = () => {
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" for="inputOrgName">Genre </label>
+								{ setformType ? 
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SexeList.map((obj, index) => (
-										<option key={index} value={obj.id}>{obj.name}</option>
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+											defaultValue={{ label: "Choisir" }}
+										</option>
 									))}
 								</select>
+								:
+								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+									{SexeList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+											defaultValue={{ value: userSexeId }}
+										</option>
+									))}
+								</select>
+								}
                             </div>
                            <div className="col-md-6">
                                 <Hash /> <label className="small mb-1" for="inputLastName">Numéro d'employé</label>
@@ -525,7 +692,7 @@ const ProfileUser = () => {
 						<div className="mb-3">
                             <Sun /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
 							<div className="col-sm-8 checkbox-wrapper list-unstyled">
-							{WeekList.map((obj, index) => (
+							{weekDays.map((obj, index) => (
 								<li key={index}>
 									<div className="checkbox-inline">
 										<Checkbox
@@ -574,4 +741,4 @@ const ProfileUser = () => {
     );
 }
 
-export default ProfileUser;
+export default UserProfile;
