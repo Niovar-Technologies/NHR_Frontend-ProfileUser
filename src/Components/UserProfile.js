@@ -213,9 +213,9 @@ const UserProfile = () => {
 
 		setAccountId( id );	// Id of connected user from the users cookie session
 	}
-	
+alert( "foo" );
 	useEffect(() => {
-		
+alert( "bar" );
 		getDepartements();
 		getPays();
 		// Get user account and  profile data if exist and set default values
