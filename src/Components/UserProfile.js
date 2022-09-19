@@ -50,8 +50,88 @@ function getUrlParametter( name, url ) {
 // Example: getUrlParametter('q', 'hxxp://example.com/?q=abc')
 
 
+const days = [
+	{
+		id: 1,
+		name: " Lundi"
+	},
+	{
+		id: 2,
+		name: " Mardi"
+	},
+	{
+		id: 3,
+		name: " Mercredi"
+	},
+	{
+		id: 4,
+		name: " Jeudi"
+	},
+	{
+		id: 5,
+		name: " Vendredi"
+	},
+	{
+		id: 6,
+		name: " Samedi"
+	},
+	{
+		id: 0,
+		name: " Dimanche"
+	}
+];
+	
+const SexeList= [
+	{
+		id: 0,
+		name: " Homme"
+	},
+	{
+		id: 1,
+		name: " Femme"
+	},
+];
+	
+// Todo: set a backend
+const StatusList= [
+	{
+		id: 0,
+		name: " Employé activé"
+	},
+	{
+		id: 1,
+		name: " Employé desactivé"
+	},
+	{
+		id: 2,
+		name: " Repartiteur"
+	},
+	{
+		id: 3,
+		name: " Gestionnaire"
+	},
+	{
+		id: 4,
+		name: " Administrateur"
+	},
+];
+	
+// Todo: set a backend
+const SalaireTypeList = [
+	{
+		id: 0,
+		name: " Salaire horaire"
+	},
+	{
+		id: 1,
+		name: " Salaire annuel"
+	},
+];
+
 const UserProfile = () => {
 	const history = useHistory();
+
+
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	const [ accountInfo, setAccountInfo ] = useState([]); //;
@@ -94,83 +174,6 @@ const UserProfile = () => {
 	
 	const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
-	const days = [
-		{
-			id: 1,
-			name: " Lundi"
-		},
-		{
-			id: 2,
-			name: " Mardi"
-		},
-		{
-			id: 3,
-			name: " Mercredi"
-		},
-		{
-			id: 4,
-			name: " Jeudi"
-		},
-		{
-			id: 5,
-			name: " Vendredi"
-		},
-		{
-			id: 6,
-			name: " Samedi"
-		},
-		{
-			id: 0,
-			name: " Dimanche"
-		}
-	];
-	
-	const SexeList= [
-		{
-			id: 0,
-			name: " Homme"
-		},
-		{
-			id: 1,
-			name: " Femme"
-		},
-	];
-	
-	// Todo: set a backend
-	const StatusList= [
-		{
-			id: 0,
-			name: " Employé activé"
-		},
-		{
-			id: 1,
-			name: " Employé desactivé"
-		},
-		{
-			id: 2,
-			name: " Repartiteur"
-		},
-		{
-			id: 3,
-			name: " Gestionnaire"
-		},
-		{
-			id: 4,
-			name: " Administrateur"
-		},
-	];
-	
-	// Todo: set a backend
-	const SalaireTypeList = [
-		{
-			id: 0,
-			name: " Salaire horaire"
-		},
-		{
-			id: 1,
-			name: " Salaire annuel"
-		},
-	];
 	
 	const handleClick = (e) => {
 		e.preventDefault();
