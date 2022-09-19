@@ -131,8 +131,6 @@ const SalaireTypeList = [
 const UserProfile = () => {
 	const history = useHistory();
 
-
-
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	const [ accountInfo, setAccountInfo ] = useState([]); //;
 	const [ btnText, setBtnText ]	= useState('Btn'); //
@@ -217,37 +215,41 @@ const UserProfile = () => {
 		setAccountId( id );	// Id of connected user from the users cookie session
 	}
 
-	useEffect(() => {
 
+	let info  = getAccountInfo();
+	setAccountInfo( info );
+	let profile = getUserProfile();
+	if( profile ){
+		setFormType( 1 ); // Modificatino de profile
+		setUserSexeId( profile.sexeId );
+		setUserDepartementId( profile.departementId );
+		setUserPosteId( profile.posteId );
+		setUserSalaryType( profile.posteId );
+		setUserPays( profile.paysId );
+		setUserProvince( profile.provinceId );
+		setUserVille( profile.villeId );
+		setUserTelephone01( telephone01 );
+		setUserTelephone02( telephone02 );
+		setUserSalaire( salaire );
+		setUserDateEmbauche( salaire );
+		setUserDateDepart( salaire );
+		setUserDateNaissance( salaire );
+		setUserPhotoUrl( photoUrl );
+			
+		let userJoursId = getUserJours();
+		// setUserJours( jours );
+		// create user weekdays
+		let userWeekDays = getUserWeekdays( userJoursId );
+		setWeekDays( userWeekDays ); 
+	}
+
+
+
+	useEffect(() => {
 		getDepartements();
 		getPays();
 		// Get user account and  profile data if exist and set default values
-		let info  = getAccountInfo();
-		setAccountInfo( info );
-		let profile = getUserProfile();
-		if( profile ){
-			setFormType( 1 ); // Modificatino de profile
-			setUserSexeId( profile.sexeId );
-			setUserDepartementId( profile.departementId );
-			setUserPosteId( profile.posteId );
-			setUserSalaryType( profile.posteId );
-			setUserPays( profile.paysId );
-			setUserProvince( profile.provinceId );
-			setUserVille( profile.villeId );
-			setUserTelephone01( telephone01 );
-			setUserTelephone02( telephone02 );
-			setUserSalaire( salaire );
-			setUserDateEmbauche( salaire );
-			setUserDateDepart( salaire );
-			setUserDateNaissance( salaire );
-			setUserPhotoUrl( photoUrl );
-			
-			let userJoursId = getUserJours();
-			// setUserJours( jours );
-			// create user weekdays
-			let userWeekDays = getUserWeekdays( userJoursId );
-			setWeekDays( userWeekDays ); 
-		}
+		
 	},[] );
 	
 	// user week days Array
