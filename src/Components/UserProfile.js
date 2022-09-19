@@ -92,7 +92,7 @@ const UserProfile = () => {
 	const [ weekDays, setWeekDays ] = useState( days ); //
 	const [ accountId, setAccountId ] = useState( '' ); //
 	
-	const [ formType, setformType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
+	const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
 	const days = [
 		{
@@ -213,9 +213,9 @@ const UserProfile = () => {
 
 		setAccountId( id );	// Id of connected user from the users cookie session
 	}
-alert( "foo" );
+
 	useEffect(() => {
-alert( "bar" );
+
 		getDepartements();
 		getPays();
 		// Get user account and  profile data if exist and set default values
@@ -223,7 +223,7 @@ alert( "bar" );
 		setAccountInfo( info );
 		let profile = getUserProfile();
 		if( profile ){
-			setformType( 1 ); // Modificatino de profile
+			setFormType( 1 ); // Modificatino de profile
 			setUserSexeId( profile.sexeId );
 			setUserDepartementId( profile.departementId );
 			setUserPosteId( profile.posteId );
@@ -636,7 +636,7 @@ console.log( userProfile );
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" for="inputOrgName">Genre </label>
-								{ setformType ? 
+								{ setFormType ? 
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SexeList.map((obj, index) => (
 										<option 

@@ -7,7 +7,7 @@ import "./static/css/select2.min.css"
 import "./static/css/style.css"
 
 // import TalonPaie from "./Components/TalonPaie";
-import ProfileUser from "./Components/UserProfile";
+import UserProfile from "./Components/UserProfile";
 
 const Hello = () => (<div>Hello Niovar!</div>)
 
