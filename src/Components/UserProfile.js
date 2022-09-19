@@ -90,7 +90,7 @@ const UserProfile = () => {
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
 	
 	const [ weekDays, setWeekDays ] = useState( days ); //
-	const [ accountId, setAccountId ];
+	const [ accountId, setAccountId ] = useState( '' ); //
 	
 	const [ formType, setformType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
