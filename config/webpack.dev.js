@@ -44,10 +44,10 @@ const devConfig = {
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: 'ProfileUser',
+            name: 'UserProfile',
             filename: 'remoteEntry.js',
             exposes: {
-                './ProfileUserApp': './src/bootstrap'
+                './UserProfileApp': './src/bootstrap'
             },
             shared: packageJson.dependencies
         }),
