@@ -14,8 +14,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
 
 
-let role = cookies.get( "role" );
-let user_id = cookies.get( "userid" );
+
 
 let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
@@ -38,15 +37,27 @@ const Checkbox = ({ obj, onChange }) => {
 		</>
 	);
 };
-	
+
+// Helper: get parametter from url
+function getUrlParametter( name, url ) {
+    if (!url) url = location.href;
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( url );
+    return results == null ? null : results[1];
+}
+// Example: getUrlParametter('q', 'hxxp://example.com/?q=abc')
+
+
 const UserProfile = () => {
 	const history = useHistory();
 
-	const [nomEntreprise, setNomEntreprise]= useState(''); //	
-	
-	const [btnText, setBtnText]= useState('Btn'); //
-	const [btnLink, setBtnLink]= useState(''); //
-	const [verified, setVerified]= useState(''); //
+	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
+	const [ accountInfo, setAccountInfo ];
+	const [ btnText, setBtnText ]	= useState('Btn'); //
+	const [ btnLink, setBtnLink ]	= useState(''); //
+	const [ verified, setVerified ]	= useState(''); //
 	
 	const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
 	const [ startDateDepart, setStartDateDepart ] = useState(''); //
@@ -79,6 +90,7 @@ const UserProfile = () => {
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
 	
 	const [ weekDays, setWeekDays ] = useState( days ); //
+	const [ accountId, setAccountId ];
 	
 	const [ formType, setformType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
@@ -188,13 +200,28 @@ const UserProfile = () => {
 	// get current url
 	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
-	// init some var
+	// set account to get the profile from
+	let role	= cookies.get( "role" );
+	let userid 	= cookies.get( "userid" );
+	if( role == "user" ){
+		setAccountId( userid );	// Id of connected user from the users cookie session
+	}
+	else{
+		let url 	= window.location.href;
+		let query 	= 'id'
+		let id  	= getUrlParametter( query, url );
+
+		setAccountId( id );	// Id of connected user from the users cookie session
+	}
 	
 	useEffect(() => {
+		
 		getDepartements();
 		getPays();
-		// Get user profile data if exist and set default values
-		let profile = getProfileFromAccount();
+		// Get user account and  profile data if exist and set default values
+		let info  = getAccountInfo();
+		setAccountInfo( info );
+		let profile = getUserProfile();
 		if( profile ){
 			setformType( 1 ); // Modificatino de profile
 			setUserSexeId( profile.sexeId );
@@ -226,7 +253,6 @@ const UserProfile = () => {
 		let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
 		let dayObj 			= {};
 		let day 	= "";
-		
 		
 		for( i = 0; i < weekDaysId.length; i++ ){
 			let checked = false;
@@ -266,10 +292,36 @@ const UserProfile = () => {
 		return userWeekDays;
 	}
 
+	// get user profile info
+	async function getAccountInfo(){
+		try {
+			let res = await fetch( lbdomain + "/Accounts/" + accountId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.id ) {
+				let accountInfos   = resJson;
+				// setUserProfile( result );				
+				return accountInfos;
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+
 	// get user profile
 	async function  getUserProfile(){
 		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + user_id, {
+			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'},
 			});
@@ -563,22 +615,22 @@ console.log( userProfile );
                            
                             <div className="col-md-6">
                                 <User /> <label className="small mb-1" for="inputOrgName">Nom complet</label>
-                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre nom complet" value="" />
+                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre nom complet" value = {accountInfo ? accountInfo.fullName : ""} />
                             </div>
                            <div className="col-md-6">
                                 <Mail /> <label className="small mb-1" for="inputLastName">Email</label>
-                                <input className="form-control" id="inputLastName" type="email" placeholder="Votre adresse courriel" value="" />
+                                <input className="form-control" id="inputLastName" type="email" placeholder="Votre adresse courriel" value = {accountInfo ? accountInfo.email : ""} />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
                                 <Smartphone /> <label className="small mb-1" for="inputOrgName">Téléphone </label>
-                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre Téléphone" value="" />
+                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre Téléphone" value = {userTelephone01 ? userTelephone01 : ""} />
                             </div>
                            <div className="col-md-6">
                                 <Phone /> <label className="small mb-1" for="inputLastName">Téléphone domicile</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Téléphone du domicile" value="" />
+                                <input className="form-control" id="inputLastName" type="text" placeholder="Téléphone du domicile" value = {userTelephone02 ? userTelephone02 : ""} />
                             </div>
                         </div>
 						<div className="row gx-3 mb-3">
@@ -607,8 +659,8 @@ console.log( userProfile );
 								}
                             </div>
                            <div className="col-md-6">
-                                <Hash /> <label className="small mb-1" for="inputLastName">Numéro d'employé</label>
-                                <input className="form-control" id="inputEmailAddress" type="text" placeholder="Numéro d'employé" value="" />
+                                <Hash /> <label className="small mb-1" for="inputLastName">Numéro de matricule</label>
+                                <input className="form-control" id="inputEmailAddress" type="text" placeholder="Numéro d'employé" {accountInfo ? accountInfo.matricule : "" />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
@@ -642,19 +694,19 @@ console.log( userProfile );
                            
                             <div className="col-md-6">
                                 <DollarSign /> <label className="small mb-1" for="inputBirthday">Salaire</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire" value="" />
+                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire"  value = {userSalaire ? userSalaire : ""} />
                             </div>
                         </div>
 						<div className="row gx-3 mb-3">
                         
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
-                                <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} />
+                                <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} value = {userDateEmbauche ? userDateEmbauche : ""}/>
                             </div>
                            
                             <div className="col-md-6">
                                  <Calendar /> <label className="small mb-1" for="dateDepart">Date de départ</label>
-                                <DatePicker locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} />
+                                <DatePicker locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} value = {userDateDepart ? userDateDepart : ""}/>
                             </div>
                         </div>
 						<div className="mb-3">
