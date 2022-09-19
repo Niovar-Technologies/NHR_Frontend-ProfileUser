@@ -660,7 +660,7 @@ console.log( userProfile );
                             </div>
                            <div className="col-md-6">
                                 <Hash /> <label className="small mb-1" for="inputLastName">Numéro de matricule</label>
-                                <input className="form-control" id="inputEmailAddress" type="text" placeholder="Numéro d'employé" {accountInfo ? accountInfo.matricule : "" />
+                                <input className="form-control" id="inputEmailAddress" type="text" placeholder="Numéro d'employé" value = {accountInfo ? accountInfo.matricule : ""} />
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
