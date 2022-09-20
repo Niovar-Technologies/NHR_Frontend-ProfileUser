@@ -243,7 +243,7 @@ const UserProfile = () => {
 		setUserDateNaissance( profile.salaire );
 		setUserPhotoUrl( profile.photoUrl );
 			
-		let userJoursId = getUserJours();
+		let userJoursId = getUserJours( profile.id );
 		// setUserJours( jours );
 		// create user weekdays
 		let userWeekDays = getUserWeekdays( userJoursId );
@@ -358,7 +358,7 @@ const UserProfile = () => {
 	}
 	
 	// 
-	async function getUserJours(){
+	async function getUserJours( UserProfileId ){
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + UserProfileId , {
 				method: "GET",
