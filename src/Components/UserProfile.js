@@ -219,8 +219,7 @@ const UserProfile = () => {
 
 console.log( accountId );
 
-	let info  = getAccountInfo();
-	setAccountInfo( info );
+
 	let profile = getUserProfile();
 	if( profile ){
 		setFormType( 1 ); // Modificatino de profile
@@ -251,6 +250,9 @@ console.log( accountId );
 	useEffect(() => {
 		getDepartements();
 		getPays();
+		
+		let info  = getAccountInfo();
+		setAccountInfo( info );
 		// Get user account and  profile data if exist and set default values
 		
 	},[] );
