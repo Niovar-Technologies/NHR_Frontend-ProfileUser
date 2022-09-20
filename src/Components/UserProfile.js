@@ -313,7 +313,7 @@ const UserProfile = () => {
 			});
 			
 			let resJson = await res.json();
-			if( resJson.id ) {
+			if( resJson.accountId ) {
 				let accountInfos   = resJson;
 				// setUserProfile( result );				
 				return accountInfos;
