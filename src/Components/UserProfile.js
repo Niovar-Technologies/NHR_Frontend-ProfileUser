@@ -222,7 +222,7 @@ const UserProfile = () => {
 	}
 
 // console.log( accountId );
-
+	var userJoursId = "";
 	let info  = getAccountInfo();
 	setAccountInfo( info );
 	let profile = getUserProfile();
@@ -243,7 +243,7 @@ const UserProfile = () => {
 		setUserDateNaissance( profile.salaire );
 		setUserPhotoUrl( profile.photoUrl );
 			
-		let userJoursId = getUserJours( profile.id );
+		userJoursId = getUserJours( profile.id );
 		// setUserJours( jours );
 		// create user weekdays
 		let userWeekDays = getUserWeekdays( userJoursId );
