@@ -169,7 +169,7 @@ const UserProfile = () => {
 	
 	const [ weekDays, setWeekDays ] = useState( days ); //
 	// const [ accountId, setAccountId ] = useState( '' ); //
-	const accountId = "";
+	var accountId = "";
 	
 	const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
