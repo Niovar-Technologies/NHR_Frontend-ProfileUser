@@ -266,7 +266,7 @@ const UserProfile = () => {
 		let dayObj 			= {};
 		let day 	= "";
 		
-		for( i = 0; i < weekDaysId.length; i++ ){
+		for( var i = 0; i < weekDaysId.length; i++ ){
 			let checked = false;
 			if( i == 0 ){
 				day = "Dimanche";
