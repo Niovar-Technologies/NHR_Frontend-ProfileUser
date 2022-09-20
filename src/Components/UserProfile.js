@@ -168,7 +168,8 @@ const UserProfile = () => {
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
 	
 	const [ weekDays, setWeekDays ] = useState( days ); //
-	const [ accountId, setAccountId ] = useState( '' ); //
+	// const [ accountId, setAccountId ] = useState( '' ); //
+	const accountId = "";
 	
 	const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
@@ -205,21 +206,25 @@ const UserProfile = () => {
 	let role	= cookies.get( "role" );
 	let userid 	= cookies.get( "userid" );
 	if( role == "user" ){
-		setAccountId( userid );	// Id of connected user from the users cookie session
+		// setAccountId( userid );	// Id of connected user from the users cookie session
+		accountId = userid;
 	}
 	else{
 		let url 	= window.location.href;
 		let query 	= 'userid'
 		let id  	= getUrlParametter( query, url );
 		if( id )
-			setAccountId( id );	// Id of connected user from the users cookie session
+			// setAccountId( id );	// Id of connected user from the users cookie session
+			accountId = id;
 		else
-			setAccountId( userid );
+			// setAccountId( userid );
+			accountId = userid;
 	}
 
 console.log( accountId );
 
-
+	let info  = getAccountInfo();
+	setAccountInfo( info );
 	let profile = getUserProfile();
 	if( profile ){
 		setFormType( 1 ); // Modificatino de profile
@@ -250,9 +255,6 @@ console.log( accountId );
 	useEffect(() => {
 		getDepartements();
 		getPays();
-		
-		let info  = getAccountInfo();
-		setAccountInfo( info );
 		// Get user account and  profile data if exist and set default values
 		
 	},[] );
