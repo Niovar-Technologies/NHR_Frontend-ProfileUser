@@ -221,7 +221,7 @@ const UserProfile = () => {
 			accountId = userid;
 	}
 
-console.log( accountId );
+// console.log( accountId );
 
 	let info  = getAccountInfo();
 	setAccountInfo( info );
@@ -235,13 +235,13 @@ console.log( accountId );
 		setUserPays( profile.paysId );
 		setUserProvince( profile.provinceId );
 		setUserVille( profile.villeId );
-		setUserTelephone01( telephone01 );
-		setUserTelephone02( telephone02 );
-		setUserSalaire( salaire );
-		setUserDateEmbauche( salaire );
-		setUserDateDepart( salaire );
-		setUserDateNaissance( salaire );
-		setUserPhotoUrl( photoUrl );
+		setUserTelephone01( profile.telephone01 );
+		setUserTelephone02( profile.telephone02 );
+		setUserSalaire( profile.salaire );
+		setUserDateEmbauche( profile.salaire );
+		setUserDateDepart( profile.salaire );
+		setUserDateNaissance( profile.salaire );
+		setUserPhotoUrl( profile.photoUrl );
 			
 		let userJoursId = getUserJours();
 		// setUserJours( jours );
@@ -319,7 +319,7 @@ console.log( accountId );
 				return accountInfos;
 			}
 			else {
-				alert( "Un probleme est survenu" );
+				alert( "Cmpte non trouvé" );
 				// setErrorColor( "red" );
 				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
 			}
@@ -342,7 +342,7 @@ console.log( accountId );
 			if( resJson.statusCode === 200 ) {
 				let userProfile	= resJson.userProfile;
 				// setUserProfile( result );
-console.log( userProfile );				
+// console.log( userProfile );				
 				return userProfile;
 			}
 			else {
