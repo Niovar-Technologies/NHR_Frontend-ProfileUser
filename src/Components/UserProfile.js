@@ -206,6 +206,7 @@ const UserProfile = () => {
 	let userid 	= cookies.get( "userid" );
 	if( role == "user" ){
 		setAccountId( userid );	// Id of connected user from the users cookie session
+alert( "foo" );
 	}
 	else{
 		let url 	= window.location.href;
@@ -213,8 +214,10 @@ const UserProfile = () => {
 		let id  	= getUrlParametter( query, url );
 
 		setAccountId( id );	// Id of connected user from the users cookie session
+alert( "bar" );
 	}
 
+console.log( accountId );
 
 	let info  = getAccountInfo();
 	setAccountInfo( info );
