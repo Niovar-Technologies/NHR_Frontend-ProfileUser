@@ -8,7 +8,7 @@ const devConfig = {
     mode: 'development',
     output: {
 	// publicPath: 'http://localhost:8081/',
-       publicPath: 'https://profileuser.niovarpaie.ca/',
+       publicPath: 'https://userprofile.niovarpaie.ca/',
     },
     devServer: {
         port: 8080, 
