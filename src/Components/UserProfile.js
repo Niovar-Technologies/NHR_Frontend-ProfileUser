@@ -363,6 +363,7 @@ console.log( userProfile );
 	
 	// 
 	async function getUserJours( UserProfileId ){
+alert( UserProfileId );
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + UserProfileId , {
 				method: "GET",
