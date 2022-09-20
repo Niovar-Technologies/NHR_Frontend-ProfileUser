@@ -223,11 +223,12 @@ const UserProfile = () => {
 
 // console.log( accountId );
 	var userJoursId = [];
-	let info  = getAccountInfo();
+	let info  		= getAccountInfo();
 	setAccountInfo( info );
-	let profile = getUserProfile();
+	var profile 	= [];
+	getUserProfile();
 	
-console.log( profile );
+console.log( "profile: " + profile );
 	
 	if( profile ){
 		setFormType( 1 ); // Modificatino de profile
@@ -344,10 +345,8 @@ console.log(userJoursId);
 			
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
-				let userProfile	= resJson.userProfile;
+				profile	= resJson.userProfile;
 				// setUserProfile( result );
-console.log( userProfile );				
-				return userProfile;
 			}
 			else {
 				alert( "Un probleme est survenu" );
