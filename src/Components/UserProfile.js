@@ -226,6 +226,9 @@ const UserProfile = () => {
 	let info  = getAccountInfo();
 	setAccountInfo( info );
 	let profile = getUserProfile();
+	
+console.log( profile );
+	
 	if( profile ){
 		setFormType( 1 ); // Modificatino de profile
 		setUserSexeId( profile.sexeId );
@@ -242,7 +245,7 @@ const UserProfile = () => {
 		setUserDateDepart( profile.salaire );
 		setUserDateNaissance( profile.salaire );
 		setUserPhotoUrl( profile.photoUrl );
-			
+
 		userJoursId = getUserJours( profile.id );
 console.log(userJoursId);
 		// setUserJours( jours );
@@ -343,7 +346,7 @@ console.log(userJoursId);
 			if( resJson.statusCode === 200 ) {
 				let userProfile	= resJson.userProfile;
 				// setUserProfile( result );
-// console.log( userProfile );				
+console.log( userProfile );				
 				return userProfile;
 			}
 			else {
