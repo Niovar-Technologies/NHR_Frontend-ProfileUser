@@ -687,7 +687,11 @@ const UserProfile = () => {
 								className="custom-select" 
 								defaultValue = { formType ? userProfile.sexeId : "choisir" }  
 								onChange={e => handleSelect(e.target.value)} >
-									{ !formType ? <option value="choisir">Choisir</option> : "" }
+									{ !formType ? 
+										<option value="choisir">Choisir</option> 
+									: 
+										"" 
+									}
 									{SexeList.map((obj, index) => (
 										<option 
 											key={index} 
