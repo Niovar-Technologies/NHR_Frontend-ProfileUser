@@ -167,6 +167,8 @@ const UserProfile = () => {
 	const [ userPhotoUrl, setUserPhotoUrl ] = useState(''); //
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
 	
+	const [ userProfile, setUserProfile ] = useState([]); //
+	
 	const [ weekDays, setWeekDays ] = useState( days ); //
 	// const [ accountId, setAccountId ] = useState( '' ); //
 	var accountId = "";
@@ -317,20 +319,22 @@ const UserProfile = () => {
 				profile	= resJson.userProfile;
 
 				setFormType( 1 ); // Modificatino de profile
-				setUserSexeId( profile.sexeId );
-				setUserDepartementId( profile.departementId );
-				setUserPosteId( profile.posteId );
-				setUserSalaryType( profile.posteId );
-				setUserPays( profile.paysId );
-				setUserProvince( profile.provinceId );
-				setUserVille( profile.villeId );
-				setUserTelephone01( profile.telephone01 );
-				setUserTelephone02( profile.telephone02 );
-				setUserSalaire( profile.salaire );
-				setUserDateEmbauche( profile.salaire );
-				setUserDateDepart( profile.salaire );
-				setUserDateNaissance( profile.salaire );
-				setUserPhotoUrl( profile.photoUrl );
+				setUserProfile( profile );
+
+				// setUserSexeId( profile.sexeId );
+				// setUserDepartementId( profile.departementId );
+				// setUserPosteId( profile.posteId );
+				// setUserSalaryType( profile.posteId );
+				// setUserPays( profile.paysId );
+				// setUserProvince( profile.provinceId );
+				// setUserVille( profile.villeId );
+				// setUserTelephone01( profile.telephone01 );
+				// setUserTelephone02( profile.telephone02 );
+				// setUserSalaire( profile.salaire );
+				// setUserDateEmbauche( profile.salaire );
+				// setUserDateDepart( profile.salaire );
+				// setUserDateNaissance( profile.salaire );
+				// setUserPhotoUrl( profile.photoUrl );
 
 console.log( "profileId: " + profile.id );
 
@@ -353,7 +357,7 @@ console.log( "profileId: " + profile.id );
 		};
 	}
 	
-	// 
+	// array: jours de travail de l'utilisateur
 	async function getUserJours( UserProfileId ){
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + UserProfileId , {
