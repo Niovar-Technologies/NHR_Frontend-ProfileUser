@@ -683,7 +683,6 @@ const UserProfile = () => {
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" >Genre </label>
-								{ formType ? 
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SexeList.map((obj, index) => (
 										<option 
@@ -693,17 +692,6 @@ const UserProfile = () => {
 										</option>
 									))}
 								</select>
-								:
-								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
-									{SexeList.map((obj, index) => (
-										<option 
-											key={index} 
-											value={obj.id}>{obj.name}
-											defaultValue={{ value: userSexeId }}
-										</option>
-									))}
-								</select>
-								}
                             </div>
                            <div className="col-md-6">
                                 <Hash /> <label className="small mb-1" >Numéro de matricule</label>
