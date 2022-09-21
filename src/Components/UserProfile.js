@@ -668,7 +668,7 @@ console.log( accountInfo );
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre Téléphone" 
-									defaultValue = {userTelephone01 ? userTelephone01 : ""} 
+									defaultValue = {formType ? userTelephone01 : ""} 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -678,7 +678,7 @@ console.log( accountInfo );
 									id="inputLastName" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = {userTelephone02 ? userTelephone02 : ""} 
+									defaultValue = {formType ? userTelephone02 : ""} 
 								/>
                             </div>
                         </div>
@@ -687,7 +687,11 @@ console.log( accountInfo );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SexeList.map((obj, index) => (
-										<option key={index} value={obj.id}>{obj.name}</option>
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+											defaultValue={{ label: "Choisir" }}
+										</option>
 									))}
 								</select>
                             </div>
