@@ -643,8 +643,7 @@ const UserProfile = () => {
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									value = {accountInfo ? accountInfo.fullName : ""} 
-									defaultValue = ""
+									defaultValue= {accountInfo ? accountInfo.fullName : ""}
 								/>
                             </div>
                            <div className="col-md-6">
@@ -654,8 +653,7 @@ const UserProfile = () => {
 									id="inputLastName" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
-									value = {accountInfo ? accountInfo.email : ""} 
-									defaultValue = ""
+									defaultValue = {accountInfo ? accountInfo.email : ""} 
 								/>
                             </div>
                         </div>
@@ -668,8 +666,7 @@ const UserProfile = () => {
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre Téléphone" 
-									value = {userTelephone01 ? userTelephone01 : ""} 
-									defaultValue = ""
+									defaultValue = {userTelephone01 ? userTelephone01 : ""} 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -679,8 +676,7 @@ const UserProfile = () => {
 									id="inputLastName" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									value = {userTelephone02 ? userTelephone02 : ""} 
-									defaultValue = ""
+									defaultValue = {userTelephone02 ? userTelephone02 : ""} 
 								/>
                             </div>
                         </div>
@@ -716,8 +712,7 @@ const UserProfile = () => {
 									id="inputEmailAddress" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									value = {accountInfo ? accountInfo.matricule : ""} 
-									defaultValue = ""
+									defaultValue = {accountInfo ? accountInfo.matricule : ""}
 								/>
                             </div>
                         </div>
@@ -755,9 +750,8 @@ const UserProfile = () => {
                                 <input 
 									className="form-control" 
 									id="inputBirthday" type="text" 
-									name="birthday" placeholder="Salaire"  
-									value = {userSalaire ? userSalaire : ""} 
-									defaultValue = ""
+									name="birthday" placeholder="Salaire" 
+									defaultValue = {userSalaire ? userSalaire : ""} 
 								/>
                             </div>
                         </div>
@@ -833,12 +827,24 @@ const UserProfile = () => {
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" >Mot de passe</label>
-                                <input className="form-control" id="inputPhone" type="tel" placeholder="Mot de passe" value="" />
+                                <input 
+									className="form-control" 
+									id="password" 
+									type="text" 
+									placeholder="Mot de passe" 
+									defaultValue = "" 
+								/>
                             </div>
 							
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" >Repeter le mot de passe</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Repetition du mot de passe" value="" />
+                                <input 
+									className="form-control" 
+									id="inputBirthday" 
+									type="text" 
+									placeholder="Repetition du mot de passe" 
+									defaultValue = ""
+								/>
                             </div>
                         </div>
                         <button className="btn btn-primary" type="button">Enregistrer</button>
