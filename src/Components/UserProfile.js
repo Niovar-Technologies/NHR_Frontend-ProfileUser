@@ -689,7 +689,7 @@ const UserProfile = () => {
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											{ obj.id == 1 ? "selected" : "" }
+											defaultValue = { obj.id == 1 ? 1 : "" }
 										</option>
 									))}
 								</select>
