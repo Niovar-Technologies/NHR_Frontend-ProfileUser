@@ -205,7 +205,7 @@ getUserProfile();
 
 async function getUserJours( userProfile ){
 	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfile.id , {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfile , {
 			method: "GET",
 			headers: {'Content-Type': 'application/json'},
 		});
