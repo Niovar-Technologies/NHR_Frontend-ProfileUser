@@ -684,12 +684,12 @@ const UserProfile = () => {
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
-									{ formType ? <option>Choisir</option> : "" }
+									{ !formType ? <option "selected">Choisir</option> : "" }
 									{SexeList.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											{ formType ? ( userProfile.sexeId == index ? "selected" : "" ) : "" }
+											{ formType ? ( userProfile.sexeId == obj.id ? "selected" : "" ) : "" }
 										</option>
 									))}
 								</select>
