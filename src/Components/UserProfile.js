@@ -315,8 +315,6 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				profile	= resJson.userProfile;
-				
-console.log(profile);
 
 				setFormType( 1 ); // Modificatino de profile
 				setUserSexeId( profile.sexeId );
@@ -333,6 +331,8 @@ console.log(profile);
 				setUserDateDepart( profile.salaire );
 				setUserDateNaissance( profile.salaire );
 				setUserPhotoUrl( profile.photoUrl );
+
+console.log( "profileId: " + profile.id );
 
 				getUserJours( profile.id );
 				
@@ -355,7 +355,6 @@ console.log(profile);
 	
 	// 
 	async function getUserJours( UserProfileId ){
-alert( UserProfileId );
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + UserProfileId , {
 				method: "GET",
