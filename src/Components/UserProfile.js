@@ -390,9 +390,9 @@ const UserProfile = () => {
 		getDepartements();
 		getPays();
 		if( formType == 1 )
-			setWeekDays( userWeekDays )
+			// setWeekDays( userWeekDays )
+			setUserSexeId( `userProfile.sexeId` );
 		
-
 		
 	},[] );
 // console.log("formType: " + formType);
@@ -685,7 +685,7 @@ const UserProfile = () => {
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = {`userProfile.sexeId`} 
+								defaultValue = { userSexeId } 
 								onChange={e => handleSelect(e.target.value)} >
 									{SexeList.map((obj, index) => (
 										<option 
