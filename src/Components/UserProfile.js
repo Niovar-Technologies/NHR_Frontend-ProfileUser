@@ -219,7 +219,7 @@ async function getUserJours( userProfileId ){
 				let jourId = result[i].jourId;
 				userProfilJours.push( jourId );
 			}
-				
+console.log( userProfilJours );
 			getUserWeekdays( userProfilJours );
 			// setWeekDays( userWeekDays ); 
 		}
@@ -278,7 +278,7 @@ function getUserWeekdays( userJours ){
 			
 		userWeekDays.push( dayObj );
 	}
-	console.log( userWeekDays );
+
 }
 
 // console.log( accountId );
