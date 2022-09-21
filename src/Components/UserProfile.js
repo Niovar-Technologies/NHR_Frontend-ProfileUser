@@ -391,7 +391,7 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-console.log( userProfile.sexeId );
+console.log( userProfile );
 	},[] );
 	
 	
