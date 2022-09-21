@@ -81,8 +81,6 @@ const days = [
 	}
 ];
 
-console.log( days );
-
 const SexeList= [
 	{
 		id: 0,
@@ -645,7 +643,8 @@ const UserProfile = () => {
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									value = {accountInfo ? accountInfo.fullName : ""}
+									value = {accountInfo ? accountInfo.fullName : ""} 
+									defaultValue = ""
 								/>
                             </div>
                            <div className="col-md-6">
@@ -656,6 +655,7 @@ const UserProfile = () => {
 									type="email" 
 									placeholder="Votre adresse courriel" 
 									value = {accountInfo ? accountInfo.email : ""} 
+									defaultValue = ""
 								/>
                             </div>
                         </div>
@@ -669,6 +669,7 @@ const UserProfile = () => {
 									type="text" 
 									placeholder="Votre Téléphone" 
 									value = {userTelephone01 ? userTelephone01 : ""} 
+									defaultValue = ""
 								/>
                             </div>
                            <div className="col-md-6">
@@ -679,6 +680,7 @@ const UserProfile = () => {
 									type="text" 
 									placeholder="Téléphone du domicile" 
 									value = {userTelephone02 ? userTelephone02 : ""} 
+									defaultValue = ""
 								/>
                             </div>
                         </div>
@@ -714,7 +716,8 @@ const UserProfile = () => {
 									id="inputEmailAddress" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									value = {accountInfo ? accountInfo.matricule : ""}
+									value = {accountInfo ? accountInfo.matricule : ""} 
+									defaultValue = ""
 								/>
                             </div>
                         </div>
@@ -753,7 +756,8 @@ const UserProfile = () => {
 									className="form-control" 
 									id="inputBirthday" type="text" 
 									name="birthday" placeholder="Salaire"  
-									value = {userSalaire ? userSalaire : ""}
+									value = {userSalaire ? userSalaire : ""} 
+									defaultValue = ""
 								/>
                             </div>
                         </div>
