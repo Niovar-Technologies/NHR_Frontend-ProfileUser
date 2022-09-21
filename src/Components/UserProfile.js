@@ -685,7 +685,7 @@ const UserProfile = () => {
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = "1"  
+								defaultValue = { formType ? "1" : "choisir" }  
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
