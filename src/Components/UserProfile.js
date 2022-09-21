@@ -159,11 +159,11 @@ async function  getUserProfile(){
 			
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
-			profile	= resJson.userProfile;
-
+			userProfile	= resJson.userProfile[0];
+			let userProfileId = userProfile.id;
+			
 			formType 	= 1; // Modificatino de profile
-			userProfile = profile;
-
+			
 				// setUserSexeId( profile.sexeId );
 				// setUserDepartementId( profile.departementId );
 				// setUserPosteId( profile.posteId );
@@ -179,9 +179,9 @@ async function  getUserProfile(){
 				// setUserDateNaissance( profile.salaire );
 				// setUserPhotoUrl( profile.photoUrl );
 
-console.log( "profileId: " + profile.id );
+console.log( "profileId: " + userProfileId );
 
-			getUserJours( profile.id );
+			getUserJours( userProfileId );
 				
 			// setUserJours( jours );
 			// create user weekdays
@@ -203,9 +203,9 @@ getUserProfile();
 
 // array: jours de travail de l'utilisateur
 
-async function getUserJours( userProfile ){
+async function getUserJours( userProfileId ){
 	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfile , {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfileId , {
 			method: "GET",
 			headers: {'Content-Type': 'application/json'},
 		});
