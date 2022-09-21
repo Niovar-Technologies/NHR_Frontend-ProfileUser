@@ -128,6 +128,189 @@ const SalaireTypeList = [
 	},
 ];
 
+// set account to get the profile from
+var accountId = "";
+let role	= cookies.get( "role" );
+let userid 	= cookies.get( "userid" );
+if( role == "user" ){
+	// setAccountId( userid );	// Id of connected user from the users cookie session
+	accountId = userid;
+}
+else{
+	let url 	= window.location.href;
+	let query 	= 'userid'
+	let id  	= getUrlParametter( query, url );
+	if( id )
+		accountId = id;
+	else
+		// setAccountId( userid );
+		accountId = userid;
+}
+
+// get user profile
+var formType 	= 0;
+var userProfile = "";
+async function  getUserProfile(){
+	try {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.statusCode === 200 ) {
+			profile	= resJson.userProfile;
+
+			formType 	= 1; // Modificatino de profile
+			userProfile = profile;
+
+				// setUserSexeId( profile.sexeId );
+				// setUserDepartementId( profile.departementId );
+				// setUserPosteId( profile.posteId );
+				// setUserSalaryType( profile.posteId );
+				// setUserPays( profile.paysId );
+				// setUserProvince( profile.provinceId );
+				// setUserVille( profile.villeId );
+				// setUserTelephone01( profile.telephone01 );
+				// setUserTelephone02( profile.telephone02 );
+				// setUserSalaire( profile.salaire );
+				// setUserDateEmbauche( profile.salaire );
+				// setUserDateDepart( profile.salaire );
+				// setUserDateNaissance( profile.salaire );
+				// setUserPhotoUrl( profile.photoUrl );
+
+console.log( "profileId: " + profile.id );
+
+			getUserJours( profile.id );
+				
+			// setUserJours( jours );
+			// create user weekdays
+				
+				 
+		}
+		else {
+			alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+getUserProfile();
+
+// array: jours de travail de l'utilisateur
+alert( "userprofileId: " + userprofile.id );
+async function getUserJours(){
+	try {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfile.id , {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.statusCode === 200 ) {
+			let result 	= resJson.userProfileJours;
+			let count 	= result.length;
+			let userProfilJours = [];
+			for( var i = 0; i < count; i++ ){
+				let jourId = result[i].jourId;
+				userProfilJours.push( jourId );
+			}
+				
+			getUserWeekdays( userProfilJours );
+			// setWeekDays( userWeekDays ); 
+		}
+		else {
+			alert( "Un probleme est survenu" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+
+
+// Create user week days for select from user's days arrray
+let userWeekDays 	= [];
+function getUserWeekdays( userJours ){
+	
+	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
+	let dayObj 			= {};
+	let day 	= "";
+		
+	for( var i = 0; i < weekDaysId.length; i++ ){
+		let checked = false;
+		if( i == 0 ){
+			day = "Dimanche";
+		}
+		if( i == 1 ){
+			day = "Lundi";
+		}
+		if( i == 2 ){
+			day = "Mardi";
+		}
+		if( i == 3 ){
+			day = "Mercredi";
+		}
+		if( i == 4 ){
+			day = "Jeudi";
+		}
+		if( i == 5 ){
+			day = "Vendredi";
+		}
+		if( i == 6 ){
+			day = "Samedi";
+		}
+			
+		if( userJoursId.includes( i ) ){
+			checked = true;
+		}
+			
+		dayObj.id 		= i;
+		dayObj.cheched 	= checked;
+		dayObj.name 	= day;
+			
+		userWeekDays.push( dayObj );
+	}
+}
+
+// console.log( accountId );
+var userJoursId = [];
+let info  		= getAccountInfo();
+
+// get user profile info
+async function getAccountInfo(){
+	try {
+		let res = await fetch( lbdomain + "/Accounts/" + account.id, {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.accountId ) {
+			let accountInfos   = resJson;
+			// setUserProfile( result );				
+			return accountInfos;
+		}
+		else {
+			alert( "Cmpte non trouvé" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+
+
 const UserProfile = () => {
 	const history = useHistory();
 
@@ -171,9 +354,9 @@ const UserProfile = () => {
 	
 	const [ weekDays, setWeekDays ] = useState( days ); //
 	// const [ accountId, setAccountId ] = useState( '' ); //
-	var accountId = "";
 	
-	const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
+	
+	// const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
 	
 	const handleClick = (e) => {
@@ -204,191 +387,14 @@ const UserProfile = () => {
 	// get current url
 	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
-	// set account to get the profile from
-	let role	= cookies.get( "role" );
-	let userid 	= cookies.get( "userid" );
-	if( role == "user" ){
-		// setAccountId( userid );	// Id of connected user from the users cookie session
-		accountId = userid;
-	}
-	else{
-		let url 	= window.location.href;
-		let query 	= 'userid'
-		let id  	= getUrlParametter( query, url );
-		if( id )
-			// setAccountId( id );	// Id of connected user from the users cookie session
-			accountId = id;
-		else
-			// setAccountId( userid );
-			accountId = userid;
-	}
-
-// console.log( accountId );
-	var userJoursId = [];
-	let info  		= getAccountInfo();
-	setAccountInfo( info );
-
-	getUserProfile();
-	
 	useEffect(() => {
 		getDepartements();
 		getPays();
-		// Get user account and  profile data if exist and set default values
-		
+		if( formType == 1 )
+			setWeekDays( userWeekDays )
 	},[] );
 	
-	// Create user week days for select from user's days arrray
-	function getUserWeekdays( userJours ){
-		let userWeekDays 	= [];
-		let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
-		let dayObj 			= {};
-		let day 	= "";
-		
-		for( var i = 0; i < weekDaysId.length; i++ ){
-			let checked = false;
-			if( i == 0 ){
-				day = "Dimanche";
-			}
-			if( i == 1 ){
-				day = "Lundi";
-			}
-			if( i == 2 ){
-				day = "Mardi";
-			}
-			if( i == 3 ){
-				day = "Mercredi";
-			}
-			if( i == 4 ){
-				day = "Jeudi";
-			}
-			if( i == 5 ){
-				day = "Vendredi";
-			}
-			if( i == 6 ){
-				day = "Samedi";
-			}
-			
-			if( userJoursId.includes( i ) ){
-				checked = true;
-			}
-			
-			dayObj.id 		= i;
-			dayObj.cheched 	= checked;
-			dayObj.name 	= day;
-			
-			userWeekDays.push( dayObj );
-		}
-	}
-
-	// get user profile info
-	async function getAccountInfo(){
-		try {
-			let res = await fetch( lbdomain + "/Accounts/" + accountId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.accountId ) {
-				let accountInfos   = resJson;
-				// setUserProfile( result );				
-				return accountInfos;
-			}
-			else {
-				alert( "Cmpte non trouvé" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
-
-	// get user profile
-	async function  getUserProfile(){
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				profile	= resJson.userProfile;
-
-				setFormType( 1 ); // Modificatino de profile
-				setUserProfile( profile );
-
-				// setUserSexeId( profile.sexeId );
-				// setUserDepartementId( profile.departementId );
-				// setUserPosteId( profile.posteId );
-				// setUserSalaryType( profile.posteId );
-				// setUserPays( profile.paysId );
-				// setUserProvince( profile.provinceId );
-				// setUserVille( profile.villeId );
-				// setUserTelephone01( profile.telephone01 );
-				// setUserTelephone02( profile.telephone02 );
-				// setUserSalaire( profile.salaire );
-				// setUserDateEmbauche( profile.salaire );
-				// setUserDateDepart( profile.salaire );
-				// setUserDateNaissance( profile.salaire );
-				// setUserPhotoUrl( profile.photoUrl );
-
-console.log( "profileId: " + profile.id );
-
-				getUserJours( profile.id );
-				
-				// setUserJours( jours );
-				// create user weekdays
-				
-				 
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
 	
-	// array: jours de travail de l'utilisateur
-	async function getUserJours( UserProfileId ){
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + UserProfileId , {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let result 	= resJson.userProfileJours;
-				let count 	= result.length;
-				let userProfilJours = [];
-				for( var i = 0; i < count; i++ ){
-					let jourId = result[i].jourId;
-					userProfilJours.push( jourId );
-				}
-				
-				getUserWeekdays( userProfilJours );
-				// setWeekDays( userWeekDays ); 
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
 	
 	// get user 
 	// get company name
@@ -651,7 +657,7 @@ console.log( "profileId: " + profile.id );
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" for="inputOrgName">Genre </label>
-								{ setFormType ? 
+								{ formType ? 
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SexeList.map((obj, index) => (
 										<option 
