@@ -297,11 +297,10 @@ async function getAccountInfo(){
 		let resJson = await res.json();
 		if( resJson.accountId ) {
 			accountInfo   = resJson;
-			// setUserProfile( result );				
-			return datas;
+			// setUserProfile( result );
 		}
 		else {
-			alert( "Cmpte non trouvé" );
+			alert( "Compte non trouvé" );
 			// setErrorColor( "red" );
 			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
 		}
