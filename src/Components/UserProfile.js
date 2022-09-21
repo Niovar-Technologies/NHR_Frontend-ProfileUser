@@ -336,11 +336,11 @@ console.log(profile);
 				setUserDateNaissance( profile.salaire );
 				setUserPhotoUrl( profile.photoUrl );
 
-				userJoursId = getUserJours( profile.id );
+				getUserJours( profile.id );
 				
 				// setUserJours( jours );
 				// create user weekdays
-				getUserWeekdays( userJoursId );
+				
 				 
 			}
 			else {
@@ -373,6 +373,8 @@ alert( UserProfileId );
 					let jourId = result[i].jourId;
 					userProfilJours.push( jourId );
 				}
+				
+				getUserWeekdays( userProfilJours );
 			}
 			else {
 				alert( "Un probleme est survenu" );
