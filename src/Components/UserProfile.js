@@ -284,7 +284,7 @@ console.log( userWeekDays );
 
 // console.log( accountId );
 var userJoursId = [];
-var accountInfo = getAccountInfo();
+var accountInfo = "";
 
 // get user profile info
 async function getAccountInfo(){
@@ -296,7 +296,7 @@ async function getAccountInfo(){
 			
 		let resJson = await res.json();
 		if( resJson.accountId ) {
-			let datas   = resJson;
+			accountInfo   = resJson;
 			// setUserProfile( result );				
 			return datas;
 		}
@@ -311,7 +311,7 @@ async function getAccountInfo(){
 		console.log(err);
 	};
 }
-
+getAccountInfo();
 
 const UserProfile = () => {
 	const history = useHistory();
