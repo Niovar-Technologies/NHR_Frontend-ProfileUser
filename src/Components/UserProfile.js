@@ -688,8 +688,7 @@ const UserProfile = () => {
 									{SexeList.map((obj, index) => (
 										<option 
 											key={index} 
-											value={obj.id}>{obj.name}
-											defaultValue = { obj.id == 1 ? 1 : "" }
+											value={ obj.id == 1 ? 1 : "" }
 										</option> 
 									))}
 								</select>
