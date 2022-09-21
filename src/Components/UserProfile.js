@@ -202,8 +202,8 @@ console.log( "profileId: " + profile.id );
 getUserProfile();
 
 // array: jours de travail de l'utilisateur
-alert( "userprofileId: " + userProfile.id );
-async function getUserJours(){
+
+async function getUserJours( userProfile ){
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfile.id , {
 			method: "GET",
