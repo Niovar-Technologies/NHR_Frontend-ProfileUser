@@ -635,7 +635,7 @@ const UserProfile = () => {
                        <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <User /> <label className="small mb-1" for="inputOrgName">Nom complet</label>
+                                <User /> <label className="small mb-1">Nom complet</label>
                                 <input 
 									className="form-control" 
 									id="inputOrgName" 
@@ -646,7 +646,7 @@ const UserProfile = () => {
 								/>
                             </div>
                            <div className="col-md-6">
-                                <Mail /> <label className="small mb-1" for="inputLastName">Email</label>
+                                <Mail /> <label className="small mb-1">Email</label>
                                 <input 
 									className="form-control" 
 									id="inputLastName" 
@@ -684,7 +684,7 @@ const UserProfile = () => {
                         </div>
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
-                                <Users /> <label className="small mb-1" for="inputOrgName">Genre </label>
+                                <Users /> <label className="small mb-1" >Genre </label>
 								{ formType ? 
 								<select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SexeList.map((obj, index) => (
