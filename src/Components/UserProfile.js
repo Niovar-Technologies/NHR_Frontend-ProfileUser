@@ -688,7 +688,7 @@ console.log( accountInfo );
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											{ userProfile ? userProfile.sexId == key ? selected : "" : "" }
+											{ formType ? userProfile.sexId == key ? selected : "" : "" }
 										</option>
 									))}
 								</select>
