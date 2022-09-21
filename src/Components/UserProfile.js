@@ -237,7 +237,7 @@ async function getUserJours( userProfileId ){
 
 
 // Create user week days for select from user's days arrray
-let userWeekDays 	= [];
+var userWeekDays 	= [];
 function getUserWeekdays( userJours ){
 	
 	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
@@ -273,11 +273,12 @@ function getUserWeekdays( userJours ){
 		}
 			
 		dayObj.id 		= i;
-		dayObj.cheched 	= checked;
+		dayObj.checked 	= checked;
 		dayObj.name 	= day;
 			
 		userWeekDays.push( dayObj );
 	}
+	console.log( userWeekDays );
 }
 
 // console.log( accountId );
