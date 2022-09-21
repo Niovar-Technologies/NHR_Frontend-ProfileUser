@@ -642,8 +642,6 @@ const UserProfile = () => {
 									type="text" 
 									placeholder="Votre nom complet" 
 									value = {accountInfo ? accountInfo.fullName : ""} 
-									onChange={e => handleSelect(e.target.value)}
-								/>
                             </div>
                            <div className="col-md-6">
                                 <Mail /> <label className="small mb-1">Email</label>
@@ -653,7 +651,6 @@ const UserProfile = () => {
 									type="email" 
 									placeholder="Votre adresse courriel" 
 									value = {accountInfo ? accountInfo.email : ""} 
-									onChange={e => handleSelect(e.target.value)}
 								/>
                             </div>
                         </div>
@@ -667,7 +664,6 @@ const UserProfile = () => {
 									type="text" 
 									placeholder="Votre Téléphone" 
 									value = {userTelephone01 ? userTelephone01 : ""} 
-									onChange={e => handleSelect(e.target.value)}
 								/>
                             </div>
                            <div className="col-md-6">
@@ -678,7 +674,6 @@ const UserProfile = () => {
 									type="text" 
 									placeholder="Téléphone du domicile" 
 									value = {userTelephone02 ? userTelephone02 : ""} 
-									onChange={e => handleSelect(e.target.value)}
 								/>
                             </div>
                         </div>
@@ -715,7 +710,6 @@ const UserProfile = () => {
 									type="text" 
 									placeholder="Numéro d'employé" 
 									value = {accountInfo ? accountInfo.matricule : ""}
-									onChange={e => handleSelect(e.target.value)}
 								/>
                             </div>
                         </div>
@@ -755,7 +749,6 @@ const UserProfile = () => {
 									id="inputBirthday" type="text" 
 									name="birthday" placeholder="Salaire"  
 									value = {userSalaire ? userSalaire : ""}
-									onChange={e => handleSelect(e.target.value)}
 								/>
                             </div>
                         </div>
