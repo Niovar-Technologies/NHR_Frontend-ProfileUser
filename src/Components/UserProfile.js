@@ -688,7 +688,7 @@ console.log( accountInfo );
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											defaultValue={{ label: "Choisir", value: 0 }}
+											{ userProfile ? userProfile.sexId == key ? selected : "" : "" }
 										</option>
 									))}
 								</select>
