@@ -197,7 +197,7 @@ async function  getUserProfile(){
 		console.log(err);
 	};
 }
-getUserProfile();
+
 
 // array: jours de travail de l'utilisateur
 
@@ -391,8 +391,9 @@ const UserProfile = () => {
 	useEffect(() => {
 		getDepartements();
 		getPays();
-		if( formType == 1 )
-			setWeekDays( userWeekDays )
+		getUserProfile();
+		//if( formType == 1 )
+		//	setWeekDays( userWeekDays )
 		
 
 		
