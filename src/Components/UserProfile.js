@@ -235,7 +235,7 @@ const UserProfile = () => {
 		
 	},[] );
 	
-	// user week days Array
+	// Create user week days for select from user's days arrray
 	function getUserWeekdays( userJours ){
 		let userWeekDays 	= [];
 		let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
@@ -276,8 +276,6 @@ const UserProfile = () => {
 			
 			userWeekDays.push( dayObj );
 		}
-		
-		setWeekDays( userWeekDays ); 
 	}
 
 	// get user profile info
@@ -375,6 +373,7 @@ alert( UserProfileId );
 				}
 				
 				getUserWeekdays( userProfilJours );
+				// setWeekDays( userWeekDays ); 
 			}
 			else {
 				alert( "Un probleme est survenu" );
