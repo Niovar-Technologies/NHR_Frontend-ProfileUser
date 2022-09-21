@@ -389,14 +389,12 @@ const UserProfile = () => {
 	useEffect(() => {
 		getDepartements();
 		getPays();
-		if( formType == 1 )
-			setWeekDays( userWeekDays )
-		
-
-		
+		// if( formType == 1 )
+			// setWeekDays( userWeekDays )
+console.log( userProfile.sexeId );
 	},[] );
 // console.log("formType: " + formType);
-// console.log( accountInfo );	
+	
 	
 	
 	// get user 
