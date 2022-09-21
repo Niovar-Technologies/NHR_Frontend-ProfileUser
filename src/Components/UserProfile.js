@@ -640,10 +640,9 @@ const UserProfile = () => {
                                 <User /> <label className="small mb-1">Nom complet</label>
                                 <input 
 									className="form-control" 
-									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									defaultValue= {formType ? accountInfo.fullName : ""}
+									defaultValue= "foo"
 								/>
                             </div>
                            <div className="col-md-6">
