@@ -350,7 +350,7 @@ const UserProfile = () => {
 	const [ userPhotoUrl, setUserPhotoUrl ] = useState(''); //
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
 	
-	const [ userProfile, setUserProfile ] = useState([]); //
+	// const [ userProfile, setUserProfile ] = useState([]); //
 	
 	const [ weekDays, setWeekDays ] = useState( days ); //
 	// const [ accountId, setAccountId ] = useState( '' ); //
@@ -393,8 +393,6 @@ const UserProfile = () => {
 			// setWeekDays( userWeekDays )
 console.log( userProfile.sexeId );
 	},[] );
-// console.log("formType: " + formType);
-	
 	
 	
 	// get user 
