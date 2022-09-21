@@ -683,8 +683,11 @@ const UserProfile = () => {
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" >Genre </label>
-								<select className="custom-select" defaultValue = {userProfile.sexeId} onChange={e => handleSelect(e.target.value)}>
-									{ !formType ? <option selected >Choisir</option> : "" }
+								<select 
+								className="custom-select" 
+								{formType ? defaultValue = {userProfile.sexeId} : defaultValue = "choisir"}  
+								onChange={e => handleSelect(e.target.value)} >
+									{ !formType ? <option value="choisir">Choisir</option> : "" }
 									{SexeList.map((obj, index) => (
 										<option 
 											key={index} 
