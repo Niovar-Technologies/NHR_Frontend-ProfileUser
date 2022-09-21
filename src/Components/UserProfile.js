@@ -508,7 +508,7 @@ const UserProfile = () => {
 	
 
 	// Get pays
-	async function GetPays(){
+	async function getPays(){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
