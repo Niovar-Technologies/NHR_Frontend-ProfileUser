@@ -163,7 +163,7 @@ async function  getUserProfile(){
 			let userProfileId = userProfile.id;
 			
 			formType = 1; // edit form
-alert(formType);
+
 				// setUserSexeId( profile.sexeId );
 				// setUserDepartementId( profile.departementId );
 				// setUserPosteId( profile.posteId );
@@ -310,6 +310,8 @@ async function getAccountInfo(){
 }
 getAccountInfo();
 
+alert(formType);
+
 const UserProfile = () => {
 	const history = useHistory();
 
@@ -392,11 +394,11 @@ const UserProfile = () => {
 		if( formType == 1 )
 			setWeekDays( userWeekDays )
 		
-console.log("formType: " + formType);
-console.log( accountInfo );
+
 		
 	},[] );
-	
+console.log("formType: " + formType);
+console.log( accountInfo );	
 	
 	
 	// get user 
