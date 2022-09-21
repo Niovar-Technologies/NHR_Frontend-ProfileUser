@@ -179,8 +179,6 @@ async function  getUserProfile(){
 				// setUserDateNaissance( profile.salaire );
 				// setUserPhotoUrl( profile.photoUrl );
 
-console.log( "profileId: " + userProfileId );
-
 			getUserJours( userProfileId );
 				
 			// setUserJours( jours );
@@ -394,7 +392,7 @@ const UserProfile = () => {
 		if( formType == 1 )
 			setWeekDays( userWeekDays )
 		
-console.log(formType);
+console.log("formType: " + formType);
 console.log( accountInfo );
 		
 	},[] );
