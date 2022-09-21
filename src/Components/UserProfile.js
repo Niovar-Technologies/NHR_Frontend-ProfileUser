@@ -241,11 +241,12 @@ var userWeekDays 	= [];
 function getUserWeekdays( userJours ){
 	
 	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
-	let dayObj 			= {};
-	let day 	= "";
 		
 	for( var i = 0; i < weekDaysId.length; i++ ){
 		let checked = false;
+		let dayObj 	= {};
+		let day 	= "";
+
 		if( i == 0 ){
 			day = "Dimanche";
 		}
