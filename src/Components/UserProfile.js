@@ -692,7 +692,6 @@ const UserProfile = () => {
 											key={index} 
 											value={obj.id}>{obj.name}
 											defaultValue={{ label: "Choisir" }}
-											onChange={e => handleSelect(e.target.value)}
 										</option>
 									))}
 								</select>
@@ -703,7 +702,6 @@ const UserProfile = () => {
 											key={index} 
 											value={obj.id}>{obj.name}
 											defaultValue={{ value: userSexeId }}
-											onChange={e => handleSelect(e.target.value)}
 										</option>
 									))}
 								</select>
@@ -727,7 +725,6 @@ const UserProfile = () => {
 								<select className="custom-select" onChange={e => handleSelectDepartement(e.target.value)}>
 									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
-										onChange={e => handleSelect(e.target.value)}
 									))}
 								</select>
                             </div>
@@ -736,7 +733,6 @@ const UserProfile = () => {
                                 <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{PosteList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
-										onChange={e => handleSelect(e.target.value)}
 									))}
 								</select>
                             </div>
@@ -748,7 +744,6 @@ const UserProfile = () => {
                                 <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SalaireTypeList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
-										onChange={e => handleSelect(e.target.value)}
 									))}
 								</select>
                             </div>
@@ -781,7 +776,6 @@ const UserProfile = () => {
 							<select className="custom-select" onChange={e => handleSelectPays(e.target.value)}>
 								{PaysList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
-									onChange={e => handleSelect(e.target.value)}
 								))}
 							</select>
                         </div>
@@ -793,7 +787,6 @@ const UserProfile = () => {
                             <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
 								{ProvinceList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
-									onChange={e => handleSelect(e.target.value)}
 								))}
 							</select>
                         </div>
@@ -806,7 +799,6 @@ const UserProfile = () => {
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 								{VilleList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
-									onChange={e => handleSelect(e.target.value)}
 								))}
 							</select>
                         </div>
@@ -833,7 +825,6 @@ const UserProfile = () => {
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{StatusList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
-										onChange={e => handleSelect(e.target.value)}
 									))}
 							</select>
                         </div>
