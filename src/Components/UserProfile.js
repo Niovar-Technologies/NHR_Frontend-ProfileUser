@@ -287,7 +287,7 @@ let info  		= getAccountInfo();
 // get user profile info
 async function getAccountInfo(){
 	try {
-		let res = await fetch( lbdomain + "/Accounts/" + account.id, {
+		let res = await fetch( lbdomain + "/Accounts/" + accountId, {
 			method: "GET",
 			headers: {'Content-Type': 'application/json'},
 		});
