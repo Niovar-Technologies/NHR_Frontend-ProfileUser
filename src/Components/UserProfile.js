@@ -148,7 +148,7 @@ else{
 }
 
 // get user profile
-var formType 	= 0;
+var formType 	= 0;	// new form
 var userProfile = "";
 async function  getUserProfile(){
 	try {
@@ -162,7 +162,7 @@ async function  getUserProfile(){
 			userProfile	= resJson.userProfile[0];
 			let userProfileId = userProfile.id;
 			
-			formType 	= 1; // Modificatino de profile
+			formType 	= 1; // edit form
 			
 				// setUserSexeId( profile.sexeId );
 				// setUserDepartementId( profile.departementId );
@@ -284,7 +284,7 @@ console.log( userWeekDays );
 
 // console.log( accountId );
 var userJoursId = [];
-let info  		= getAccountInfo();
+var accountInfo = getAccountInfo();
 
 // get user profile info
 async function getAccountInfo(){
@@ -296,9 +296,9 @@ async function getAccountInfo(){
 			
 		let resJson = await res.json();
 		if( resJson.accountId ) {
-			let accountInfos   = resJson;
+			let datas   = resJson;
 			// setUserProfile( result );				
-			return accountInfos;
+			return datas;
 		}
 		else {
 			alert( "Cmpte non trouvé" );
@@ -643,7 +643,7 @@ const UserProfile = () => {
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									defaultValue= {accountInfo ? accountInfo.fullName : ""}
+									defaultValue= {formType ? accountInfo.fullName : ""}
 								/>
                             </div>
                            <div className="col-md-6">
@@ -653,7 +653,7 @@ const UserProfile = () => {
 									id="inputLastName" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
-									defaultValue = {accountInfo ? accountInfo.email : ""} 
+									defaultValue = {formType ? accountInfo.email : ""} 
 								/>
                             </div>
                         </div>
