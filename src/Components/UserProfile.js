@@ -162,8 +162,8 @@ async function  getUserProfile(){
 			userProfile	= resJson.userProfile[0];
 			let userProfileId = userProfile.id;
 			
-			formType 	= 1; // edit form
-			
+			formType = 1; // edit form
+alert(formType);
 				// setUserSexeId( profile.sexeId );
 				// setUserDepartementId( profile.departementId );
 				// setUserPosteId( profile.posteId );
