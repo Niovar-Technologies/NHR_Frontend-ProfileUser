@@ -249,26 +249,26 @@ function getUserWeekdays( userJours ){
 		if( i == 0 ){
 			day = "Dimanche";
 		}
-		if( i == 1 ){
+		else if( i == 1 ){
 			day = "Lundi";
 		}
-		if( i == 2 ){
+		else if( i == 2 ){
 			day = "Mardi";
 		}
-		if( i == 3 ){
+		else if( i == 3 ){
 			day = "Mercredi";
 		}
-		if( i == 4 ){
+		else if( i == 4 ){
 			day = "Jeudi";
 		}
-		if( i == 5 ){
+		else if( i == 5 ){
 			day = "Vendredi";
 		}
-		if( i == 6 ){
+		else if( i == 6 ){
 			day = "Samedi";
 		}
 			
-		if( userJoursId.includes( i ) ){
+		if( userJours.includes( i ) ){
 			checked = true;
 		}
 			
