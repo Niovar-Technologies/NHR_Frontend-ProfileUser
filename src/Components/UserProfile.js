@@ -178,8 +178,8 @@ async function  getUserProfile(){
 				// setUserDateDepart( profile.salaire );
 				// setUserDateNaissance( profile.salaire );
 				// setUserPhotoUrl( profile.photoUrl );
-
-			getUserJours( userProfileId );
+			if( userProfileId )
+				getUserJours( userProfileId );
 				
 			// setUserJours( jours );
 			// create user weekdays
@@ -197,7 +197,7 @@ async function  getUserProfile(){
 		console.log(err);
 	};
 }
-
+getUserProfile();
 
 // array: jours de travail de l'utilisateur
 
@@ -316,7 +316,7 @@ const UserProfile = () => {
 	const history = useHistory();
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
-	const [ accountInfo, setAccountInfo ] = useState([]); //;
+	// const [ accountInfo, setAccountInfo ] = useState([]); //;
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
@@ -391,9 +391,8 @@ const UserProfile = () => {
 	useEffect(() => {
 		getDepartements();
 		getPays();
-		getUserProfile();
-		//if( formType == 1 )
-		//	setWeekDays( userWeekDays )
+		if( formType == 1 )
+			setWeekDays( userWeekDays )
 		
 
 		
