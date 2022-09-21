@@ -225,38 +225,9 @@ const UserProfile = () => {
 	var userJoursId = [];
 	let info  		= getAccountInfo();
 	setAccountInfo( info );
-	var profile 	= [];
+
 	getUserProfile();
 	
-console.log( "profile: " + profile );
-	
-	if( profile ){
-		setFormType( 1 ); // Modificatino de profile
-		setUserSexeId( profile.sexeId );
-		setUserDepartementId( profile.departementId );
-		setUserPosteId( profile.posteId );
-		setUserSalaryType( profile.posteId );
-		setUserPays( profile.paysId );
-		setUserProvince( profile.provinceId );
-		setUserVille( profile.villeId );
-		setUserTelephone01( profile.telephone01 );
-		setUserTelephone02( profile.telephone02 );
-		setUserSalaire( profile.salaire );
-		setUserDateEmbauche( profile.salaire );
-		setUserDateDepart( profile.salaire );
-		setUserDateNaissance( profile.salaire );
-		setUserPhotoUrl( profile.photoUrl );
-
-		userJoursId = getUserJours( profile.id );
-console.log(userJoursId);
-		// setUserJours( jours );
-		// create user weekdays
-		let userWeekDays = getUserWeekdays( userJoursId );
-		setWeekDays( userWeekDays ); 
-	}
-
-
-
 	useEffect(() => {
 		getDepartements();
 		getPays();
@@ -306,7 +277,7 @@ console.log(userJoursId);
 			userWeekDays.push( dayObj );
 		}
 		
-		return userWeekDays;
+		setWeekDays( userWeekDays ); 
 	}
 
 	// get user profile info
@@ -346,7 +317,31 @@ console.log(userJoursId);
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				profile	= resJson.userProfile;
-				// setUserProfile( result );
+				
+console.log(profile);
+
+				setFormType( 1 ); // Modificatino de profile
+				setUserSexeId( profile.sexeId );
+				setUserDepartementId( profile.departementId );
+				setUserPosteId( profile.posteId );
+				setUserSalaryType( profile.posteId );
+				setUserPays( profile.paysId );
+				setUserProvince( profile.provinceId );
+				setUserVille( profile.villeId );
+				setUserTelephone01( profile.telephone01 );
+				setUserTelephone02( profile.telephone02 );
+				setUserSalaire( profile.salaire );
+				setUserDateEmbauche( profile.salaire );
+				setUserDateDepart( profile.salaire );
+				setUserDateNaissance( profile.salaire );
+				setUserPhotoUrl( profile.photoUrl );
+
+				userJoursId = getUserJours( profile.id );
+				
+				// setUserJours( jours );
+				// create user weekdays
+				getUserWeekdays( userJoursId );
+				 
 			}
 			else {
 				alert( "Un probleme est survenu" );
