@@ -641,7 +641,8 @@ const UserProfile = () => {
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									value = {accountInfo ? accountInfo.fullName : ""} 
+									value = {accountInfo ? accountInfo.fullName : ""}
+								/>
                             </div>
                            <div className="col-md-6">
                                 <Mail /> <label className="small mb-1">Email</label>
