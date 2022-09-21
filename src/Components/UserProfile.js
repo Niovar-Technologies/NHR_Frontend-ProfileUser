@@ -394,6 +394,10 @@ const UserProfile = () => {
 		getPays();
 		if( formType == 1 )
 			setWeekDays( userWeekDays )
+		
+console.log(formType);
+console.log( accountInfo );
+		
 	},[] );
 	
 	
@@ -642,7 +646,7 @@ const UserProfile = () => {
 									className="form-control" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									defaultValue= "foo"
+									defaultValue= {formType ? accountInfo.fullName : ""}
 								/>
                             </div>
                            <div className="col-md-6">
