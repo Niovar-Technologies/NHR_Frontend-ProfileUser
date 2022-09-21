@@ -685,7 +685,7 @@ const UserProfile = () => {
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = `userProfile.sexeId`  
+								defaultValue = {`userProfile.sexeId`} 
 								onChange={e => handleSelect(e.target.value)} >
 									{SexeList.map((obj, index) => (
 										<option 
