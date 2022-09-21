@@ -161,7 +161,7 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfile	= resJson.userProfile[0];
 			let userProfileId = userProfile.id;
-			
+console.log( userProfile );
 			formType = 1; // edit form
 
 				// setUserSexeId( profile.sexeId );
