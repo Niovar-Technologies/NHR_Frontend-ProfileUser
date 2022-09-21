@@ -149,7 +149,7 @@ else{
 
 // get user profile
 var formType 	= 0;	// new form
-var userProfile = "";
+var userProfileData = "";
 async function  getUserProfile(){
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
@@ -159,9 +159,9 @@ async function  getUserProfile(){
 			
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
-			userProfile	= resJson.userProfile[0];
+			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfile.id;
-console.log( userProfile );
+console.log( userProfileData );
 			formType = 1; // edit form
 
 				// setUserSexeId( profile.sexeId );
@@ -391,7 +391,7 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-console.log( userProfile );
+console.log( userProfileData );
 	},[] );
 	
 	
@@ -662,7 +662,7 @@ console.log( userProfile );
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre Téléphone" 
-									defaultValue = {formType ? userTelephone01 : ""} 
+									defaultValue = {formType ? accountInfo.email : ""} 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -681,7 +681,7 @@ console.log( userProfile );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = {formType ? `userProfile.sexeId` : "choisir"} 
+								defaultValue = {formType ? `userProfileData.sexeId` : "choisir"} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
