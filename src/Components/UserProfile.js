@@ -80,7 +80,9 @@ const days = [
 		name: " Dimanche"
 	}
 ];
-	
+
+console.log( days );
+
 const SexeList= [
 	{
 		id: 0,
