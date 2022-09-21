@@ -310,7 +310,6 @@ async function getAccountInfo(){
 }
 getAccountInfo();
 
-alert(formType);
 
 const UserProfile = () => {
 	const history = useHistory();
@@ -382,7 +381,6 @@ const UserProfile = () => {
 
 	const handleSelect = (e) => {
 		e.preventDefault();
-		alert( "foo" );
 	}
 
 	// get current url
@@ -690,7 +688,7 @@ console.log( accountInfo );
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											defaultValue={{ label: "Choisir" }}
+											defaultValue={{ label: "Choisir", value: 0 }}
 										</option>
 									))}
 								</select>
