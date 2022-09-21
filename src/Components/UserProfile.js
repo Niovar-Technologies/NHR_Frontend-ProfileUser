@@ -395,8 +395,8 @@ const UserProfile = () => {
 
 		
 	},[] );
-console.log("formType: " + formType);
-console.log( accountInfo );	
+// console.log("formType: " + formType);
+// console.log( accountInfo );	
 	
 	
 	// get user 
@@ -688,7 +688,7 @@ console.log( accountInfo );
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											{ formType ? userProfile.sexId == key ? selected : "" : "" }
+											{ formType ? userProfile.sexId == index ? selected : "" : "" }
 										</option>
 									))}
 								</select>
