@@ -689,7 +689,7 @@ const UserProfile = () => {
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
-											{ formType ? defaultValue = optionArray[userProfile.sexeId]: "" }
+											{ formType ? defaultValue = userProfile.sexeId : "" }
 											
 										</option>
 									))}
