@@ -636,22 +636,50 @@ const UserProfile = () => {
                            
                             <div className="col-md-6">
                                 <User /> <label className="small mb-1" for="inputOrgName">Nom complet</label>
-                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre nom complet" value = {accountInfo ? accountInfo.fullName : ""} />
+                                <input 
+									className="form-control" 
+									id="inputOrgName" 
+									type="text" 
+									placeholder="Votre nom complet" 
+									value = {accountInfo ? accountInfo.fullName : ""} 
+									onChange={e => handleSelect(e.target.value)}
+								/>
                             </div>
                            <div className="col-md-6">
                                 <Mail /> <label className="small mb-1" for="inputLastName">Email</label>
-                                <input className="form-control" id="inputLastName" type="email" placeholder="Votre adresse courriel" value = {accountInfo ? accountInfo.email : ""} />
+                                <input 
+									className="form-control" 
+									id="inputLastName" 
+									type="email" 
+									placeholder="Votre adresse courriel" 
+									value = {accountInfo ? accountInfo.email : ""} 
+									onChange={e => handleSelect(e.target.value)}
+								/>
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
                            
                             <div className="col-md-6">
-                                <Smartphone /> <label className="small mb-1" for="inputOrgName">Téléphone </label>
-                                <input className="form-control" id="inputOrgName" type="text" placeholder="Votre Téléphone" value = {userTelephone01 ? userTelephone01 : ""} />
+                                <Smartphone /> <label className="small mb-1" >Téléphone </label>
+                                <input 
+									className="form-control" 
+									id="inputOrgName" 
+									type="text" 
+									placeholder="Votre Téléphone" 
+									value = {userTelephone01 ? userTelephone01 : ""} 
+									onChange={e => handleSelect(e.target.value)}
+								/>
                             </div>
                            <div className="col-md-6">
-                                <Phone /> <label className="small mb-1" for="inputLastName">Téléphone domicile</label>
-                                <input className="form-control" id="inputLastName" type="text" placeholder="Téléphone du domicile" value = {userTelephone02 ? userTelephone02 : ""} />
+                                <Phone /> <label className="small mb-1" >Téléphone domicile</label>
+                                <input 
+									className="form-control" 
+									id="inputLastName" 
+									type="text" 
+									placeholder="Téléphone du domicile" 
+									value = {userTelephone02 ? userTelephone02 : ""} 
+									onChange={e => handleSelect(e.target.value)}
+								/>
                             </div>
                         </div>
 						<div className="row gx-3 mb-3">
@@ -680,13 +708,20 @@ const UserProfile = () => {
 								}
                             </div>
                            <div className="col-md-6">
-                                <Hash /> <label className="small mb-1" for="inputLastName">Numéro de matricule</label>
-                                <input className="form-control" id="inputEmailAddress" type="text" placeholder="Numéro d'employé" value = {accountInfo ? accountInfo.matricule : ""} />
+                                <Hash /> <label className="small mb-1" >Numéro de matricule</label>
+                                <input 
+									className="form-control" 
+									id="inputEmailAddress" 
+									type="text" 
+									placeholder="Numéro d'employé" 
+									value = {accountInfo ? accountInfo.matricule : ""}
+									onChange={e => handleSelect(e.target.value)}
+								/>
                             </div>
                         </div>
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
-                                <Clipboard /> <label className="small mb-1" for="inputLocation">Département</label>
+                                <Clipboard /> <label className="small mb-1" >Département</label>
 								<select className="custom-select" onChange={e => handleSelectDepartement(e.target.value)}>
 									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
@@ -694,7 +729,7 @@ const UserProfile = () => {
 								</select>
                             </div>
 							<div className="col-md-6">
-                                <Briefcase /> <label className="small mb-1" for="inputLocation">Poste</label>
+                                <Briefcase /> <label className="small mb-1" >Poste</label>
                                 <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{PosteList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
@@ -705,7 +740,7 @@ const UserProfile = () => {
 						<div className="row gx-3 mb-3">
 							
                             <div className="col-md-6">
-                                <Trello /> <label className="small mb-1" for="inputPhone">Type de salaire</label>
+                                <Trello /> <label className="small mb-1" >Type de salaire</label>
                                 <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{SalaireTypeList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
@@ -714,24 +749,30 @@ const UserProfile = () => {
                             </div>
                            
                             <div className="col-md-6">
-                                <DollarSign /> <label className="small mb-1" for="inputBirthday">Salaire</label>
-                                <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Salaire"  value = {userSalaire ? userSalaire : ""} />
+                                <DollarSign /> <label className="small mb-1" >Salaire</label>
+                                <input 
+									className="form-control" 
+									id="inputBirthday" type="text" 
+									name="birthday" placeholder="Salaire"  
+									value = {userSalaire ? userSalaire : ""}
+									onChange={e => handleSelect(e.target.value)}
+								/>
                             </div>
                         </div>
 						<div className="row gx-3 mb-3"> 
                         
                             <div className="col-md-6">
-                                <Calendar /> <label className="small mb-1" for="dateEmbauche">Date d'embauche</label>
+                                <Calendar /> <label className="small mb-1" >Date d'embauche</label>
                                 <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} value = {userDateEmbauche ? userDateEmbauche : ""}/>
                             </div>
                            
                             <div className="col-md-6">
-                                 <Calendar /> <label className="small mb-1" for="dateDepart">Date de départ</label>
+                                 <Calendar /> <label className="small mb-1" >Date de départ</label>
                                 <DatePicker locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} value = {userDateDepart ? userDateDepart : ""}/>
                             </div>
                         </div>
 						<div className="mb-3">
-                            <Globe /> <label className="small mb-1" for="inputEmailAddress">Pays</label>
+                            <Globe /> <label className="small mb-1" >Pays</label>
 							<select className="custom-select" onChange={e => handleSelectPays(e.target.value)}>
 								{PaysList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
@@ -742,7 +783,7 @@ const UserProfile = () => {
 						<>&nbsp;</> 
 						:
 						<div className="mb-3">
-                            <Map /> <label className="small mb-1" for="inputEmailAddress">Province</label>
+                            <Map /> <label className="small mb-1" >Province</label>
                             <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
 								{ProvinceList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
@@ -754,7 +795,7 @@ const UserProfile = () => {
 						<>&nbsp;</> 
 						:
 						<div className="mb-3">
-                            <Map /> <label className="small mb-1" for="inputEmailAddress">Ville</label>
+                            <Map /> <label className="small mb-1" >Ville</label>
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 								{VilleList.map((obj, index) => (
 									<option key={index} value={obj.id}>{obj.name}</option>
@@ -763,7 +804,7 @@ const UserProfile = () => {
                         </div>
 						}
 						<div className="mb-3">
-                            <Sun /> <label className="small mb-1" for="inputEmailAddress">Vos jours de disponibilité</label>
+                            <Sun /> <label className="small mb-1" >Vos jours de disponibilité</label>
 							<div className="col-sm-8 checkbox-wrapper list-unstyled">
 							{weekDays.map((obj, index) => (
 								<li key={index}>
@@ -780,7 +821,7 @@ const UserProfile = () => {
 							</div>
                         </div>
 						<div className="mb-3">
-                            <ToggleLeft /> <label className="small mb-1" for="inputEmailAddress">Statut</label>
+                            <ToggleLeft /> <label className="small mb-1" >Statut</label>
                             <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
 									{StatusList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
@@ -789,12 +830,12 @@ const UserProfile = () => {
                         </div>
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
-                                <Lock /> <label className="small mb-1" for="inputPhone">Mot de passe</label>
+                                <Lock /> <label className="small mb-1" >Mot de passe</label>
                                 <input className="form-control" id="inputPhone" type="tel" placeholder="Mot de passe" value="" />
                             </div>
 							
                             <div className="col-md-6">
-                                <Lock /> <label className="small mb-1" for="inputBirthday">Repeter le mot de passe</label>
+                                <Lock /> <label className="small mb-1" >Repeter le mot de passe</label>
                                 <input className="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Repetition du mot de passe" value="" />
                             </div>
                         </div>
