@@ -163,7 +163,7 @@ async function  getUserProfile(){
 			let userProfileId 	= userProfileData.id; // 2022-09-17T14:45:01.207
 			
 			userProfileData.dateEmbauche 	= new Date( userProfileData.dateEmbauche );
-			userProfileData.dateDepart 		= new Date( userProfileData.dateDepart ));
+			userProfileData.dateDepart 		= new Date( userProfileData.dateDepart );
 
 alert( userProfileData.dateDepart );
 
