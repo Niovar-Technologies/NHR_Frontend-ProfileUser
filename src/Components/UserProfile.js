@@ -591,6 +591,8 @@ console.log( formType );
 		};
 	}
 			
+	const [startDate, setStartDate] = useState(new Date());
+			
     return (
        <>
  <div className="page-wrapper">
@@ -786,7 +788,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { formType ? userProfileData.dateEmbauche : "" }
+									selected= { startDate }
 									onChange={(date) => setStartDateEmbauche(date)}
 								/>
                             </div>
@@ -797,7 +799,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { formType ? userProfileData.dateDepart : "" }
+									selected= { startDate }
 									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
