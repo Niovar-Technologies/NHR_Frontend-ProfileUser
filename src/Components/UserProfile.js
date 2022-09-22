@@ -160,7 +160,7 @@ async function  getUserProfile(){
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
-			let userProfileId = userProfile.id;
+			let userProfileId = userProfileData.id;
 console.log( userProfileData );
 			formType = 1; // edit form 
 
