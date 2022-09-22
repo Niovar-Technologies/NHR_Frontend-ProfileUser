@@ -161,7 +161,7 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfileData.id;
-console.log( userProfileData );
+
 			formType = 1; // edit form 
 
 				// setUserSexeId( profile.sexeId );
@@ -391,12 +391,13 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-
+		setUserSexeId( userProfileData.sexeId )
 	},[] );
 	
 console.log( userProfileData );
 console.log( accountInfo );
-console.log( formType );
+console.log( "userSexeId: " + userSexeId );
+
 	// get user 
 	// get company name
 	async function getDepartements(){
@@ -683,7 +684,7 @@ console.log( formType );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = "1" 
+								defaultValue = {userSexeId} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
