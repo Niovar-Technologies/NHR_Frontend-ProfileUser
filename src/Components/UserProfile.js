@@ -14,8 +14,7 @@ import { parseISO } from 'date-fns'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
 
-
-
+import moment from 'moment';
 
 let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
@@ -161,8 +160,10 @@ async function  getUserProfile(){
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
-			let userProfileId = userProfileData.id;
-console.log( userProfileData );
+			let userProfileId = userProfileData.id; // 2022-09-17T14:45:01.207
+			userProfileData.dateEmbauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format( 'DD-MM-YYYY' ); 
+			userProfileData.dateDepart = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format( 'DD-MM-YYYY' ); 
+			
 			formType = 1; // edit form 
 
 				// setUserSexeId( profile.sexeId );
@@ -778,7 +779,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
-									selected= {parseISO(userProfileData.dateEmbauche)}
+									selected= { !formType ? {parseISO(userProfileData.dateEmbauche)} : "" }
 									onChange={(date) => setStartDateEmbauche(date)} 
 								/>
                             </div>
@@ -789,7 +790,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= {parseISO(userProfileData.dateDepart)} 
+									selected= { !formType ? {parseISO(userProfileData.dateDepart)} : "" }
 									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
