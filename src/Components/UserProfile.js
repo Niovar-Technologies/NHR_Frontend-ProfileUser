@@ -334,8 +334,8 @@ const UserProfile = () => {
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
 	
-	// const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
-	// const [ startDateDepart, setStartDateDepart ] = useState(''); //
+	const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
+	const [ startDateDepart, setStartDateDepart ] = useState(''); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -807,6 +807,8 @@ console.log( formType );
 									id="dateDepart" 
 									selected= { formType ? userProfileData.dateDepart : "" }
 									onChange={(date) => setStartDateDepart(date)}
+									dateFormat="dddd, DDD, ddd, d, dd MMMM yyyy"
+									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
                         </div>
