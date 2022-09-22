@@ -334,8 +334,8 @@ const UserProfile = () => {
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
 	
-	const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
-	const [ startDateDepart, setStartDateDepart ] = useState(''); //
+	const [ startDateEmbauche, setStartDateEmbauche ] = useState(new Date()); //
+	const [ startDateDepart, setStartDateDepart ] = useState(new Date()); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -791,7 +791,6 @@ console.log( formType );
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date d'embauche</label>
 								<DatePicker 
-									value={date}
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
@@ -805,7 +804,6 @@ console.log( formType );
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date de départ</label>
 								<DatePicker 
-									value={date}
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
