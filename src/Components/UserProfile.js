@@ -163,7 +163,7 @@ async function  getUserProfile(){
 			let userProfileId = userProfileData.id; // 2022-09-17T14:45:01.207
 			userProfileData.dateEmbauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format( 'DD-MM-YYYY' ); 
 			userProfileData.dateDepart = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format( 'DD-MM-YYYY' ); 
-			
+alert( userProfileData.dateDepart );
 			formType = 1; // edit form 
 
 				// setUserSexeId( profile.sexeId );
