@@ -163,7 +163,7 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfileData.id;
-			userSexeId = userProfileData.sexeId;
+			userSexeId = userProfileData.sexeId.trim();
 			formType = 1; // edit form 
 
 				// setUserSexeId( profile.sexeId );
