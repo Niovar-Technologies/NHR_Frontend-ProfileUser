@@ -593,7 +593,7 @@ console.log( formType );
 			
 	// const [startDate, setStartDate] = useState(new Date());
 			
-	var startDate =  useState(new Date());
+	var startDate =  new Date();
 alert( startDate );
     return (
        <>
