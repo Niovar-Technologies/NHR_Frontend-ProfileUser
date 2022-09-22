@@ -165,8 +165,11 @@ async function  getUserProfile(){
 			// userProfileData.dateEmbauche 	= moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
 			// userProfileData.dateDepart 		= moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
 			
-			userProfileData.dateEmbauche  	=  new Date();
-			userProfileData.dateDepart		=  new Date();
+			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			
+			userProfileData.dateEmbauche  	=  new Date( date_embauche );
+			userProfileData.dateDepart		=  new Date( date_depart );
 			
 			// userProfileData.dateEmbauche 	= new Date( userProfileData.dateEmbauche );
 			// userProfileData.dateDepart 		= new Date( userProfileData.dateDepart );
@@ -331,8 +334,8 @@ const UserProfile = () => {
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
 	
-	const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
-	const [ startDateDepart, setStartDateDepart ] = useState(''); //
+	// const [ startDateEmbauche, setStartDateEmbauche ] = useState(''); //
+	// const [ startDateDepart, setStartDateDepart ] = useState(''); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -790,7 +793,7 @@ console.log( formType );
 								<DatePicker 
 									locale="fr" 
 									className="form-control" 
-									id="dateDepart" 
+									id="dateEmbauche" 
 									selected= { formType ? userProfileData.dateEmbauche : "" }
 									onChange={(date) => setStartDateEmbauche(date)}
 								/>
