@@ -809,7 +809,6 @@ console.log( formType );
 									id="dateDepart" 
 									selected= { formType ? userProfileData.dateDepart : "" }
 									onChange={(date) => setStartDateDepart(date)}
-									onChange={(date:Date) => setStartDate(date)} 
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
