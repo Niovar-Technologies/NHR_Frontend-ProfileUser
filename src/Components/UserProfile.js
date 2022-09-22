@@ -790,7 +790,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { !formType ? {parseISO(userProfileData.dateDepart)} : "" }
+									selected= { !formType ? parseISO(userProfileData.dateDepart) : "" }
 									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
