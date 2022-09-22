@@ -162,8 +162,11 @@ async function  getUserProfile(){
 			userProfileData		= resJson.userProfile[0];
 			let userProfileId 	= userProfileData.id; // 2022-09-17T14:45:01.207
 			
-			userProfileData.dateEmbauche 	= moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
-			userProfileData.dateDepart 		= moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
+			// userProfileData.dateEmbauche 	= moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
+			// userProfileData.dateDepart 		= moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
+			
+			userProfileData.dateEmbauche  	=  new Date();
+			userProfileData.dateDepart		=  new Date();
 			
 			// userProfileData.dateEmbauche 	= new Date( userProfileData.dateEmbauche );
 			// userProfileData.dateDepart 		= new Date( userProfileData.dateDepart );
@@ -591,10 +594,8 @@ console.log( formType );
 		};
 	}
 			
-	// const [startDate, setStartDate] = useState(new Date());
+	const [startDate, setStartDate] = useState(new Date());
 			
-	var startDate =  new Date();
-alert( startDate );
     return (
        <>
  <div className="page-wrapper">
@@ -790,7 +791,7 @@ alert( startDate );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { startDate }
+									selected= { formType ? userProfileData.dateEmbauche : "" }
 									onChange={(date) => setStartDateEmbauche(date)}
 								/>
                             </div>
@@ -801,7 +802,7 @@ alert( startDate );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { startDate }
+									selected= { formType ? userProfileData.dateDepart : "" }
 									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
