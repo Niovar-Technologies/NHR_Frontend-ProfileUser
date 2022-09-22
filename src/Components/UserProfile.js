@@ -391,10 +391,12 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-console.log( userProfileData );
+
 	},[] );
 	
-	
+console.log( userProfileData );
+console.log( accountInfo );
+console.log( formType );
 	// get user 
 	// get company name
 	async function getDepartements(){
