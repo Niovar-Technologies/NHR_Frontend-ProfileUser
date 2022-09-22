@@ -796,6 +796,8 @@ console.log( formType );
 									id="dateEmbauche" 
 									selected= { formType ? userProfileData.dateEmbauche : "" }
 									onChange={(date) => setStartDateEmbauche(date)}
+									dateFormat="dd MMMM yyyy"
+									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
                            
@@ -807,7 +809,7 @@ console.log( formType );
 									id="dateDepart" 
 									selected= { formType ? userProfileData.dateDepart : "" }
 									onChange={(date) => setStartDateDepart(date)}
-									dateFormat="dddd, DDD, ddd, d, dd MMMM yyyy"
+									dateFormat="dd MMMM yyyy"
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
