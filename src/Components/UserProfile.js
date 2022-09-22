@@ -782,23 +782,23 @@ console.log( formType );
                         
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date d'embauche</label>
-                                <DatePicker
-									{...props.input}
-									dateFormat="DD-MM-YYYY"
-									selected={props.input.value ? moment(props.input.value, 'DD-MM-YYYY') : userProfileData.dateEmbauche}
-									placeholderText={props.placeholder}
-									disabled={props.disabled}
+								<DatePicker 
+									locale="fr" 
+									className="form-control" 
+									id="dateDepart" 
+									selected= { formType ? userProfileData.dateEmbauche : "" }
+									onChange={(date) => setStartDateEmbauche(date)}
 								/>
                             </div>
                            
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date de départ</label>
-								<DatePicker
-									{...props.input}
-									dateFormat="DD-MM-YYYY"
-									selected={props.input.value ? moment(props.input.value, 'DD-MM-YYYY') : userProfileData.dateDepart}
-									placeholderText={props.placeholder}
-									disabled={props.disabled}
+								<DatePicker 
+									locale="fr" 
+									className="form-control" 
+									id="dateDepart" 
+									selected= { formType ? userProfileData.dateDepart : "" }
+									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
                         </div>
