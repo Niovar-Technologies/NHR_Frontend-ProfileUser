@@ -161,8 +161,8 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfileData.id; // 2022-09-17T14:45:01.207
-			userProfileData.dateEmbauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format(); 
-			userProfileData.dateDepart = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format(); 
+			userProfileData.dateEmbauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format("X");
+			userProfileData.dateDepart = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format("X"); 
 alert( userProfileData.dateDepart );
 			formType = 1; // edit form 
 
