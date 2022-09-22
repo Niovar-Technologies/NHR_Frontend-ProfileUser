@@ -425,7 +425,7 @@ console.log( formType );
 	}
 	
 	// get Postes
-	async function getPostes( departementId ){
+	async function GetPostes( departementId ){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
@@ -664,7 +664,7 @@ console.log( formType );
 									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre Téléphone" 
-									defaultValue = {formType ? accountInfo.email : ""} 
+									defaultValue = {formType ? userProfileData.telephone01 : ""} 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -674,7 +674,7 @@ console.log( formType );
 									id="inputLastName" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = {formType ? userTelephone02 : ""} 
+									defaultValue = {formType ? userProfileData.telephone02 : ""} 
 								/>
                             </div>
                         </div>
