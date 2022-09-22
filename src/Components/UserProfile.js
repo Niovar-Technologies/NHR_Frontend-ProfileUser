@@ -648,7 +648,6 @@ console.log( formType );
                                 <Mail /> <label className="small mb-1">Email</label>
                                 <input 
 									className="form-control" 
-									id="inputLastName" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
 									defaultValue = {formType ? accountInfo.email : ""} 
@@ -661,7 +660,6 @@ console.log( formType );
                                 <Smartphone /> <label className="small mb-1" >Téléphone </label>
                                 <input 
 									className="form-control" 
-									id="inputOrgName" 
 									type="text" 
 									placeholder="Votre Téléphone" 
 									defaultValue = {formType ? userProfileData.telephone01 : ""} 
@@ -671,7 +669,6 @@ console.log( formType );
                                 <Phone /> <label className="small mb-1" >Téléphone domicile</label>
                                 <input 
 									className="form-control" 
-									id="inputLastName" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
 									defaultValue = {formType ? userProfileData.telephone02 : ""} 
@@ -702,7 +699,6 @@ console.log( formType );
                                 <Hash /> <label className="small mb-1" >Numéro de matricule</label>
                                 <input 
 									className="form-control" 
-									id="inputEmailAddress" 
 									type="text" 
 									placeholder="Numéro d'employé" 
 									defaultValue = {accountInfo ? accountInfo.matricule : ""}
@@ -736,15 +732,31 @@ console.log( formType );
 										<option key={index} value={obj.id}>{obj.name}</option>
 									))}
 								</select>
+								<select 
+								className="custom-select" 
+								value = {formType ? userProfileData.salaryTypeid : "choisir"} 
+								onChange={e => handleSelect(e.target.value)} >
+									{ !formType ? 
+										<option value="choisir">Choisir</option> 
+									: 
+										"" 
+									}
+									{SalaireTypeList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
+									))}
+								</select>
                             </div>
                            
                             <div className="col-md-6">
                                 <DollarSign /> <label className="small mb-1" >Salaire</label>
-                                <input 
+								<input 
 									className="form-control" 
-									id="inputBirthday" type="text" 
-									name="birthday" placeholder="Salaire" 
-									defaultValue = {userSalaire ? userSalaire : ""} 
+									type="text" 
+									placeholder="Salaire" 
+									defaultValue = {accountInfo ? accountInfo.salaire : ""}
 								/>
                             </div>
                         </div>
