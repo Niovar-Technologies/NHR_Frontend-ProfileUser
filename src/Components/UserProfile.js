@@ -7,8 +7,9 @@ import profile from '../static/css/profile.css'
 import checkboxStyle from '../static/css/checkboxStyle.css'
 import { Users, Lock, Hash, DollarSign, ToggleLeft, Sun, Map, MapPin, Globe, Briefcase, Clipboard, Mail, Phone, Smartphone, AlertCircle, Check, User, Calendar, Trello } from 'react-feather';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import { parseISO } from 'date-fns'
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
