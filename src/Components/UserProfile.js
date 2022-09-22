@@ -751,7 +751,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Salaire" 
-									defaultValue = {accountInfo ? accountInfo.salaire : ""}
+									defaultValue = {userProfileData ? userProfileData.salaire : ""}
 								/>
                             </div>
                         </div>
