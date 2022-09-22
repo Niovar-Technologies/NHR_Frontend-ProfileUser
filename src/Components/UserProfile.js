@@ -727,11 +727,6 @@ console.log( formType );
 							
                             <div className="col-md-6">
                                 <Trello /> <label className="small mb-1" >Type de salaire</label>
-                                <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
-									{SalaireTypeList.map((obj, index) => (
-										<option key={index} value={obj.id}>{obj.name}</option>
-									))}
-								</select>
 								<select 
 								className="custom-select" 
 								value = {formType ? userProfileData.salaryTypeid : "choisir"} 
