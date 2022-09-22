@@ -708,7 +708,10 @@ console.log( formType );
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Clipboard /> <label className="small mb-1" >Département</label>
-								<select className="custom-select" onChange={e => handleSelectDepartement(e.target.value)}>
+								<select 
+								className="custom-select" 
+								value = {formType ? userProfileData.departementId : ""} 
+								onChange={e => handleSelectDepartement(e.target.value)} >
 									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
 									))}
@@ -716,9 +719,20 @@ console.log( formType );
                             </div>
 							<div className="col-md-6">
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
-                                <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
+								<select 
+								className="custom-select" 
+								value = {formType ? userProfileData.posteId : "choisir"} 
+								onChange={e => handleSelect(e.target.value)} >
+									{ !formType ? 
+										<option value="choisir">Choisir</option> 
+									: 
+										"" 
+									}
 									{PosteList.map((obj, index) => (
-										<option key={index} value={obj.id}>{obj.name}</option>
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
 									))}
 								</select>
                             </div>
