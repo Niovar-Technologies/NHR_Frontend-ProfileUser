@@ -150,8 +150,6 @@ else{
 // get user profile
 var formType 	= 0;	// new form
 var userProfileData = "";
-var userSexeId = "";
-
 async function  getUserProfile(){
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
@@ -163,7 +161,7 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfileData.id;
-			userSexeId = userProfileData.sexeId;
+console.log( userProfileData );
 			formType = 1; // edit form 
 
 				// setUserSexeId( profile.sexeId );
@@ -334,7 +332,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	// const [ userSexeId, setUserSexeId ] = useState(''); //
+	const [ userSexeId, setUserSexeId ] = useState(''); //
 	const [ userDepartementId, setUserDepartementId ] = useState(''); //
 	const [ userPosteId, setUserPosteId ] = useState(''); //
 	const [ userSalaryType, setUserSalaryType ] = useState(''); //
@@ -393,12 +391,12 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
+
 	},[] );
 	
 console.log( userProfileData );
 console.log( accountInfo );
-console.log( "userSexeId: " + userSexeId );
-
+console.log( formType );
 	// get user 
 	// get company name
 	async function getDepartements(){
@@ -685,7 +683,7 @@ console.log( "userSexeId: " + userSexeId );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								value = {userSexeId} 
+								value = {formType ? userProfileData.sexeId : "choisir"} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
