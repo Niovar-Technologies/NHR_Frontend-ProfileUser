@@ -150,6 +150,8 @@ else{
 // get user profile
 var formType 	= 0;	// new form
 var userProfileData = "";
+var userSexeId = "";
+
 async function  getUserProfile(){
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
@@ -161,7 +163,7 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfileData.id;
-
+			userSexeId = userProfileData.sexeId;
 			formType = 1; // edit form 
 
 				// setUserSexeId( profile.sexeId );
@@ -332,7 +334,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	const [ userSexeId, setUserSexeId ] = useState(''); //
+	// const [ userSexeId, setUserSexeId ] = useState(''); //
 	const [ userDepartementId, setUserDepartementId ] = useState(''); //
 	const [ userPosteId, setUserPosteId ] = useState(''); //
 	const [ userSalaryType, setUserSalaryType ] = useState(''); //
@@ -391,7 +393,6 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-		setUserSexeId( userProfileData.sexeId )
 	},[] );
 	
 console.log( userProfileData );
