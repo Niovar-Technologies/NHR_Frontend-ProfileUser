@@ -389,11 +389,12 @@ const UserProfile = () => {
 	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
 	useEffect(() => {
+		getUserProfile();
 		getDepartements();
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-
+		
 	},[] );
 	
 console.log( userProfileData );
