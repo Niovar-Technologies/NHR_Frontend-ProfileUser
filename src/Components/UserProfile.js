@@ -161,8 +161,8 @@ async function  getUserProfile(){
 		if( resJson.statusCode === 200 ) {
 			userProfileData	= resJson.userProfile[0];
 			let userProfileId = userProfileData.id; // 2022-09-17T14:45:01.207
-			userProfileData.dateEmbauche = parseInt(moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format("X"));
-			userProfileData.dateDepart = parseInt(moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format("X")); 
+			userProfileData.dateEmbauche = new Date(moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format("X"));
+			userProfileData.dateDepart = new Date(moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format("X"));
 alert( userProfileData.dateDepart );
 			formType = 1; // edit form 
 
@@ -779,7 +779,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
-									selected="1663422301"
+									selected= { !formType ? parseISO(userProfileData.dateEmbauche) : "" }
 									onChange={(date) => setStartDateEmbauche(date)} 
 								/>
                             </div>
@@ -790,7 +790,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected="1663422301"
+									selected= { !formType ? parseISO(userProfileData.dateDepart) : "" }
 									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
