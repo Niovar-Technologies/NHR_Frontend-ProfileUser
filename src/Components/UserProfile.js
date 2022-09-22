@@ -773,12 +773,12 @@ console.log( formType );
                         
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date d'embauche</label>
-                                <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={startDateEmbauche} onChange={(date) => setStartDateEmbauche(date)} value = {userDateEmbauche ? userDateEmbauche : ""}/>
+                                <DatePicker locale="fr" className="form-control" id="dateEmbauche" selected={userProfileData.dateEmbauche} onChange={(date) => setStartDateEmbauche(date)} value = {userDateEmbauche ? userDateEmbauche : ""}/>
                             </div>
                            
                             <div className="col-md-6">
                                  <Calendar /> <label className="small mb-1" >Date de départ</label>
-                                <DatePicker locale="fr" className="form-control" id="dateDepart" selected={startDateDepart} onChange={(date) => setStartDateDepart(date)} value = {userDateDepart ? userDateDepart : ""}/>
+                                <DatePicker locale="fr" className="form-control" id="dateDepart" selected={userProfileData.dateDepart} onChange={(date) => setStartDateDepart(date)} value = {userDateDepart ? userDateDepart : ""}/>
                             </div>
                         </div>
 						<div className="mb-3">
