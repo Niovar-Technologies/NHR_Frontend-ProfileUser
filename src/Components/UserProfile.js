@@ -162,8 +162,11 @@ async function  getUserProfile(){
 			userProfileData		= resJson.userProfile[0];
 			let userProfileId 	= userProfileData.id; // 2022-09-17T14:45:01.207
 			
-			userProfileData.dateEmbauche 	= new Date( userProfileData.dateEmbauche );
-			userProfileData.dateDepart 		= new Date( userProfileData.dateDepart );
+			userProfileData.dateEmbauche 	= moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
+			userProfileData.dateDepart 		= moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
+			
+			// userProfileData.dateEmbauche 	= new Date( userProfileData.dateEmbauche );
+			// userProfileData.dateDepart 		= new Date( userProfileData.dateDepart );
 
 alert( userProfileData.dateDepart );
 
@@ -779,23 +782,23 @@ console.log( formType );
                         
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date d'embauche</label>
-                                <DatePicker 
-									locale="fr" 
-									className="form-control" 
-									id="dateEmbauche" 
-									selected= { formType ? parseISO(userProfileData.dateEmbauche) : "" }
-									onChange={(date) => setStartDateEmbauche(date)} 
+                                <DatePicker
+									{...props.input}
+									dateFormat="DD-MM-YYYY"
+									selected={props.input.value ? moment(props.input.value, 'DD-MM-YYYY') : userProfileData.dateEmbauche}
+									placeholderText={props.placeholder}
+									disabled={props.disabled}
 								/>
                             </div>
                            
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date de départ</label>
-                                <DatePicker 
-									locale="fr" 
-									className="form-control" 
-									id="dateDepart" 
-									selected= { formType ? parseISO(userProfileData.dateDepart) : "" }
-									onChange={(date) => setStartDateDepart(date)}
+								<DatePicker
+									{...props.input}
+									dateFormat="DD-MM-YYYY"
+									selected={props.input.value ? moment(props.input.value, 'DD-MM-YYYY') : userProfileData.dateDepart}
+									placeholderText={props.placeholder}
+									disabled={props.disabled}
 								/>
                             </div>
                         </div>
