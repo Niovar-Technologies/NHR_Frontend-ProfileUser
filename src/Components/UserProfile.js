@@ -591,8 +591,10 @@ console.log( formType );
 		};
 	}
 			
-	const [startDate, setStartDate] = useState(new Date());
+	// const [startDate, setStartDate] = useState(new Date());
 			
+	var startDate =  useState(new Date());
+alert( startDate );
     return (
        <>
  <div className="page-wrapper">
