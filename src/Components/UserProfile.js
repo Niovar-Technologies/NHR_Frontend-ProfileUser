@@ -791,6 +791,7 @@ console.log( formType );
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date d'embauche</label>
 								<DatePicker 
+									value={date}
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
@@ -804,11 +805,13 @@ console.log( formType );
                             <div className="col-md-6">
                                 <Calendar /> <label className="small mb-1" >Date de départ</label>
 								<DatePicker 
+									value={date}
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
 									selected= { formType ? userProfileData.dateDepart : "" }
 									onChange={(date) => setStartDateDepart(date)}
+									onChange={(date:Date) => setStartDate(date)} 
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
