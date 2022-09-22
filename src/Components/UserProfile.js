@@ -683,7 +683,7 @@ console.log( formType );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = {formType ? `userProfileData.sexeId` : "choisir"} 
+								defaultValue = {userProfileData.sexeId} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
