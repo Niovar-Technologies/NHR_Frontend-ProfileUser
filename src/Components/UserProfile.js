@@ -685,7 +685,7 @@ console.log( "userSexeId: " + userSexeId );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								defaultValue = {userSexeId} 
+								value = {userSexeId} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
