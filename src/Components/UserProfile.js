@@ -777,7 +777,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
-									selected= {parseISO({userProfileData.dateEmbauche})}
+									selected= {parseISO(userProfileData.dateEmbauche)}
 									onChange={(date) => setStartDateEmbauche(date)} 
 								/>
                             </div>
@@ -788,7 +788,7 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= {parseISO({userProfileData.dateDepart})} 
+									selected= {parseISO(userProfileData.dateDepart)} 
 									onChange={(date) => setStartDateDepart(date)}
 								/>
                             </div>
