@@ -329,6 +329,7 @@ const UserProfile = () => {
 	const handleCheck = (index) => {
 		let check = userWeekDayArray[index];
 		userWeekDayArray[index] = !check;
+console.log( userWeekDayArray );		
 		setUserWeekDays( userWeekDayArray );
 	}
   
