@@ -306,6 +306,7 @@ const UserProfile = () => {
 	const [ fullName, setFullName] = useState( accountInfo.fullName );
 	const [ email, setEmail] = useState( accountInfo.email );
 	const [ telephone01, setTelephone01] = useState( accountInfo.telephone01 );
+	const [ telephone02, setTelephone02] = useState( accountInfo.telephone02 );
 	const [ matricule, setMatricule] = useState( accountInfo.matricule );
 	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
 	const [ posteId, setPosteId] = useState( userProfileData.posteId );
