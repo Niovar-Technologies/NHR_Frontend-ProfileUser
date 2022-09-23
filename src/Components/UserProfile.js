@@ -328,9 +328,10 @@ const UserProfile = () => {
 	// Handle checkbox change
 	const handleCheck = (index) => {
 		let check = userWeekDayArray[index];
-		userWeekDayArray[index] = !check;
+		let userWeekDayArrayCopy = userWeekDayArray.slice();
+		userWeekDayArrayCopy[index] = !check;
 console.log( userWeekDayArray );		
-		setUserWeekDays( userWeekDayArray );
+		setUserWeekDays( userWeekDayArrayCopy );
 	}
   
   
