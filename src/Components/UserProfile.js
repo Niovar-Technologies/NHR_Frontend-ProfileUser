@@ -151,7 +151,7 @@ else{
 var formType 	= 0;	// new form
 var userProfileData = "";
 async function  getUserProfile(){
-	const [startDate, setStartDate] = useState(new Date()); 
+	
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
 			method: "GET",
@@ -337,6 +337,8 @@ const UserProfile = () => {
 	
 	const [ startDateEmbauche, setStartDateEmbauche ] = useState(new Date()); //
 	const [ startDateDepart, setStartDateDepart ] = useState(new Date()); //
+	
+	const [startDate, setStartDate] = useState(new Date()); 
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -814,7 +816,7 @@ console.log( formType );
 								/>
                             </div>
 							
-<DatePicker selected={startDate} onChange={(date) => setStartDateDepart(date)} />
+<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
 							
 							
                         </div>
