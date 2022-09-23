@@ -24,21 +24,7 @@ import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import fr from 'date-fns/locale/fr';
 registerLocale('fr', fr)
 	
-const Checkbox = ({ obj, onChange }) => {
-	return (
-		<>
-			<input 
-				type="checkbox"
-				id={`custom-checkbox-${obj.index}`}
-				name={obj.name}
-				value={obj.checked}
-				defaultChecked={obj.checked}
-				onChange={() => onChange({ ...obj, checked: !obj.checked })}
-			/>
-			{obj.name}
-		</>
-	);
-};
+
 
 // Helper: get parametter from url
 function getUrlParametter( name, url ) {
@@ -184,50 +170,21 @@ async function getUserJours( userProfileId ){
 }
 
 
-// Create user week days for select from user's days arrray
-var userWeekDays 	= [];
+// Create user checked  array for week days checkboxes 
+var userWeekDayArray 	= [];
 function getUserWeekdays( userJours ){
-	
+
 	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
 		
 	for( var i = 0; i < weekDaysId.length; i++ ){
 		let checked = false;
-		let dayObj 	= {};
-		let day 	= "";
-
-		if( i == 0 ){
-			day = "Dimanche";
-		}
-		else if( i == 1 ){
-			day = "Lundi";
-		}
-		else if( i == 2 ){
-			day = "Mardi";
-		}
-		else if( i == 3 ){
-			day = "Mercredi";
-		}
-		else if( i == 4 ){
-			day = "Jeudi";
-		}
-		else if( i == 5 ){
-			day = "Vendredi";
-		}
-		else if( i == 6 ){
-			day = "Samedi";
-		}
-			
-		if( userJours.includes( i ) ){
+	
+		if( userJours.includes( i ) )
 			checked = true;
-		}
 			
-		dayObj.id 		= i;
-		dayObj.checked 	= checked;
-		dayObj.name 	= day;
-			
-		userWeekDays.push( dayObj );
+		userWeekDayArray.push( checked );
 	}
-console.log( userWeekDays );
+console.log( userWeekDayArray );
 }
 
 // console.log( accountId );
@@ -337,11 +294,11 @@ const UserProfile = () => {
 	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Provinces select's default value
 	const [ villeId, setVilleId ] 		= useState( userProfileData.villeId ); 		// Villes select's default value
 
-	const [ PaysList, setPaysList ] = useState([]); 		// Pays array's values top map
-	const [ ProvinceList, setProvinceList ] = useState([]); // Provinces array's values to map
-	const [ VilleList, setVilleList ] = useState([]); 		// Ville array's values to map
+	const [ PaysList, setPaysList ] 		= useState([]); 	// Pays array's values top map
+	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
+	const [ VilleList, setVilleList ] 		= useState([]); 	// Ville array's values to map
 
-
+	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Users checked day
 
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -365,16 +322,16 @@ const UserProfile = () => {
 	const [ userDateNaissance, setUserDateNaissance ] = useState(''); //
 	const [ userPhotoUrl, setUserPhotoUrl ] = useState(''); //
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
-	
-	// const [ userProfile, setUserProfile ] = useState([]); //
-	
-	const [ weekDays, setWeekDays ] = useState( days ); //
-	// const [ accountId, setAccountId ] = useState( '' ); //
-	
-	
-	// const [ formType, setFormType ] = useState( 0 ); // 0 = nouveau profile, 1 = modification de profile
 
+	const [ weekDays, setWeekDays ] = useState( days ); //
 	
+	
+	// Handle checkbox change
+	const handleCheck = (index) => {
+		userWeekDayArray[index] = !userWeekDayArray[index];
+		setUserWeekDays( userWeekDayArray );
+	}
+
 	const handleClick = (e) => {
 		e.preventDefault();
 		location.replace( btnLink );
@@ -889,11 +846,13 @@ console.log( formType );
 							{weekDays.map((obj, index) => (
 								<li key={index}>
 									<div className="checkbox-inline">
-										<Checkbox
-											obj={obj}
-											onChange={(item) => {
-												setCheckboxData(checkboxData.map((d) => (d.order === item.order ? item : d)));
-											}}
+										<input 
+											type="checkbox"
+											id={`custom-checkbox-${index}`}
+											name={name}
+											value={name}
+											checked={userWeekDays[index]}
+											onChange={() => handleCheck(index)}
 										/>
 									</div>
 								</li>
