@@ -148,9 +148,6 @@ else{
 }
 
 
-getUserProfile();
-
-// array: jours de travail de l'utilisateur
 
 async function getUserJours( userProfileId ){
 	try {
