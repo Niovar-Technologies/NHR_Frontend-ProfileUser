@@ -332,9 +332,9 @@ const UserProfile = () => {
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
-	
-	const [ dateEmbauche, setDateEmbauche ] = useState(new Date()); //
-	const [ dateDepart, setDateDepart ] = useState(new Date()); //
+
+	const [ dateEmbauche, setDateEmbauche ] =  userProfileData.dateEmbauche; //
+	const [ dateDepart, setDateDepart ] = userProfileData.dateDepart; //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -402,8 +402,8 @@ const UserProfile = () => {
 		getDepartements();
 		getPays();
 
-		setDateEmbauche( userProfileData.dateEmbauche ); //
-		setDateDepart( userProfileData.dateDepart ); //
+		// setDateEmbauche( userProfileData.dateEmbauche ); //
+		// setDateDepart( userProfileData.dateDepart ); //
 	},[] );
 	
 console.log( userProfileData );
