@@ -921,9 +921,9 @@ console.log( formType );
                         </div>
                         <button className="btn btn-primary" type="button">
 							{ !formType ? 
-									Enregistrer 
+									"Enregistrer" 
 								: 
-									Modifier 
+									"Modifier" 
 							}
 						</button>
                     </form>
