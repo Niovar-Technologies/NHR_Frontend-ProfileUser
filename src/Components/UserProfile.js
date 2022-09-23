@@ -310,7 +310,7 @@ const UserProfile = () => {
 	const [ matricule, setMatricule] = useState( accountInfo.matricule );
 	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
 	const [ posteId, setPosteId] = useState( userProfileData.posteId );
-	const [ departementId, setDepartementId ] = useState( useState( userProfileData.departementId );
+	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
 	const [ salaryTypeid, setSalaryTypeid] = useState( userProfileData.salaryTypeid );
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
