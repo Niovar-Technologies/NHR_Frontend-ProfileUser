@@ -173,15 +173,14 @@ async function getUserJours( userProfileId ){
 // Create initial user checked  array for week days checkboxes 
 var userWeekDayArray 	= [];
 function getUserWeekdays( userJours ){
-	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
 		
-	for( var i = 0; i < weekDaysId.length; i++ ){
-		let checked = false;
+	for( var i = 0; i < days.length; i++ ){
+		let to_check = false;
 	
-		if( userJours.includes( i ) )
-			checked = true;
+		if( userJours.includes( days[i].id ) )
+			to_check = true;
 			
-		userWeekDayArray.push( checked );
+		userWeekDayArray.push( to_check );
 	}
 	console.log( userWeekDayArray );
 }
@@ -304,8 +303,13 @@ const UserProfile = () => {
 	const [ DepartementList, setDepartementList ] = useState([]); 	// List of all departments to select
 	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
 	
-
-
+	const [ fullName, setFullName] = useState( accountInfo.fullName );
+	const [ email, setEmail] = useState( accountInfo.email );
+	const [ telephone01, setTelephone01] = useState( accountInfo.telephone01 );
+	const [ matricule, setMatricule] = useState( accountInfo.matricule );
+	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
+	const [ posteId, setPosteId] = useState( userProfileData.posteId );
+	const [ salaryTypeid, setSalaryTypeid] = useState( userProfileData.salaryTypeid );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
@@ -626,7 +630,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									defaultValue= {formType ? accountInfo.fullName : ""}
+									defaultValue= {formType ? fullName : ""}
 								/>
                             </div>
                            <div className="col-md-6">
@@ -635,7 +639,7 @@ console.log( formType );
 									className="form-control" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
-									defaultValue = {formType ? accountInfo.email : ""} 
+									defaultValue = {formType ? email : ""} 
 								/>
                             </div>
                         </div>
@@ -647,7 +651,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Votre Téléphone" 
-									defaultValue = {formType ? userProfileData.telephone01 : ""} 
+									defaultValue = {formType ? telephone01 : ""} 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -656,7 +660,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = {formType ? userProfileData.telephone02 : ""} 
+									defaultValue = {formType ? telephone02 : ""} 
 								/>
                             </div>
                         </div>
@@ -665,7 +669,7 @@ console.log( formType );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								value = {formType ? userProfileData.sexeId : "choisir"} 
+								value = {formType ? sexeId : "choisir"} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
@@ -686,7 +690,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = {accountInfo ? accountInfo.matricule : ""}
+									defaultValue = {accountInfo ? amatricule : ""}
 								/>
                             </div>
                         </div>
@@ -695,7 +699,7 @@ console.log( formType );
                                 <Clipboard /> <label className="small mb-1" >Département</label>
 								<select 
 								className="custom-select" 
-								value = {formType ? userProfileData.departementId : ""} 
+								value = {formType ? departementId : ""} 
 								onChange={e => handleSelectDepartement(e.target.value)} >
 									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
@@ -706,7 +710,7 @@ console.log( formType );
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
-								value = {formType ? userProfileData.posteId : "choisir"} 
+								value = {formType ? posteId : "choisir"} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
@@ -728,7 +732,7 @@ console.log( formType );
                                 <Trello /> <label className="small mb-1" >Type de salaire</label>
 								<select 
 								className="custom-select" 
-								value = {formType ? userProfileData.salaryTypeid : "choisir"} 
+								value = {formType ? salaryTypeid : "choisir"} 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
@@ -869,6 +873,7 @@ console.log( formType );
 							))}
 							</div>
                         </div>
+						{ role == 'admin' ?
 						<div className="mb-3">
                             <ToggleLeft /> <label className="small mb-1" >Statut</label>
 							<select
@@ -888,6 +893,9 @@ console.log( formType );
 								))}
 							</select>
                         </div>
+						: 
+							"" 
+						}
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" >Mot de passe</label>
@@ -911,7 +919,13 @@ console.log( formType );
 								/>
                             </div>
                         </div>
-                        <button className="btn btn-primary" type="button">Enregistrer</button>
+                        <button className="btn btn-primary" type="button">
+							{ !formType ? 
+									Enregistrer 
+								: 
+									Modifier 
+							}
+						</button>
                     </form>
                 </div>
             </div>
