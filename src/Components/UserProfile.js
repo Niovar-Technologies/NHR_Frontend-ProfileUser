@@ -173,18 +173,15 @@ async function getUserJours( userProfileId ){
 // Create user checked  array for week days checkboxes 
 var userWeekDayArray 	= [];
 function getUserWeekdays( userJours ){
-
 	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
 		
 	for( var i = 0; i < weekDaysId.length; i++ ){
 		let checked = false;
 	
 		if( userJours.includes( i ) )
-			checked = true;
-			
-		userWeekDayArray.push( checked );
+			userWeekDayArray.push( i );
 	}
-console.log( userWeekDayArray );
+	console.log( userWeekDayArray );
 }
 
 // console.log( accountId );
@@ -854,6 +851,7 @@ console.log( formType );
 											checked= { !formType ? userWeekDays[index] : false }
 											onChange={() => handleCheck(index)}
 										/>
+										<label htmlFor={`custom-checkbox-${index}`}>{obj.name}</label>
 									</div>
 								</li>
 							))}
