@@ -151,7 +151,7 @@ else{
 var formType 	= 0;	// new form
 var userProfileData = "";
 async function  getUserProfile(){
-	const [startDate, setStartDate] = useState(new Date());
+	const [startDate, setStartDate] = useState(new Date()); 
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
 			method: "GET",
