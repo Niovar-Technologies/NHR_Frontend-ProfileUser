@@ -690,7 +690,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = {accountInfo ? amatricule : ""}
+									defaultValue = {accountInfo ? matricule : ""}
 								/>
                             </div>
                         </div>
