@@ -40,6 +40,10 @@ function getUrlParametter( name, url ) {
 
 const days = [
 	{
+		id: 0,
+		name: "Dimanche"
+	},
+	{
 		id: 1,
 		name: "Lundi"
 	},
@@ -62,10 +66,6 @@ const days = [
 	{
 		id: 6,
 		name: "Samedi"
-	},
-	{
-		id: 0,
-		name: "Dimanche"
 	}
 ];
 
@@ -170,7 +170,7 @@ async function getUserJours( userProfileId ){
 }
 
 
-// Create user checked  array for week days checkboxes 
+// Create initial user checked  array for week days checkboxes 
 var userWeekDayArray 	= [];
 function getUserWeekdays( userJours ){
 	let weekDaysId 	 	= [ 0, 1, 2, 3, 4, 5, 6 ];
@@ -297,11 +297,15 @@ const UserProfile = () => {
 	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState([]); 	// Ville array's values to map
 
-	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Users checked day
+	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
 
-	const [ DepartementList, setDepartementList ] = useState([]); //;
-	const [ PosteList, setPosteList ] = useState([]); //
+	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
+
+	const [ DepartementList, setDepartementList ] = useState([]); 	// List of all departments to select
+	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
 	
+
+
 
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
@@ -782,20 +786,20 @@ console.log( formType );
 						<div className="mb-3">
                             <Globe /> <label className="small mb-1" >Pays</label>
 							<select 
-								className="custom-select" 
-								value = {formType ? paysId : "choisir"} 
-								onChange={e => handleSelectPays(e.target.value)} >
-									{ !formType ? 
-										<option value="choisir">Choisir</option> 
+							className="custom-select" 
+							value = {formType ? paysId : "choisir"} 
+							onChange={e => handleSelectPays(e.target.value)} >
+								{ !formType ? 
+									<option value="choisir">Choisir</option> 
 									: 
 										"" 
-									}
-									{PaysList.map((obj, index) => (
-										<option 
-											key={index} 
-											value={obj.id}>{obj.name}
-										</option>
-									))}
+								}
+								{PaysList.map((obj, index) => (
+									<option 
+										key={index} 
+										value={obj.id}>{obj.name}
+									</option>
+								))}
 							</select>
 							
                         </div>
@@ -804,21 +808,21 @@ console.log( formType );
 						:
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" >Province</label>
-                            <select className="custom-select" onChange={e => handleSelectProvince(e.target.value)}>
-								className="custom-select" 
-								value = {formType ? provinceId : "choisir"} 
-								onChange={e => handleSelectProvince(e.target.value)} >
-									{ !formType ? 
-										<option value="choisir">Choisir</option> 
-									: 
-										"" 
-									}
-									{ProvinceList.map((obj, index) => (
-										<option 
-											key={index} 
-											value={obj.id}>{obj.name}
-										</option>
-									))}
+                            <select
+							className="custom-select" 
+							value = {formType ? provinceId : "choisir"} 
+							onChange={e => handleSelectProvince(e.target.value)} >
+								{ !formType ? 
+									<option value="choisir">Choisir</option> 
+								: 
+									"" 
+								}
+								{ProvinceList.map((obj, index) => (
+									<option 
+										key={index} 
+										value={obj.id}>{obj.name}
+									</option>
+								))}
 							</select>
                         </div>
 						}
@@ -827,21 +831,21 @@ console.log( formType );
 						:
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" >Ville</label>
-							<select className="custom-select" onChange={e => handleSelectVille(e.target.value)}>
-								className="custom-select" 
-								value = {formType ? villeId : "choisir"} 
-								onChange ={e => handleSelectVille(e.target.value)} >
-									{ !formType ? 
-										<option value="choisir">Choisir</option> 
-									: 
-										"" 
-									}
-									{VilleList.map((obj, index) => (
-										<option 
-											key={index} 
-											value={obj.id}>{obj.name}
-										</option>
-									))}
+							<select 
+							className="custom-select" 
+							value = {formType ? villeId : "choisir"} 
+							onChange ={e => handleSelectVille(e.target.value)} >
+								{ !formType ? 
+									<option value="choisir">Choisir</option> 
+								: 
+									"" 
+								}
+								{VilleList.map((obj, index) => (
+									<option 
+										key={index} 
+										value={obj.id}>{obj.name}
+									</option>
+								))}
 							</select>
                         </div>
 						}
@@ -867,10 +871,21 @@ console.log( formType );
                         </div>
 						<div className="mb-3">
                             <ToggleLeft /> <label className="small mb-1" >Statut</label>
-                            <select className="custom-select" onChange={e => handleSelect(e.target.value)}>
-									{StatusList.map((obj, index) => (
-										<option key={index} value={obj.id}>{obj.name}</option>
-									))}
+							<select
+							className="custom-select" 
+							value = {formType ? statusId : "choisir"} 
+							onChange ={e => handleSelectStatus(e.target.value)} >
+								{ !formType ? 
+									<option value="choisir">Choisir</option> 
+								: 
+									"" 
+								}
+								{StatusList.map((obj, index) => (
+									<option 
+										key={index} 
+										value={obj.id}>{obj.name}
+									</option>
+								))}
 							</select>
                         </div>
 						<div className="row gx-3 mb-3">
