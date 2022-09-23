@@ -813,11 +813,8 @@ console.log( formType );
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
-<DatePicker
-  selected={date}
-  onSelect={setStartDate} //when day is clicked
-  onChange={setStartDate} //only when value has changed
-/>
+							
+<DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
 							
 							
                         </div>
