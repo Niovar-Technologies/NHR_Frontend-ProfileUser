@@ -333,8 +333,8 @@ const UserProfile = () => {
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
 
-	const [ dateEmbauche, setDateEmbauche ] =  userProfileData.dateEmbauche; //
-	const [ dateDepart, setDateDepart ] = userProfileData.dateDepart; //
+	const [ dateEmbauche, setDateEmbauche ] =  useState( userProfileData.dateEmbauche ); //
+	const [ dateDepart, setDateDepart ] = useState( userProfileData.dateDepart ); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
