@@ -328,10 +328,11 @@ const UserProfile = () => {
 	// Handle checkbox change
 	const handleCheck = (index) => {
 		let check = userWeekDayArray[index];
-		let userWeekDayArrayCopy = userWeekDayArray.slice();
-		userWeekDayArrayCopy[index] = !check;
-console.log( userWeekDayArray );		
-		setUserWeekDays( userWeekDayArrayCopy );
+		let userWeekDayCopy 	= userWeekDays.slice();
+		userWeekDayCopy[index] = !check;
+console.log( userWeekDayCopy );		
+		setUserWeekDays( userWeekDayCopy );
+
 	}
   
   
@@ -373,8 +374,8 @@ console.log( userWeekDayArray );
 	},[] );
 	
 console.log( userProfileData );
-console.log( accountInfo );
 console.log( formType );
+
 	// get user 
 	// get company name
 	async function getDepartements(){
