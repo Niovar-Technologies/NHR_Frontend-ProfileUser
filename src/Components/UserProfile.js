@@ -328,13 +328,19 @@ const UserProfile = () => {
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	
-	const [ dateEmbauche, setDateEmbauche ] =  useState( userProfileData.dateEmbauche ); //
-	const [ dateDepart, setDateDepart ] 	= useState( userProfileData.dateDepart ); //
+	const [ dateEmbauche, setDateEmbauche ] =  useState( userProfileData.dateEmbauche ); 	// Date d'embauche input default value
+	const [ dateDepart, setDateDepart ] 	= useState( userProfileData.dateDepart ); 		// Date de depart input default value
 	
-	const [ paysId, setPaysId ] 		= useState( userProfileData.paysId ); 		// Pays select default option value
-	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Province select default option value
-	const [ villeId, setVilleId ] 		= useState( userProfileData.villeId ); 		// Ville select default option value
-	
+	const [ paysId, setPaysId ] 		= useState( userProfileData.paysId ); 		// Pays select's default value
+	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Provinces select's default value
+	const [ villeId, setVilleId ] 		= useState( userProfileData.villeId ); 		// Villes select's default value
+
+	const [ PaysList, setPaysList ] = useState([]); 		// Pays array's values top map
+	const [ ProvinceList, setProvinceList ] = useState([]); // Provinces array's values to map
+	const [ VilleList, setVilleList ] = useState([]); 		// Ville array's values to map
+
+
+
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
 	
