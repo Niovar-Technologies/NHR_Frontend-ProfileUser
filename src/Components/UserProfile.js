@@ -216,8 +216,8 @@ async function getAccountInfo(){
 getAccountInfo();
 
 // get user profile
-var formType 	= 0;	// new form
 var userProfileData = "";
+var userFormType = 0;
 async function  getUserProfile(){
 	
 	try {
@@ -228,7 +228,7 @@ async function  getUserProfile(){
 			
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
-			formType = 1; // edit form 
+			userFormType = 1; // edit form 
 				
 			userProfileData		= resJson.userProfile[0];
 					
@@ -316,6 +316,9 @@ const UserProfile = () => {
 
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
+	
+	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
+	
 	
 	const [ userSexeId, setUserSexeId ] = useState(''); //
 
