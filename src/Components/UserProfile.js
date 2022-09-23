@@ -41,31 +41,31 @@ function getUrlParametter( name, url ) {
 const days = [
 	{
 		id: 1,
-		name: " Lundi"
+		name: "Lundi"
 	},
 	{
 		id: 2,
-		name: " Mardi"
+		name: "Mardi"
 	},
 	{
 		id: 3,
-		name: " Mercredi"
+		name: "Mercredi"
 	},
 	{
 		id: 4,
-		name: " Jeudi"
+		name: "Jeudi"
 	},
 	{
 		id: 5,
-		name: " Vendredi"
+		name: "Vendredi"
 	},
 	{
 		id: 6,
-		name: " Samedi"
+		name: "Samedi"
 	},
 	{
 		id: 0,
-		name: " Dimanche"
+		name: "Dimanche"
 	}
 ];
 
@@ -179,7 +179,9 @@ function getUserWeekdays( userJours ){
 		let checked = false;
 	
 		if( userJours.includes( i ) )
-			userWeekDayArray.push( i );
+			checked = true;
+			
+		userWeekDayArray.push( checked );
 	}
 	console.log( userWeekDayArray );
 }
@@ -851,7 +853,7 @@ console.log( formType );
 											checked= { !formType ? userWeekDays[index] : false }
 											onChange={() => handleCheck(index)}
 										/>
-										<label htmlFor={`custom-checkbox-${index}`}>{obj.name}</label>
+										&nbsp;<label htmlFor={`custom-checkbox-${index}`}>{obj.name}</label>
 									</div>
 								</li>
 							))}
