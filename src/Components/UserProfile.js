@@ -814,7 +814,7 @@ console.log( formType );
 								/>
                             </div>
 							
-<DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
+<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
 							
 							
                         </div>
