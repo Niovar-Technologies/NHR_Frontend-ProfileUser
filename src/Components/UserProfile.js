@@ -310,13 +310,15 @@ const UserProfile = () => {
 	const [ matricule, setMatricule] = useState( accountInfo.matricule );
 	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
 	const [ posteId, setPosteId] = useState( userProfileData.posteId );
+	const [ departementId, setDepartementId ] = useState( useState( userProfileData.departementId );
 	const [ salaryTypeid, setSalaryTypeid] = useState( userProfileData.salaryTypeid );
+	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
 	const [ userSexeId, setUserSexeId ] = useState(''); //
-	const [ userDepartementId, setUserDepartementId ] = useState(''); //
+
 	const [ userPosteId, setUserPosteId ] = useState(''); //
 	const [ userSalaryType, setUserSalaryType ] = useState(''); //
 	
@@ -670,7 +672,7 @@ console.log( formType );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								value = {formType ? sexeId : "choisir"} 
+								value = { formType ? sexeId : "choisir" } 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
@@ -691,7 +693,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = {accountInfo ? matricule : ""}
+									defaultValue = { formType ? matricule : "" }
 								/>
                             </div>
                         </div>
@@ -755,7 +757,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Salaire" 
-									defaultValue = {userProfileData ? userProfileData.salaire : ""}
+									defaultValue = {formType ? salaire : ""}
 								/>
                             </div>
                         </div>
