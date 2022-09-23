@@ -849,9 +849,9 @@ console.log( formType );
 										<input 
 											type="checkbox"
 											id={`custom-checkbox-${index}`}
-											name={name}
-											value={name}
-											checked={userWeekDays[index]}
+											name={obj.name}
+											value={obj.name}
+											checked= { !formType ? {userWeekDays[index]} : false }
 											onChange={() => handleCheck(index)}
 										/>
 									</div>
