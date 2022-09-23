@@ -600,7 +600,7 @@ console.log( formType );
 		};
 	}
 			
-	const [startDate, setStartDate] = useState(new Date());
+
 			
     return (
        <>
