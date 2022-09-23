@@ -258,7 +258,72 @@ async function getAccountInfo(){
 }
 getAccountInfo();
 
-
+// get user profile
+var formType 	= 0;	// new form
+var userProfileData = "";
+async function  getUserProfile(){
+	
+	try {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.statusCode === 200 ) {
+			formType = 1; // edit form 
+				
+			userProfileData		= resJson.userProfile[0];
+					
+			// datepickers dates
+			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			let dateEmbaucheObj 	=  new Date( date_embauche );
+			let dateDepartObj		=  new Date( date_depart );
+			userProfileData.dateEmbauche = dateEmbaucheObj;
+			userProfileData.dateDepart 	 = dateDepartObj;
+			// setDateEmbauche( dateEmbaucheObj ); //
+			// setDateDepart( dateDepartObj ); //
+				
+			// checkboxes days
+			let userProfileId 	= userProfileData.id;
+			if( userProfileId )
+				getUserJours( userProfileId );
+				
+				// setUserSexeId( profile.sexeId );
+				// setUserDepartementId( profile.departementId );
+				// setUserPosteId( profile.posteId );
+				// setUserSalaryType( profile.posteId );
+				// setUserPays( profile.paysId );
+				// setUserProvince( profile.provinceId );
+				// setUserVille( profile.villeId );
+				// setUserTelephone01( profile.telephone01 );
+				// setUserTelephone02( profile.telephone02 );
+				// setUserSalaire( profile.salaire );
+				// setUserDateEmbauche( profile.salaire );
+				// setUserDateDepart( profile.salaire );
+				// setUserDateNaissance( profile.salaire );
+				// setUserPhotoUrl( profile.photoUrl );
+				
+				
+			// setUserJours( jours );
+			// create user weekdays
+				
+				 
+		}
+		else {
+			alert( "Un probleme est survenu" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+getUserProfile();
+	
 const UserProfile = () => {
 	const history = useHistory();
 
@@ -332,76 +397,13 @@ const UserProfile = () => {
 	// get current url
 	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
-	// get user profile
-	var formType 	= 0;	// new form
-	var userProfileData = "";
-	async function  getUserProfile(){
-	
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				formType = 1; // edit form 
-				
-				userProfileData		= resJson.userProfile[0];
-					
-				// datepickers dates
-				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let dateEmbaucheObj 	=  new Date( date_embauche );
-				let dateDepartObj		=  new Date( date_depart );
-				setDateEmbauche( dateEmbaucheObj ); //
-				setDateDepart( dateDepartObj ); //
-				
-				// checkboxes days
-				let userProfileId 	= userProfileData.id;
-				if( userProfileId )
-					getUserJours( userProfileId );
-				
-				// setUserSexeId( profile.sexeId );
-				// setUserDepartementId( profile.departementId );
-				// setUserPosteId( profile.posteId );
-				// setUserSalaryType( profile.posteId );
-				// setUserPays( profile.paysId );
-				// setUserProvince( profile.provinceId );
-				// setUserVille( profile.villeId );
-				// setUserTelephone01( profile.telephone01 );
-				// setUserTelephone02( profile.telephone02 );
-				// setUserSalaire( profile.salaire );
-				// setUserDateEmbauche( profile.salaire );
-				// setUserDateDepart( profile.salaire );
-				// setUserDateNaissance( profile.salaire );
-				// setUserPhotoUrl( profile.photoUrl );
-				
-				
-			// setUserJours( jours );
-			// create user weekdays
-				
-				 
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
-	getUserProfile();
+
 	useEffect(() => {
-		
 		getDepartements();
 		getPays();
-		// if( formType == 1 )
-			// setWeekDays( userWeekDays )
-		userProfileData.dateEmbauche
+
+		setDateEmbauche( userProfileData.dateEmbauche ); //
+		setDateDepart( userProfileData.dateDepart ); //
 	},[] );
 	
 console.log( userProfileData );
