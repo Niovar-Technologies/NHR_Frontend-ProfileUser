@@ -330,7 +330,7 @@ const UserProfile = () => {
 	}
 
 	// get current url
-	// let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
+	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 
 	// get user profile
 	var formType 	= 0;	// new form
