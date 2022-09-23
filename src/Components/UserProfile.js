@@ -147,71 +147,7 @@ else{
 		accountId = userid;
 }
 
-// get user profile
-var formType 	= 0;	// new form
-var userProfileData = "";
-async function  getUserProfile(){
-	
-	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
-			
-		let resJson = await res.json();
-		if( resJson.statusCode === 200 ) {
-			userProfileData		= resJson.userProfile[0];
-			let userProfileId 	= userProfileData.id; // 2022-09-17T14:45:01.207
-			
-			// userProfileData.dateEmbauche 	= moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
-			// userProfileData.dateDepart 		= moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('DD-MM-YYYY');
-			
-			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			
-			userProfileData.dateEmbauche  	=  new Date( date_embauche );
-			userProfileData.dateDepart		=  new Date( date_depart );
-			
-			// userProfileData.dateEmbauche 	= new Date( userProfileData.dateEmbauche );
-			// userProfileData.dateDepart 		= new Date( userProfileData.dateDepart );
 
-alert( userProfileData.dateDepart );
-
-			formType = 1; // edit form 
-
-				// setUserSexeId( profile.sexeId );
-				// setUserDepartementId( profile.departementId );
-				// setUserPosteId( profile.posteId );
-				// setUserSalaryType( profile.posteId );
-				// setUserPays( profile.paysId );
-				// setUserProvince( profile.provinceId );
-				// setUserVille( profile.villeId );
-				// setUserTelephone01( profile.telephone01 );
-				// setUserTelephone02( profile.telephone02 );
-				// setUserSalaire( profile.salaire );
-				// setUserDateEmbauche( profile.salaire );
-				// setUserDateDepart( profile.salaire );
-				// setUserDateNaissance( profile.salaire );
-				// setUserPhotoUrl( profile.photoUrl );
-			if( userProfileId )
-				getUserJours( userProfileId );
-				
-			// setUserJours( jours );
-			// create user weekdays
-				
-				 
-		}
-		else {
-			alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
 getUserProfile();
 
 // array: jours de travail de l'utilisateur
@@ -335,10 +271,8 @@ const UserProfile = () => {
 	const [ btnLink, setBtnLink ]	= useState(''); //
 	const [ verified, setVerified ]	= useState(''); //
 	
-	const [ startDateEmbauche, setStartDateEmbauche ] = useState(new Date()); //
-	const [ startDateDepart, setStartDateDepart ] = useState(new Date()); //
-	
-	const [startDate, setStartDate] = useState(new Date()); 
+	const [ dateEmbauche, setDateEmbauche ] = useState(new Date()); //
+	const [ dateDepart, setDateDepart ] = useState(new Date()); //
 	
 	const [ DepartementList, setDepartementList ] = useState([]); //;
 	const [ PosteList, setPosteList ] = useState([]); //
@@ -361,8 +295,6 @@ const UserProfile = () => {
 	const [ userTelephone02, setUserTelephone02 ] = useState(''); //
 	
 	const [ userSalaire, setUserSalaire ] = useState(''); //
-	const [ userDateEmbauche, setUserDateEmbauche ] = useState(''); //
-	const [ userDateDepart, setUserDateDepart ] = useState(''); //
 	const [ userDateNaissance, setUserDateNaissance ] = useState(''); //
 	const [ userPhotoUrl, setUserPhotoUrl ] = useState(''); //
 	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
@@ -401,7 +333,70 @@ const UserProfile = () => {
 	}
 
 	// get current url
-	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
+	// let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
+
+	// get user profile
+	var formType 	= 0;	// new form
+	var userProfileData = "";
+	async function  getUserProfile(){
+	
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				formType = 1; // edit form 
+				
+				userProfileData		= resJson.userProfile[0];
+					
+				// datepickers dates
+				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let dateEmbaucheObj 	=  new Date( date_embauche );
+				let dateDepartObj		=  new Date( date_depart );
+				setDateEmbauche( dateEmbaucheObj ); //
+				setDateDepart( dateDepartObj ); //
+				
+				// checkboxes days
+				let userProfileId 	= userProfileData.id;
+				if( userProfileId )
+					getUserJours( userProfileId );
+				
+				// setUserSexeId( profile.sexeId );
+				// setUserDepartementId( profile.departementId );
+				// setUserPosteId( profile.posteId );
+				// setUserSalaryType( profile.posteId );
+				// setUserPays( profile.paysId );
+				// setUserProvince( profile.provinceId );
+				// setUserVille( profile.villeId );
+				// setUserTelephone01( profile.telephone01 );
+				// setUserTelephone02( profile.telephone02 );
+				// setUserSalaire( profile.salaire );
+				// setUserDateEmbauche( profile.salaire );
+				// setUserDateDepart( profile.salaire );
+				// setUserDateNaissance( profile.salaire );
+				// setUserPhotoUrl( profile.photoUrl );
+				
+				
+			// setUserJours( jours );
+			// create user weekdays
+				
+				 
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
 
 	useEffect(() => {
 		getUserProfile();
@@ -409,7 +404,7 @@ const UserProfile = () => {
 		getPays();
 		// if( formType == 1 )
 			// setWeekDays( userWeekDays )
-		
+		userProfileData.dateEmbauche
 	},[] );
 	
 console.log( userProfileData );
@@ -797,8 +792,8 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
-									selected= { formType ? userProfileData.dateEmbauche : "" }
-									onChange={(date) => setStartDateEmbauche(date)}
+									selected= { formType ? dateEmbauche : "" }
+									onChange={(date) => setDateEmbauche(date)}
 									dateFormat="dd MMMM yyyy"
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
@@ -810,14 +805,11 @@ console.log( formType );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { formType ? userProfileData.dateDepart : "" }
-									onChange={(date) => setStartDateDepart(date)}
+									selected= { formType ? dateDepart : "" }
+									onChange={(date) => setDateDepart(date)}
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
-							
-<DatePicker selected={startDate} onChange={(date) => setStartDateDepart(date)} />
-//startDateDepart, setStartDateDepart
 							
                         </div>
 						<div className="mb-3">
