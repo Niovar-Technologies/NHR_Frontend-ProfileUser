@@ -151,6 +151,7 @@ else{
 var formType 	= 0;	// new form
 var userProfileData = "";
 async function  getUserProfile(){
+	const [startDate, setStartDate] = useState(new Date());
 	try {
 		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
 			method: "GET",
@@ -812,6 +813,13 @@ console.log( formType );
 									placeholderText= { formType ? "Choisir une date ..." : "" }
 								/>
                             </div>
+<DatePicker
+  selected={date}
+  onSelect={setStartDate} //when day is clicked
+  onChange={setStartDate} //only when value has changed
+/>
+							
+							
                         </div>
 						<div className="mb-3">
                             <Globe /> <label className="small mb-1" >Pays</label>
