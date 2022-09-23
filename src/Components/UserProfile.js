@@ -792,7 +792,7 @@ console.log( formType );
 									selected= { formType ? dateEmbauche : "" }
 									onChange={(date) => setDateEmbauche(date)}
 									dateFormat="dd MMMM yyyy"
-									placeholderText= { formType ? "Choisir une date ..." : "" }
+									placeholderText= { formType ? "Choisir" : "" }
 								/>
                             </div>
                            
@@ -804,7 +804,7 @@ console.log( formType );
 									id="dateDepart" 
 									selected= { formType ? dateDepart : "" }
 									onChange={(date) => setDateDepart(date)}
-									placeholderText= { formType ? "Choisir une date ..." : "" }
+									placeholderText= { formType ? "Choisir" : "" }
 								/>
                             </div>
 							
