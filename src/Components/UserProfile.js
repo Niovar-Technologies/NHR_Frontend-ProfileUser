@@ -851,7 +851,7 @@ console.log( formType );
 											id={`custom-checkbox-${index}`}
 											name={obj.name}
 											value={obj.name}
-											checked= { !formType ? {userWeekDays[index]} : false }
+											checked= { !formType ? userWeekDays[index] : false }
 											onChange={() => handleCheck(index)}
 										/>
 									</div>
