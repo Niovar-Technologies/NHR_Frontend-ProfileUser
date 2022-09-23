@@ -394,9 +394,9 @@ const UserProfile = () => {
 			console.log(err);
 		};
 	}
-
+	getUserProfile();
 	useEffect(() => {
-		getUserProfile();
+		
 		getDepartements();
 		getPays();
 		// if( formType == 1 )
