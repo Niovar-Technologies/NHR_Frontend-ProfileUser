@@ -327,9 +327,12 @@ const UserProfile = () => {
 	
 	// Handle checkbox change
 	const handleCheck = (index) => {
-		userWeekDayArray[index] = !userWeekDayArray[index];
+		let check = userWeekDayArray[index];
+		userWeekDayArray[index] = !check;
 		setUserWeekDays( userWeekDayArray );
 	}
+  
+  
 
 	const handleClick = (e) => {
 		e.preventDefault();
@@ -850,7 +853,7 @@ console.log( formType );
 											id={`custom-checkbox-${index}`}
 											name={obj.name}
 											value={obj.name}
-											checked= { !formType ? userWeekDays[index] : false }
+											checked= { formType ? userWeekDays[index] : false }
 											onChange={() => handleCheck(index)}
 										/>
 										&nbsp;<label htmlFor={`custom-checkbox-${index}`}>{obj.name}</label>
