@@ -27,10 +27,12 @@ registerLocale('fr', fr)
 const Checkbox = ({ obj, onChange }) => {
 	return (
 		<>
-			<input type="checkbox"
+			<input 
+				type="checkbox"
 				id={`custom-checkbox-${obj.index}`}
 				name={obj.name}
 				value={obj.checked}
+				defaultChecked={obj.checked}
 				onChange={() => onChange({ ...obj, checked: !obj.checked })}
 			/>
 			{obj.name}
