@@ -795,11 +795,6 @@ console.log( dateEmbauche );
 							className="custom-select" 
 							value = { paysId } 
 							onChange={e => handleSelectPays(e.target.value)} >
-								{ !formType ? 
-									<option value={choisir}>{choisir}</option>  
-									: 
-										"" 
-								}
 								{PaysList.map((obj, index) => (
 									<option 
 										key={index} 
@@ -818,11 +813,6 @@ console.log( dateEmbauche );
 							className="custom-select" 
 							value = { provinceId } 
 							onChange={e => handleSelectProvince(e.target.value)} >
-								{ !formType ? 
-									<option value={choisir}>{choisir}</option> 
-									: 
-										"" 
-								}
 								{ProvinceList.map((obj, index) => (
 									<option 
 										key={index} 
