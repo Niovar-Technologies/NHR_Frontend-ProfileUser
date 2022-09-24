@@ -253,6 +253,9 @@ async function  getUserProfile(){
 				let date_depart	  = moment().format('YYYY-MM-DD');
 				let dateEmbaucheObj 	=  new Date( date_embauche );
 				let dateDepartObj		=  new Date( date_depart );
+				
+				userProfileData.dateEmbauche = dateEmbaucheObj;
+				userProfileData.dateDepart 	 = dateDepartObj;
 			}		
 		}
 		else {
@@ -362,6 +365,7 @@ console.log( userWeekDayCopy );
 	
 console.log( userProfileData );
 console.log( formType );
+console.log( dateEmbauche );
 	// get user 
 	// get company name
 	async function getDepartements(){
