@@ -249,8 +249,8 @@ async function  getUserProfile(){
 					getUserJours( userProfileId );
 			}
 			else{
-				let date_embauche = moment().format('YYYY-MM-DD');
-				let date_depart	  = moment().format('YYYY-MM-DD');
+				let date_embauche = "2022-10-10";// moment().format('YYYY-MM-DD');
+				let date_depart	  = "2022-10-10";// moment().format('YYYY-MM-DD');
 				let dateEmbaucheObj 	=  new Date( date_embauche );
 				let dateDepartObj		=  new Date( date_depart );
 				
