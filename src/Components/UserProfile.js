@@ -831,7 +831,7 @@ console.log( dateEmbauche );
 								{ !provinceId ? 
 									<option value="choisir">Choisir</option> 
 									: 
-										"" 
+									"" 
 								}
 								{PaysList.map((obj, index) => (
 									<option 
@@ -849,7 +849,7 @@ console.log( dateEmbauche );
                             <Map /> <label className="small mb-1" >Province</label>
                             <select
 							className="custom-select" 
-							value = { provinceId ? provinceId : choisir ) : choisir } 
+							value = { provinceId ? provinceId : choisir } 
 							onChange={e => handleSelectProvince(e.target.value)} >
 								{ !provinceId ? 
 									<option value="choisir">Choisir</option> 
