@@ -294,30 +294,15 @@ const UserProfile = () => {
 	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
 	const [ posteId, setPosteId] = useState( userProfileData.posteId );
 	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
-	const [ salaryTypeid, setSalaryTypeid] = useState( userProfileData.salaryTypeid );
+	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
 	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
-	
-	
-	const [ userSexeId, setUserSexeId ] = useState(''); //
 
-	const [ userPosteId, setUserPosteId ] = useState(''); //
-	const [ userSalaryType, setUserSalaryType ] = useState(''); //
-	
-	const [ userPays, setUserPays ] = useState(''); //
-	const [ userProvince, setUserProvince ] = useState(''); //
-	const [ userVille, setUserVille ] = useState(''); //
-	const [ userTelephone01, setUserTelephone01 ] = useState(''); //
-	const [ userTelephone02, setUserTelephone02 ] = useState(''); //
-	
-	const [ userSalaire, setUserSalaire ] = useState(''); //
-	const [ userDateNaissance, setUserDateNaissance ] = useState(''); //
-	const [ userPhotoUrl, setUserPhotoUrl ] = useState(''); //
-	const [ userPhotoJours, setUserPhotoJours ] = useState([]); //
+	const [ userSexeId, setUserSexeId ] = useState(''); //
 
 	const [ weekDays, setWeekDays ] = useState( days ); //
 	
@@ -680,6 +665,7 @@ console.log( formType );
 									type="text" 
 									placeholder="Numéro d'employé" 
 									defaultValue = { matricule }
+									
 								/>
                             </div>
                         </div>
@@ -719,6 +705,13 @@ console.log( formType );
 							
                             <div className="col-md-6">
                                 <Trello /> <label className="small mb-1" >Type de salaire</label>
+								{ role == "user" ? 
+								<input
+								className="form-control" 
+									type="text" 
+									placeholder="Numéro d'employé" 
+									defaultValue = {SalaireTypeList[salaryTypeid].name } >					
+									:
 								<select 
 								className="custom-select" 
 								value = {formType ? salaryTypeid : "choisir"} 
@@ -735,6 +728,7 @@ console.log( formType );
 										</option>
 									))}
 								</select>
+								}
                             </div>
                            
                             <div className="col-md-6">
