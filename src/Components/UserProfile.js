@@ -228,24 +228,26 @@ async function  getUserProfile(){
 			
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
-			userFormType = 1; // edit form 
-				
-			userProfileData		= resJson.userProfile[0];
-					
-			// datepickers dates
-			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			let dateEmbaucheObj 	=  new Date( date_embauche );
-			let dateDepartObj		=  new Date( date_depart );
+			 
 			
-			userProfileData.dateEmbauche = dateEmbaucheObj;
-			userProfileData.dateDepart 	 = dateDepartObj;
+			if( resJson.userProfile.length == 0 ){ // no profile data found for this user
+				userProfileData		= resJson.userProfile[0];
+				userFormType = 1; // edit form
+
+				// datepickers dates
+				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let dateEmbaucheObj 	=  new Date( date_embauche );
+				let dateDepartObj		=  new Date( date_depart );
+			
+				userProfileData.dateEmbauche = dateEmbaucheObj;
+				userProfileData.dateDepart 	 = dateDepartObj;
 				
-			// checkboxes days
-			let userProfileId 	= userProfileData.id;
-			if( userProfileId )
-				getUserJours( userProfileId );
-						 
+				// user days to check
+				let userProfileId 	= userProfileData.id;
+				if( userProfileId )
+					getUserJours( userProfileId );
+			}	 
 		}
 		else {
 			alert( "Un probleme est survenu" );
@@ -258,7 +260,7 @@ async function  getUserProfile(){
 		console.log(err);
 	};
 }
-getUserProfile();
+
 	
 const UserProfile = () => {
 	const history = useHistory();
