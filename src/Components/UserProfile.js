@@ -410,7 +410,7 @@ async function  getUserProfile(){
 			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
 			
 			let dateEmbaucheObj 	=  ( !userProfileData.length == 0 ) ? new Date( date_embauche ) :  new Date( "2022-10-10" );
-			let dateDepartObj		=  ( !userProfileData.length == 0 ) ? new Date( date_depart ) : Date.now( "2024-10-10" );
+			let dateDepartObj		=  ( !userProfileData.length == 0 ) ? new Date( date_depart ) :  new Date( "2024-10-10" );
 			
 			userProfileData.dateEmbauche = dateEmbaucheObj;
 			userProfileData.dateDepart 	 = dateDepartObj;
@@ -448,7 +448,7 @@ async function  getUserProfile(){
 			setPosteId( userProfileData.posteId );
 			setDepartementId( userProfileData.departementId );
 			
-			if( userProfileData.salaryTypeid ) // user can display his salary type but cannot list or save
+			if( !userProfileData.length == 0 && userProfileData.salaryTypeid ) // user can display his salary type but cannot list or save
 				setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
 			else
 				setSalaryTypeName( "Non defini" );
