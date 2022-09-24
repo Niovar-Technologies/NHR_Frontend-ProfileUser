@@ -296,7 +296,7 @@ const UserProfile = () => {
 	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
 	
 	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
-	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfile.length == 0  ) ? 
+	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
 													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
 												: "Non defini";
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
