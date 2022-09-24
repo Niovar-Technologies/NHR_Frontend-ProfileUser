@@ -258,13 +258,13 @@ const UserProfile = () => {
 	const [ villeId, setVilleId ]=  useState( '' );	 			
 	const [ statusId, setStatusId ] = useState( '' ); // User status
 
-	const [ telephone01, setTelephone01] = useState( 'Aucun' );
-	const [ telephone02, setTelephone02] = useState( 'Aucun' );
-	const [ sexeId, setSexeId] = useState( '' );
-	const [ posteId, setPosteId] =  useState( '' );
-	const [ departementId, setDepartementId] =  useState( '' );
+	const [ telephone01, setTelephone01 ] = useState( 'Aucun' );
+	const [ telephone02, setTelephone02 ] = useState( 'Aucun' );
+	const [ sexeId, setSexeId ] = useState( '' );
+	const [ posteId, setPosteId ] =  useState( '' );
+	const [ departementId, setDepartementId ] =  useState( '' );
 	const [ salaryTypeName, setSalaryTypeName ] =  useState( '' );
-	const [ salaire, setSalare] = useState( '' );	
+	const [ salaire, setSalare ] = useState( '' );	
 											
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
