@@ -540,7 +540,9 @@ async function getAccountInfo(){
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let postes = resJson.poste;
-				setPosteList( postes );
+				
+				if( !postes.length == 0 )	// Departement Non attribue
+					setPosteList( postes );
 			}
 			else {
 				alert( "Un probleme est survenu" );
