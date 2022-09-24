@@ -298,7 +298,7 @@ const UserProfile = () => {
 	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
 	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
 													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												: "Non defini";
+												: "Aucun";
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
@@ -321,8 +321,6 @@ console.log( userWeekDayCopy );
 
 	}
   
-  
-
 	const handleClick = (e) => {
 		e.preventDefault();
 		location.replace( btnLink );
@@ -344,7 +342,7 @@ console.log( userWeekDayCopy );
 	}
 
 	const handleSelect = (e) => {
-		e.preventDefault();
+		// e.preventDefault();
 	}
 
 	// get current url
@@ -361,7 +359,6 @@ console.log( userWeekDayCopy );
 	
 console.log( userProfileData );
 console.log( formType );
-alert( salaryTypeName );
 	// get user 
 	// get company name
 	async function getDepartements(){
