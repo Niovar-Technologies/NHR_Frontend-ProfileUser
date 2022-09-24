@@ -487,7 +487,7 @@ const UserProfile = () => {
 												useState( "" );	// Villes select's default value
 												
 	const [ PaysList, setPaysList ] 		= useState( paysListArray ); 	// Pays array's values top map
-	const [ ProvinceList, setProvinceList ] = useState( provinceList ); 	// Provinces array's values to map
+	const [ ProvinceList, setProvinceList ] = useState( provinceListArray ); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState( villeListArray ); 	// Ville array's values to map
 
 	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
