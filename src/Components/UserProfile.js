@@ -216,7 +216,7 @@ async function getAccountInfo(){
 getAccountInfo();
 
 // get user profile
-var userProfileData = "";
+var userProfileData = [];
 var userFormType = 0;
 async function  getUserProfile(){
 	
@@ -237,6 +237,7 @@ async function  getUserProfile(){
 			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
 			let dateEmbaucheObj 	=  new Date( date_embauche );
 			let dateDepartObj		=  new Date( date_depart );
+			
 			userProfileData.dateEmbauche = dateEmbaucheObj;
 			userProfileData.dateDepart 	 = dateDepartObj;
 				
@@ -244,27 +245,7 @@ async function  getUserProfile(){
 			let userProfileId 	= userProfileData.id;
 			if( userProfileId )
 				getUserJours( userProfileId );
-				
-				// setUserSexeId( profile.sexeId );
-				// setUserDepartementId( profile.departementId );
-				// setUserPosteId( profile.posteId );
-				// setUserSalaryType( profile.posteId );
-				// setUserPays( profile.paysId );
-				// setUserProvince( profile.provinceId );
-				// setUserVille( profile.villeId );
-				// setUserTelephone01( profile.telephone01 );
-				// setUserTelephone02( profile.telephone02 );
-				// setUserSalaire( profile.salaire );
-				// setUserDateEmbauche( profile.salaire );
-				// setUserDateDepart( profile.salaire );
-				// setUserDateNaissance( profile.salaire );
-				// setUserPhotoUrl( profile.photoUrl );
-				
-				
-			// setUserJours( jours );
-			// create user weekdays
-				
-				 
+						 
 		}
 		else {
 			alert( "Un probleme est survenu" );
