@@ -280,7 +280,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	const [ formType, setFormType ] = useState(0);// Edition or new data
+	const [ formType, setFormType ] = useState('');// Edition or new data
 
 	const [ userSexeId, setUserSexeId ] = useState(''); //
 
