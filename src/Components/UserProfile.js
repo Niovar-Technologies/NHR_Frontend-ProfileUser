@@ -120,7 +120,7 @@ const SalaireTypeList = [
 var accountId = "";
 let role	= cookies.get( "role" );
 let userid 	= cookies.get( "userid" );
-if( role == "user" ){
+if( role == "User" ){
 	// setAccountId( userid );	// Id of connected user from the users cookie session
 	accountId = userid;
 }
@@ -358,7 +358,7 @@ console.log( userWeekDayCopy );
 	
 console.log( userProfileData );
 console.log( formType );
-
+alert( salaryTypeName );
 	// get user 
 	// get company name
 	async function getDepartements(){
@@ -706,13 +706,13 @@ console.log( formType );
 							
                             <div className="col-md-6">
                                 <Trello /> <label className="small mb-1" >Type de salaire</label>
-								{ role == "user" ? 
+							{ role == "User" ? 
 								<input
 								className="form-control" 
 									type="text" 
-									placeholder="Numéro d'employé" 
+									placeholder="Type de salaire" 
 									defaultValue = { salaryTypeName } />					
-								:
+							:
 								<select 
 								className="custom-select" 
 								value = {formType ? salaryTypeid : "choisir"} 
@@ -729,7 +729,7 @@ console.log( formType );
 										</option>
 									))}
 								</select>
-								}
+							}
                             </div>
                            
                             <div className="col-md-6">
