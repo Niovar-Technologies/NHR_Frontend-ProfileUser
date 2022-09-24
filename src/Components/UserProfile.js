@@ -282,15 +282,15 @@ const UserProfile = () => {
 	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
 												useState( userProfileData.paysId )
 												: 
-												useState( "" );	// Pays select's default value
+												useState( 39 );	// Pays select's default value
 	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
 												useState( userProfileData.provinceId )
 												: 
-												useState( "" );	// Provinces select's default value	
+												useState( 821 );	// Provinces select's default value	
 	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
 												useState( userProfileData.villeId )
 												: 
-												useState( "" );	// Villes select's default value
+												useState( 17542 );	// Villes select's default value
 												
 	const [ PaysList, setPaysList ] 		= useState([]); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
@@ -793,10 +793,10 @@ console.log( dateEmbauche );
                             <Globe /> <label className="small mb-1" >Pays</label>
 							<select 
 							className="custom-select" 
-							value = { paysId ? paysId : choisir } 
+							value = { paysId } 
 							onChange={e => handleSelectPays(e.target.value)} >
 								{ !formType ? 
-									<option value="choisir">"choisir"</option>  
+									<option value=choisir>choisir</option>  
 									: 
 										"" 
 								}
@@ -816,10 +816,10 @@ console.log( dateEmbauche );
                             <Map /> <label className="small mb-1" >Province</label>
                             <select
 							className="custom-select" 
-							value = { formType ? ( provinceId ? provinceId : choisir ) : choisir } 
+							value = { provinceId } 
 							onChange={e => handleSelectProvince(e.target.value)} >
 								{ !formType ? 
-									<option value="choisir">"choisir"</option> 
+									<option value=choisir>choisir</option> 
 									: 
 										"" 
 								}
@@ -839,10 +839,10 @@ console.log( dateEmbauche );
                             <Map /> <label className="small mb-1" >Ville</label>
 							<select 
 							className="custom-select" 
-							value = { villeId ? villeId : choisir }  
+							value = { villeId }  
 							onChange ={e => handleSelectVille(e.target.value)} >
 								{ !formType ? 
-									<option value="choisir">"choisir"</option> 
+									<option value=choisir>choisir</option> 
 									: 
 										"" 
 								}
