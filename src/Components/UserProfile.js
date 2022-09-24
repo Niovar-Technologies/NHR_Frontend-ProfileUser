@@ -679,11 +679,11 @@ console.log( dateEmbauche );
 								/>
                             </div>
                         </div>
-						FORMTYPE: { formType }
+						
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" >Genre </label>
-								<select 
+								FORMTYPE: { formType }<select 
 								className="custom-select" 
 								value = { sexeId } 
 								onChange={e => handleSelect(e.target.value)} >
