@@ -351,12 +351,7 @@ getAccountInfo();
 	
 	
 // get current url
-	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
-
-
-	useEffect(() => {
-
-	},[] );
+let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 	
 console.log( userProfileData );
 console.log( formType );
@@ -565,13 +560,14 @@ const UserProfile = () => {
 		// e.preventDefault();
 	}
 
-	
-			
+	useEffect(() => {
+
+	},[] );		
 
 			
     return (
        <>
- <div className="page-wrapper">
+	<div className="page-wrapper">
                 <div className="content container-fluid">
 					<div className="row">
                         <div className="col-xl-12 col-sm-12 col-12">
