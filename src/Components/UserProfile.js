@@ -324,6 +324,103 @@ async function GetNomEntreprise(){
 
 	
 const UserProfile = () => {
+	const history = useHistory();
+
+	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
+	
+	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateEmbauche )
+												: 
+												useState( Date.now() ); //										
+	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateDepart )
+												: 
+												useState( Date.now() );	// 
+												
+	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.paysId )
+												: 
+												useState( "" );	// Pays select's default value
+	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.provinceId )
+												: 
+												useState( "" );	// Provinces select's default value	
+	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.villeId )
+												: 
+												useState( "" );	// Villes select's default value
+												
+	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
+	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
+	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
+
+	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
+
+	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
+
+	const [ DepartementList, setDepartementList ] = useState( [] );  	// List of all departments to select
+	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
+	
+	const [ fullName, setFullName] = useState( accountInfo.fullName );
+	const [ email, setEmail] = useState( accountInfo.email );
+	const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
+	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
+	const [ matricule, setMatricule] = useState( accountInfo.matricule );
+	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
+	const [ posteId, setPosteId] = useState( userProfileData.posteId );
+	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
+	
+	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
+	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
+													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
+												  : useState( "Aucun" );
+	const [ salaire, setSalare] = useState( userProfileData.salaire );
+
+	const [ showProvince, setShowProvince ] = useState(false); //
+	const [ showVille, setShowVille ] = useState(false); //
+	
+	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
+
+	const [ userSexeId, setUserSexeId ] = useState(''); //
+
+	const [ weekDays, setWeekDays ] = useState( days ); //
+	
+	const [ choisir, setChoisir ] = useState( "Choisir" ); //
+	
+	// Handle checkbox change
+	const handleCheck = (index) => {
+		let check = userWeekDays[index];
+		let userWeekDayCopy 	= userWeekDays.slice();
+		userWeekDayCopy[index]  = !check;
+		setUserWeekDays( userWeekDayCopy );
+
+	}
+  
+	const handleClick = (e) => {
+		e.preventDefault();
+		location.replace( btnLink );
+	}
+	
+	const handleSelectDepartement = (value) => {
+		let departementId = value;
+		GetPostes(departementId);
+	}
+
+	const handleSelectPays = (value) => {
+		let paysId = value;
+		if( !isNaN( paysId ) )
+			GetProvinces(paysId);
+	}
+
+	const handleSelectProvince = (value) => {
+		let villeId = value;
+		if( !isNaN( villeId ) )
+			GetVilles( villeId );
+	}
+
+	const handleSelect = (e) => {
+		// e.preventDefault();
+	}
 	
 	// departement List
 	async function getDepartements(){
@@ -466,103 +563,7 @@ const UserProfile = () => {
 		
 	},[] );
 	
-	const history = useHistory();
-
-	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
-	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateEmbauche )
-												: 
-												useState( Date.now() ); //										
-	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateDepart )
-												: 
-												useState( Date.now() );	// 
-												
-	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.paysId )
-												: 
-												useState( "" );	// Pays select's default value
-	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.provinceId )
-												: 
-												useState( "" );	// Provinces select's default value	
-	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.villeId )
-												: 
-												useState( "" );	// Villes select's default value
-												
-	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
-	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
-	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
-
-	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
-
-	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
-
-	const [ DepartementList, setDepartementList ] = useState( [] );  	// List of all departments to select
-	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
-	
-	const [ fullName, setFullName] = useState( accountInfo.fullName );
-	const [ email, setEmail] = useState( accountInfo.email );
-	const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
-	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
-	const [ matricule, setMatricule] = useState( accountInfo.matricule );
-	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
-	const [ posteId, setPosteId] = useState( userProfileData.posteId );
-	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
-	
-	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
-	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
-													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												  : useState( "Aucun" );
-	const [ salaire, setSalare] = useState( userProfileData.salaire );
-
-	const [ showProvince, setShowProvince ] = useState(false); //
-	const [ showVille, setShowVille ] = useState(false); //
-	
-	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
-
-	const [ userSexeId, setUserSexeId ] = useState(''); //
-
-	const [ weekDays, setWeekDays ] = useState( days ); //
-	
-	const [ choisir, setChoisir ] = useState( "Choisir" ); //
-	
-	// Handle checkbox change
-	const handleCheck = (index) => {
-		let check = userWeekDays[index];
-		let userWeekDayCopy 	= userWeekDays.slice();
-		userWeekDayCopy[index]  = !check;
-		setUserWeekDays( userWeekDayCopy );
-
-	}
-  
-	const handleClick = (e) => {
-		e.preventDefault();
-		location.replace( btnLink );
-	}
-	
-	const handleSelectDepartement = (value) => {
-		let departementId = value;
-		GetPostes(departementId);
-	}
-
-	const handleSelectPays = (value) => {
-		let paysId = value;
-		if( !isNaN( paysId ) )
-			GetProvinces(paysId);
-	}
-
-	const handleSelectProvince = (value) => {
-		let villeId = value;
-		if( !isNaN( villeId ) )
-			GetVilles( villeId );
-	}
-
-	const handleSelect = (e) => {
-		// e.preventDefault();
-	}
 		
 
 console.log( userProfileData );
