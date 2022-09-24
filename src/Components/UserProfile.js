@@ -298,7 +298,7 @@ const UserProfile = () => {
 	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
 	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
 													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												: "Aucun";
+												: useState( "Aucun" );
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
