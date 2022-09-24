@@ -324,8 +324,10 @@ const UserProfile = () => {
 			GetVilles( villeId );
 	}
 
-	const handleSelect = (e) => {
-		// e.preventDefault();
+	const handleSelectSexe = (value) => {
+		let sexeId = value;
+		if( !isNaN( sexeId ) )
+			setSexeId( sexeId );
 	}
 	
 	// Get pays
