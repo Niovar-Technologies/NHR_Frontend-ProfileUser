@@ -385,8 +385,9 @@ async function  getUserProfile(){
 			if( userProfileId )
 				getUserJours( userProfileId );
 
-			setFormType( 1 ); 
-
+			if( !userProfileData.length == 0 ) 
+				setFormType( 1 );
+			
 console.log( 'setFormType:' + formType );
 
 			setDateEmbauche( !userProfileData.length == 0 ?  
