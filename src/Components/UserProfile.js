@@ -269,9 +269,9 @@ const UserProfile = () => {
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	
 	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateEmbauche )
-												: useState( new Date( "2022-10-10" ) );
+												: useState( Date.now() );
 	const [ dateDepart, setDateDepart ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateDepart )
-												: useState( new Date( "2024-10-10" ) );
+												: useState( Date.now() );
 
 	const [ paysId, setPaysId ] 		= useState( userProfileData.paysId ); 		// Pays select's default value
 	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Provinces select's default value
@@ -750,7 +750,7 @@ console.log( dateEmbauche );
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
-									selected= { formType ? dateEmbauche : "" }
+									selected= { dateEmbauche : "" }
 									onChange={(date) => setDateEmbauche(date)}
 									dateFormat="dd MMMM yyyy"
 									placeholderText= { formType ? "Choisir" : "" }
@@ -763,7 +763,7 @@ console.log( dateEmbauche );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { formType ? dateDepart : "" }
+									selected= { dateDepart : "" }
 									onChange={(date) => setDateDepart(date)}
 									dateFormat="dd MMMM yyyy"
 									placeholderText= { formType ? "Choisir" : "" }
