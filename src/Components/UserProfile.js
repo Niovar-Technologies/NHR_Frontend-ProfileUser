@@ -750,7 +750,7 @@ console.log( dateEmbauche );
 									locale="fr" 
 									className="form-control" 
 									id="dateEmbauche" 
-									selected= { dateEmbauche : "" }
+									selected= { dateEmbauche }
 									onChange={(date) => setDateEmbauche(date)}
 									dateFormat="dd MMMM yyyy"
 									placeholderText= { formType ? "Choisir" : "" }
@@ -763,7 +763,7 @@ console.log( dateEmbauche );
 									locale="fr" 
 									className="form-control" 
 									id="dateDepart" 
-									selected= { dateDepart : "" }
+									selected= { dateDepart }
 									onChange={(date) => setDateDepart(date)}
 									dateFormat="dd MMMM yyyy"
 									placeholderText= { formType ? "Choisir" : "" }
