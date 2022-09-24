@@ -739,7 +739,7 @@ alert( salaryTypeName );
 									className="form-control" 
 									type="text" 
 									placeholder="0" 
-									defaultValue = { salaire }
+									defaultValue = { salaire ? salaire : "0" }
 								/>
                             </div>
                         </div>
