@@ -185,8 +185,9 @@ async function  getUserProfile(){
 }
 getUserProfile();
 	
-	// Get ville
-	async function GetVilles( provinceId ){
+// Get ville
+var provinceListArray = [];
+async function GetVilles( provinceId ){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Province/VillesProvince/" + provinceId, {
@@ -197,7 +198,7 @@ getUserProfile();
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let villes = resJson.ville;
-				setVilleList( villes );
+				provinceListArray = villes;
 				setShowVille( true );
 			}
 			else {
@@ -212,8 +213,9 @@ getUserProfile();
 		};
 	}
 	
-	// Get provinces
-	async function GetProvinces( paysId ){
+// Get provinces
+var provinceListArray = [];
+async function GetProvinces( paysId ){
 
 		try {
 
@@ -225,7 +227,7 @@ getUserProfile();
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let province = resJson.province;
-				setProvinceList( province );
+				provinceListArray =  province;
 				setShowProvince( true );
 			}
 			else {
@@ -238,11 +240,12 @@ getUserProfile();
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
-	}
+}
 	
 
-	// Get pays
-	async function getPays(){
+// Get pays
+var paysListArray = [];
+async function getPays(){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
@@ -253,7 +256,7 @@ getUserProfile();
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let pays = resJson.pays;
-				setPaysList( pays );
+				paysListArray =  pays; 
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -265,8 +268,8 @@ getUserProfile();
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
-	}
-	getPays();
+}
+getPays();
 
 async function getUserJours( userProfileId ){
 	try {
@@ -490,9 +493,9 @@ const UserProfile = () => {
 												: 
 												useState( "" );	// Villes select's default value
 												
-	const [ PaysList, setPaysList ] 		= useState([]); 	// Pays array's values top map
-	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
-	const [ VilleList, setVilleList ] 		= useState([]); 	// Ville array's values to map
+	const [ PaysList, setPaysList ] 		= useState( paysListArray ); 	// Pays array's values top map
+	const [ ProvinceList, setProvinceList ] = useState( provinceList ); 	// Provinces array's values to map
+	const [ VilleList, setVilleList ] 		= useState( villeListArray ); 	// Ville array's values to map
 
 	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
 
