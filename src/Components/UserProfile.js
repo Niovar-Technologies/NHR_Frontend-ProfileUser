@@ -280,7 +280,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
+	const [ formType, setFormType ] = useState( "0" );// Edition or new data
 
 	const [ userSexeId, setUserSexeId ] = useState(''); //
 
@@ -358,11 +358,12 @@ const UserProfile = () => {
 		getPays();
 		getDepartements();
 		getUserProfile();
+		getAccountInfo();
 	},[] );
 	
 	// get user profile
 var userProfileData = [];
-var userFormType = 0;
+
 async function  getUserProfile(){
 	
 	try {
@@ -377,7 +378,7 @@ async function  getUserProfile(){
 			
 			if( resJson.userProfile.length == 0 ){ // no profile data found for this user
 				userProfileData		= resJson.userProfile[0];
-				userFormType = 1; // edit form
+				
 
 				// datepickers dates
 				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
@@ -427,7 +428,9 @@ async function  getUserProfile(){
 												"Aucun"  );
 				setSalare( userProfileData.salaire );
 				setStatusId( userProfileData.statutId );
-
+				
+				setFormType( 1 ); 
+				
 			}
 			else{ // user has no profile and no Days
 				getUserWeekdays( [] );
@@ -479,7 +482,7 @@ async function getAccountInfo(){
 		console.log(err);
 	};
 }
-getAccountInfo();
+
 	
 	
 	// departement List
@@ -589,8 +592,6 @@ getAccountInfo();
 			console.log(err);
 		};
 	}
-	
-
 	
 
 console.log( userProfileData );
