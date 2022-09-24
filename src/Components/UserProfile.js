@@ -263,7 +263,7 @@ const UserProfile = () => {
 	const [ sexeId, setSexeId] = useState( '' );
 	const [ posteId, setPosteId] =  useState( '' );
 	const [ departementId, setDepartementId] =  useState( '' );
-	const [ salaryTypeName, setSalaryTypeName ] =  useState( ['' );
+	const [ salaryTypeName, setSalaryTypeName ] =  useState( '' );
 	const [ salaire, setSalare] = useState( '' );	
 											
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
