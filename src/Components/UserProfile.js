@@ -369,69 +369,64 @@ async function  getUserProfile(){
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
 			 
-alert( "foo" );
-			if( resJson.userProfile.length == 0 ){ // no profile data found for this user
-				userProfileData		= resJson.userProfile[0];
+			userProfileData		= resJson.userProfile[0];
 				
-
-				// datepickers dates
-				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let dateEmbaucheObj 	=  new Date( date_embauche );
-				let dateDepartObj		=  new Date( date_depart );
+			// datepickers dates
+			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			let dateEmbaucheObj 	=  new Date( date_embauche );
+			let dateDepartObj		=  new Date( date_depart );
 			
-				userProfileData.dateEmbauche = dateEmbaucheObj;
-				userProfileData.dateDepart 	 = dateDepartObj;
+			userProfileData.dateEmbauche = dateEmbaucheObj;
+			userProfileData.dateDepart 	 = dateDepartObj;
 				
-				// user days to check
-				let userProfileId 	= userProfileData.id;
-				if( userProfileId )
-					getUserJours( userProfileId );
+			// user days to check
+			let userProfileId 	= userProfileData.id;
+			if( userProfileId )
+				getUserJours( userProfileId );
 
-				setFormType( 1 ); 
+			setFormType( 1 ); 
 
-console.log( 'doo' );
+console.log( 'setFormType:' + formType );
 
-				setDateEmbauche( !userProfileData.length == 0 ?  
+			setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
 												: 
 												Date.now() ); //
-				setDateDepart( !userProfileData.length == 0  ?  
+			setDateDepart( !userProfileData.length == 0  ?  
 												userProfileData.dateDepart 
 												: 
 												 Date.now() );	// 
-				setPaysId( !userProfileData.length == 0  ? 
+			setPaysId( !userProfileData.length == 0  ? 
 												userProfileData.paysId 
 												: 
 												"" ) ;	// Pays select's default value
-				setProvinceId( !userProfileData.length == 0  ?  
+			setProvinceId( !userProfileData.length == 0  ?  
 												userProfileData.provinceId 
 												: 
 												 "" );	// Provinces select's default value								
-				setVilleId( !userProfileData.length == 0 ?  
+			setVilleId( !userProfileData.length == 0 ?  
 												userProfileData.villeId
 												: 
 												"" );	// Villes select's default valueg
 				
-				setStatusId( userProfileData.statutId );
-				setTelephone01( "237852452" );
-				setTelephone02( userProfileData.telephone02 );
-				setSexeId( userProfileData.sexeId );
-				setPosteId( userProfileData.posteId );
-				setDepartementId( userProfileData.departementId );
-				setSalaryTypeName(  !userProfileData.length == 0  ? 
+			setStatusId( userProfileData.statutId );
+			setTelephone01( "237852452" );
+			setTelephone02( userProfileData.telephone02 );
+			setSexeId( userProfileData.sexeId );
+			setPosteId( userProfileData.posteId );
+			setDepartementId( userProfileData.departementId );
+			setSalaryTypeName(  !userProfileData.length == 0  ? 
 												SalaireTypeList[ userProfileData.salaryTypeid ].name
 												: 
 												"Aucun"  );
-				setSalare( userProfileData.salaire );
-				setStatusId( userProfileData.statutId );
-				
-				
-			}
-			else{ // user has no profile and no Days
+			setSalare( userProfileData.salaire );
+			setStatusId( userProfileData.statutId );
+			
+			if( userProfileData.length == 0 )
 				getUserWeekdays( [] );
-			}
 		}
+
 		else {
 			alert( "Un probleme est survenu" );
 			// setErrorColor( "red" );
