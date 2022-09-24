@@ -258,8 +258,8 @@ const UserProfile = () => {
 	const [ villeId, setVilleId ]=  useState( '' );	 			
 	const [ statusId, setStatusId ] = useState( '' ); // User status
 
-	const [ telephone01, setTelephone01] = useState( '' );
-	const [ telephone02, setTelephone02] = useState( '' );
+	const [ telephone01, setTelephone01] = useState( 'Aucun' );
+	const [ telephone02, setTelephone02] = useState( 'Aucun' );
 	const [ sexeId, setSexeId] = useState( '' );
 	const [ posteId, setPosteId] =  useState( '' );
 	const [ departementId, setDepartementId] =  useState( '' );
@@ -392,7 +392,7 @@ async function  getUserProfile(){
 				let userProfileId 	= userProfileData.id;
 				if( userProfileId )
 					getUserJours( userProfileId );
-				
+xonsole.log( 'doo' );
 				setFormType( 1 ); 
 				
 				setDateEmbauche( !userProfileData.length == 0 ?  
@@ -418,7 +418,7 @@ async function  getUserProfile(){
 				
 				setStatusId( userProfileData.statutId );
 				setTelephone01( userProfileData.telephone01 );
-				setTelephone01( userProfileData.telephone02 );
+				setTelephone02( userProfileData.telephone02 );
 				setSexeId( userProfileData.sexeId );
 				setPosteId( userProfileData.posteId );
 				setDepartementId( userProfileData.departementId );
@@ -677,7 +677,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro de téléphone" 
-									defaultValue = { telephone01 ? telephone01 : choisir } 
+									defaultValue = { telephone01 } 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -686,7 +686,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = { telephone02 ? telephone02 : choisir } 
+									defaultValue = { telephone02 } 
 								/>
                             </div>
                         </div>
@@ -695,7 +695,7 @@ console.log( dateEmbauche );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								value = { sexeId ? sexeId : choisir } 
+								value = { sexeId } 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !sexeId ? 
 										<option value="choisir">Choisir</option> 
@@ -768,7 +768,7 @@ console.log( dateEmbauche );
 								className="custom-select" 
 								value = { salaryTypeid ? salaryTypeid : choisir } 
 								onChange={e => handleSelect(e.target.value)} >
-									{ !formType ? 
+									{ !salaryTypeid ? 
 										<option value="choisir">Choisir</option> 
 									: 
 										"" 
@@ -826,9 +826,9 @@ console.log( dateEmbauche );
                             <Globe /> <label className="small mb-1" >Pays</label>
 							<select 
 							className="custom-select" 
-							value = { formType ? ( paysId ? paysId : choisir ) : choisir } 
+							value = { paysId ? paysId : choisir } 
 							onChange={e => handleSelectPays(e.target.value)} >
-								{ !formType ? 
+								{ !provinceId ? 
 									<option value="choisir">Choisir</option> 
 									: 
 										"" 
@@ -849,9 +849,9 @@ console.log( dateEmbauche );
                             <Map /> <label className="small mb-1" >Province</label>
                             <select
 							className="custom-select" 
-							value = { formType ? ( provinceId ? provinceId : choisir ) : choisir } 
+							value = { provinceId ? provinceId : choisir ) : choisir } 
 							onChange={e => handleSelectProvince(e.target.value)} >
-								{ !formType ? 
+								{ !provinceId ? 
 									<option value="choisir">Choisir</option> 
 								: 
 									"" 
@@ -872,9 +872,9 @@ console.log( dateEmbauche );
                             <Map /> <label className="small mb-1" >Ville</label>
 							<select 
 							className="custom-select" 
-							value = { formType ? ( villeId ? villeId : choisir ) : choisir }  
+							value = { villeId ? villeId : choisir }  
 							onChange ={e => handleSelectVille(e.target.value)} >
-								{ !formType ? 
+								{ !villeId ? 
 									<option value="choisir">Choisir</option> 
 								: 
 									"" 
