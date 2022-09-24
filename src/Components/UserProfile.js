@@ -408,7 +408,7 @@ async function  getUserProfile(){
 				setVilleId( !userProfileData.length == 0 ?  
 												userProfileData.villeId
 												: 
-												"";	// Villes select's default valueg
+												"" );	// Villes select's default valueg
 				
 				setStatusId( userProfileData.statutId );
 				setTelephone01( userProfileData.telephone01 );
