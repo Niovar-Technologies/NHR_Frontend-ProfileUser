@@ -264,7 +264,7 @@ const UserProfile = () => {
 	const [ posteId, setPosteId ] =  useState( '' );
 	const [ departementId, setDepartementId ] =  useState( '' );
 	const [ salaryTypeName, setSalaryTypeName ] =  useState( '' );
-	const [ salaire, setSalare ] = useState( '' );	
+	const [ salaire, setSalaire ] = useState( '' );	
 											
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
@@ -391,7 +391,7 @@ const UserProfile = () => {
 
 	
 	// get user profile
-var userProfileData = [];
+// var userProfileData = [];
 async function  getUserProfile(){
 	
 	try {
@@ -403,65 +403,52 @@ async function  getUserProfile(){
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
 			 
-			userProfileData		= resJson.userProfile[0];
-				
-			// datepickers dates
-			if( !userProfileData.length == 0 ){
+			var userProfileData		= resJson.userProfile[0];
+			if( userProfileData != null ){
 				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
 				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			}
+				let dateEmbaucheObj 	=   new Date( date_embauche );
+				let dateDepartObj		=   new Date( date_depart ) ;
 
-			let dateEmbaucheObj 	=  ( !userProfileData.length == 0 ) ? new Date( date_embauche ) :  new Date( "2022-10-10" );
-			let dateDepartObj		=  ( !userProfileData.length == 0 ) ? new Date( date_depart ) :  new Date( "2024-10-10" );
-			
-			userProfileData.dateEmbauche = dateEmbaucheObj;
-			userProfileData.dateDepart 	 = dateDepartObj;
+				userProfileData.dateEmbauche = dateEmbaucheObj;
+				userProfileData.dateDepart 	 = dateDepartObj;
 				
-			// user days to check
-			let userProfileId 	= userProfileData.id;
-			if( userProfileId )
+				// user days to checkbox
+				let userProfileId 	= userProfileData.id;
 				getUserJours( userProfileId );
 
-			// if( !userProfileData.length == 0 ) 
-			// 	setFormType('1');
-
-			setDateEmbauche( !userProfileData.length == 0 ?  
-												userProfileData.dateEmbauche
-												: 
-												Date.now() ); //
-			setDateDepart( !userProfileData.length == 0  ?  
-												userProfileData.dateDepart 
-												: 
-												 Date.now() );	// 
-			setPaysId( userProfileData.paysId );	// Pays select's default value
+				setDateEmbauche( userProfileData.dateEmbauche ); //
+				setDateDepart( userProfileData.dateDepart );	// 
+				setPaysId( userProfileData.paysId );	// Pays select's default value
 			
-			setProvinceId( userProfileData.provinceId );	// Provinces select's default value		
-			if( userProfileData.provinceId )				// Display user defaut
-				setShowProvince( true );
+				setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
+				if( userProfileData.provinceId )				// Display user defaut
+					setShowProvince( true );
 			
-			setVilleId( userProfileData.villeId );	// Villes select's default valueg
-			if( userProfileData.villeId )				// Display user defaut
-				setShowVille( true );
+				setVilleId( userProfileData.villeId );	// Villes select's default valueg
+				if( userProfileData.villeId )				// Display user defaut
+					setShowVille( true );
 				
-			setStatusId( userProfileData.statutId );
-			setTelephone01( userProfileData.telephone01 );
-			setTelephone02( userProfileData.telephone02 );
-			setSexeId( userProfileData.sexeId );
-			setPosteId( userProfileData.posteId );
-			setDepartementId( userProfileData.departementId );
+				setStatusId( userProfileData.statutId );
+				setTelephone01( userProfileData.telephone01 );
+				setTelephone02( userProfileData.telephone02 );
+				setSexeId( userProfileData.sexeId );
+				setPosteId( userProfileData.posteId );
+				setDepartementId( userProfileData.departementId );
+				if( userProfileData.salaryTypeid )
+					setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
+				else
+					setSalaryTypeName( 'Non defini' );
 			
-			if( !userProfileData.length == 0 && userProfileData.salaryTypeid ) // user can display his salary type but cannot list or save
-				setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
-			else
-				setSalaryTypeName( "Non defini" );
-			
-			setSalare( userProfileData.salaire );
-			setStatusId( userProfileData.statutId );
-			
-			if( userProfileData.length == 0 )
+				setSalaire( userProfileData.salaire );
+				setStatusId( userProfileData.statutId );
+				setFormType( '1' );
+			}
+			else{
 				getUserWeekdays( [] );
+			}
+			
 		}
-
 		else {
 			alert( "Un probleme est survenu" );
 			// setErrorColor( "red" );
@@ -847,7 +834,7 @@ async function getAccountInfo(){
 									selected= { dateEmbauche }
 									onChange={(date) => setDateEmbauche(date)}
 									dateFormat="dd MMMM yyyy"
-									placeholderText= { formType ? "Choisir" : "" }
+									placeholderText= { "Choisir" }
 								/>
                             </div>
                            
@@ -860,7 +847,7 @@ async function getAccountInfo(){
 									selected= { dateDepart }
 									onChange={(date) => setDateDepart(date)}
 									dateFormat="dd MMMM yyyy"
-									placeholderText= { formType ? "Choisir" : "" }
+									placeholderText= { "Choisir" }
 								/>
                             </div>
 							
