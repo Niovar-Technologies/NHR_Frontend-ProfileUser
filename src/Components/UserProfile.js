@@ -299,7 +299,6 @@ const UserProfile = () => {
 		let userWeekDayCopy 	= userWeekDays.slice();
 		userWeekDayCopy[index]  = !check;
 		setUserWeekDays( userWeekDayCopy );
-
 	}
 
 	const handleClick = (e) => {
@@ -623,9 +622,6 @@ async function getAccountInfo(){
 		getDepartements();
 	},[] );
 	
-console.log( userProfileData );
-console.log( formType );
-console.log( dateEmbauche );
 			
     return (
        <>
@@ -918,7 +914,7 @@ console.log( dateEmbauche );
 									: 
 										"" 
 									}
-									{ PaysList.map((obj, index) => (
+									{ VilleList.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
@@ -938,7 +934,7 @@ console.log( dateEmbauche );
 											id={`custom-checkbox-${index}`}
 											name={obj.name}
 											value={obj.name}
-											checked= { formType ? userWeekDays[index] : false }
+											checked= { userWeekDays[index]? true : false }
 											onChange={() => handleCheck(index)}
 										/>
 										&nbsp;<label htmlFor={`custom-checkbox-${index}`}>{obj.name}</label>
