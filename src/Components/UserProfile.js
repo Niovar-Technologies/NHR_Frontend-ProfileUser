@@ -295,6 +295,7 @@ const UserProfile = () => {
 	const [ posteId, setPosteId] = useState( userProfileData.posteId );
 	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
 	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
+	const [ salaryTypeName, setSalaryTypeName ] = useState( SalaireTypeList[ accountInfo.salaryTypeid ].name );
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
@@ -710,8 +711,8 @@ console.log( formType );
 								className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = {SalaireTypeList[salaryTypeid].name } />					
-									:
+									defaultValue = { salaryTypeName } />					
+								:
 								<select 
 								className="custom-select" 
 								value = {formType ? salaryTypeid : "choisir"} 
