@@ -186,36 +186,7 @@ function getUserWeekdays( userJours ){
 	console.log( userWeekDayArray );
 }
 
-// console.log( accountId );
-var userJoursId = [];
-var accountInfo = "";
 
-// get user profile info
-async function getAccountInfo(){
-	try {
-		let res = await fetch( lbdomain + "/Accounts/" + accountId, {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
-			
-		let resJson = await res.json();
-		if( resJson.accountId ) {
-			accountInfo   = resJson;
-			// setUserProfile( result );
-		}
-		else {
-			alert( "Compte non trouvé" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
-getAccountInfo();
-	
 	
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
@@ -280,33 +251,13 @@ const UserProfile = () => {
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
-	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateEmbauche )
-												: 
-												useState( Date.now() ); //										
-	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateDepart )
-												: 
-												useState( Date.now() );	// 
-												
-	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.paysId )
-												: 
-												useState( "" );	// Pays select's default value
-	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.provinceId )
-												: 
-												useState( "" );	// Provinces select's default value	
-	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.villeId )
-												: 
-												useState( "" );	// Villes select's default value
+	
 												
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
 
-	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
+
 
 	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
 
@@ -315,18 +266,7 @@ const UserProfile = () => {
 	
 	const [ fullName, setFullName] = useState( accountInfo.fullName );
 	const [ email, setEmail] = useState( accountInfo.email );
-	const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
-	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
-	const [ matricule, setMatricule] = useState( accountInfo.matricule );
-	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
-	const [ posteId, setPosteId] = useState( userProfileData.posteId );
-	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
-	
-	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
-	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
-													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												  : useState( "Aucun" );
-	const [ salaire, setSalare] = useState( userProfileData.salaire );
+
 
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
@@ -438,10 +378,47 @@ async function  getUserProfile(){
 				let userProfileId 	= userProfileData.id;
 				if( userProfileId )
 					getUserJours( userProfileId );
+				
+				const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateEmbauche )
+												: 
+												useState( Date.now() ); //										
+	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateDepart )
+												: 
+												useState( Date.now() );	// 
+												
+	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.paysId )
+												: 
+												useState( "" );	// Pays select's default value
+	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.provinceId )
+												: 
+												useState( "" );	// Provinces select's default value	
+	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.villeId )
+												: 
+												useState( "" );	// Villes select's default valueg
+	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
 			}
 			else{ // user has no profile and no Days
 				getUserWeekdays( [] );
 			}
+		const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
+	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
+
+	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
+	const [ posteId, setPosteId] = useState( userProfileData.posteId );
+	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
+
+	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
+													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
+												  : useState( "Aucun" );
+	const [ salaire, setSalare] = useState( userProfileData.salaire );		
+			
+	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
+			
 		}
 		else {
 			alert( "Un probleme est survenu" );
@@ -455,6 +432,39 @@ async function  getUserProfile(){
 	};
 }
 
+	
+	// console.log( accountId );
+var userJoursId = [];
+var accountInfo = "";
+
+// get user profile info
+async function getAccountInfo(){
+	try {
+		let res = await fetch( lbdomain + "/Accounts/" + accountId, {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.accountId ) {
+			accountInfo   = resJson;
+			// setUserProfile( result );
+					const [ matricule, setMatricule] = useState( accountInfo.matricule );
+	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
+		}
+		else {
+			alert( "Compte non trouvé" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+getAccountInfo();
+	
 	
 	// departement List
 	async function getDepartements(){
