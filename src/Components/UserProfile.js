@@ -263,9 +263,6 @@ const UserProfile = () => {
 
 	const [ DepartementList, setDepartementList ] = useState( [] );  	// List of all departments to select
 	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
-	
-	const [ fullName, setFullName] = useState( accountInfo.fullName );
-	const [ email, setEmail] = useState( accountInfo.email );
 
 
 	const [ showProvince, setShowProvince ] = useState(false); //
@@ -449,8 +446,11 @@ async function getAccountInfo(){
 		if( resJson.accountId ) {
 			accountInfo   = resJson;
 			// setUserProfile( result );
-					const [ matricule, setMatricule] = useState( accountInfo.matricule );
-	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
+			const [ matricule, setMatricule] = useState( accountInfo.matricule );
+			const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
+				
+			const [ fullName, setFullName] = useState( accountInfo.fullName );
+			const [ email, setEmail] = useState( accountInfo.email );
 		}
 		else {
 			alert( "Compte non trouvé" );
