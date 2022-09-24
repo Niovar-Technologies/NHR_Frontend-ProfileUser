@@ -135,55 +135,7 @@ else{
 		accountId = userid;
 }
 
-// get user profile
-var userProfileData = [];
-var userFormType = 0;
-async function  getUserProfile(){
-	
-	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
-			
-		let resJson = await res.json();
-		if( resJson.statusCode === 200 ) {
-			 
-			
-			if( resJson.userProfile.length == 0 ){ // no profile data found for this user
-				userProfileData		= resJson.userProfile[0];
-				userFormType = 1; // edit form
 
-				// datepickers dates
-				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let dateEmbaucheObj 	=  new Date( date_embauche );
-				let dateDepartObj		=  new Date( date_depart );
-			
-				userProfileData.dateEmbauche = dateEmbaucheObj;
-				userProfileData.dateDepart 	 = dateDepartObj;
-				
-				// user days to check
-				let userProfileId 	= userProfileData.id;
-				if( userProfileId )
-					getUserJours( userProfileId );
-			}
-			else{ // user has no profile and no Days
-				getUserWeekdays( [] );
-			}
-		}
-		else {
-			alert( "Un probleme est survenu" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
-getUserProfile();
 
 
 async function getUserJours( userProfileId ){
@@ -451,7 +403,58 @@ const UserProfile = () => {
 	useEffect(() => {
 		getPays();
 		getDepartements();
+		getUserProfile();
 	},[] );
+	
+	// get user profile
+var userProfileData = [];
+var userFormType = 0;
+async function  getUserProfile(){
+	
+	try {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.statusCode === 200 ) {
+			 
+			
+			if( resJson.userProfile.length == 0 ){ // no profile data found for this user
+				userProfileData		= resJson.userProfile[0];
+				userFormType = 1; // edit form
+
+				// datepickers dates
+				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let dateEmbaucheObj 	=  new Date( date_embauche );
+				let dateDepartObj		=  new Date( date_depart );
+			
+				userProfileData.dateEmbauche = dateEmbaucheObj;
+				userProfileData.dateDepart 	 = dateDepartObj;
+				
+				// user days to check
+				let userProfileId 	= userProfileData.id;
+				if( userProfileId )
+					getUserJours( userProfileId );
+			}
+			else{ // user has no profile and no Days
+				getUserWeekdays( [] );
+			}
+		}
+		else {
+			alert( "Un probleme est survenu" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+
 	
 	// departement List
 	async function getDepartements(){
