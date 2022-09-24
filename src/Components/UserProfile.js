@@ -710,7 +710,7 @@ console.log( formType );
 								className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = {SalaireTypeList[salaryTypeid].name } >					
+									defaultValue = {SalaireTypeList[salaryTypeid].name } />					
 									:
 								<select 
 								className="custom-select" 
