@@ -248,15 +248,6 @@ async function  getUserProfile(){
 				if( userProfileId )
 					getUserJours( userProfileId );
 			}
-			else{
-				let date_embauche = "2022-10-10";// moment().format('YYYY-MM-DD');
-				let date_depart	  = "2024-10-10";// moment().format('YYYY-MM-DD');
-				let dateEmbaucheObj 	=  new Date( date_embauche );
-				let dateDepartObj		=  new Date( date_depart );
-				
-				userProfileData.dateEmbauche = dateEmbaucheObj;
-				userProfileData.dateDepart 	 = dateDepartObj;
-			}		
 		}
 		else {
 			alert( "Un probleme est survenu" );
@@ -277,9 +268,11 @@ const UserProfile = () => {
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	
-	const [ dateEmbauche, setDateEmbauche ] =  useState( userProfileData.dateEmbauche ); 	// Date d'embauche input default value
-	const [ dateDepart, setDateDepart ] 	= useState( userProfileData.dateDepart ); 		// Date de depart input default value
-	
+	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateEmbauche )
+												: useState( Date.now() );
+	const [ dateDepart, setDateDepart ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateDepart )
+												: useState( Date.now() );
+
 	const [ paysId, setPaysId ] 		= useState( userProfileData.paysId ); 		// Pays select's default value
 	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Provinces select's default value
 	const [ villeId, setVilleId ] 		= useState( userProfileData.villeId ); 		// Villes select's default value
@@ -307,7 +300,7 @@ const UserProfile = () => {
 	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
 	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
 													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												: useState( "Aucun" );
+												  : useState( "Aucun" );
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
