@@ -796,7 +796,7 @@ console.log( dateEmbauche );
 							value = { paysId ? paysId : choisir } 
 							onChange={e => handleSelectPays(e.target.value)} >
 								{ !formType ? 
-									<option value={ choisir }>{ choisir }</option> 
+									<option value="choisir">"choisir"</option>  
 									: 
 										"" 
 								}
@@ -819,7 +819,7 @@ console.log( dateEmbauche );
 							value = { formType ? ( provinceId ? provinceId : choisir ) : choisir } 
 							onChange={e => handleSelectProvince(e.target.value)} >
 								{ !formType ? 
-									<option value={ choisir }>{ choisir }</option> 
+									<option value="choisir">"choisir"</option> 
 									: 
 										"" 
 								}
@@ -842,7 +842,7 @@ console.log( dateEmbauche );
 							value = { villeId ? villeId : choisir }  
 							onChange ={e => handleSelectVille(e.target.value)} >
 								{ !formType ? 
-									<option value={ choisir }>{ choisir }</option> 
+									<option value="choisir">"choisir"</option> 
 									: 
 										"" 
 								}
