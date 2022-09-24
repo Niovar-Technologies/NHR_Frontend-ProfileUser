@@ -184,92 +184,7 @@ async function  getUserProfile(){
 	};
 }
 getUserProfile();
-	
-// Get ville
-var villeListArray = [];
-async function GetVilles( provinceId ){
 
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Province/VillesProvince/" + provinceId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let villes = resJson.ville;
-				provinceListArray = villes;
-				setShowVille( true );
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
-	
-// Get provinces
-var provinceListArray = [];
-async function GetProvinces( paysId ){
-
-		try {
-
-			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays/ProvincesPays/" + paysId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let province = resJson.province;
-				provinceListArray =  province;
-				setShowProvince( true );
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-}
-	
-
-// Get pays
-var paysListArray = [];
-async function getPays(){
-
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let pays = resJson.pays;
-				paysListArray =  pays; 
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-}
-getPays();
 
 async function getUserJours( userProfileId ){
 	try {
@@ -354,61 +269,7 @@ getAccountInfo();
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 	
 
-// get user 
-// get company name
-var departementListArray
-async function getDepartements(){
 
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let departements = resJson.departement;
-				departementListArray = departements;
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-}
-getDepartements();
-	
-// get Postes
-var posteListArrayMap
-async function GetPostes( departementId ){
-
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let postes = resJson.poste;
-				posteListArrayMap =  postes;
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-}
 
 
 // async function GetStatus(){
@@ -462,6 +323,146 @@ async function GetNomEntreprise(){
 
 
 const UserProfile = () => {
+	// departement List
+	var departementListArray
+	async function getDepartements(){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let departements = resJson.departement;
+				departementListArray = departements;
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	getDepartements();
+	
+	// get Postes
+	var posteListArrayMap
+	async function GetPostes( departementId ){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let postes = resJson.poste;
+				posteListArrayMap =  postes;
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+	// Get ville
+var villeListArray = [];
+async function GetVilles( provinceId ){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Province/VillesProvince/" + provinceId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let villes = resJson.ville;
+				provinceListArray = villes;
+				setShowVille( true );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+// Get provinces
+var provinceListArray = [];
+async function GetProvinces( paysId ){
+
+		try {
+
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays/ProvincesPays/" + paysId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let province = resJson.province;
+				provinceListArray =  province;
+				setShowProvince( true );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+}
+	
+
+	// Get pays
+	var paysListArray = [];
+	async function getPays(){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let pays = resJson.pays;
+				paysListArray =  pays; 
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	getPays();
 	
 	useEffect(() => {
 		
