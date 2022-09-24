@@ -500,7 +500,7 @@ const UserProfile = () => {
 
 	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
 
-	const [ DepartementList, setDepartementList ] = useState( departementListArray ); 	// List of all departments to select
+	const [ DepartementList, setDepartementList ] = useState( [] );  	// List of all departments to select
 	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
 	
 	const [ fullName, setFullName] = useState( accountInfo.fullName );
