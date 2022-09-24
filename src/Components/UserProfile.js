@@ -251,20 +251,20 @@ const UserProfile = () => {
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
-	const [ dateEmbauche, setDateEmbauche ] =  useState( [] );
-	const [ dateDepart, setDateDepart ]  =  useState( [] );  
-	const [ paysId, setPaysId ] =  useState( [] );  
-	const [ provinceId, setProvinceId ]	=  useState( [] );											
-	const [ villeId, setVilleId ]=  useState( [] );	 			
-	const [ statusId, setStatusId ] = useState( [] ); // User status
+	const [ dateEmbauche, setDateEmbauche ] =  useState( '' );
+	const [ dateDepart, setDateDepart ]  =  useState( '' );  
+	const [ paysId, setPaysId ] =  useState( '' );  
+	const [ provinceId, setProvinceId ]	=  useState( '' );											
+	const [ villeId, setVilleId ]=  useState( '' );	 			
+	const [ statusId, setStatusId ] = useState( '' ); // User status
 
-	const [ telephone01, setTelephone01] = useState( [] );
-	const [ telephone02, setTelephone02] = useState( [] );
-	const [ sexeId, setSexeId] = useState( [] );
-	const [ posteId, setPosteId] =  useState( [] );
-	const [ departementId, setDepartementId] =  useState( [] );
-	const [ salaryTypeName, setSalaryTypeName ] =  useState( [] );
-	const [ salaire, setSalare] = useState( [] );	
+	const [ telephone01, setTelephone01] = useState( '' );
+	const [ telephone02, setTelephone02] = useState( '' );
+	const [ sexeId, setSexeId] = useState( '' );
+	const [ posteId, setPosteId] =  useState( '' );
+	const [ departementId, setDepartementId] =  useState( '' );
+	const [ salaryTypeName, setSalaryTypeName ] =  useState( ['' );
+	const [ salaire, setSalare] = useState( '' );	
 											
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
@@ -280,7 +280,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	const [ formType, setFormType ] = useState( "0" );// Edition or new data
+	const [ formType, setFormType ] = useState( '0' );// Edition or new data
 
 	const [ userSexeId, setUserSexeId ] = useState(''); //
 
@@ -288,10 +288,10 @@ const UserProfile = () => {
 	
 	const [ choisir, setChoisir ] = useState( "Choisir" ); //
 	
-	const [ matricule, setMatricule ] = useState( [] );
-	const [ salaryTypeid, setSalaryTypeid ] = useState( [] );
-	const [ fullName, setFullName ] = useState( [] );
-	const [ email, setEmail ] = useState( [] );
+	const [ matricule, setMatricule ] = useState( '' );
+	const [ salaryTypeid, setSalaryTypeid ] = useState( '' );
+	const [ fullName, setFullName ] = useState( '' );
+	const [ email, setEmail ] = useState( '' );
 	
 	// Handle checkbox change
 	const handleCheck = (index) => {
