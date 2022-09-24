@@ -280,7 +280,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	const [ formType, setFormType ] = useState('');// Edition or new data
+	const [ formType, setFormType ] = useState(0);// Edition or new data
 
 	const [ userSexeId, setUserSexeId ] = useState(''); //
 
@@ -386,7 +386,7 @@ async function  getUserProfile(){
 				getUserJours( userProfileId );
 
 			if( !userProfileData.length == 0 ) 
-				setFormType( 1 );
+				setFormType(1);
 
 			setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
@@ -410,7 +410,7 @@ async function  getUserProfile(){
 												"" );	// Villes select's default valueg
 				
 			setStatusId( userProfileData.statutId );
-			setTelephone01( "237852452" );
+			setTelephone01( userProfileData.telephone01 );
 			setTelephone02( userProfileData.telephone02 );
 			setSexeId( userProfileData.sexeId );
 			setPosteId( userProfileData.posteId );
@@ -696,7 +696,7 @@ console.log( dateEmbauche );
 								className="custom-select" 
 								value = { sexeId } 
 								onChange={e => handleSelect(e.target.value)} >
-									{ !sexeId ? 
+									{ !formType ? 
 										<option value="choisir">Choisir</option> 
 									: 
 										"" 
