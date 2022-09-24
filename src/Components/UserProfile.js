@@ -186,7 +186,7 @@ async function  getUserProfile(){
 getUserProfile();
 	
 // Get ville
-var provinceListArray = [];
+var villeListArray = [];
 async function GetVilles( provinceId ){
 
 		try {
