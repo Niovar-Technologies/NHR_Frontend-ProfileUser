@@ -451,7 +451,7 @@ async function  getUserProfile(){
 			if( userProfileData.salaryTypeid ) // user can display his salary type but cannot list or save
 				setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
 			else
-				setSalaryTypeName( "Aucun" ] );
+				setSalaryTypeName( "Non defini" );
 			
 			setSalare( userProfileData.salaire );
 			setStatusId( userProfileData.statutId );
