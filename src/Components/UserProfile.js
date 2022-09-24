@@ -258,8 +258,8 @@ const UserProfile = () => {
 	const [ villeId, setVilleId ]=  useState( '' );	 			
 	const [ statusId, setStatusId ] = useState( '' ); // User status
 
-	const [ telephone01, setTelephone01 ] = useState( 'Aucun' );
-	const [ telephone02, setTelephone02 ] = useState( 'Aucun' );
+	const [ telephone01, setTelephone01 ] = useState( '' );
+	const [ telephone02, setTelephone02 ] = useState( '' );
 	const [ sexeId, setSexeId ] = useState( '' );
 	const [ posteId, setPosteId ] =  useState( '' );
 	const [ departementId, setDepartementId ] =  useState( '' );
@@ -387,8 +387,6 @@ async function  getUserProfile(){
 
 			if( !userProfileData.length == 0 ) 
 				setFormType( 1 );
-			
-console.log( 'setFormType:' + formType );
 
 			setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
