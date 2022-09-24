@@ -434,8 +434,12 @@ async function  getUserProfile(){
 			setPaysId( userProfileData.paysId );	// Pays select's default value
 			
 			setProvinceId( userProfileData.provinceId );	// Provinces select's default value		
+			if( userProfileData.provinceId )				// Display user defaut
+				setShowProvince( true );
 			
-			setVilleId( userProfileData );	// Villes select's default valueg
+			setVilleId( userProfileData.villeId );	// Villes select's default valueg
+			if( userProfileData.villeId )				// Display user defaut
+				setShowVille( true );
 				
 			setStatusId( userProfileData.statutId );
 			setTelephone01( userProfileData.telephone01 );
