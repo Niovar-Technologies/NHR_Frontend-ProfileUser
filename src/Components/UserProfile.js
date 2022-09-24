@@ -280,7 +280,7 @@ const UserProfile = () => {
 	const [ showProvince, setShowProvince ] = useState(false); //
 	const [ showVille, setShowVille ] = useState(false); //
 	
-	const [ formType, setFormType ] = useState( '0' );// Edition or new data
+	const [ formType, setFormType ] = useState( 0 );// Edition or new data
 
 	const [ userSexeId, setUserSexeId ] = useState(''); //
 
@@ -363,7 +363,6 @@ const UserProfile = () => {
 	
 	// get user profile
 var userProfileData = [];
-
 async function  getUserProfile(){
 	
 	try {
@@ -394,6 +393,7 @@ async function  getUserProfile(){
 				if( userProfileId )
 					getUserJours( userProfileId );
 				
+				setFormType( 1 ); 
 				
 				setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
@@ -429,7 +429,6 @@ async function  getUserProfile(){
 				setSalare( userProfileData.salaire );
 				setStatusId( userProfileData.statutId );
 				
-				setFormType( 1 ); 
 				
 			}
 			else{ // user has no profile and no Days
@@ -678,7 +677,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro de téléphone" 
-									defaultValue = {formType ? telephone01 : ""} 
+									defaultValue = { telephone01 ? telephone01 : choisir } 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -687,7 +686,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = {formType ? telephone02 : ""} 
+									defaultValue = { telephone02 ? telephone02 : choisir } 
 								/>
                             </div>
                         </div>
@@ -696,14 +695,14 @@ console.log( dateEmbauche );
                                 <Users /> <label className="small mb-1" >Genre </label>
 								<select 
 								className="custom-select" 
-								value = { formType ? sexeId : "choisir" } 
+								value = { sexeId ? sexeId : choisir } 
 								onChange={e => handleSelect(e.target.value)} >
-									{ !formType ? 
+									{ !sexeId ? 
 										<option value="choisir">Choisir</option> 
 									: 
 										"" 
 									}
-									{SexeList.map((obj, index) => (
+									{ SexeList.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
@@ -727,7 +726,7 @@ console.log( dateEmbauche );
                                 <Clipboard /> <label className="small mb-1" >Département</label>
 								<select 
 								className="custom-select" 
-								value = {formType ? departementId : ""} 
+								value = { departementId ? departementId : choisir } 
 								onChange={e => handleSelectDepartement(e.target.value)} >
 									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
@@ -738,7 +737,7 @@ console.log( dateEmbauche );
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
-								value = {formType ? posteId : "choisir"} 
+								value = { posteId ? posteId : choisir } 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
@@ -767,7 +766,7 @@ console.log( dateEmbauche );
 							:
 								<select 
 								className="custom-select" 
-								value = {formType ? salaryTypeid : "choisir"} 
+								value = { salaryTypeid ? salaryTypeid : choisir } 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
 										<option value="choisir">Choisir</option> 
@@ -914,7 +913,7 @@ console.log( dateEmbauche );
                             <ToggleLeft /> <label className="small mb-1" >Statut</label>
 							<select
 							className="custom-select" 
-							value = {formType ? statusId : "choisir"} 
+							value = { statusId ? statusId : choisir } 
 							onChange ={e => handleSelectStatus(e.target.value)} >
 								{ !formType ? 
 									<option value="choisir">Choisir</option> 
