@@ -288,6 +288,11 @@ const UserProfile = () => {
 	
 	const [ choisir, setChoisir ] = useState( "Choisir" ); //
 	
+	const [ matricule, setMatricule ] = useState( [] );
+	const [ salaryTypeid, setSalaryTypeid ] = useState( [] );
+	const [ fullName, setFullName ] = useState( [] );
+	const [ email, setEmail ] = useState( [] );
+	
 	// Handle checkbox change
 	const handleCheck = (index) => {
 		let check = userWeekDays[index];
@@ -296,7 +301,7 @@ const UserProfile = () => {
 		setUserWeekDays( userWeekDayCopy );
 
 	}
-  
+
 	const handleClick = (e) => {
 		e.preventDefault();
 		location.replace( btnLink );
@@ -457,11 +462,11 @@ async function getAccountInfo(){
 		if( resJson.accountId ) {
 			accountInfo   = resJson;
 			// setUserProfile( result );
-			const [ matricule, setMatricule] = useState( accountInfo.matricule );
-			const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
-				
-			const [ fullName, setFullName] = useState( accountInfo.fullName );
-			const [ email, setEmail] = useState( accountInfo.email );
+			setMatricule( accountInfo.matricule );
+			setSalaryTypeid( accountInfo.salaryTypeid );
+			setFullName( accountInfo.fullName );
+			setEmail( accountInfo.email );
+			
 		}
 		else {
 			alert( "Compte non trouvé" );
