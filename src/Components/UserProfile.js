@@ -264,8 +264,7 @@ const UserProfile = () => {
 	const [ posteId, setPosteId] =  useState( [] );
 	const [ departementId, setDepartementId] =  useState( [] );
 	const [ salaryTypeName, setSalaryTypeName ] =  useState( [] );
-	const [ salaire, setSalare] = useState( [] );		
-	const [ statusId, setStatusId ] = useState( [] ); // User status
+	const [ salaire, setSalare] = useState( [] );	
 											
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
