@@ -326,7 +326,6 @@ async function GetNomEntreprise(){
 const UserProfile = () => {
 	
 	// departement List
-	var departementListArray
 	async function getDepartements(){
 
 		try {
@@ -338,7 +337,7 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let departements = resJson.departement;
-				departementListArray = departements;
+				setDepartementList( departements );
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -354,7 +353,6 @@ const UserProfile = () => {
 	getDepartements();
 
 	// get Postes
-	var posteListArrayMap
 	async function GetPostes( departementId ){
 
 		try {
@@ -366,7 +364,7 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let postes = resJson.poste;
-				posteListArrayMap =  postes;
+				setPosteList( postes );
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -393,7 +391,7 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let villes = resJson.ville;
-				provinceListArray = villes;
+				setVilleList ( villes );
 				setShowVille( true );
 			}
 			else {
@@ -409,7 +407,6 @@ const UserProfile = () => {
 	}
 	
 	// Get provinces
-	var provinceListArray = [];
 	async function GetProvinces( paysId ){
 
 		try {
@@ -422,7 +419,7 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let province = resJson.province;
-				provinceListArray =  province;
+				setProvinceList( province );
 				setShowProvince( true );
 			}
 			else {
@@ -439,7 +436,6 @@ const UserProfile = () => {
 	
 
 	// Get pays
-	var paysListArray = [];
 	async function getPays(){
 
 		try {
@@ -451,7 +447,7 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let pays = resJson.pays;
-				paysListArray =  pays; 
+				setPaysList( pays ); 
 			}
 			else {
 				alert( "Un probleme est survenu" );
