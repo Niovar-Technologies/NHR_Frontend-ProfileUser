@@ -321,11 +321,15 @@ async function GetNomEntreprise(){
 		};
 }
 
-// departement List
-var departementListArray
-async function getDepartements(){
 
-	try {
+	
+const UserProfile = () => {
+	
+	// departement List
+	var departementListArray
+	async function getDepartements(){
+
+		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'},
@@ -345,13 +349,10 @@ async function getDepartements(){
 		catch (err) {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
-	};
-}
-getDepartements();
-	
-const UserProfile = () => {
-	
-	
+		};
+	}
+	getDepartements();
+
 	// get Postes
 	var posteListArrayMap
 	async function GetPostes( departementId ){
