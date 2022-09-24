@@ -447,7 +447,7 @@ const UserProfile = () => {
 			console.log(err);
 		};
 	}
-	getDepartements();
+	
 
 	// get Postes
 	async function GetPostes( departementId ){
@@ -476,7 +476,6 @@ const UserProfile = () => {
 	}
 	
 	// Get ville
-	var villeListArray = [];
 	async function GetVilles( provinceId ){
 
 		try {
@@ -557,10 +556,11 @@ const UserProfile = () => {
 			console.log(err);
 		};
 	}
-	getPays();
+	
 	
 	useEffect(() => {
-		
+		getPays();
+		getDepartements();
 	},[] );
 	
 	
