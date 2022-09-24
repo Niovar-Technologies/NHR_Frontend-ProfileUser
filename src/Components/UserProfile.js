@@ -386,7 +386,7 @@ async function  getUserProfile(){
 				getUserJours( userProfileId );
 
 			if( !userProfileData.length == 0 ) 
-				setFormType(1);
+				setFormType('1');
 
 			setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
