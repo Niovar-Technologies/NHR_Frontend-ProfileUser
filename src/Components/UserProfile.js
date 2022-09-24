@@ -717,7 +717,7 @@ console.log( dateEmbauche );
 									: 
 										"" 
 									}
-									{postetListArray.map((obj, index) => (
+									{PosteList.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
