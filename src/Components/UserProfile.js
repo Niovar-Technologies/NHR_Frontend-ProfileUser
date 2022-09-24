@@ -309,19 +309,33 @@ const UserProfile = () => {
 	
 	const handleSelectDepartement = (value) => {
 		let departementId = value;
-		GetPostes(departementId);
+		
+		if( !isNaN( departementId ) ){
+			setDepartementId( departementId );
+			GetPostes(departementId);	// Load post of this department
+		}
+	}
+
+	const handleSelectPoste = (value) => {
+		let posteId = value;
+		if( !isNaN( posteId ) )
+			setPosteId( posteId );
 	}
 
 	const handleSelectPays = (value) => {
 		let paysId = value;
-		if( !isNaN( paysId ) )
-			GetProvinces(paysId);
+		if( !isNaN( paysId ) ){
+			setPaysId( paysId );
+			GetProvinces(paysId); // load provinces of this pays
+		}
 	}
 
 	const handleSelectProvince = (value) => {
-		let villeId = value;
-		if( !isNaN( villeId ) )
-			GetVilles( villeId );
+		let provinceId = value;
+		if( !isNaN( provinceId ) ){
+			setProvinceId( provinceId );
+			GetVilles( villeId ); // load villes of this province
+		}
 	}
 
 	const handleSelectSexe = (value) => {
@@ -329,6 +343,25 @@ const UserProfile = () => {
 		if( !isNaN( sexeId ) )
 			setSexeId( sexeId );
 	}
+	
+	const handleSelectSalaireType = (value) => {
+		let salaireTypeId = value;
+		if( !isNaN( salaireTypeId ) )
+			setSalaryTypeid( salaireTypeId );
+	}
+	
+	const handleSelectStatus= (value) => {
+		let statusId = value;
+		if( !isNaN( statusId ) )
+			setStatusId( statusId );
+	}
+	
+	const handleSelectVille= (value) => {
+		let villeId = value;
+		if( !isNaN( villeId ) )
+			setVilleId( villeId );
+	}
+	
 	
 	// Get pays
 	async function getPays(){
@@ -718,10 +751,18 @@ console.log( dateEmbauche );
                                 <Clipboard /> <label className="small mb-1" >Département</label>
 								<select 
 								className="custom-select" 
-								value = { departementId ? departementId : choisir } 
+								value = { departementId } 
 								onChange={e => handleSelectDepartement(e.target.value)} >
-									{DepartementList.map((obj, index) => (
-										<option key={index} value={obj.id}>{obj.name}</option>
+									{ !departementId ? 
+										<option value="choisir">choisir</option> 
+									: 
+										"" 
+									}
+									{ DepartementList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
 									))}
 								</select>
                             </div>
@@ -729,14 +770,14 @@ console.log( dateEmbauche );
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
-								value = { posteId ? posteId : choisir } 
-								onChange={e => handleSelect(e.target.value)} >
-									{ !formType ? 
-										<option value="choisir">Choisir</option> 
+								value = { sexeId } 
+								onChange={e => handleSelectPoste(e.target.value)} >
+									{ !sexeId ? 
+										<option value="choisir">choisir</option> 
 									: 
 										"" 
 									}
-									{PosteList.map((obj, index) => (
+									{ PosteList.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
@@ -758,14 +799,14 @@ console.log( dateEmbauche );
 							:
 								<select 
 								className="custom-select" 
-								value = { salaryTypeid ? salaryTypeid : choisir } 
-								onChange={e => handleSelect(e.target.value)} >
+								value = { salaryTypeid } 
+								onChange={e => handleSelectSalaireType(e.target.value)} >
 									{ !salaryTypeid ? 
-										<option value="choisir">Choisir</option> 
+										<option value="choisir">choisir</option> 
 									: 
 										"" 
 									}
-									{SalaireTypeList.map((obj, index) => (
+									{ SalaireTypeList.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
@@ -817,20 +858,20 @@ console.log( dateEmbauche );
 						<div className="mb-3">
                             <Globe /> <label className="small mb-1" >Pays</label>
 							<select 
-							className="custom-select" 
-							value = { paysId ? paysId : choisir } 
-							onChange={e => handleSelectPays(e.target.value)} >
-								{ !provinceId ? 
-									<option value="choisir">Choisir</option> 
+								className="custom-select" 
+								value = { paysId } 
+								onChange={e => handleSelectPays(e.target.value)} >
+									{ !paysId ? 
+										<option value="choisir">choisir</option> 
 									: 
-									"" 
-								}
-								{PaysList.map((obj, index) => (
-									<option 
-										key={index} 
-										value={obj.id}>{obj.name}
-									</option>
-								))}
+										"" 
+									}
+									{ PaysList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
+									))}
 							</select>
 							
                         </div>
@@ -839,21 +880,21 @@ console.log( dateEmbauche );
 						:
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" >Province</label>
-                            <select
-							className="custom-select" 
-							value = { provinceId ? provinceId : choisir } 
-							onChange={e => handleSelectProvince(e.target.value)} >
-								{ !provinceId ? 
-									<option value="choisir">Choisir</option> 
-								: 
-									"" 
-								}
-								{ProvinceList.map((obj, index) => (
-									<option 
-										key={index} 
-										value={obj.id}>{obj.name}
-									</option>
-								))}
+                           	<select 
+								className="custom-select" 
+								value = { provinceId } 
+								onChange={e => handleSelectProvince(e.target.value)} >
+									{ !provinceId ? 
+										<option value="choisir">choisir</option> 
+									: 
+										"" 
+									}
+									{ ProvinceList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
+									))}
 							</select>
                         </div>
 						}
@@ -863,20 +904,20 @@ console.log( dateEmbauche );
 						<div className="mb-3">
                             <Map /> <label className="small mb-1" >Ville</label>
 							<select 
-							className="custom-select" 
-							value = { villeId ? villeId : choisir }  
-							onChange ={e => handleSelectVille(e.target.value)} >
-								{ !villeId ? 
-									<option value="choisir">Choisir</option> 
-								: 
-									"" 
-								}
-								{VilleList.map((obj, index) => (
-									<option 
-										key={index} 
-										value={obj.id}>{obj.name}
-									</option>
-								))}
+								className="custom-select" 
+								value = { villeId } 
+								onChange={e => handleSelectVille(e.target.value)} >
+									{ !paysId ? 
+										<option value="choisir">choisir</option> 
+									: 
+										"" 
+									}
+									{ PaysList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
+									))}
 							</select>
                         </div>
 						}
@@ -903,21 +944,21 @@ console.log( dateEmbauche );
 						{ role == 'admin' ?
 						<div className="mb-3">
                             <ToggleLeft /> <label className="small mb-1" >Statut</label>
-							<select
-							className="custom-select" 
-							value = { statusId ? statusId : choisir } 
-							onChange ={e => handleSelectStatus(e.target.value)} >
-								{ !formType ? 
-									<option value="choisir">Choisir</option> 
-								: 
-									"" 
-								}
-								{StatusList.map((obj, index) => (
-									<option 
-										key={index} 
-										value={obj.id}>{obj.name}
-									</option>
-								))}
+							<select 
+								className="custom-select" 
+								value = { statutId } 
+								onChange={e => handleSelectStatus(e.target.value)} >
+									{ !statutId ? 
+										<option value="choisir">choisir</option> 
+									: 
+										"" 
+									}
+									{ StatusList.map((obj, index) => (
+										<option 
+											key={index} 
+											value={obj.id}>{obj.name}
+										</option>
+									))}
 							</select>
                         </div>
 						: 
