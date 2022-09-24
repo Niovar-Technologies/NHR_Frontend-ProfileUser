@@ -396,18 +396,11 @@ async function  getUserProfile(){
 												userProfileData.dateDepart 
 												: 
 												 Date.now() );	// 
-			setPaysId( !userProfileData.length == 0  ? 
-												userProfileData.paysId 
-												: 
-												"" ) ;	// Pays select's default value
-			setProvinceId( !userProfileData.length == 0  ?  
-												userProfileData.provinceId 
-												: 
-												 "" );	// Provinces select's default value								
-			setVilleId( !userProfileData.length == 0 ?  
-												userProfileData.villeId
-												: 
-												"" );	// Villes select's default valueg
+			setPaysId( userProfileData.paysId );	// Pays select's default value
+			
+			setProvinceId( userProfileData.provinceId );	// Provinces select's default value		
+			
+			setVilleId( userProfileData );	// Villes select's default valueg
 				
 			setStatusId( userProfileData.statutId );
 			setTelephone01( userProfileData.telephone01 );
@@ -415,10 +408,7 @@ async function  getUserProfile(){
 			setSexeId( userProfileData.sexeId );
 			setPosteId( userProfileData.posteId );
 			setDepartementId( userProfileData.departementId );
-			setSalaryTypeName(  !userProfileData.length == 0  ? 
-												SalaireTypeList[ userProfileData.salaryTypeid ].name
-												: 
-												"Aucun"  );
+			setSalaryTypeName( !userProfileData.salaryTypeid  );
 			setSalare( userProfileData.salaire );
 			setStatusId( userProfileData.statutId );
 			
