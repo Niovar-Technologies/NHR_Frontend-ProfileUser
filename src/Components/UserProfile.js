@@ -251,12 +251,26 @@ const UserProfile = () => {
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
-	
-												
+	const [ dateEmbauche, setDateEmbauche ] =  useState( [] );
+	const [ dateDepart, setDateDepart ]  =  useState( [] );  
+	const [ paysId, setPaysId ] =  useState( [] );  
+	const [ provinceId, setProvinceId ]	=  useState( [] );											
+	const [ villeId, setVilleId ]=  useState( [] );	 			
+	const [ statusId, setStatusId ] = useState( [] ); // User status
+
+	const [ telephone01, setTelephone01] = useState( [] );
+	const [ telephone02, setTelephone02] = useState( [] );
+	const [ sexeId, setSexeId] = useState( [] );
+	const [ posteId, setPosteId] =  useState( [] );
+	const [ departementId, setDepartementId] =  useState( [] );
+	const [ salaryTypeName, setSalaryTypeName ] =  useState( [] );
+	const [ salaire, setSalare] = useState( [] );
+	const [ salaire, setSalare] = useState( [] );		
+	const [ statusId, setStatusId ] = useState( [] ); // User status
+											
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
-
 
 
 	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
@@ -376,46 +390,45 @@ async function  getUserProfile(){
 				if( userProfileId )
 					getUserJours( userProfileId );
 				
-				const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateEmbauche )
+				
+				setDateEmbauche( !userProfileData.length == 0 ?  
+												userProfileData.dateEmbauche
 												: 
-												useState( Date.now() ); //										
-	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateDepart )
+												Date.now() ); //
+				setDateDepart( !userProfileData.length == 0  ?  
+												userProfileData.dateDepart 
 												: 
-												useState( Date.now() );	// 
-												
-	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.paysId )
+												 Date.now() );	// 
+				setPaysId( !userProfileData.length == 0  ? 
+												userProfileData.paysId 
 												: 
-												useState( "" );	// Pays select's default value
-	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.provinceId )
+												"" ) ;	// Pays select's default value
+				setProvinceId( !userProfileData.length == 0  ?  
+												userProfileData.provinceId 
 												: 
-												useState( "" );	// Provinces select's default value	
-	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.villeId )
+												 "" );	// Provinces select's default value								
+				setVilleId( !userProfileData.length == 0 ?  
+												userProfileData.villeId
 												: 
-												useState( "" );	// Villes select's default valueg
-	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
+												"";	// Villes select's default valueg
+				
+				setStatusId( userProfileData.statutId );
+				setTelephone01( userProfileData.telephone01 );
+				setTelephone01( userProfileData.telephone02 );
+				setSexeId( userProfileData.sexeId );
+				setPosteId( userProfileData.posteId );
+				setDepartementId( userProfileData.departementId );
+				setSalaryTypeName(  !userProfileData.length == 0  ? 
+												SalaireTypeList[ userProfileData.salaryTypeid ].name
+												: 
+												"Aucun"  );
+				setSalare( userProfileData.salaire );
+				setStatusId( userProfileData.statutId );
+
 			}
 			else{ // user has no profile and no Days
 				getUserWeekdays( [] );
 			}
-		const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
-	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
-
-	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
-	const [ posteId, setPosteId] = useState( userProfileData.posteId );
-	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
-
-	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
-													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												  : useState( "Aucun" );
-	const [ salaire, setSalare] = useState( userProfileData.salaire );		
-			
-	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
-			
 		}
 		else {
 			alert( "Un probleme est survenu" );
