@@ -249,8 +249,10 @@ async function  getUserProfile(){
 					getUserJours( userProfileId );
 			}
 			else{
-				userProfileData.dateEmbauche = Date.now();
-				userProfileData.dateDepart 	 = Date.now();
+				let date_embauche = moment().format('YYYY-MM-DD');
+				let date_depart	  = moment().format('YYYY-MM-DD');
+				let dateEmbaucheObj 	=  new Date( date_embauche );
+				let dateDepartObj		=  new Date( date_depart );
 			}		
 		}
 		else {
