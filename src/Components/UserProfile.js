@@ -263,7 +263,7 @@ async function  getUserProfile(){
 		console.log(err);
 	};
 }
-
+getUserProfile();
 	
 const UserProfile = () => {
 	const history = useHistory();
