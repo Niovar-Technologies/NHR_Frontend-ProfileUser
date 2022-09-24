@@ -247,7 +247,11 @@ async function  getUserProfile(){
 				let userProfileId 	= userProfileData.id;
 				if( userProfileId )
 					getUserJours( userProfileId );
-			}	 
+			}
+			else{
+				userProfileData.dateEmbauche = new Date();
+				userProfileData.dateDepart 	 = new Date();
+			}		
 		}
 		else {
 			alert( "Un probleme est survenu" );
@@ -352,9 +356,6 @@ console.log( userWeekDayCopy );
 	useEffect(() => {
 		getDepartements();
 		getPays();
-
-		// setDateEmbauche( userProfileData.dateEmbauche ); //
-		// setDateDepart( userProfileData.dateDepart ); //
 	},[] );
 	
 console.log( userProfileData );
