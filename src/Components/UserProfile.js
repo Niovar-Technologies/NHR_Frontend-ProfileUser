@@ -408,8 +408,9 @@ async function  getUserProfile(){
 			// datepickers dates
 			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
 			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			let dateEmbaucheObj 	=  new Date( date_embauche );
-			let dateDepartObj		=  new Date( date_depart );
+			
+			let dateEmbaucheObj 	=  ( !userProfileData.length == 0 ) ? new Date( date_embauche ) : Date.now();
+			let dateDepartObj		=  ( !userProfileData.length == 0 ) ? new Date( date_depart ) : Date.now();
 			
 			userProfileData.dateEmbauche = dateEmbaucheObj;
 			userProfileData.dateDepart 	 = dateDepartObj;
