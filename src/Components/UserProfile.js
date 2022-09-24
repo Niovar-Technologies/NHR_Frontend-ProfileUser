@@ -353,9 +353,7 @@ getAccountInfo();
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 	
-console.log( userProfileData );
-console.log( formType );
-console.log( dateEmbauche );
+
 // get user 
 // get company name
 async function getDepartements(){
@@ -564,6 +562,9 @@ const UserProfile = () => {
 
 	},[] );		
 
+console.log( userProfileData );
+console.log( formType );
+console.log( dateEmbauche );
 			
     return (
        <>
