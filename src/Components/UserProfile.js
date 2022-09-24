@@ -679,7 +679,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = { formType ? matricule : "" }
+									defaultValue = { matricule }
 								/>
                             </div>
                         </div>
