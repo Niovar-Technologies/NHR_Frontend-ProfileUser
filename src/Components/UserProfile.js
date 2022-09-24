@@ -296,7 +296,9 @@ const UserProfile = () => {
 	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
 	
 	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
-	const [ salaryTypeName, setSalaryTypeName ] = useState( SalaireTypeList[ userProfileData.salaryTypeid ].name );
+	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfile.length == 0  ) ? 
+													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
+												: "Non defini";
 	const [ salaire, setSalare] = useState( userProfileData.salaire );
 
 	const [ showProvince, setShowProvince ] = useState(false); //
@@ -712,7 +714,7 @@ alert( salaryTypeName );
 								className="form-control" 
 									type="text" 
 									placeholder="Type de salaire" 
-									defaultValue = { salaryTypeName ? salaryTypeName : "Non defini" } />					
+									defaultValue = { salaryTypeName } />					
 							:
 								<select 
 								className="custom-select" 
