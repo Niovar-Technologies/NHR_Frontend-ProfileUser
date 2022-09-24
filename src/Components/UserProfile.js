@@ -359,7 +359,7 @@ const UserProfile = () => {
 		getAccountInfo();
 		getPays();
 		getDepartements();
-	},[] );
+	}, formType );
 	
 	// get user profile
 var userProfileData = [];
