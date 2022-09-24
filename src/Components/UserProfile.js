@@ -464,6 +464,7 @@ async function getAccountInfo(){
 			setFullName( accountInfo.fullName );
 			setEmail( accountInfo.email );
 			
+			getUserProfile();
 		}
 		else {
 			alert( "Compte non trouvé" );
@@ -587,8 +588,9 @@ async function getAccountInfo(){
 		};
 	}
 	
+
 	useEffect(() => {
-		getUserProfile();
+		
 		getAccountInfo();
 		getPays();
 		getDepartements();
