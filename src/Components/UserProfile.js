@@ -687,7 +687,7 @@ console.log( dateEmbauche );
 								className="custom-select" 
 								value = { sexeId } 
 								onChange={e => handleSelect(e.target.value)} >
-									{ !formType ? 
+									{ !sexeId ? 
 										<option value="choisir">choisir</option> 
 									: 
 										"" 
