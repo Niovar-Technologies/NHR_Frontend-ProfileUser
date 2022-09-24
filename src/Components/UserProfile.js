@@ -679,6 +679,7 @@ console.log( dateEmbauche );
 								/>
                             </div>
                         </div>
+						FORMTYPE: { formType }
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
                                 <Users /> <label className="small mb-1" >Genre </label>
@@ -687,7 +688,7 @@ console.log( dateEmbauche );
 								value = { sexeId } 
 								onChange={e => handleSelect(e.target.value)} >
 									{ !formType ? 
-										<option value="choisir">formType</option> 
+										<option value="choisir">choisir</option> 
 									: 
 										"" 
 									}
