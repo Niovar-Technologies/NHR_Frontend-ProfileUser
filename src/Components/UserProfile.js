@@ -406,9 +406,11 @@ async function  getUserProfile(){
 			userProfileData		= resJson.userProfile[0];
 				
 			// datepickers dates
-			let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-			
+			if( !userProfileData.length == 0 ){
+				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+			}
+
 			let dateEmbaucheObj 	=  ( !userProfileData.length == 0 ) ? new Date( date_embauche ) :  new Date( "2022-10-10" );
 			let dateDepartObj		=  ( !userProfileData.length == 0 ) ? new Date( date_depart ) :  new Date( "2024-10-10" );
 			
@@ -420,8 +422,8 @@ async function  getUserProfile(){
 			if( userProfileId )
 				getUserJours( userProfileId );
 
-			if( !userProfileData.length == 0 ) 
-				setFormType('1');
+			// if( !userProfileData.length == 0 ) 
+			// 	setFormType('1');
 
 			setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
