@@ -384,6 +384,7 @@ async function getDepartements(){
 getDepartements();
 	
 // get Postes
+var posteListArrayMap
 async function GetPostes( departementId ){
 
 		try {
@@ -395,7 +396,7 @@ async function GetPostes( departementId ){
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let postes = resJson.poste;
-				setPosteList( postes );
+				posteListArrayMap =  postes;
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -463,7 +464,7 @@ async function GetNomEntreprise(){
 const UserProfile = () => {
 	
 	useEffect(() => {
-		getUserProfile();
+		
 	},[] );
 	
 	const history = useHistory();
@@ -500,8 +501,8 @@ const UserProfile = () => {
 
 	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
 
-	const [ DepartementList, setDepartementList ] = useState( departementListArray ); 	// List of all departments to select
-	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
+	// const [ DepartementList, setDepartementList ] = useState( departementListArray ); 	// List of all departments to select
+	// const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
 	
 	const [ fullName, setFullName] = useState( accountInfo.fullName );
 	const [ email, setEmail] = useState( accountInfo.email );
@@ -700,7 +701,7 @@ console.log( dateEmbauche );
 								className="custom-select" 
 								value = {formType ? departementId : ""} 
 								onChange={e => handleSelectDepartement(e.target.value)} >
-									{DepartementList.map((obj, index) => (
+									{departementListArray.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
 									))}
 								</select>
@@ -716,7 +717,7 @@ console.log( dateEmbauche );
 									: 
 										"" 
 									}
-									{PosteList.map((obj, index) => (
+									{postetListArray.map((obj, index) => (
 										<option 
 											key={index} 
 											value={obj.id}>{obj.name}
