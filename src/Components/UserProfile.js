@@ -354,12 +354,7 @@ const UserProfile = () => {
 		};
 	}
 	
-	useEffect(() => {
-		getUserProfile();
-		getAccountInfo();
-		getPays();
-		getDepartements();
-	}, userProfileData );
+
 	
 	// get user profile
 var userProfileData = [];
@@ -592,7 +587,13 @@ async function getAccountInfo(){
 		};
 	}
 	
-
+	useEffect(() => {
+		getUserProfile();
+		getAccountInfo();
+		getPays();
+		getDepartements();
+	},[] );
+	
 console.log( userProfileData );
 console.log( formType );
 console.log( dateEmbauche );
