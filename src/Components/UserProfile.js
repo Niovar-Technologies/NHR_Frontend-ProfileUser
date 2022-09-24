@@ -269,9 +269,9 @@ const UserProfile = () => {
 	const [ btnText, setBtnText ]	= useState('Btn'); //
 	
 	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateEmbauche )
-												: useState( Date.now() );
+												: useState( new Date( "2022-10-10" ) );
 	const [ dateDepart, setDateDepart ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateDepart )
-												: useState( Date.now() );
+												: useState( new Date( "2024-10-10" ) );
 
 	const [ paysId, setPaysId ] 		= useState( userProfileData.paysId ); 		// Pays select's default value
 	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Provinces select's default value
