@@ -387,9 +387,11 @@ async function  getUserProfile(){
 				let userProfileId 	= userProfileData.id;
 				if( userProfileId )
 					getUserJours( userProfileId );
-xonsole.log( 'doo' );
+
 				setFormType( 1 ); 
-				
+
+console.log( 'doo' );
+
 				setDateEmbauche( !userProfileData.length == 0 ?  
 												userProfileData.dateEmbauche
 												: 
@@ -680,7 +682,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro de téléphone" 
-									value = { telephone01 } 
+									defaultValue = { telephone01 } 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -689,7 +691,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									value = { telephone02 } 
+									defaultValue = { telephone02 } 
 								/>
                             </div>
                         </div>
