@@ -461,6 +461,11 @@ async function GetNomEntreprise(){
 
 
 const UserProfile = () => {
+	
+	useEffect(() => {
+		getUserProfile();
+	},[] );
+	
 	const history = useHistory();
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
@@ -558,10 +563,7 @@ const UserProfile = () => {
 	const handleSelect = (e) => {
 		// e.preventDefault();
 	}
-
-	useEffect(() => {
-
-	},[] );		
+		
 
 console.log( userProfileData );
 console.log( formType );
