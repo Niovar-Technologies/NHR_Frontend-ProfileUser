@@ -333,7 +333,7 @@ const UserProfile = () => {
 		let provinceId = value;
 		if( !isNaN( provinceId ) ){
 			setProvinceId( provinceId );
-			GetVilles( villeId ); // load villes of this province
+			GetVilles( provinceId ); // load villes of this province
 		}
 	}
 
