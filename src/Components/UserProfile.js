@@ -248,6 +248,9 @@ async function  getUserProfile(){
 				if( userProfileId )
 					getUserJours( userProfileId );
 			}
+			else{ // user has no profile and no Days
+				getUserWeekdays( [] );
+			}
 		}
 		else {
 			alert( "Un probleme est survenu" );
@@ -266,17 +269,29 @@ const UserProfile = () => {
 	const history = useHistory();
 
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
-	const [ btnText, setBtnText ]	= useState('Btn'); //
 	
-	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateEmbauche )
-												: useState( Date.now() );
-	const [ dateDepart, setDateDepart ] =  ( !userProfileData.length == 0  ) ?  useState( userProfileData.dateDepart )
-												: useState( Date.now() );
-
-	const [ paysId, setPaysId ] 		= useState( userProfileData.paysId ); 		// Pays select's default value
-	const [ provinceId, setProvinceId ] = useState( userProfileData.provinceId ); 	// Provinces select's default value
-	const [ villeId, setVilleId ] 		= useState( userProfileData.villeId ); 		// Villes select's default value
-
+	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateEmbauche )
+												: 
+												useState( Date.now() ); //										
+	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateDepart )
+												: 
+												useState( Date.now() );	// 
+												
+	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.paysId )
+												: 
+												useState( 39 );	// Pays select's default value
+	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.provinceId )
+												: 
+												useState( 821 );	// Provinces select's default value	
+	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.villeId )
+												: 
+												useState( 17542 );	// Villes select's default value
+												
 	const [ PaysList, setPaysList ] 		= useState([]); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState([]); 	// Ville array's values to map
