@@ -447,7 +447,12 @@ async function  getUserProfile(){
 			setSexeId( userProfileData.sexeId );
 			setPosteId( userProfileData.posteId );
 			setDepartementId( userProfileData.departementId );
-			setSalaryTypeName( !userProfileData.salaryTypeid  );
+			
+			if( userProfileData.salaryTypeid ) // user can display his salary type but cannot list or save
+				setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
+			else
+				setSalaryTypeName( "Aucun" ] );
+			
 			setSalare( userProfileData.salaire );
 			setStatusId( userProfileData.statutId );
 			
