@@ -264,7 +264,6 @@ const UserProfile = () => {
 	const [ posteId, setPosteId] =  useState( [] );
 	const [ departementId, setDepartementId] =  useState( [] );
 	const [ salaryTypeName, setSalaryTypeName ] =  useState( [] );
-	const [ salaire, setSalare] = useState( [] );
 	const [ salaire, setSalare] = useState( [] );		
 	const [ statusId, setStatusId ] = useState( [] ); // User status
 											
