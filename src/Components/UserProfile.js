@@ -135,86 +135,6 @@ else{
 		accountId = userid;
 }
 
-
-
-async function getUserJours( userProfileId ){
-	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfileId , {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
-			
-		let resJson = await res.json();
-		if( resJson.statusCode === 200 ) {
-			let result 	= resJson.userProfileJours;
-			let count 	= result.length;
-			let userProfilJours = [];
-			for( var i = 0; i < count; i++ ){
-				let jourId = result[i].jourId;
-				userProfilJours.push( jourId );
-			}
-
-			getUserWeekdays( userProfilJours );
-			// setWeekDays( userWeekDays ); 
-		}
-		else {
-			alert( "Un probleme est survenu" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
-
-
-// Create initial user checked  array for week days checkboxes 
-var userWeekDayArray 	= [];
-function getUserWeekdays( userJours ){
-		
-	for( var i = 0; i < days.length; i++ ){
-		let to_check = false;
-	
-		if( userJours.includes( days[i].id ) )
-			to_check = true;
-			
-		userWeekDayArray.push( to_check );
-	}
-	console.log( userWeekDayArray );
-}
-
-// console.log( accountId );
-var userJoursId = [];
-var accountInfo = "";
-
-// get user profile info
-async function getAccountInfo(){
-	try {
-		let res = await fetch( lbdomain + "/Accounts/" + accountId, {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
-			
-		let resJson = await res.json();
-		if( resJson.accountId ) {
-			accountInfo   = resJson;
-			// setUserProfile( result );
-		}
-		else {
-			alert( "Compte non trouvé" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
-getAccountInfo();
-
 // get user profile
 var userProfileData = [];
 var userFormType = 0;
@@ -264,171 +184,6 @@ async function  getUserProfile(){
 	};
 }
 getUserProfile();
-	
-const UserProfile = () => {
-	const history = useHistory();
-
-	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
-	
-	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateEmbauche )
-												: 
-												useState( Date.now() ); //										
-	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.dateDepart )
-												: 
-												useState( Date.now() );	// 
-												
-	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.paysId )
-												: 
-												useState( "" );	// Pays select's default value
-	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.provinceId )
-												: 
-												useState( "" );	// Provinces select's default value	
-	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
-												useState( userProfileData.villeId )
-												: 
-												useState( "" );	// Villes select's default value
-												
-	const [ PaysList, setPaysList ] 		= useState([]); 	// Pays array's values top map
-	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
-	const [ VilleList, setVilleList ] 		= useState([]); 	// Ville array's values to map
-
-	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
-
-	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
-
-	const [ DepartementList, setDepartementList ] = useState([]); 	// List of all departments to select
-	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
-	
-	const [ fullName, setFullName] = useState( accountInfo.fullName );
-	const [ email, setEmail] = useState( accountInfo.email );
-	const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
-	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
-	const [ matricule, setMatricule] = useState( accountInfo.matricule );
-	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
-	const [ posteId, setPosteId] = useState( userProfileData.posteId );
-	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
-	
-	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
-	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
-													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
-												  : useState( "Aucun" );
-	const [ salaire, setSalare] = useState( userProfileData.salaire );
-
-	const [ showProvince, setShowProvince ] = useState(false); //
-	const [ showVille, setShowVille ] = useState(false); //
-	
-	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
-
-	const [ userSexeId, setUserSexeId ] = useState(''); //
-
-	const [ weekDays, setWeekDays ] = useState( days ); //
-	
-	const [ choisir, setChoisir ] = useState( "Choisir" ); //
-	
-	// Handle checkbox change
-	const handleCheck = (index) => {
-		let check = userWeekDays[index];
-		let userWeekDayCopy 	= userWeekDays.slice();
-		userWeekDayCopy[index] = !check;
-console.log( userWeekDayCopy );		
-		setUserWeekDays( userWeekDayCopy );
-
-	}
-  
-	const handleClick = (e) => {
-		e.preventDefault();
-		location.replace( btnLink );
-	}
-	
-	const handleSelectDepartement = (value) => {
-		let departementId = value;
-		GetPostes(departementId);
-	}
-
-	const handleSelectPays = (value) => {
-		let paysId = value;
-		if( !isNaN( paysId ) )
-			GetProvinces(paysId);
-	}
-
-	const handleSelectProvince = (value) => {
-		let villeId = value;
-		if( !isNaN( villeId ) )
-			GetVilles( villeId );
-	}
-
-	const handleSelect = (e) => {
-		// e.preventDefault();
-	}
-
-	// get current url
-	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
-
-
-	useEffect(() => {
-		getDepartements();
-		getPays();
-	},[] );
-	
-console.log( userProfileData );
-console.log( formType );
-console.log( dateEmbauche );
-	// get user 
-	// get company name
-	async function getDepartements(){
-
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let departements = resJson.departement;
-				setDepartementList( departements );
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
-	
-	// get Postes
-	async function GetPostes( departementId ){
-
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let postes = resJson.poste;
-				setPosteList( postes );
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
 	
 	// Get ville
 	async function GetVilles( provinceId ){
@@ -511,9 +266,101 @@ console.log( dateEmbauche );
 			console.log(err);
 		};
 	}
+	getPays();
 
-	// get company name
-	async function GetStatus(){
+async function getUserJours( userProfileId ){
+	try {
+		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfileId , {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.statusCode === 200 ) {
+			let result 	= resJson.userProfileJours;
+			let count 	= result.length;
+			let userProfilJours = [];
+			for( var i = 0; i < count; i++ ){
+				let jourId = result[i].jourId;
+				userProfilJours.push( jourId );
+			}
+
+			getUserWeekdays( userProfilJours );
+			// setWeekDays( userWeekDays ); 
+		}
+		else {
+			alert( "Un probleme est survenu" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+
+
+// Create initial user checked  array for week days checkboxes 
+var userWeekDayArray 	= [];
+function getUserWeekdays( userJours ){
+		
+	for( var i = 0; i < days.length; i++ ){
+		let to_check = false;
+	
+		if( userJours.includes( days[i].id ) )
+			to_check = true;
+			
+		userWeekDayArray.push( to_check );
+	}
+	console.log( userWeekDayArray );
+}
+
+// console.log( accountId );
+var userJoursId = [];
+var accountInfo = "";
+
+// get user profile info
+async function getAccountInfo(){
+	try {
+		let res = await fetch( lbdomain + "/Accounts/" + accountId, {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+			
+		let resJson = await res.json();
+		if( resJson.accountId ) {
+			accountInfo   = resJson;
+			// setUserProfile( result );
+		}
+		else {
+			alert( "Compte non trouvé" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+}
+getAccountInfo();
+	
+	
+// get current url
+	let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
+
+
+	useEffect(() => {
+
+	},[] );
+	
+console.log( userProfileData );
+console.log( formType );
+console.log( dateEmbauche );
+// get user 
+// get company name
+async function getDepartements(){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
@@ -536,9 +383,62 @@ console.log( dateEmbauche );
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
-	}
-	// get company name
-	async function GetNomEntreprise(){
+}
+getDepartements();
+	
+// get Postes
+async function GetPostes( departementId ){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let postes = resJson.poste;
+				setPosteList( postes );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+}
+
+// get company name
+async function GetStatus(){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let departements = resJson.departement;
+				setDepartementList( departements );
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+}
+// get company name
+async function GetNomEntreprise(){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/EntrepriseMicroservices/Entreprise/nomEntreprise/" + UserProfileId , {
@@ -560,7 +460,109 @@ console.log( dateEmbauche );
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
+}
+
+
+const UserProfile = () => {
+	const history = useHistory();
+
+	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
+	
+	const [ dateEmbauche, setDateEmbauche ] =  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateEmbauche )
+												: 
+												useState( Date.now() ); //										
+	const [ dateDepart, setDateDepart ] 	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.dateDepart )
+												: 
+												useState( Date.now() );	// 
+												
+	const [ paysId, setPaysId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.paysId )
+												: 
+												useState( "" );	// Pays select's default value
+	const [ provinceId, setProvinceId ]  	=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.provinceId )
+												: 
+												useState( "" );	// Provinces select's default value	
+	const [ villeId, setVilleId ]  			=  ( !userProfileData.length == 0  ) ?  
+												useState( userProfileData.villeId )
+												: 
+												useState( "" );	// Villes select's default value
+												
+	const [ PaysList, setPaysList ] 		= useState([]); 	// Pays array's values top map
+	const [ ProvinceList, setProvinceList ] = useState([]); 	// Provinces array's values to map
+	const [ VilleList, setVilleList ] 		= useState([]); 	// Ville array's values to map
+
+	const [ statusId, setStatusId ] = useState( userProfileData.statutId ); // User status
+
+	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
+
+	const [ DepartementList, setDepartementList ] = useState([]); 	// List of all departments to select
+	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
+	
+	const [ fullName, setFullName] = useState( accountInfo.fullName );
+	const [ email, setEmail] = useState( accountInfo.email );
+	const [ telephone01, setTelephone01] = useState( userProfileData.telephone01 );
+	const [ telephone02, setTelephone02] = useState( userProfileData.telephone02 );
+	const [ matricule, setMatricule] = useState( accountInfo.matricule );
+	const [ sexeId, setSexeId] = useState( userProfileData.sexeId );
+	const [ posteId, setPosteId] = useState( userProfileData.posteId );
+	const [ departementId, setDepartementId ] = useState( userProfileData.departementId );
+	
+	const [ salaryTypeid, setSalaryTypeid] = useState( accountInfo.salaryTypeid );
+	const [ salaryTypeName, setSalaryTypeName ] = ( !userProfileData.length == 0  ) ? 
+													useState( SalaireTypeList[ userProfileData.salaryTypeid ].name )
+												  : useState( "Aucun" );
+	const [ salaire, setSalare] = useState( userProfileData.salaire );
+
+	const [ showProvince, setShowProvince ] = useState(false); //
+	const [ showVille, setShowVille ] = useState(false); //
+	
+	const [ formType, setFormType ] = useState( userFormType ); // Edition or new data
+
+	const [ userSexeId, setUserSexeId ] = useState(''); //
+
+	const [ weekDays, setWeekDays ] = useState( days ); //
+	
+	const [ choisir, setChoisir ] = useState( "Choisir" ); //
+	
+	// Handle checkbox change
+	const handleCheck = (index) => {
+		let check = userWeekDays[index];
+		let userWeekDayCopy 	= userWeekDays.slice();
+		userWeekDayCopy[index]  = !check;
+		setUserWeekDays( userWeekDayCopy );
+
 	}
+  
+	const handleClick = (e) => {
+		e.preventDefault();
+		location.replace( btnLink );
+	}
+	
+	const handleSelectDepartement = (value) => {
+		let departementId = value;
+		GetPostes(departementId);
+	}
+
+	const handleSelectPays = (value) => {
+		let paysId = value;
+		if( !isNaN( paysId ) )
+			GetProvinces(paysId);
+	}
+
+	const handleSelectProvince = (value) => {
+		let villeId = value;
+		if( !isNaN( villeId ) )
+			GetVilles( villeId );
+	}
+
+	const handleSelect = (e) => {
+		// e.preventDefault();
+	}
+
+	
 			
 
 			
