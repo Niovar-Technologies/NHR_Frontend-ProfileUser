@@ -422,6 +422,37 @@ const UserProfile = () => {
 		// e.preventDefault();
 	}
 	
+	// Get pays
+	async function getPays(){
+
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let pays = resJson.pays;
+				setPaysList( pays ); 
+			}
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+	
+	useEffect(() => {
+		getPays();
+		getDepartements();
+	},[] );
+	
 	// departement List
 	async function getDepartements(){
 
@@ -531,40 +562,7 @@ const UserProfile = () => {
 	}
 	
 
-	// Get pays
-	async function getPays(){
-
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
-			
-			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
-				let pays = resJson.pays;
-				setPaysList( pays ); 
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
-	}
 	
-	
-	useEffect(() => {
-		getPays();
-		getDepartements();
-	},[] );
-	
-	
-		
 
 console.log( userProfileData );
 console.log( formType );
