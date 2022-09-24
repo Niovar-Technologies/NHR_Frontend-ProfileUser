@@ -934,7 +934,7 @@ async function getAccountInfo(){
 											id={`custom-checkbox-${index}`}
 											name={obj.name}
 											value={obj.name}
-											checked= { userWeekDays[index]? true : false }
+											checked= { userWeekDays[index] }
 											onChange={() => handleCheck(index)}
 										/>
 										&nbsp;<label htmlFor={`custom-checkbox-${index}`}>{obj.name}</label>
