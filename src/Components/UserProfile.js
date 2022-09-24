@@ -619,7 +619,7 @@ console.log( formType );
 									className="form-control" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									defaultValue= {formType ? fullName : ""}
+									defaultValue= { fullName }
 								/>
                             </div>
                            <div className="col-md-6">
@@ -628,7 +628,7 @@ console.log( formType );
 									className="form-control" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
-									defaultValue = {formType ? email : ""} 
+									defaultValue = { email } 
 								/>
                             </div>
                         </div>
@@ -639,7 +639,7 @@ console.log( formType );
                                 <input 
 									className="form-control" 
 									type="text" 
-									placeholder="Votre noméro de téléphone" 
+									placeholder="Numéro de téléphone" 
 									defaultValue = {formType ? telephone01 : ""} 
 								/>
                             </div>
