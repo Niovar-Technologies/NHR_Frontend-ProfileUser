@@ -379,8 +379,8 @@ const UserProfile = () => {
 	}
 	
 	// Get ville
-var villeListArray = [];
-async function GetVilles( provinceId ){
+	var villeListArray = [];
+	async function GetVilles( provinceId ){
 
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Province/VillesProvince/" + provinceId, {
@@ -406,9 +406,9 @@ async function GetVilles( provinceId ){
 		};
 	}
 	
-// Get provinces
-var provinceListArray = [];
-async function GetProvinces( paysId ){
+	// Get provinces
+	var provinceListArray = [];
+	async function GetProvinces( paysId ){
 
 		try {
 
@@ -433,7 +433,7 @@ async function GetProvinces( paysId ){
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
-}
+	}
 	
 
 	// Get pays
