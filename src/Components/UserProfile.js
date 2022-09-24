@@ -369,7 +369,7 @@ async function  getUserProfile(){
 		let resJson = await res.json();
 		if( resJson.statusCode === 200 ) {
 			 
-			
+alert( "foo" );
 			if( resJson.userProfile.length == 0 ){ // no profile data found for this user
 				userProfileData		= resJson.userProfile[0];
 				
