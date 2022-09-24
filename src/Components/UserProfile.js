@@ -355,13 +355,12 @@ const UserProfile = () => {
 	}
 	
 	useEffect(() => {
-
-	},[] );
-		getPays();
-		getDepartements();
 		getUserProfile();
 		getAccountInfo();
-		
+		getPays();
+		getDepartements();
+	},[] );
+	
 	// get user profile
 var userProfileData = [];
 async function  getUserProfile(){
