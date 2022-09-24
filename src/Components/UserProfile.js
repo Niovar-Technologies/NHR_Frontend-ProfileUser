@@ -249,7 +249,6 @@ async function  getUserProfile(){
 					getUserJours( userProfileId );
 			}
 			else{
-				now = 
 				userProfileData.dateEmbauche = Date.now();
 				userProfileData.dateDepart 	 = Date.now();
 			}		
