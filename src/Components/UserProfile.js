@@ -680,7 +680,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro de téléphone" 
-									defaultValue = { telephone01 } 
+									value = { telephone01 } 
 								/>
                             </div>
                            <div className="col-md-6">
@@ -689,7 +689,7 @@ console.log( dateEmbauche );
 									className="form-control" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = { telephone02 } 
+									value = { telephone02 } 
 								/>
                             </div>
                         </div>
