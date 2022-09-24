@@ -321,13 +321,11 @@ async function GetNomEntreprise(){
 		};
 }
 
+// departement List
+var departementListArray
+async function getDepartements(){
 
-const UserProfile = () => {
-	// departement List
-	var departementListArray
-	async function getDepartements(){
-
-		try {
+	try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'},
@@ -347,9 +345,12 @@ const UserProfile = () => {
 		catch (err) {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
-		};
-	}
-	getDepartements();
+	};
+}
+getDepartements();
+	
+const UserProfile = () => {
+	
 	
 	// get Postes
 	var posteListArrayMap
@@ -502,8 +503,8 @@ const UserProfile = () => {
 
 	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
 
-	// const [ DepartementList, setDepartementList ] = useState( departementListArray ); 	// List of all departments to select
-	// const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
+	const [ DepartementList, setDepartementList ] = useState( departementListArray ); 	// List of all departments to select
+	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
 	
 	const [ fullName, setFullName] = useState( accountInfo.fullName );
 	const [ email, setEmail] = useState( accountInfo.email );
@@ -702,7 +703,7 @@ console.log( dateEmbauche );
 								className="custom-select" 
 								value = {formType ? departementId : ""} 
 								onChange={e => handleSelectDepartement(e.target.value)} >
-									{departementListArray.map((obj, index) => (
+									{DepartementList.map((obj, index) => (
 										<option key={index} value={obj.id}>{obj.name}</option>
 									))}
 								</select>
