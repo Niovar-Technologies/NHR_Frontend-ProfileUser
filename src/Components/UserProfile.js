@@ -301,6 +301,7 @@ const UserProfile = () => {
 	const handleChangePassword = (value) => {
 		setPassword( value );
 	}
+
 	
 	// Handle password repeat change
 	const handleChangePasswordRepeat = (value) => {
@@ -320,6 +321,14 @@ const UserProfile = () => {
 		
 		if( role == "Admin" ){
 			setSalaire( value );
+		}
+	}
+	
+	// Handle input change
+	handleChangeMatricule = (value) => {
+		
+		if( role == "Admin" ){
+			setMatricule( value );
 		}
 	}
 	
@@ -958,7 +967,7 @@ console.log('save user profile');
 									type="text" 
 									placeholder="Numéro d'employé" 
 									defaultValue = { matricule }
-									
+									onChange={e => handleChangeMatricule(e.target.value)} 
 								/>
                             </div>
                         </div>
