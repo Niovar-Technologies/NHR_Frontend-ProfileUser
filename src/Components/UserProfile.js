@@ -431,7 +431,7 @@ console.log('save user profile');
 					'role': role,
 					'email': email,
 					'password': password,
-					'confirmPassword': confirmPassword
+					'confirmPassword': repeatPassword
 				},
 			});
 			
