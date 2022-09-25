@@ -1078,7 +1078,7 @@ console.log('save user profile');
 									className="form-control" 
 									type="text" 
 									placeholder="0" 
-									defaultValue = { salaire ? salaire : "0" }
+									value = { salaire ? salaire : "0" }
 								/>
                             </div>
                         </div>
