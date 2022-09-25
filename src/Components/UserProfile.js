@@ -387,7 +387,7 @@ const UserProfile = () => {
 						'sexeId': sexeId,
 						'departementId': departementId,
 						'posteId': posteId,
-						'typeSalaireId': typeSalaireId,
+						'typeSalaireId': salaryTypeid,
 						'salaire': salaire,
 						'dateEmbauche': dateEmbauche,
 						'dateDepart': dateDepart,  
