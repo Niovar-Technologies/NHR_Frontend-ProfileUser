@@ -331,6 +331,29 @@ const UserProfile = () => {
 			setMatricule( value );
 		}
 	}
+		
+	// Handle input change
+	const handleChangeFullname = (value) => {
+		setFullname( value );
+	}
+		
+	// Handle input change
+	const handleChangeEmail = (value) => {
+		setEmail( value );
+	}
+		
+	// Handle input change
+	const handleChangeTelephone01 = (value) => {
+		setTelephone01( value );
+	}
+		
+	// Handle input change
+	const handleChangeTelephone02 = (value) => {
+		
+		if( role == "Admin" ){
+			setTelephone02( value );
+		}
+	}
 	
 
 	const handleClickSave = async (e) => {
@@ -902,19 +925,21 @@ console.log('save user profile');
                             <div className="col-md-6">
                                 <User /> <label className="small mb-1">Nom complet</label>
                                 <input 
+									onChange={e => handleChangeFullname(e.target.value)} 
 									className="form-control" 
 									type="text" 
 									placeholder="Votre nom complet" 
-									defaultValue= { fullName }
+									value= { fullName }
 								/>
                             </div>
                            <div className="col-md-6">
                                 <Mail /> <label className="small mb-1">Email</label>
                                 <input 
+									onChange={e => handleChangeEmail(e.target.value)}
 									className="form-control" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
-									defaultValue = { email } 
+									value = { email } 
 								/>
                             </div>
                         </div>
@@ -923,19 +948,21 @@ console.log('save user profile');
                             <div className="col-md-6">
                                 <Smartphone /> <label className="small mb-1" >Téléphone </label>
                                 <input 
+									onChange={e => handleChangeTelephone01(e.target.value)}
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro de téléphone" 
-									defaultValue = { telephone01 } 
+									value = { telephone01 } 
 								/>
                             </div>
                            <div className="col-md-6">
                                 <Phone /> <label className="small mb-1" >Téléphone domicile</label>
                                 <input 
+									onChange={e => handleChangeTelephone02(e.target.value)}
 									className="form-control" 
 									type="text" 
 									placeholder="Téléphone du domicile" 
-									defaultValue = { telephone02 } 
+									value = { telephone02 } 
 								/>
                             </div>
                         </div>
@@ -966,7 +993,7 @@ console.log('save user profile');
 									className="form-control" 
 									type="text" 
 									placeholder="Numéro d'employé" 
-									defaultValue = { matricule }
+									value = { matricule }
 									onChange={e => handleChangeMatricule(e.target.value)} 
 								/>
                             </div>
@@ -1017,10 +1044,11 @@ console.log('save user profile');
                                 <Trello /> <label className="small mb-1" >Type de salaire</label>
 							{ role == "User" ? 
 								<input
-								className="form-control" 
+									onChange={e => handleChangeSalaire(e.target.value)}
+									className="form-control" 
 									type="text" 
 									placeholder="Type de salaire" 
-									defaultValue = { salaryTypeName } />					
+									value = { salaryTypeName } />					
 							:
 								<select 
 								className="custom-select" 
