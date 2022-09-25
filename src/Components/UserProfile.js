@@ -375,7 +375,7 @@ const UserProfile = () => {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: {
-						'UserProfileJourId': userWeekDays[i]
+						'UserProfileJourId': userWeekDays[i],
 						'userProfileId':userProfileId
 					}
 				});
