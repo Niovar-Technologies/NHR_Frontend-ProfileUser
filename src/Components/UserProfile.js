@@ -300,15 +300,45 @@ const UserProfile = () => {
 		userWeekDayCopy[index]  = !check;
 		setUserWeekDays( userWeekDayCopy );
 	}
+	
+	// Handle input change
+	const handleChangeSalaire = (value) => {
+		
+		if( role == "Admin" ){
+			setSalaire( value );
+		}
+	}
+	
 
-	const handleClickSave = async (e) => { 
+	const handleClickSave = async (e) => {
+		
 		e.preventDefault();
-		if( !formType ){ 	// Creation
-			try {
-				var res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
-					method: "POST",
-					headers: {'Content-Type': 'application/json'},
-					body: {
+		
+		// validation
+		let validation = validations();
+		if ( validation ){
+			alert( validation );
+			return;
+		}
+		
+		var method = "";
+		var path = "";
+		if( !formType ){ // Nouveau
+			method 	= "POST";
+			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile";
+		}
+		else{	// Edition
+			method 	= "PUT";
+			path 	= "NiovarRH/UserProfileMicroservices/UserProfile/modifier";
+		}
+		
+
+		// save or modify profile
+		try {
+			var res = await fetch( lbdomain + path, {
+				method: method,
+				headers: {'Content-Type': 'application/json'},
+				body: {
 						'accountId': accountId,
 						'telephone01': telephone01,
 						'telephone02': telephone02,
@@ -325,25 +355,113 @@ const UserProfile = () => {
 						'villeId': villeId,
 						'photoUrl': photoUrl,
 						'userProfileJour': []
-					},
-				});
+				},
+			});
 			
-				let resJson = await res.json();
-				if( resJson.statusCode === 200 ) {
-					let userProfileId = resJson.userProfileId;
-					saveUserJour( userProfileId ); //
-					console.log('save user profile');
-				}
-			}
-			catch (err) {
-				//alert( "Vérifiez votre connexion internet svp" );
-				console.log(err);
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let userProfileId = resJson.userProfileId;
+				saveUserJour( userProfileId ); //
+console.log('save user profile');
 			}
 		}
-		else{	// modification
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		}
 			
+		// update account info
+		updateUser();
+			
+	}
+	
+	
+	// Update a user
+	const updateUser = () => {
+		// Update Account
+		try {
+			var res = await fetch( lbdomain + "/Accounts/", {
+				method: "PUT",
+				headers: {'Content-Type': 'application/json'},
+				body: {
+					'accountId': accountId,
+					'fullName': fullName,
+					'role': role,
+					'email': email,
+					'password': password,
+					'confirmPassword': confirmPassword'
+				},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				console.log('User updated');
+			}
+		}
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
 		}
 	}
+	
+	
+	// validations
+	const validations = () => {
+		let validation = "";
+		
+		// full name
+		if( fullname.length < 3 )
+			validation = "Nom non valide";
+		
+		// email
+		validation = validateEmail( email );
+		if( !validation )
+			validation = "Email non valide";
+		
+		// telephone01
+		validationTelephone = validateTelephone( telephone01 );
+		if( !validationTelephone )
+			validation = "Numéro de téléphone non valide";
+		
+		// telephone02
+		validationTelephone02 = validateTelephone( telephone01 );
+		if( !validationTelephone02 )
+			validation = "Numéro de téléphone de domicile non valide";
+		
+		// password
+		if( password.length < 3 ){
+			validation = "Nom non valide";
+		}
+		
+		// salaire
+		if( salaire.isNaN )
+			validation = "Salaire non valide";
+				
+		// date d'Embauche
+
+		// date de départ
+
+		// date de naissance
+		
+		return validation();
+	}
+	
+	const validateEmail = (email) => {
+		return String(email)
+			.toLowerCase()
+			.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
+	};
+	
+	const validatePhoneNumber = (number) => {
+		return String(number)
+			.toLowerCase()
+			.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			);
+	};
+	/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
 	
 	// Save user jours. Delete and recreate.
 	async function saveUserJour( userProfileId ){
@@ -898,6 +1016,7 @@ const UserProfile = () => {
                             <div className="col-md-6">
                                 <DollarSign /> <label className="small mb-1" >Salaire</label>
 								<input 
+									onChange={e => handleChangeSalaire(e.target.value)} 
 									className="form-control" 
 									type="text" 
 									placeholder="0" 
