@@ -456,8 +456,8 @@ console.log('save user profile');
 			validation = "Nom non valide";
 		
 		// email
-		var validationEmail = validationEmail( email );
-		if( !validationEmail )
+		var validationCourriel = validationEmail( email );
+		if( !validationCourriel )
 			validation = "Email non valide";
 		
 		// telephone01
