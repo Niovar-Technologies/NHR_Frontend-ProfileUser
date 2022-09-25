@@ -325,7 +325,7 @@ const UserProfile = () => {
 	}
 	
 	// Handle input change
-	handleChangeMatricule = (value) => {
+	const handleChangeMatricule = (value) => {
 		
 		if( role == "Admin" ){
 			setMatricule( value );
