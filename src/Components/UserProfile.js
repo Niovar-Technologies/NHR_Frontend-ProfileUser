@@ -395,7 +395,7 @@ const UserProfile = () => {
 						'paysId': paysId,
 						'provinceId': provinceId,
 						'villeId': villeId,
-						'photoUrl': photoUrl,
+						'photoUrl': '',
 						'userProfileJour': []
 				},
 			});
