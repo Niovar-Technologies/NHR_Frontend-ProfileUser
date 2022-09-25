@@ -476,7 +476,7 @@ console.log('save user profile');
 		
 		// password
 		var validationPass = validationPasword( password, repeatPassword );
-		if( password && validationPass != "" )
+		if( password && validationPass )
 			validation = validationPassword;
 		
 		return validation();
