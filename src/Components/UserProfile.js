@@ -701,6 +701,9 @@ console.log('save user profile');
 					getUserWeekdays( [] );
 					setSalaryTypeName( 'Non defini' );
 				}
+				
+				setPassword( userProfileData.password );
+				setRepeatPassword( userProfileData.password );
 			
 			}
 			else {
@@ -1223,7 +1226,7 @@ console.log('save user profile');
                                 <input 
 									className="form-control" 
 									id="password" 
-									type="text" 
+									type="password" 
 									placeholder="Mot de passe" 
 									value = { password }
 									onChange={e => handleChangePassword(e.target.value)}
@@ -1235,9 +1238,8 @@ console.log('save user profile');
                                 <input 
 									className="form-control" 
 									id="inputBirthday" 
-									type="text" 
+									type="password" 
 									placeholder="Repetition du mot de passe" 
-									defaultValue = { password }
 									value = { repeatPassword }
 									onChange={e => handleChangePasswordRepeat(e.target.value)} 
 								/>
