@@ -301,11 +301,75 @@ const UserProfile = () => {
 		setUserWeekDays( userWeekDayCopy );
 	}
 
-	const handleClick = (e) => {
+	const async handleClickSave = (e) => {
 		e.preventDefault();
-		location.replace( btnLink );
+		if( !formType ){ 	// Creation
+			try {
+			
+				var res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
+					method: "POST",
+					headers: {'Content-Type': 'application/json'},
+					body: {
+						'accountId': accountId,
+						'telephone01': telephone01,
+						'telephone02': telephone02,
+						'sexeId': sexeId,
+						'departementId': departementId,
+						'posteId': posteId,
+						'typeSalaireId': typeSalaireId,
+						'salaire': salaire,
+						'dateEmbauche': dateEmbauche,
+						'dateDepart': dateDepart,  
+						'dateNaissance': dateNaissance,
+						'paysId': paysId,
+						'provinceId': provinceId,
+						'villeId': villeId,
+						'photoUrl': photoUrl,
+						'userProfileJour': []
+					},
+				});
+			
+				let resJson = await res.json();
+				if( resJson.statusCode === 200 ) {
+					let userProfileId = resJson.userProfileId;
+					saveUserJour( userProfileId ); //
+				}
+			}
+
+		}
+		else{	// modification
+			
+		}
 	}
 	
+	// Save user jours. Delete and recreate.
+	function saveUserJour( userProfileId ){
+		// Delete
+		if( userWeekDays.count ){
+			res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/", {
+					method: "PUT",
+					headers: {'Content-Type': 'application/json'},
+					body: {
+						'userProfileId': userProfileId
+					}
+				
+			}
+		}
+		
+		// Create
+		for( var i == 0; i < userWeekDays; i++ ){
+			res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
+					method: "POST",
+					headers: {'Content-Type': 'application/json'},
+					body: {
+						'UserProfileJourId': userWeekDays[i]
+						'userProfileId':userProfileId
+					}
+				
+			}
+		}
+	}
+
 	const handleSelectDepartement = (value) => {
 		let departementId = value;
 		
@@ -391,111 +455,109 @@ const UserProfile = () => {
 
 	
 	// get user profile
-// var userProfileData = [];
-async function  getUserProfile(){
+	// var userProfileData = [];
+	async function  getUserProfile(){
 	
-	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile/ProfileFromAccount/" + accountId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
 			
-		let resJson = await res.json();
-		if( resJson.statusCode === 200 ) {
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
 			 
-			var userProfileData		= resJson.userProfile[0];
-			if( userProfileData != null ){
-				let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
-				let dateEmbaucheObj 	=   new Date( date_embauche );
-				let dateDepartObj		=   new Date( date_depart ) ;
+				var userProfileData		= resJson.userProfile[0];
+				if( userProfileData != null ){
+					let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+					let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
+					let dateEmbaucheObj 	=   new Date( date_embauche );
+					let dateDepartObj		=   new Date( date_depart ) ;
 
-				userProfileData.dateEmbauche = dateEmbaucheObj;
-				userProfileData.dateDepart 	 = dateDepartObj;
+					userProfileData.dateEmbauche = dateEmbaucheObj;
+					userProfileData.dateDepart 	 = dateDepartObj;
 				
-				// user days to checkbox
-				let userProfileId 	= userProfileData.id;
-				getUserJours( userProfileId );
+					// user days to checkbox
+					let userProfileId 	= userProfileData.id;
+					getUserJours( userProfileId );
 
-				setDateEmbauche( userProfileData.dateEmbauche ); //
-				setDateDepart( userProfileData.dateDepart );	// 
-				setPaysId( userProfileData.paysId );	// Pays select's default value
+					setDateEmbauche( userProfileData.dateEmbauche ); //
+					setDateDepart( userProfileData.dateDepart );	// 
+					setPaysId( userProfileData.paysId );	// Pays select's default value
 			
-				setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
-				if( userProfileData.provinceId )				// Display user defaut
-					setShowProvince( true );
+					setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
+					if( userProfileData.provinceId )				// Display user defaut
+						setShowProvince( true );
 			
-				setVilleId( userProfileData.villeId );	// Villes select's default valueg
-				if( userProfileData.villeId )				// Display user defaut
-					setShowVille( true );
+					setVilleId( userProfileData.villeId );	// Villes select's default valueg
+					if( userProfileData.villeId )				// Display user defaut
+						setShowVille( true );
 				
-				setStatusId( userProfileData.statutId );
-				setTelephone01( userProfileData.telephone01 );
-				setTelephone02( userProfileData.telephone02 );
-				setSexeId( userProfileData.sexeId );
-				setPosteId( userProfileData.posteId );
-				setDepartementId( userProfileData.departementId );
-				if( userProfileData.salaryTypeid )
-					setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
-				else
+					setStatusId( userProfileData.statutId );
+					setTelephone01( userProfileData.telephone01 );
+					setTelephone02( userProfileData.telephone02 );
+					setSexeId( userProfileData.sexeId );
+					setPosteId( userProfileData.posteId );
+					setDepartementId( userProfileData.departementId );
+					if( userProfileData.salaryTypeid )
+						setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
+					else
+						setSalaryTypeName( 'Non defini' );
+			
+					setSalaire( userProfileData.salaire );
+					setStatusId( userProfileData.statutId );
+					setFormType( '1' );
+				}
+				else{
+					getUserWeekdays( [] );
 					setSalaryTypeName( 'Non defini' );
+				}
 			
-				setSalaire( userProfileData.salaire );
-				setStatusId( userProfileData.statutId );
-				setFormType( '1' );
 			}
-			else{
-				getUserWeekdays( [] );
+			else {
+				alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
 			}
-			
-		}
-		else {
-			alert( "Un probleme est survenu" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
 
 	
-	// console.log( accountId );
-var userJoursId = [];
-var accountInfo = "";
-
-// get user profile info
-async function getAccountInfo(){
-	try {
-		let res = await fetch( lbdomain + "/Accounts/" + accountId, {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
+	// get user profile info
+	async function getAccountInfo(){
+		try {
+			let res = await fetch( lbdomain + "/Accounts/" + accountId, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
 			
-		let resJson = await res.json();
-		if( resJson.accountId ) {
-			accountInfo   = resJson;
-			// setUserProfile( result );
-			setMatricule( accountInfo.matricule );
-			setSalaryTypeid( accountInfo.salaryTypeid );
-			setFullName( accountInfo.fullName );
-			setEmail( accountInfo.email );
+			var accountInfo = "";
+			let resJson = await res.json();
+			if( resJson.accountId ) {
+				accountInfo   = resJson;
+				// setUserProfile( result );
+				setMatricule( accountInfo.matricule );
+				setSalaryTypeid( accountInfo.salaryTypeid );
+				setFullName( accountInfo.fullName );
+				setEmail( accountInfo.email );
 			
-			getUserProfile();
-		}
-		else {
-			alert( "Compte non trouvé" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
+				getUserProfile();
+			}
+			else {
+				alert( "Compte non trouvé" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
 
 	
 	
@@ -611,7 +673,6 @@ async function getAccountInfo(){
 	
 
 	useEffect(() => {
-		
 		getAccountInfo();
 		getPays();
 		getDepartements();
@@ -984,7 +1045,11 @@ async function getAccountInfo(){
 								/>
                             </div>
                         </div>
-                        <button className="btn btn-primary" type="button">
+                        <button 
+							className="btn btn-primary" 
+							type="button"  
+							onClick={handleClickSave}
+							>
 							{ !formType ? 
 									"Enregistrer" 
 								: 
