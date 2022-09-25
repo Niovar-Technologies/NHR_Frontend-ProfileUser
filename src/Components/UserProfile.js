@@ -249,6 +249,10 @@ async function GetNomEntreprise(){
 const UserProfile = () => {
 	const history = useHistory();
 
+{ repeatPassword }password
+	const [ password, setPassword ]= useState(''); //	
+	const [ repeatPassword, setRepeatPassword ]= useState(''); //
+	
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
 	const [ dateEmbauche, setDateEmbauche ] =  useState( '' );
@@ -292,6 +296,16 @@ const UserProfile = () => {
 	const [ salaryTypeid, setSalaryTypeid ] = useState( '' );
 	const [ fullName, setFullName ] = useState( '' );
 	const [ email, setEmail ] = useState( '' );
+	
+	// Handle password change
+	const handleChangePassword = (value) => {
+		setPassword( value );
+	}
+	
+	// Handle password repeat change
+	const handleChangePasswordRepeat = (value) => {
+		setRepeatPassword( value );
+	}
 	
 	// Handle checkbox change
 	const handleCheck = (index) => {
@@ -389,7 +403,7 @@ console.log('save user profile');
 					'role': role,
 					'email': email,
 					'password': password,
-					'confirmPassword': confirmPassword'
+					'confirmPassword': confirmPassword
 				},
 			});
 			
@@ -414,54 +428,59 @@ console.log('save user profile');
 			validation = "Nom non valide";
 		
 		// email
-		validation = validateEmail( email );
+		validation = validationEmail( email );
 		if( !validation )
 			validation = "Email non valide";
 		
 		// telephone01
-		validationTelephone = validateTelephone( telephone01 );
-		if( !validationTelephone )
+		validationTelephone = validationTelephone( telephone01 );
+		if( telephone01 && !validationTelephone )
 			validation = "Numéro de téléphone non valide";
 		
 		// telephone02
-		validationTelephone02 = validateTelephone( telephone01 );
-		if( !validationTelephone02 )
+		validationTelephone02 = validationTelephone( telephone02 );
+		if( telephone02 && !validationTelephone02 )
 			validation = "Numéro de téléphone de domicile non valide";
 		
-		// password
-		if( password.length < 3 ){
-			validation = "Nom non valide";
-		}
-		
 		// salaire
-		if( salaire.isNaN )
+		if( salaire && salaire.isNaN )
 			validation = "Salaire non valide";
-				
-		// date d'Embauche
-
-		// date de départ
-
-		// date de naissance
+		
+		// password
+		validationPasword( password, repeatPassword );
+		if( password && !validationPassword )
+			validation = validationPassword;
 		
 		return validation();
 	}
 	
-	const validateEmail = (email) => {
+	const validationEmail = (email) => {
 		return String(email)
 			.toLowerCase()
 			.match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			);
 	};
 	
-	const validatePhoneNumber = (number) => {
+	const validationPhoneNumber = (number) => {
 		return String(number)
 			.toLowerCase()
 			.match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 			);
 	};
-	/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
+	
+	const validationPassword = (password, repeatPassword) => {
+		let validation = "";
+		if( password.length < 6 )
+			validation = "Mot de passe trop court"
+		if( password.length > 70 )
+			validation = "Mot de passe trop long"
+		if( password != repeatPassword)
+			validation = "Mots de passe differents"
+		
+		return validation;
+	};
 	
 	// Save user jours. Delete and recreate.
 	async function saveUserJour( userProfileId ){
@@ -1170,7 +1189,8 @@ console.log('save user profile');
 									id="password" 
 									type="text" 
 									placeholder="Mot de passe" 
-									defaultValue = "" 
+									defaultValue = { password }
+									onChange={e => handleChangePassword(e.target.value)}
 								/>
                             </div>
 							
@@ -1181,7 +1201,8 @@ console.log('save user profile');
 									id="inputBirthday" 
 									type="text" 
 									placeholder="Repetition du mot de passe" 
-									defaultValue = ""
+									defaultValue = { repeatPassword }
+									onChange={e => handleChangePasswordRepeat(e.target.value)} 
 								/>
                             </div>
                         </div>
