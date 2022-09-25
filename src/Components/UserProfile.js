@@ -332,7 +332,7 @@ const UserProfile = () => {
 	}
 		
 	// Handle input change
-	const handleChangeFullname = (value) => {
+	const handleChangeFullName = (value) => {
 		setFullName( value );
 	}
 		
@@ -348,10 +348,7 @@ const UserProfile = () => {
 		
 	// Handle input change
 	const handleChangeTelephone02 = (value) => {
-		
-		if( role == "Admin" ){
-			setTelephone02( value );
-		}
+		setTelephone02( value );
 	}
 	
 
@@ -455,7 +452,7 @@ console.log('save user profile');
 		let validation = "";
 		
 		// full name
-		if( fullname.length < 3 )
+		if( fullName.length < 3 )
 			validation = "Nom non valide";
 		
 		// email
@@ -927,7 +924,7 @@ console.log('save user profile');
                             <div className="col-md-6">
                                 <User /> <label className="small mb-1">Nom complet</label>
                                 <input 
-									onChange={e => handleChangeFullname(e.target.value)} 
+									onChange={e => handleChangeFullName(e.target.value)} 
 									className="form-control" 
 									type="text" 
 									placeholder="Votre nom complet" 
