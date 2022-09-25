@@ -461,7 +461,7 @@ console.log('save user profile');
 			validation = "Email non valide";
 		
 		// telephone01
-		validationTelephone = validationTelephone( telephone01 );
+		validationTelephone = validationPhoneNumber( telephone01 );
 		if( telephone01 && !validationTelephone )
 			validation = "Numéro de téléphone non valide";
 		
@@ -935,6 +935,7 @@ console.log('save user profile');
                                 <Mail /> <label className="small mb-1">Email</label>
                                 <input 
 									onChange={e => handleChangeEmail(e.target.value)}
+									id="email"
 									className="form-control" 
 									type="email" 
 									placeholder="Votre adresse courriel" 
