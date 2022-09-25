@@ -456,22 +456,22 @@ console.log('save user profile');
 			validation = "Nom non valide";
 		
 		// email
-		validation = validationEmail( email );
-		if( !validation )
+		var validationEmail = validationEmail( email );
+		if( !validationEmail )
 			validation = "Email non valide";
 		
 		// telephone01
 		var validationTelephone01 = validationPhoneNumber( telephone01 );
-		if( telephone01 && !validationTelephone01 )
+		if( !validationTelephone01 )
 			validation = "Numéro de téléphone non valide";
 		
 		// telephone02
 		var validationTelephone02 = validationPhoneNumber( telephone02 );
-		if( telephone02 && !validationTelephone02 )
+		if( telephone02 && !validationTelephone02 ) // not mandatory
 			validation = "Numéro de téléphone de domicile non valide";
 		
 		// salaire
-		if( salaire && salaire.isNaN )
+		if( salaire && salaire.isNaN ) // not mandatory
 			validation = "Salaire non valide";
 		
 		// password
@@ -491,7 +491,7 @@ console.log('save user profile');
 	
 	const validationPhoneNumber = (number) => {
 		var re 	= /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var rep = re.test(email);
+        var rep = re.test(number);
 		
 		return rep;
 	};
