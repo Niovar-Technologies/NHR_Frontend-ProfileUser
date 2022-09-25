@@ -702,8 +702,8 @@ console.log('save user profile');
 					setSalaryTypeName( 'Non defini' );
 				}
 				
-				setPassword( userProfileData.password );
-				setRepeatPassword( userProfileData.password );
+				// setPassword( userProfileData.password );
+				// setRepeatPassword( userProfileData.password );
 			
 			}
 			else {
@@ -1237,7 +1237,7 @@ console.log('save user profile');
                                 <Lock /> <label className="small mb-1" >Repeter le mot de passe</label>
                                 <input 
 									className="form-control" 
-									id="inputBirthday" 
+									id="repeatPassword" 
 									type="password" 
 									placeholder="Repetition du mot de passe" 
 									value = { repeatPassword }
