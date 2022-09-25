@@ -479,7 +479,7 @@ console.log('save user profile');
 		if( password && validationPass )
 			validation = validationPassword; 
 		
-		return validation();
+		return validation;
 	}
 	
 	const validationEmail = (email) => {
