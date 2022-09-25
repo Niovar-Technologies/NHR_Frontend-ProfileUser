@@ -462,7 +462,7 @@ console.log('save user profile');
 		
 		// telephone01
 		var validationTelephone01 = validationPhoneNumber( telephone01 );
-		if( telephone01 && !validationTelephone )
+		if( telephone01 && !validationTelephone01 )
 			validation = "Numéro de téléphone non valide";
 		
 		// telephone02
