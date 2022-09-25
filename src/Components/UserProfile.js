@@ -301,7 +301,7 @@ const UserProfile = () => {
 		setUserWeekDays( userWeekDayCopy );
 	}
 
-	async const handleClickSave = (e) => { 
+	const handleClickSave = async (e) => { 
 		e.preventDefault();
 		if( !formType ){ 	// Creation
 			try {
