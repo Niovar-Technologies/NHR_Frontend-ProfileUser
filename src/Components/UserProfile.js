@@ -301,7 +301,7 @@ const UserProfile = () => {
 		setUserWeekDays( userWeekDayCopy );
 	}
 
-	const async handleClickSave = (e) => {
+	async const handleClickSave = (e) => { 
 		e.preventDefault();
 		if( !formType ){ 	// Creation
 			try {
@@ -343,7 +343,7 @@ const UserProfile = () => {
 	}
 	
 	// Save user jours. Delete and recreate.
-	function saveUserJour( userProfileId ){
+	async function saveUserJour( userProfileId ){
 		// Delete
 		if( userWeekDays.count ){
 			res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/", {
