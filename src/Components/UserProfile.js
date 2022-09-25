@@ -333,7 +333,7 @@ const UserProfile = () => {
 		
 	// Handle input change
 	const handleChangeFullname = (value) => {
-		setFullname( value );
+		setFullName( value );
 	}
 		
 	// Handle input change
