@@ -249,7 +249,6 @@ async function GetNomEntreprise(){
 const UserProfile = () => {
 	const history = useHistory();
 
-{ repeatPassword }password
 	const [ password, setPassword ]= useState(''); //	
 	const [ repeatPassword, setRepeatPassword ]= useState(''); //
 	
@@ -1226,7 +1225,7 @@ console.log('save user profile');
 									id="password" 
 									type="text" 
 									placeholder="Mot de passe" 
-									defaultValue = { password }
+									value = { password }
 									onChange={e => handleChangePassword(e.target.value)}
 								/>
                             </div>
@@ -1238,7 +1237,8 @@ console.log('save user profile');
 									id="inputBirthday" 
 									type="text" 
 									placeholder="Repetition du mot de passe" 
-									defaultValue = { repeatPassword }
+									defaultValue = { password }
+									value = { repeatPassword }
 									onChange={e => handleChangePasswordRepeat(e.target.value)} 
 								/>
                             </div>
