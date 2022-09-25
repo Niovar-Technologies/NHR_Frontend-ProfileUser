@@ -391,7 +391,7 @@ const UserProfile = () => {
 						'salaire': salaire,
 						'dateEmbauche': dateEmbauche,
 						'dateDepart': dateDepart,  
-						'dateNaissance': dateNaissance,
+						'dateNaissance': '',
 						'paysId': paysId,
 						'provinceId': provinceId,
 						'villeId': villeId,
