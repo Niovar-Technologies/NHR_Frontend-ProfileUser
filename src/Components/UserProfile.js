@@ -475,7 +475,7 @@ console.log('save user profile');
 			validation = "Salaire non valide";
 		
 		// password
-		var validationPass = validationPasword( password, repeatPassword );
+		var validationPass = validationPassword( password, repeatPassword );
 		if( password && validationPass )
 			validation = validationPassword; 
 		
