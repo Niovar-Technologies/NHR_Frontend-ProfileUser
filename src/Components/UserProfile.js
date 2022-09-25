@@ -461,12 +461,12 @@ console.log('save user profile');
 			validation = "Email non valide";
 		
 		// telephone01
-		validationTelephone = validationPhoneNumber( telephone01 );
+		var validationTelephone = validationPhoneNumber( telephone01 );
 		if( telephone01 && !validationTelephone )
 			validation = "Numéro de téléphone non valide";
 		
 		// telephone02
-		validationTelephone02 = validationTelephone( telephone02 );
+		var validationTelephone02 = validationTelephone( telephone02 );
 		if( telephone02 && !validationTelephone02 )
 			validation = "Numéro de téléphone de domicile non valide";
 		
@@ -475,8 +475,8 @@ console.log('save user profile');
 			validation = "Salaire non valide";
 		
 		// password
-		validationPasword( password, repeatPassword );
-		if( password && !validationPassword )
+		var validationPass = validationPasword( password, repeatPassword );
+		if( password && validationPass != "" )
 			validation = validationPassword;
 		
 		return validation();
