@@ -368,8 +368,8 @@ const UserProfile = () => {
 			}
 		}
 		
-		// Create
-		for( var i == 0; i < userWeekDays; i++ ){
+		// Create user jours
+		for( var i = 0; i < userWeekDays; i++ ){
 			try{
 				res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
 					method: "POST",
