@@ -377,7 +377,7 @@ console.log('save user profile');
 	
 	
 	// Update a user
-	const updateUser = () => {
+	const updateUser = async() => {
 		// Update Account
 		try {
 			var res = await fetch( lbdomain + "/Accounts/", {
