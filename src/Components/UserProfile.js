@@ -335,7 +335,9 @@ const UserProfile = () => {
 					saveUserJour( userProfileId ); //
 				}
 			}
-
+			catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
 		}
 		else{	// modification
 			
