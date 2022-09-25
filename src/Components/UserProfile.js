@@ -305,7 +305,6 @@ const UserProfile = () => {
 		e.preventDefault();
 		if( !formType ){ 	// Creation
 			try {
-			
 				var res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
@@ -333,11 +332,13 @@ const UserProfile = () => {
 				if( resJson.statusCode === 200 ) {
 					let userProfileId = resJson.userProfileId;
 					saveUserJour( userProfileId ); //
+					console.log('save user profile');
 				}
 			}
 			catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
+				//alert( "Vérifiez votre connexion internet svp" );
+				console.log(err);
+			}
 		}
 		else{	// modification
 			
@@ -348,26 +349,44 @@ const UserProfile = () => {
 	async function saveUserJour( userProfileId ){
 		// Delete
 		if( userWeekDays.count ){
-			res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/", {
+			try{
+				res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/", {
 					method: "PUT",
 					headers: {'Content-Type': 'application/json'},
 					body: {
 						'userProfileId': userProfileId
 					}
-				
+				});
+				let resJson = await res.json();
+				if( resJson.statusCode === 200 ) {
+					console.log( 'saveUserJour: delete' ); //
+				}
+			}
+			catch (err) {
+				//alert( "Vérifiez votre connexion internet svp" );
+				console.log(err);
 			}
 		}
 		
 		// Create
 		for( var i == 0; i < userWeekDays; i++ ){
-			res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
+			try{
+				res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: {
 						'UserProfileJourId': userWeekDays[i]
 						'userProfileId':userProfileId
 					}
-				
+				});
+				let resJson = await res.json();
+				if( resJson.statusCode === 200 ) {
+					console.log( 'saveUserJour: create' ); //
+				}
+			}
+			catch (err) {
+				//alert( "Vérifiez votre connexion internet svp" );
+				console.log(err);
 			}
 		}
 	}
