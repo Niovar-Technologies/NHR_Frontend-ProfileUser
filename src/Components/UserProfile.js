@@ -898,13 +898,13 @@ const UserProfile = () => {
 	};
     
 	// On file select (from the pop up)
-	onFileChange = event => {
+	const onFileChange = event => {
 		// Update the state
 		this.setState({ selectedFile: event.target.files[0] });
 	};
 
 	// On file upload (click the upload button)
-	onFileUpload = async () => {
+	const conFileUpload = async () => {
     
 		// Create an object of formData
 		const formData = new FormData();
@@ -987,8 +987,8 @@ const UserProfile = () => {
                     <img className="img-account-profile rounded-circle mb-2" src="https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg" alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
                  
-					<input type="file" onChange={this.onFileChange} />
-					<button className="btn btn-primary"onClick={this.onFileUpload}>
+					<input type="file" onChange={onFileChange} />
+					<button className="btn btn-primary"onClick={onFileUpload}>
 						Changer l'image
 					</button>
                 </div>
