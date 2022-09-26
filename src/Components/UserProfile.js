@@ -254,6 +254,7 @@ const UserProfile = () => {
 	
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
+	const [ profileId, setProfileId ] =  useState( '' );
 	const [ dateEmbauche, setDateEmbauche ] =  useState( '' );
 	const [ dateDepart, setDateDepart ]  =  useState( '' );  
 	const [ paysId, setPaysId ] =  useState( '' );  
@@ -370,7 +371,7 @@ const UserProfile = () => {
 		}
 		else{	// Edition
 			method 	= "PUT";
-			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + accountId;
+			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + profileId;
 		}
 
 		// save or modify profile
@@ -380,6 +381,7 @@ const UserProfile = () => {
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify(
 {
+  "id" : ( profileId ) ? profileId : "undefined",
   "accountId": accountId,
   "telephone01": telephone01,
   "telephone02": telephone02,
@@ -683,6 +685,10 @@ console.log('save user profile');
 			 
 				var userProfileData		= resJson.userProfile[0];
 				if( userProfileData != null ){
+					
+					let userProfileId 	= userProfileData.id;
+					setProfileId( userProfileId );
+					
 					let date_embauche = moment( userProfileData.dateEmbauche, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
 					let date_depart	  = moment( userProfileData.dateDepart, 'YYYY-MM-DDTHH:mm:ss' ).format('YYYY-MM-DD');
 					let dateEmbaucheObj 	=   new Date( date_embauche );
@@ -692,7 +698,6 @@ console.log('save user profile');
 					userProfileData.dateDepart 	 = dateDepartObj;
 				
 					// user days to checkbox
-					let userProfileId 	= userProfileData.id;
 					getUserJours( userProfileId );
 
 					setDateEmbauche( userProfileData.dateEmbauche ); //
