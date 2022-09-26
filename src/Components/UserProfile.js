@@ -326,27 +326,26 @@ const UserProfile = () => {
 				method: method,
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify(
-{
-  "id" : ( profileId ) ? profileId : "undefined",
-  "accountId": accountId,
-  "telephone01": telephone01,
-  "telephone02": telephone02,
-  "sexeId": sexeId,
-  "departementId": departementId,
-  "posteId": posteId,
-  "typeSalaireId": salaryTypeid,
-  "salaire": salaire,
-  "dateEmbauche": "2022-09-24T23:01:27.829Z",
-  "dateDepart": "2022-09-24T23:01:27.829Z",
-  "dateNaissance": "2022-09-24T23:01:27.829Z",
-  "paysId": paysId,
-  "provinceId": provinceId,
-  "villeId": villeId,
-  "statutId": 1,
-  "photoUrl": "foo.jpg",
-  "userProfileJour": []
-}
-				)
+				{
+					"id" : ( profileId ) ? profileId : "undefined",
+					"accountId": accountId,
+					"telephone01": telephone01,
+					"telephone02": telephone02,
+					"sexeId": sexeId,
+					"departementId": departementId,
+					"posteId": posteId,
+					"typeSalaireId": salaryTypeid,
+					"salaire": salaire,
+					"dateEmbauche": "2022-09-24T23:01:27.829Z",
+					"dateDepart": "2022-09-24T23:01:27.829Z",
+					"dateNaissance": "2022-09-24T23:01:27.829Z",
+					"paysId": paysId,
+					"provinceId": provinceId,
+					"villeId": villeId,
+					"statutId": 1,
+					"photoUrl": "foo.jpg",
+					"userProfileJour": []
+				})
 				
 			});
 			
@@ -434,12 +433,10 @@ const UserProfile = () => {
 			validation = "Homme ou femme?"; 
 		}
 	
-		// departementId
+		// departementId // posteId
 		if( departementId === '' )
-			validation = "Choisissez un Département de travail?"; 
-		
-		// posteId
-		if( posteId === '' )
+			validation = "Choisissez un Département de travail"; 
+		else if( posteId === '' )
 			validation = "Choisissez un Poste de travail"; 
 		
 		// paysId // provinceId // villeId
