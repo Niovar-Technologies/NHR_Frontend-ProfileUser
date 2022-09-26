@@ -501,7 +501,7 @@ const UserProfile = () => {
 		// Delete
 		if( userWeekDays ){
 			try{
-				res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/delete/" + profileId, {
+				var res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/delete/" + profileId, {
 					method: "DELETE",
 					headers: {'Content-Type': 'application/json'},
 				});
