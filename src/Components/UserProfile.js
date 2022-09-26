@@ -154,8 +154,8 @@ async function getUserJours( userProfileId ){
 				let jourId = result[i].jourId;
 				userProfilJours.push( jourId );
 			}
-
-			getUserWeekdays( userProfilJours );
+		
+			setUserCheckedDaysArray( userProfilJours );
 			// setWeekDays( userWeekDays ); 
 		}
 		else {
@@ -171,23 +171,7 @@ async function getUserJours( userProfileId ){
 }
 
 
-// Create initial user checked  array for week days checkboxes 
-var userWeekDayArray 	= [];
-function getUserWeekdays( userJours ){
-		
-	for( var i = 0; i < days.length; i++ ){
-		let to_check = false;
-	
-		if( userJours.includes( days[i].id ) )
-			to_check = true;
-			
-		userWeekDayArray.push( to_check );
-	}
-	console.log( userWeekDayArray );
-}
 
-
-	
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 	
@@ -275,7 +259,7 @@ const UserProfile = () => {
 	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
 
 
-	const [ userWeekDays, setUserWeekDays ] = useState( userWeekDayArray );	// Default users days to checked
+	const [ userWeekDays, setUserWeekDays ] = useState( '' );	// Default users days to checked
 
 	const [ DepartementList, setDepartementList ] = useState( [] );  	// List of all departments to select
 	const [ PosteList, setPosteList ] = useState([]); 				// List of all post to select
@@ -552,6 +536,7 @@ const UserProfile = () => {
 	
 	// Save user jours. Delete and recreate.
 	async function saveUserJour(){
+console.log( userWeekDays.count );		
 		// Delete
 		if( userWeekDays.count ){
 			try{
@@ -570,13 +555,14 @@ const UserProfile = () => {
 			}
 		}
 		
+console.log( userWeekDays.count );
 		// Create user jours
-		for( var i = 0; i < userWeekDays; i++ ){
+		for( var i = 0; i < userWeekDays.count; i++ ){
 			
-			if( !userWeekDays[i].id )
-				return;
+			if( userWeekDays[i] === false )
+				continue;
 			
-			var dayid 	= userWeekDays[i].id;
+			var dayid 	= i;
 			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour"; 
 			
 			try{
@@ -738,7 +724,7 @@ const UserProfile = () => {
 					setFormType( '1' );
 				}
 				else{
-					getUserWeekdays( [] );
+					setUserCheckedDaysArray( [] );
 					setSalaryTypeName( 'Non defini' );
 				}
 				
@@ -791,6 +777,20 @@ const UserProfile = () => {
 		};
 	}
 
+	// Create initial user checked  array for week days checkboxes 
+	function setUserCheckedDaysArray( userJours ){
+		var userWeekDaysArray 	= [];
+		for( var i = 0; i < days.length; i++ ){
+			let to_check = false;
+	
+			if( userJours.includes( days[i].id ) )
+				to_check = true;
+			
+			userWeekDayArray.push( to_check );
+		}
+		setUserWeekDays( userWeekDaysArray );
+		console.log( userWeekDayArray );
+	}
 	
 	
 	// departement List
