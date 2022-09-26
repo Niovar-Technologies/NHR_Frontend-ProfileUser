@@ -426,14 +426,14 @@ console.log('save user profile');
 			var res = await fetch( lbdomain + "/Accounts/", {
 				method: "PUT",
 				headers: {'Content-Type': 'application/json'},
-				body: {
+				body: JSON.stringify({
 					'accountId': accountId,
 					'fullName': fullName,
 					'role': role,
 					'email': email,
 					'password': password,
 					'confirmPassword': repeatPassword
-				},
+				}),
 			});
 			
 			let resJson = await res.json();
