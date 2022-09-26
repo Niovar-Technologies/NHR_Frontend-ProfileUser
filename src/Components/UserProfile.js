@@ -344,6 +344,8 @@ const UserProfile = () => {
 		if( !formType ){ // Nouveau
 			delete json.id;
 
+console.log( json );
+
 		// save or modify profile
 		try {
 			var res = await fetch( lbdomain + path, {
