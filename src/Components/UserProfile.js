@@ -526,7 +526,6 @@ console.log( json );
 			
 			if( userWeekDays[i] === false )
 				continue;
-loadbalancer.niovarpaie.ca/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour//4
 
 			var dayid 	= i;
 			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour/"; 
@@ -902,53 +901,38 @@ loadbalancer.niovarpaie.ca/NiovarRH/UserProfileMicroservices/UserProfileJour/pos
 		};
 	}
 	// FILE UPLOAD
-	const state = {
-		// Initially, no file is selected
-		selectedFile: null
-	};
-    
-	// On file select (from the pop up)
-	const onFileChange = event => {
-		// Update the state
-		setState({ selectedFile: event.target.files[0] });
-	};
-
-	// On file upload (click the upload button)
-	const onFileUpload = async () => {
-    
-		// Create an object of formData
-		const formData = new FormData();
-    
-		// Update the formData object
-		formData.append(
-			"myFile",
-			state.selectedFile,
-			state.selectedFile.name
-		);
-    
-		// Details of the uploaded file
-		console.log(state.selectedFile);
-    
-		// Request made to the backend api
-		// Send formData object
-		axios.post("api/uploadfile", formData);
-		var res = await fetch( appfichier + "/upload", {
-			method: "POST",
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				'file':formData
+	
+	const handleChangeFile = async (event) => {
+		const file = event.target.files[0];
+		let formData = new FormData();
+		formData.append('file', file);
+		
+		try{
+	
+			var res = await fetch( appfichier + "/upload", {
+				method: "POST",
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					'file':formData
+				})
+		
+				let resJson = await res.json();
+				if( resJson.resJson === 200 ) {
+					// get the uploaded file name
+					var name = resJson.file_url;
+					alert( name );
+				}
+				else{
+					console.log( "Uploaded File error" );
+				}
 			})
-		});
-		let resJson = await res.json();
-		if( resJson.resJson === 200 ) {
-			// get the uploaded file name
-			var name = resJson.file_url;
-			alert( name );
 		}
-		else{
-			console.log( "Uploaded File error" );
-		}
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
 	};
+	
 		
 	useEffect(() => {
 		getAccountInfo();
@@ -996,8 +980,9 @@ loadbalancer.niovarpaie.ca/NiovarRH/UserProfileMicroservices/UserProfileJour/pos
                     
                     <img className="img-account-profile rounded-circle mb-2" src="https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg" alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
-                 
-					<input type="file" onChange={onFileChange} />
+
+					<input type="file" onChange={{e => handleChangeFile(e)}}>
+					
 					<button className="btn btn-primary"onClick={onFileUpload}>
 						Changer l'image
 					</button>
