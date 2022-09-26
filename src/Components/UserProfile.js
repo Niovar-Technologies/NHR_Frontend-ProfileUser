@@ -922,7 +922,7 @@ const UserProfile = () => {
 		// Request made to the backend api
 		// Send formData object
 		axios.post("api/uploadfile", formData);
-		var res = await fetch( appfichier + "/upmoad", {
+		var res = await fetch( appfichier + "/upload", {
 			method: "POST",
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -932,7 +932,7 @@ const UserProfile = () => {
 		let resJson = await res.json();
 		if( resJson.resJson === 200 ) {
 			// get the uploaded file name
-			var name = resJson.file_url";
+			var name = resJson.file_url;
 			alert( name );
 		}
 		else{
