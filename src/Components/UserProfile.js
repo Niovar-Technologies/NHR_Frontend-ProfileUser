@@ -442,16 +442,12 @@ const UserProfile = () => {
 		if( posteId === '' )
 			validation = "Choisissez un Poste de travail"; 
 		
-		// paysId
+		// paysId // provinceId // villeId
 		if( paysId === '' )
 			validation = "Choisissez un Pays"; 
-		
-		// provinceId
-		if( provinceId === '' )
+		else if( provinceId === '' )
 			validation = "Choisissez une Province";
-		
-		// villeId
-		if( villeId === '' )
+		else if( villeId === '' )
 			validation = "Choisissez une Ville";
 		
 		return validation;
