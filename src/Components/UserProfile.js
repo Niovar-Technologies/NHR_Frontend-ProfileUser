@@ -497,10 +497,9 @@ const UserProfile = () => {
 	};
 	
 	// Save user jours. Delete and recreate.
-	async function saveUserJour(){
-console.log( userWeekDays.count );		
+	async function saveUserJour(){	
 		// Delete
-		if( userWeekDays.count ){
+		if( userWeekDays ){
 			try{
 				res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/" + profileId, {
 					method: "DELETE",
@@ -517,7 +516,7 @@ console.log( userWeekDays.count );
 			}
 		}
 		
-console.log( userWeekDays.count );
+console.log( userWeekDays );
 		// Create user jours
 		for( var i = 0; i < userWeekDays.count; i++ ){
 			
