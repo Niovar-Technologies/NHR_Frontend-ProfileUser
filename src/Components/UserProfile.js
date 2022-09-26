@@ -358,9 +358,11 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let userProfileId = resJson.userProfileId;
-				setProfileId( userProfileId );
 				
-				saveUserJour(); //
+				setProfileId( userProfileId ); // Todo: use a useEffect
+
+				saveUserJour( resJson.userProfileId ); //
+				
 				alert( "Votre profile a bien été enregistré" );
 			}
 		}
@@ -498,7 +500,7 @@ console.log( json );
 	};
 	
 	// Save user jours. Delete and recreate.
-	async function saveUserJour(){	
+	async function saveUserJour( userProfileId ){	
 		// Delete
 		if( userWeekDays ){
 			try{
@@ -530,11 +532,11 @@ loadbalancer.niovarpaie.ca/NiovarRH/UserProfileMicroservices/UserProfileJour/pos
 			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour/"; 
 			
 			try{
-				var res = await fetch( lbdomain + path + profileId + "/" + dayid  , {
+				var res = await fetch( lbdomain + path + userProfileId + "/" + dayid  , {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({
-						'userProfileId':profileId,
+						'userProfileId':userProfileId,
 						'JourId':dayid
 					})
 				});
@@ -900,7 +902,7 @@ loadbalancer.niovarpaie.ca/NiovarRH/UserProfileMicroservices/UserProfileJour/pos
 		};
 	}
 	// FILE UPLOAD
-	state = {
+	const state = {
 		// Initially, no file is selected
 		selectedFile: null
 	};
