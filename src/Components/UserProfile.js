@@ -900,7 +900,7 @@ const UserProfile = () => {
 	// On file select (from the pop up)
 	const onFileChange = event => {
 		// Update the state
-		this.setState({ selectedFile: event.target.files[0] });
+		setState({ selectedFile: event.target.files[0] });
 	};
 
 	// On file upload (click the upload button)
