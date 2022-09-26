@@ -908,31 +908,30 @@ console.log( json );
 		formData.append('file', file);
 		
 		try{
-	
-			var res = await fetch( appfichier + "/upload", {
+			res = await fetch( appfichier + "/upload", {
 				method: "POST",
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
 					'file':formData
 				})
-		
-				let resJson = await res.json();
-				if( resJson.resJson === 200 ) {
-					// get the uploaded file name
-					var name = resJson.file_url;
-					alert( name );
-				}
-				else{
-					console.log( "Uploaded File error" );
-				}
 			})
+
+			let resJson = await res.json();
+			if( resJson.resJson === 200 ) {
+				// get the uploaded file name
+				var name = resJson.file_url;
+				alert( name );
+			}
+			else{
+				console.log( "Uploaded File error" );
+			}
 		}
 		catch (err) {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
 	};
-	
+
 		
 	useEffect(() => {
 		getAccountInfo();
