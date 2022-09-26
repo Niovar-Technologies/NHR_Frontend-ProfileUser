@@ -484,9 +484,11 @@ console.log('save user profile');
 			validation = validationPass; 
 		
 		// sexeId
-		if( sexeId == "" )
+		if( sexeId == "" ){
+alert();
 			validation = "Homme ou femme?"; 
-		
+		}
+	
 		// departementId
 		if( departementId == "" )
 			validation = "Choisissez un Département de travail?"; 
