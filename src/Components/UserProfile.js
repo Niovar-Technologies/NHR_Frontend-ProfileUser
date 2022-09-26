@@ -513,7 +513,7 @@ console.log('save user profile');
 	};
 	
 	// Roles
-	const getRoleId = ( role ) => [
+	const getRoleId = (role) => {
 		var id = "";
 	
 		if( role == "Admin" )
@@ -523,7 +523,7 @@ console.log('save user profile');
 			id = 1;
 	
 		return id;
-	];
+	};
 	
 	// Save user jours. Delete and recreate.
 	async function saveUserJour( userProfileId ){
