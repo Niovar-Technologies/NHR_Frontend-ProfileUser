@@ -341,7 +341,7 @@ const UserProfile = () => {
 					"userProfileJour": []
 				};
 		
-		if( !formType ){ // Nouveau
+		if( !formType ) // Nouveau
 			delete json.id;
 
 console.log( json );
