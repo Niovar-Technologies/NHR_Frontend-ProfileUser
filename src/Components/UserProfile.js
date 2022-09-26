@@ -380,7 +380,7 @@ const UserProfile = () => {
 			var res = await fetch( lbdomain + path, {
 				method: method,
 				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify({
+				body: JSON.stringify({ 
   "accountId": 1000,
   "telephone01": "+2378591245",
   "telephone02": "+2375211245",
