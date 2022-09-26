@@ -371,7 +371,7 @@ const UserProfile = () => {
 		}
 		else{	// Edition
 			method 	= "PUT";
-			path 	= "NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + accountId;
+			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + accountId;
 		}
 
 		// save or modify profile
