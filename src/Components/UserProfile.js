@@ -106,15 +106,13 @@ const StatusList= [
 
 // Roles
 const getRoleId = ( role ) => [
-	var id = "";
 	
 	if( role == "Admin" )
-		id = 0;
+		return 0;
 
 	if( role == "User" )
-		id = 1;
+		return 1;
 	
-	return id;
 ];
 
 // Todo: set a backend
