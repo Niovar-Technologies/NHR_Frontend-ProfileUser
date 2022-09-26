@@ -320,14 +320,7 @@ const UserProfile = () => {
 			method 	= "PUT";
 			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + profileId;
 		}
-
-		// save or modify profile
-		try {
-			var res = await fetch( lbdomain + path, {
-				method: method,
-				headers: {'Content-Type': 'application/json'},
-				body: JSON.stringify(
-				{
+		var json = {
 					"id" : ( profileId ) ? profileId : "undefined",
 					"accountId": accountId,
 					"telephone01": telephone01,
@@ -346,7 +339,17 @@ const UserProfile = () => {
 					"statutId": 1,
 					"photoUrl": "foo.jpg",
 					"userProfileJour": []
-				})
+				};
+		
+		if( !formType ){ // Nouveau
+			delete json.id;
+
+		// save or modify profile
+		try {
+			var res = await fetch( lbdomain + path, {
+				method: method,
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify( json )
 				
 			});
 			
