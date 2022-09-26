@@ -980,12 +980,10 @@ console.log( json );
                     
                     <img className="img-account-profile rounded-circle mb-2" src="https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg" alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
-
-					<input type="file" onChange={{e => handleChangeFile(e)}}>
-					
-					<button className="btn btn-primary"onClick={onFileUpload}>
-						Changer l'image
-					</button>
+					<label className="btn btn-primary" onChange={{e => handleChangeFile(e)}} htmlFor="formId">
+						<input type="file" id="uploadInput" hidden />
+						<button className="btn btn-primary">Changer l'image</button>
+					</label>
                 </div>
             </div>
         </div>
