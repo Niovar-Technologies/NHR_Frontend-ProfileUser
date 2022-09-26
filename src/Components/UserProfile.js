@@ -525,15 +525,15 @@ console.log( userWeekDays.length );
 				continue;
 			
 			var dayid 	= i;
-			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour"; 
+			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour/"; 
 			
 			try{
-				res = await fetch( lbdomain + path , {
+				res = await fetch( lbdomain + path + "/" + userProfileId + "/" + dayid  , {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({
-						'JourId':dayid,
 						'userProfileId':profileId
+						'JourId':dayid,
 					})
 				});
 				let resJson = await res.json();
