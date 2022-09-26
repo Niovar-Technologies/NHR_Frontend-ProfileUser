@@ -354,7 +354,7 @@ const UserProfile = () => {
 			if( resJson.statusCode === 200 ) {
 				let userProfileId = resJson.userProfileId;
 				saveUserJour(); //
-				alert( "Profile enregistre" );
+				alert( "Votre profile a bien été enregistré" );
 			}
 		}
 		catch (err) {
@@ -531,10 +531,10 @@ console.log( userWeekDays.length );
 				res = await fetch( lbdomain + path , {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
-					body: {
+					body: JSON.stringify({
 						'JourId':dayid,
 						'userProfileId':profileId
-					}
+					})
 				});
 				let resJson = await res.json();
 				if( resJson.statusCode === 200 ) {
