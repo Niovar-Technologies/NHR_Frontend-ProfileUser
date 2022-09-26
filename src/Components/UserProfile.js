@@ -381,23 +381,24 @@ const UserProfile = () => {
 				method: method,
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
-						'accountId': accountId,
-						'telephone01': telephone01,
-						'telephone02': telephone02,
-						'sexeId': sexeId,
-						'departementId': departementId,
-						'posteId': posteId,
-						'typeSalaireId': salaryTypeid,
-						'salaire': salaire,
-						'dateEmbauche': '',
-						'dateDepart': '',  
-						'dateNaissance': '',
-						'paysId': paysId,
-						'provinceId': provinceId,
-						'villeId': villeId,
-						'photoUrl': '',
-						'userProfileJour': []
-				})
+  "accountId": 1000,
+  "telephone01": "+2378591245",
+  "telephone02": "+2375211245",
+  "sexeId": 0,
+  "departementId": 2,
+  "posteId": 1,
+  "typeSalaireId": 1,
+  "salaire": "12",
+  "dateEmbauche": "2022-09-24T23:01:27.829Z",
+  "dateDepart": "2022-09-24T23:01:27.829Z",
+  "dateNaissance": "2022-09-24T23:01:27.829Z",
+  "paysId": 100,
+  "provinceId": 100,
+  "villeId": 100,
+  "statutId": 1,
+  "photoUrl": "foo.jpg",
+  "userProfileJour": []
+})
 				
 			});
 			
