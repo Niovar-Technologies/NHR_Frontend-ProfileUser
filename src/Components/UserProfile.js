@@ -371,7 +371,7 @@ const UserProfile = () => {
 		}
 		else{	// Edition
 			method 	= "PUT";
-			path 	= "NiovarRH/UserProfileMicroservices/UserProfile/modifier";
+			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile/modifier";
 		}
 		
 
@@ -381,24 +381,24 @@ const UserProfile = () => {
 				method: method,
 				headers: {'Content-Type': 'application/json'},
 				body: {
-  'id': 2,
-  'accountId': 1000,
-  'telephone01': '555555555',
-  'telephone02': '1232123123',
-  'sexeId': 0,
-  'departementId': 1,
-  'posteId': 1,
-  'typeSalaireId': 1,
-  'salaire': '12',
-  'dateEmbauche': '2022-09-25T00:45:16.530Z',
-  'dateDepart': '2022-09-25T00:45:16.530Z',
-  'dateNaissance': '2022-09-25T00:45:16.530Z',
-  'paysId': 110,
-  'provinceId': 110,
-  'villeId': 110,
-  'statutId': 1,
-  'photoUrl': 'foo.jpg',
-  'userProfileJour': [
+  "id": 2,
+  "accountId": 1000,
+  "telephone01": "555555555",
+  "telephone02": "1232123123",
+  "sexeId": 0,
+  "departementId": 1,
+  "posteId": 1,
+  "typeSalaireId": 1,
+  "salaire": "12",
+  "dateEmbauche": "2022-09-25T00:45:16.530Z",
+  "dateDepart": "2022-09-25T00:45:16.530Z",
+  "dateNaissance": "2022-09-25T00:45:16.530Z",
+  "paysId": 110,
+  "provinceId": 110,
+  "villeId": 110,
+  "statutId": 1,
+  "photoUrl": "foo.jpg",
+  "userProfileJour": [
   ]
 }
 			});
