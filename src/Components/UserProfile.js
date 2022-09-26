@@ -551,16 +551,13 @@ const UserProfile = () => {
 	};
 	
 	// Save user jours. Delete and recreate.
-	async function saveUserJour( ){
+	async function saveUserJour(){
 		// Delete
 		if( userWeekDays.count ){
 			try{
 				res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/" + profileId, {
 					method: "DELETE",
 					headers: {'Content-Type': 'application/json'},
-					body: {
-						'userProfileId': profileId
-					}
 				});
 				let resJson = await res.json();
 				if( resJson.statusCode === 200 ) {
@@ -575,13 +572,20 @@ const UserProfile = () => {
 		
 		// Create user jours
 		for( var i = 0; i < userWeekDays; i++ ){
+			
+			if( !userWeekDays[i].id )
+				return;
+			
+			var dayid 	= userWeekDays[i].id;
+			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour"; 
+			
 			try{
-				res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfile", {
+				res = await fetch( lbdomain + path , {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: {
-						'UserProfileJourId': userWeekDays[i],
-						'userProfileId':userProfileId
+						'UserProfileJourId':dayid,
+						'userProfileId':profileId
 					}
 				});
 				let resJson = await res.json();
