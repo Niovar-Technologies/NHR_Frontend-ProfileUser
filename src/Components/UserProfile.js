@@ -481,11 +481,12 @@ console.log('save user profile');
 		// password
 		var validationPass = validationPassword( password, repeatPassword );
 		if( password && validationPass )
-			validation = validationPass; 
+			validation = validationPass;
 		
+alert( sexeId );
+	
 		// sexeId
 		if( sexeId == "" ){
-alert();
 			validation = "Homme ou femme?"; 
 		}
 	
