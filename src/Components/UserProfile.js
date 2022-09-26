@@ -1192,7 +1192,7 @@ const UserProfile = () => {
 								className="custom-select" 
 								value = { villeId } 
 								onChange={e => handleSelectVille(e.target.value)} >
-									{ !paysId ? 
+									{ !villeId ? 
 										<option value="choisir">choisir</option> 
 									: 
 										"" 
