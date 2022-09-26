@@ -104,17 +104,6 @@ const StatusList= [
 	},
 ];
 
-// Roles
-const getRoleId = ( role ) => [
-	
-	if( role == "Admin" )
-		return 0;
-
-	if( role == "User" )
-		return 1;
-	
-];
-
 // Todo: set a backend
 const SalaireTypeList = [
 	{
@@ -522,6 +511,19 @@ console.log('save user profile');
 		
 		return validation;
 	};
+	
+	// Roles
+	const getRoleId = ( role ) => [
+		var id = "";
+	
+		if( role == "Admin" )
+			id = 0;
+
+		if( role == "User" )
+			id = 1;
+	
+		return id;
+	];
 	
 	// Save user jours. Delete and recreate.
 	async function saveUserJour( userProfileId ){
