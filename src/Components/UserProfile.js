@@ -482,8 +482,6 @@ console.log('save user profile');
 		var validationPass = validationPassword( password, repeatPassword );
 		if( password && validationPass )
 			validation = validationPass;
-		
-alert( sexeId );
 	
 		// sexeId
 		if( sexeId === '' ){
