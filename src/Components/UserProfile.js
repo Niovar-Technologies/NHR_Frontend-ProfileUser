@@ -453,7 +453,7 @@ console.log('save user profile');
 	
 	// validations
 	const validations = () => {
-		let validation = "";
+		var validation = "";
 		
 		// full name
 		if( fullName.length < 3 )
