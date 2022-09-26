@@ -507,7 +507,7 @@ const UserProfile = () => {
 				});
 				let resJson = await res.json();
 				if( resJson.statusCode === 200 ) {
-					console.log( 'saveUserJour: delete' ); //
+					// console.log( 'saveUserJour: delete' ); 
 				}
 			}
 			catch (err) {
@@ -516,8 +516,8 @@ const UserProfile = () => {
 			}
 		}
 		
-console.log( userWeekDays );
-console.log( userWeekDays.length );
+// console.log( userWeekDays );
+// console.log( userWeekDays.length );
 		// Create user jours
 		for( var i = 1; i < userWeekDays.length + 1; i++ ){  // Todo: ajust i nidx dynamicaly
 			
@@ -538,7 +538,7 @@ console.log( userWeekDays.length );
 				});
 				let resJson = await res.json();
 				if( resJson.statusCode === 200 ) {
-					console.log( 'saveUserJour: create' ); //
+					//console.log( 'saveUserJour: create' ); //
 				}
 			}
 			catch (err) {
