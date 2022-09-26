@@ -904,7 +904,7 @@ const UserProfile = () => {
 	};
 
 	// On file upload (click the upload button)
-	onFileUpload = () => {
+	onFileUpload = async () => {
     
 		// Create an object of formData
 		const formData = new FormData();
