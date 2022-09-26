@@ -358,6 +358,8 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let userProfileId = resJson.userProfileId;
+				setProfileId( userProfileId );
+				
 				saveUserJour(); //
 				alert( "Votre profile a bien été enregistré" );
 			}
@@ -522,7 +524,8 @@ console.log( json );
 			
 			if( userWeekDays[i] === false )
 				continue;
-			
+loadbalancer.niovarpaie.ca/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour//4
+
 			var dayid 	= i;
 			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour/"; 
 			
@@ -917,12 +920,12 @@ console.log( json );
 		// Update the formData object
 		formData.append(
 			"myFile",
-			this.state.selectedFile,
-			this.state.selectedFile.name
+			state.selectedFile,
+			state.selectedFile.name
 		);
     
 		// Details of the uploaded file
-		console.log(this.state.selectedFile);
+		console.log(state.selectedFile);
     
 		// Request made to the backend api
 		// Send formData object
