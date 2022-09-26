@@ -532,8 +532,8 @@ console.log( userWeekDays.length );
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({
-						'userProfileId':profileId
-						'JourId':dayid,
+						'userProfileId':profileId,
+						'JourId':dayid
 					})
 				});
 				let resJson = await res.json();
