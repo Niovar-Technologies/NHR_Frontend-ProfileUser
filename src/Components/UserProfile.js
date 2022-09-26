@@ -407,8 +407,8 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let userProfileId = resJson.userProfileId;
-				saveUserJour( ); //
-console.log('save user profile');
+				saveUserJour(); //
+				alert( "Profile enregistre" );
 			}
 		}
 		catch (err) {
