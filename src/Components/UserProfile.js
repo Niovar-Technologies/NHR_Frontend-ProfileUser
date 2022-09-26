@@ -519,7 +519,7 @@ const UserProfile = () => {
 console.log( userWeekDays );
 console.log( userWeekDays.length );
 		// Create user jours
-		for( var i = 0; i < userWeekDays.length; i++ ){
+		for( var i = 1; i < userWeekDays.length + 1; i++ ){  // Todo: ajust i nidx dynamicaly
 			
 			if( userWeekDays[i] === false )
 				continue;
