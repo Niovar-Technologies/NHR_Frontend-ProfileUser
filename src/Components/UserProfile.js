@@ -40,31 +40,31 @@ function getUrlParametter( name, url ) {
 
 const days = [
 	{
-		id: 0,
+		id: 1,
 		name: "Dimanche"
 	},
 	{
-		id: 1,
+		id: 2,
 		name: "Lundi"
 	},
 	{
-		id: 2,
+		id: 3,
 		name: "Mardi"
 	},
 	{
-		id: 3,
+		id: 4,
 		name: "Mercredi"
 	},
 	{
-		id: 4,
+		id: 5,
 		name: "Jeudi"
 	},
 	{
-		id: 5,
+		id: 6,
 		name: "Vendredi"
 	},
 	{
-		id: 6,
+		id: 7,
 		name: "Samedi"
 	}
 ];
@@ -528,7 +528,7 @@ console.log( userWeekDays.length );
 			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour/"; 
 			
 			try{
-				res = await fetch( lbdomain + path + profileId + "/" + dayid  , {
+				var res = await fetch( lbdomain + path + profileId + "/" + dayid  , {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({
