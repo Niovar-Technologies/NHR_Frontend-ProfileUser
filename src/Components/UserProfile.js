@@ -704,16 +704,15 @@ console.log('save user profile');
 					if( userProfileData.provinceId ){				// Display user defaut
 						setShowProvince( true );
 						GetProvinces( userProfileData.paysId );
+						setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
 					}
-					setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
-					
 					
 					if( userProfileData.villeId ){				// Display user defaut
 						setShowVille( true );
 						GetVilles( userProfileData.provinceId )
+						setVilleId( userProfileData.villeId );	// Villes select's default value
 					}
-					setVilleId( userProfileData.villeId );	// Villes select's default valueg
-				
+					
 					setStatusId( userProfileData.statutId );
 					setTelephone01( userProfileData.telephone01 );
 					setTelephone02( userProfileData.telephone02 );
