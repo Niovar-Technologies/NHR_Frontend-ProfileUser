@@ -483,6 +483,30 @@ console.log('save user profile');
 		if( password && validationPass )
 			validation = validationPass; 
 		
+		// sexeId
+		if( !sexeId )
+			validation = "Homme ou femme?"; 
+		
+		// departementId
+		if( !departementId )
+			validation = "Choisissez un Département de travail?"; 
+		
+		// posteId
+		if( !posteId )
+			validation = "Choisissez un Poste de travail"; 
+		
+		// paysId
+		if( !paysId )
+			validation = "Choisissez un Pays"; 
+		
+		// provinceId
+		if( !provinceId )
+			validation = "Choisissez une Province";
+		
+		// villeId
+		if( !villeId )
+			validation = "Choisissez une Ville";
+		
 		return validation;
 	}
 	
