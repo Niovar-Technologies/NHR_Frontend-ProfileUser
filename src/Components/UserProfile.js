@@ -597,57 +597,47 @@ console.log('save user profile');
 
 	const handleSelectDepartement = (value) => {
 		let departementId = value;
+		setDepartementId( departementId );
+		GetPostes(departementId);	// Load post of this department
 		
-		if( !isNaN( departementId ) ){
-			setDepartementId( departementId );
-			GetPostes(departementId);	// Load post of this department
-		}
 	}
 
 	const handleSelectPoste = (value) => {
 		let posteId = value;
-		if( !isNaN( posteId ) )
-			setPosteId( posteId );
+		setPosteId( posteId );
 	}
 
 	const handleSelectPays = (value) => {
 		let paysId = value;
-		if( !isNaN( paysId ) ){
-			setPaysId( paysId );
-			GetProvinces(paysId); // load provinces of this pays
-		}
+		setPaysId( paysId );
+		GetProvinces(paysId); // load provinces of this pays
+
 	}
 
 	const handleSelectProvince = (value) => {
 		let provinceId = value;
-		if( !isNaN( provinceId ) ){
-			setProvinceId( provinceId );
-			GetVilles( provinceId ); // load villes of this province
-		}
+		setProvinceId( provinceId );
+		GetVilles( provinceId ); // load villes of this province
 	}
 
 	const handleSelectSexe = (value) => {
 		let sexeId = value;
-		if( !isNaN( sexeId ) )
-			setSexeId( sexeId );
+		setSexeId( sexeId );
 	}
 	
 	const handleSelectSalaireType = (value) => {
 		let salaireTypeId = value;
-		if( !isNaN( salaireTypeId ) )
-			setSalaryTypeid( salaireTypeId );
+		setSalaryTypeid( salaireTypeId );
 	}
 	
 	const handleSelectStatus= (value) => {
 		let statusId = value;
-		if( !isNaN( statusId ) )
-			setStatusId( statusId );
+		setStatusId( statusId );
 	}
 	
 	const handleSelectVille= (value) => {
 		let villeId = value;
-		if( !isNaN( villeId ) )
-			setVilleId( villeId );
+		setVilleId( villeId );
 	}
 	
 	
