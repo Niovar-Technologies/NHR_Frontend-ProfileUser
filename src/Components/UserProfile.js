@@ -371,9 +371,8 @@ const UserProfile = () => {
 		}
 		else{	// Edition
 			method 	= "PUT";
-			path 	= "NiovarRH/UserProfileMicroservices/UserProfile/modifier";
+			path 	= "NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + accountId;
 		}
-		
 
 		// save or modify profile
 		try {
@@ -555,8 +554,8 @@ console.log('save user profile');
 		// Delete
 		if( userWeekDays.count ){
 			try{
-				res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/", {
-					method: "PUT",
+				res = await fetch( lbdomain + "NiovarRH/UserProfileMicroservices/UserProfileJour/delete/" + userProfileId, {
+					method: "DELETE",
 					headers: {'Content-Type': 'application/json'},
 					body: {
 						'userProfileId': userProfileId
