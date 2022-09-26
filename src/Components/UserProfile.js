@@ -80,7 +80,7 @@ const SexeList= [
 	},
 ];
 	
-// Todo: set a backend
+// Status
 const StatusList= [
 	{
 		id: 0,
@@ -103,7 +103,19 @@ const StatusList= [
 		name: " Administrateur"
 	},
 ];
+
+// Roles
+const getRoleId = ( role ) => [
+	var id = "";
+	if( role == "Admin" )
+		id = 0;
+
+	if( role == "User" )
+		id = 1;
 	
+	return id;
+];
+
 // Todo: set a backend
 const SalaireTypeList = [
 	{
@@ -426,13 +438,13 @@ console.log('save user profile');
 	const updateUser = async() => {
 		// Update Account
 		try {
-			var res = await fetch( lbdomain + "/Accounts/", {
+			var res = await fetch( lbdomain + "/Accounts/" + accountId, {
 				method: "PUT",
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
 					'accountId': accountId,
 					'fullName': fullName,
-					'role': role,
+					'role': getRoleId( role ),
 					'email': email,
 					'password': password,
 					'confirmPassword': repeatPassword
