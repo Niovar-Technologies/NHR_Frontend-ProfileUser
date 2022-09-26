@@ -486,28 +486,28 @@ console.log('save user profile');
 alert( sexeId );
 	
 		// sexeId
-		if( sexeId == "" ){
+		if( sexeId === '' ){
 			validation = "Homme ou femme?"; 
 		}
 	
 		// departementId
-		if( departementId == "" )
+		if( departementId === '' )
 			validation = "Choisissez un Département de travail?"; 
 		
 		// posteId
-		if( posteId == "" )
+		if( posteId === '' )
 			validation = "Choisissez un Poste de travail"; 
 		
 		// paysId
-		if( paysId == "" )
+		if( paysId === '' )
 			validation = "Choisissez un Pays"; 
 		
 		// provinceId
-		if( provinceId == "" )
+		if( provinceId === '' )
 			validation = "Choisissez une Province";
 		
 		// villeId
-		if( villeId == "" )
+		if( villeId === '' )
 			validation = "Choisissez une Ville";
 		
 		return validation;
