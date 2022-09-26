@@ -517,9 +517,9 @@ const UserProfile = () => {
 		}
 		
 console.log( userWeekDays );
-console.log( userWeekDays.count );
+console.log( userWeekDays.length );
 		// Create user jours
-		for( var i = 0; i < userWeekDays.count; i++ ){
+		for( var i = 0; i < userWeekDays.length; i++ ){
 			
 			if( userWeekDays[i] === false )
 				continue;
@@ -532,7 +532,7 @@ console.log( userWeekDays.count );
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: {
-						'UserProfileJourId':dayid,
+						'JourId':dayid,
 						'userProfileId':profileId
 					}
 				});
