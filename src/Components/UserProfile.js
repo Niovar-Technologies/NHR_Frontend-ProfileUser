@@ -137,47 +137,9 @@ else{
 
 
 
-
-async function getUserJours( userProfileId ){
-	try {
-		let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfileId , {
-			method: "GET",
-			headers: {'Content-Type': 'application/json'},
-		});
-			
-		let resJson = await res.json();
-		if( resJson.statusCode === 200 ) {
-			let result 	= resJson.userProfileJours;
-			let count 	= result.length;
-			let userProfilJours = [];
-			for( var i = 0; i < count; i++ ){
-				let jourId = result[i].jourId;
-				userProfilJours.push( jourId );
-			}
-		
-			setUserCheckedDaysArray( userProfilJours );
-			// setWeekDays( userWeekDays ); 
-		}
-		else {
-			alert( "Un probleme est survenu" );
-			// setErrorColor( "red" );
-			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-		}
-	} 
-	catch (err) {
-		//alert( "Vérifiez votre connexion internet svp" );
-		console.log(err);
-	};
-}
-
-
-
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 	
-
-
-
 
 // async function GetStatus(){
 
@@ -767,6 +729,39 @@ console.log( userWeekDays.count );
 			}
 			else {
 				alert( "Compte non trouvé" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
+
+
+	async function getUserJours( userProfileId ){
+		try {
+			let res = await fetch( lbdomain + "/NiovarRH/UserProfileMicroservices/UserProfileJour/getUserProfileJour/" + userProfileId , {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				let result 	= resJson.userProfileJours;
+				let count 	= result.length;
+				let userProfilJours = [];
+				for( var i = 0; i < count; i++ ){
+					let jourId = result[i].jourId;
+					userProfilJours.push( jourId );
+				}
+		
+				setUserCheckedDaysArray( userProfilJours );
+				// setWeekDays( userWeekDays ); 
+			}
+			else {
+				alert( "Un probleme est survenu" );
 				// setErrorColor( "red" );
 				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
 			}
