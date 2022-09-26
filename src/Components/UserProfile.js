@@ -300,7 +300,6 @@ const UserProfile = () => {
 	const handleChangePassword = (value) => {
 		setPassword( value );
 	}
-
 	
 	// Handle password repeat change
 	const handleChangePasswordRepeat = (value) => {
@@ -698,15 +697,22 @@ console.log('save user profile');
 
 					setDateEmbauche( userProfileData.dateEmbauche ); //
 					setDateDepart( userProfileData.dateDepart );	// 
+					
 					setPaysId( userProfileData.paysId );	// Pays select's default value
 			
-					setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
-					if( userProfileData.provinceId )				// Display user defaut
+						
+					if( userProfileData.provinceId ){				// Display user defaut
 						setShowProvince( true );
-			
-					setVilleId( userProfileData.villeId );	// Villes select's default valueg
-					if( userProfileData.villeId )				// Display user defaut
+						GetProvinces( userProfileData.paysId );
+					}
+					setProvinceId( userProfileData.provinceId );	// Provinces select's default value	
+					
+					
+					if( userProfileData.villeId ){				// Display user defaut
 						setShowVille( true );
+						GetVilles( userProfileData.provinceId )
+					}
+					setVilleId( userProfileData.villeId );	// Villes select's default valueg
 				
 					setStatusId( userProfileData.statutId );
 					setTelephone01( userProfileData.telephone01 );
