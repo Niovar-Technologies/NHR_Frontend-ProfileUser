@@ -517,6 +517,7 @@ const UserProfile = () => {
 		}
 		
 console.log( userWeekDays );
+console.log( userWeekDays.count );
 		// Create user jours
 		for( var i = 0; i < userWeekDays.count; i++ ){
 			
