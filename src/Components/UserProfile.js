@@ -1037,9 +1037,9 @@ console.log('save user profile');
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
-								value = { sexeId } 
+								value = { posteId } 
 								onChange={e => handleSelectPoste(e.target.value)} >
-									{ !sexeId ? 
+									{ !posteId ? 
 										<option value="choisir">choisir</option> 
 									: 
 										"" 
