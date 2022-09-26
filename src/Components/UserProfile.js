@@ -528,7 +528,7 @@ console.log( userWeekDays.length );
 			var path 	= "/NiovarRH/UserProfileMicroservices/UserProfileJour/postUserProfileJour/"; 
 			
 			try{
-				res = await fetch( lbdomain + path + "/" + userProfileId + "/" + dayid  , {
+				res = await fetch( lbdomain + path + "/" + profileId + "/" + dayid  , {
 					method: "POST",
 					headers: {'Content-Type': 'application/json'},
 					body: JSON.stringify({
