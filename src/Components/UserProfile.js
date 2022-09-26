@@ -781,10 +781,10 @@ console.log( userWeekDays.count );
 			if( userJours.includes( days[i].id ) )
 				to_check = true;
 			
-			userWeekDayArray.push( to_check );
+			userWeekDaysArray.push( to_check );
 		}
 		setUserWeekDays( userWeekDaysArray );
-		console.log( userWeekDayArray );
+		console.log( userWeekDays );
 	}
 	
 	
