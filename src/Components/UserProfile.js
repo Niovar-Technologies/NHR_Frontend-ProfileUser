@@ -981,7 +981,7 @@ console.log( json );
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="formId">
 						<input type="file" id="uploadInput" hidden />
-						<button className="btn btn-primary">Changer l'image</button>
+						Changer l'image
 					</label>
                 </div>
             </div>
