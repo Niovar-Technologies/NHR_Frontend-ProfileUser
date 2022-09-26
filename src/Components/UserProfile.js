@@ -18,7 +18,8 @@ import moment from 'moment';
 
 let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
-let compagnie 	= cookies.get( "compagnie" );
+let compagnie 	=  cookies.get( "compagnie" );
+let appfichier  = "https://fichiers.niovarpaie.ca";
 
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import fr from 'date-fns/locale/fr';
@@ -890,8 +891,55 @@ const UserProfile = () => {
 			console.log(err);
 		};
 	}
-	
+	// FILE UPLOAD
+	state = {
+		// Initially, no file is selected
+		selectedFile: null
+	};
+    
+	// On file select (from the pop up)
+	onFileChange = event => {
+		// Update the state
+		this.setState({ selectedFile: event.target.files[0] });
+	};
 
+	// On file upload (click the upload button)
+	onFileUpload = () => {
+    
+		// Create an object of formData
+		const formData = new FormData();
+    
+		// Update the formData object
+		formData.append(
+			"myFile",
+			this.state.selectedFile,
+			this.state.selectedFile.name
+		);
+    
+		// Details of the uploaded file
+		console.log(this.state.selectedFile);
+    
+		// Request made to the backend api
+		// Send formData object
+		axios.post("api/uploadfile", formData);
+		var res = await fetch( appfichier + "/upmoad", {
+			method: "POST",
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				'file':formData
+			})
+		});
+		let resJson = await res.json();
+		if( resJson.resJson === 200 ) {
+			// get the uploaded file name
+			var name = resJson.file_url";
+			alert( name );
+		}
+		else{
+			console.log( "Uploaded File error" );
+		}
+	};
+		
 	useEffect(() => {
 		getAccountInfo();
 		getPays();
@@ -937,10 +985,12 @@ const UserProfile = () => {
                 <div className="card-body text-center">
                     
                     <img className="img-account-profile rounded-circle mb-2" src="https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg" alt="" />
-                    
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
                  
-                    <button className="btn btn-primary" type="button">Changer l'image</button>
+					<input type="file" onChange={this.onFileChange} />
+					<button className="btn btn-primary"onClick={this.onFileUpload}>
+						Changer l'image
+					</button>
                 </div>
             </div>
         </div>
