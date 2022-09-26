@@ -432,7 +432,7 @@ console.log('save user profile');
 				body: JSON.stringify({
 					'accountId': accountId,
 					'fullName': fullName,
-					'role': getRoleId( role ),
+					'role': role, // getRoleId( role )
 					'email': email,
 					'password': password,
 					'confirmPassword': repeatPassword
