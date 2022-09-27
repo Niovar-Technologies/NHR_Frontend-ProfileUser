@@ -117,7 +117,7 @@ const SalaireTypeList = [
 	},
 ];
 
-// set accountId 
+// Get account id to use ( user id ) 
 var accountId = "";
 var role	= cookies.get( "role" );
 var userid 	= cookies.get( "userid" );
@@ -127,7 +127,7 @@ if( role == "User" ){
 }
 else{
 	let url 	= window.location.href;
-	let query 	= 'userid'
+	let query 	= 'employee_id'
 	let id  	= getUrlParametter( query, url );
 	if( id )
 		accountId = id;
