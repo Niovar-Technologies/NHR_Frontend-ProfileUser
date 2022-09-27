@@ -719,7 +719,9 @@ console.log( json );
 			}
 			else {
 				alert( "Compte non trouvé" );
-				history.back();
+				history.push( "/liste-des-employes" );	
+				
+				// history.back();
 				// setErrorColor( "red" );
 				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
 			}
