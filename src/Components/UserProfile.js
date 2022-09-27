@@ -119,8 +119,8 @@ const SalaireTypeList = [
 
 // set account to get the profile from
 var accountId = "";
-let role	= cookies.get( "role" );
-let userid 	= cookies.get( "userid" );
+var role	= cookies.get( "role" );
+var userid 	= cookies.get( "userid" );
 if( role == "User" ){
 	// setAccountId( userid );	// Id of connected user from the users cookie session
 	accountId = userid;
