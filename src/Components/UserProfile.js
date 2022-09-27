@@ -910,7 +910,7 @@ console.log( json );
 		try{
 			var res = await fetch( appfichier + "/upload", {
 				method: "POST",
-				headers: {'Content-Type': 'application/json'},
+				// headers: {'Content-Type': 'application/json'},
 				body: formData
 			})
 
