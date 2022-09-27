@@ -19,8 +19,8 @@ import moment from 'moment';
 let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	=  cookies.get( "compagnie" );
-let appfichierUrl  = "https://fichiers.niovarpaie.ca";
-
+let appfichierUrl   = "https://fichiers.niovarpaie.ca";
+let nopicPhotoUrl	= "https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg";
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import fr from 'date-fns/locale/fr';
 registerLocale('fr', fr)
@@ -243,6 +243,9 @@ const UserProfile = () => {
 	const [ salaryTypeid, setSalaryTypeid ] = useState( '' );
 	const [ fullName, setFullName ] = useState( '' );
 	const [ email, setEmail ] = useState( '' );
+	
+	const [ photoUrl, setPhotoUrl ] = useState( nopicPhotoUrl );
+	
 	
 	// Handle password change
 	const handleChangePassword = (value) => {
@@ -947,10 +950,10 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.file_url ) {
 				// get the uploaded file name
-				var file_url = resJson.file_url;
+				var photo_url = resJson.file_url;
 				alert( file_url );
 				
-				
+				setPhotoUrl( photo_url );
 			}
 			else{
 				console.log( "Uploaded File error" );
@@ -961,7 +964,7 @@ console.log( json );
 			console.log(err);
 		};
 	};
-	getPhotoProfile
+	getPhotoProfile();
 		
 		
 		
@@ -1013,7 +1016,7 @@ console.log( json );
                     
                     <img className="
 						img-account-profile rounded-circle mb-2" 
-						src="" 
+						src="{ photoUrl }" 
 						alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
