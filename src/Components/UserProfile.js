@@ -944,16 +944,11 @@ console.log( json );
 			})
 
 			let resJson = await res.json();
-			if( resJson.file_url ) {
-				// get the uploaded file name
-				var photo_url = resJson.file_url;
-				alert( file_url );
-				if( photo_url )
-					setPhotoUrl( photo_url );
-			}
-			else{
-				console.log( "Uploaded File error" );
-			}
+			// get the uploaded file name
+			var photo_url = resJson.file_url;
+			alert( file_url );
+			if( photo_url )
+				setPhotoUrl( photo_url );
 		}
 		catch (err) {
 			//alert( "Vérifiez votre connexion internet svp" );
