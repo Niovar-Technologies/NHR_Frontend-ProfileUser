@@ -910,7 +910,7 @@ console.log( json );
 		const file = event.target.files[0];
 		let formData = new FormData();
 		formData.append('file', file);
-		formData.append('userid', userid);
+		formData.append('userid', accountId);
 		try{
 			var res = await fetch( appfichierUrl + "/niovarpaie/post/photoprofile", {
 				method: "POST",
