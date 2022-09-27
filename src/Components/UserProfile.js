@@ -277,10 +277,10 @@ const UserProfile = () => {
 	}
 	
 	const circleImageCropedStyle = {
-		objectFit: cover;
-		borderRadius: 50%;
-		height: 100px;
-		width: 100px;
+		objectFit: cover,
+		borderRadius: 50%,
+		height: 100px,
+		width: 100px
 	}
 	
 	
