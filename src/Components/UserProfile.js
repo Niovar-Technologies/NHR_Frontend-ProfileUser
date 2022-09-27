@@ -935,8 +935,7 @@ console.log( json );
 	};
 	
 	// GetPhotoProfile
-	const getPhotoProfile = async (event) => {
-		const file = event.target.files[0];
+	const getPhotoProfile = async () => {
 		
 		try{
 			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + userid, {
