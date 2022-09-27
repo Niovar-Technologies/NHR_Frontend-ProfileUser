@@ -277,8 +277,8 @@ const UserProfile = () => {
 	}
 	
 	const circleImageCropedStyle = {
-		object-fit: cover;
-		border-radius: 50%;
+		objectFit: cover;
+		borderRadius: 50%;
 		height: 100px;
 		width: 100px;
 	}
