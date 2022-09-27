@@ -945,8 +945,8 @@ console.log( json );
 
 			let resJson = await res.json();
 			// get the uploaded file name
-			var photo_url = resJson.photoPath;
-console.log( photo_url );
+			var photo_url = resJson.file_url;
+console.log( "photo_url:" + photo_url );
 			if( photo_url )
 				setPhotoUrl( photo_url );
 			
