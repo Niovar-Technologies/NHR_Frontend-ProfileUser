@@ -697,7 +697,7 @@ console.log( json );
 	}
 
 	
-	// get user profile info
+	// get user account info
 	async function getAccountInfo(){
 		try {
 			let res = await fetch( lbdomain + "/Accounts/" + accountId, {
@@ -719,10 +719,11 @@ console.log( json );
 			}
 			else {
 				alert( "Compte non trouvé" );
+				history.back();
 				// setErrorColor( "red" );
 				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
 			}
-		} 
+		}
 		catch (err) {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
