@@ -921,8 +921,10 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.file_url ) {
 				// get the uploaded file name
-				var name = resJson.file_url;
-				alert( name );
+				var photo_url 	= resJson.file_url;
+				var userid 		= resJson.userid;
+				setPhotoUrl( photo_url );
+				console.log( 'Photo saved' );
 			}
 			else{
 				console.log( "Uploaded File error" );
