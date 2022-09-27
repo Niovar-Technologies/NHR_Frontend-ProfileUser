@@ -946,9 +946,10 @@ console.log( json );
 			let resJson = await res.json();
 			// get the uploaded file name
 			var photo_url = resJson.file_url;
-			alert( file_url );
+console.log( photo_url );
 			if( photo_url )
 				setPhotoUrl( photo_url );
+			
 		}
 		catch (err) {
 			//alert( "Vérifiez votre connexion internet svp" );
