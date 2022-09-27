@@ -912,7 +912,7 @@ console.log( json );
 				method: "POST",
 				headers: {'Content-Type': 'application/json'},
 				body: {
-					'file': JSON.stringify( formData );
+					'file': JSON.stringify( formData )
 				}
 			})
 
