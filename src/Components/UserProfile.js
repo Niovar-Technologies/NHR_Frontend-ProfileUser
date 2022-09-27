@@ -938,10 +938,10 @@ console.log( json );
 	const getPhotoProfile = async () => {
 		
 		try{
-			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + userid, {
+			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile", {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'},
-				// body: formData
+				body: {'userid' : userid}
 			})
 
 			let resJson = await res.json();
