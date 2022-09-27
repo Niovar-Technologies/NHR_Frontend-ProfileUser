@@ -937,9 +937,7 @@ console.log( json );
 	// GetPhotoProfile
 	const getPhotoProfile = async (event) => {
 		const file = event.target.files[0];
-		let formData = new FormData();
-		formData.append('file', file);
-		formData.append('userid', userid);
+		
 		try{
 			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + userid, {
 				method: "GET",
@@ -964,7 +962,7 @@ console.log( json );
 			console.log(err);
 		};
 	};
-	getPhotoProfile();
+	
 		
 		
 		
@@ -974,6 +972,7 @@ console.log( json );
 		getAccountInfo();
 		getPays();
 		getDepartements();
+		getPhotoProfile();
 	},[] );
 	
 			
