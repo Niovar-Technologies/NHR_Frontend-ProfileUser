@@ -719,8 +719,8 @@ console.log( json );
 			}
 			else {
 				alert( "Compte non trouvé" );
-				history.push( "/liste-des-employes" );	
-				
+				// history.push( "/liste-des-employes" );	
+				location.replace( appdomain + "/liste-des-employes" )
 				// history.back();
 				// setErrorColor( "red" );
 				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
