@@ -911,9 +911,7 @@ console.log( json );
 			var res = await fetch( appfichier + "/upload", {
 				method: "POST",
 				headers: {'Content-Type': 'application/json'},
-				body: {
-					'file': JSON.stringify( formData )
-				}
+				body: formData
 			})
 
 			let resJson = await res.json();
