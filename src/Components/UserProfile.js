@@ -117,7 +117,7 @@ const SalaireTypeList = [
 	},
 ];
 
-// set account to get the profile from
+// set accountId 
 var accountId = "";
 var role	= cookies.get( "role" );
 var userid 	= cookies.get( "userid" );
@@ -924,7 +924,7 @@ console.log( json );
 	const getPhotoProfile = async () => {
 		
 		try{
-			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + userid, {
+			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + accountId, {
 				method: "GET",
 				headers: {'Content-Type': 'application/json'}
 			})
