@@ -141,31 +141,6 @@ else{
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
 	
-
-// async function GetStatus(){
-
-		// try {
-			// let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
-				// method: "GET",
-				// headers: {'Content-Type': 'application/json'},
-			// });
-			
-			// let resJson = await res.json();
-			// if( resJson.statusCode === 200 ) {
-				// let departements = resJson.departement;
-				// setDepartementList( departements );
-			// }
-			// else {
-				// alert( "Un probleme est survenu" );
-				// // setErrorColor( "red" );
-				// // setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			// }
-		// } 
-		// catch (err) {
-			// //alert( "Vérifiez votre connexion internet svp" );
-			// console.log(err);
-		// };
-// }
 // get company name
 async function GetNomEntreprise(){
 
@@ -301,7 +276,16 @@ const UserProfile = () => {
 		setTelephone02( value );
 	}
 	
-
+	const circleImageCropedStyle = {
+		object-fit: cover;
+		border-radius: 50%;
+		height: 100px;
+		width: 100px;
+	}
+	
+	
+	
+	// Handles
 	const handleClickSave = async (e) => {
 		
 		e.preventDefault();
@@ -1009,8 +993,8 @@ console.log( "photo_url:" + photo_url );
                 <div className="card-header">Photo du Profile</div>
                 <div className="card-body text-center">
                     
-                    <img className="
-						img-account-profile rounded-circle mb-2" 
+                    <img 
+						className={ circleImageCropedStyle } 
 						src={ photoUrl }
 						alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
