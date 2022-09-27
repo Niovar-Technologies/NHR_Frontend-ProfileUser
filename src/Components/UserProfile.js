@@ -961,6 +961,7 @@ console.log( json );
 			console.log(err);
 		};
 	};
+	getPhotoProfile
 		
 		
 		
