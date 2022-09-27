@@ -908,11 +908,11 @@ console.log( json );
 		formData.append('file', file);
 		
 		try{
-			res = await fetch( appfichier + "/upload", {
+			var res = await fetch( appfichier + "/upload", {
 				method: "POST",
 				headers: {'Content-Type': 'application/json'},
 				body: {
-					'file':formData
+					'file': JSON.stringify( formData );
 				}
 			})
 
