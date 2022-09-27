@@ -909,7 +909,7 @@ console.log( json );
 		formData.append('file', file);
 		formData.append('userid', userid);
 		try{
-			var res = await fetch( appfichierUrl + "/niovarpaie/post/photoprofile'", {
+			var res = await fetch( appfichierUrl + "/niovarpaie/post/photoprofile", {
 				method: "POST",
 				// headers: {'Content-Type': 'application/json'},
 				body: formData
@@ -931,7 +931,40 @@ console.log( json );
 		};
 	};
 	
-	GetPhotoProfile
+	// GetPhotoProfile
+	const getPhotoProfile = async (event) => {
+		const file = event.target.files[0];
+		let formData = new FormData();
+		formData.append('file', file);
+		formData.append('userid', userid);
+		try{
+			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + userid, {
+				method: "GET",
+				headers: {'Content-Type': 'application/json'},
+				// body: formData
+			})
+
+			let resJson = await res.json();
+			if( resJson.file_url ) {
+				// get the uploaded file name
+				var file_url = resJson.file_url;
+				alert( file_url );
+				
+				
+			}
+			else{
+				console.log( "Uploaded File error" );
+			}
+		}
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	};
+		
+		
+		
+		
 		
 	useEffect(() => {
 		getAccountInfo();
