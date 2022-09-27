@@ -1011,7 +1011,7 @@ console.log( "photo_url:" + photo_url );
                     
                     <img className="
 						img-account-profile rounded-circle mb-2" 
-						src={ photoUrl }"
+						src={ photoUrl }
 						alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
