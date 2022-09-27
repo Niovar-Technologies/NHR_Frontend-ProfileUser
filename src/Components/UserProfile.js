@@ -19,7 +19,7 @@ import moment from 'moment';
 let appdomain 	= "https://niovarpaie.ca"; // app domainn
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	=  cookies.get( "compagnie" );
-let appfichier  = "https://fichiers.niovarpaie.ca";
+let appfichierUrl  = "https://fichiers.niovarpaie.ca";
 
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import fr from 'date-fns/locale/fr';
@@ -900,22 +900,23 @@ console.log( json );
 			console.log(err);
 		};
 	}
-	// FILE UPLOAD
 	
+	
+	// Post photo profile 
 	const handleChangeFile = async (event) => {
 		const file = event.target.files[0];
 		let formData = new FormData();
 		formData.append('file', file);
-		
+		formData.append('userid', userid);
 		try{
-			var res = await fetch( appfichier + "/upload", {
+			var res = await fetch( appfichierUrl + "/niovarpaie/post/photoprofile'", {
 				method: "POST",
 				// headers: {'Content-Type': 'application/json'},
 				body: formData
 			})
 
 			let resJson = await res.json();
-			if( resJson.resJson === 200 ) {
+			if( resJson.file_url ) {
 				// get the uploaded file name
 				var name = resJson.file_url;
 				alert( name );
@@ -929,7 +930,8 @@ console.log( json );
 			console.log(err);
 		};
 	};
-
+	
+	GetPhotoProfile
 		
 	useEffect(() => {
 		getAccountInfo();
@@ -975,7 +977,10 @@ console.log( json );
                 <div className="card-header">Photo du Profile</div>
                 <div className="card-body text-center">
                     
-                    <img className="img-account-profile rounded-circle mb-2" src="https://fichiers.niovarpaie.ca/uploads/file-1661999118517.jpg" alt="" />
+                    <img className="
+						img-account-profile rounded-circle mb-2" 
+						src="" 
+						alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
 						<input type="file" id="uploadInput" hidden />
