@@ -994,7 +994,7 @@ console.log( "photo_url:" + photo_url );
                 <div className="card-body text-center">
                     
                     <img 
-						className={ circleImageCropedStyle } 
+						style={ circleImageCropedStyle } 
 						src={ photoUrl }
 						alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
