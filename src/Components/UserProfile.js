@@ -938,10 +938,9 @@ console.log( json );
 	const getPhotoProfile = async () => {
 		
 		try{
-			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile", {
+			var res = await fetch( appfichierUrl + "/niovarpaie/get/photoprofile/" + userid, {
 				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-				body: {'userid' : userid}
+				headers: {'Content-Type': 'application/json'}
 			})
 
 			let resJson = await res.json();
@@ -949,8 +948,8 @@ console.log( json );
 				// get the uploaded file name
 				var photo_url = resJson.file_url;
 				alert( file_url );
-				
-				setPhotoUrl( photo_url );
+				if( photo_url )
+					setPhotoUrl( photo_url );
 			}
 			else{
 				console.log( "Uploaded File error" );
