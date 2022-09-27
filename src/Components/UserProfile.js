@@ -977,7 +977,7 @@ console.log( "photo_url:" + photo_url );
                     <div className="row">
                         <div className="col-xl-12 col-sm-12 col-12">
 						
-           <div className="container-xl px-4 mt-4">
+           
 
     <nav className="nav nav-borders">
         <a className="nav-link active ms-0" href="#" target="__blank">Profile</a>
@@ -1347,7 +1347,6 @@ console.log( "photo_url:" + photo_url );
 							}
 						</button>
                     </form>
-                </div>
             </div>
         </div>
     </div>
