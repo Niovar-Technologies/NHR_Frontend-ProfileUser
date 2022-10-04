@@ -24,8 +24,6 @@ let nopicPhotoUrl	= "https://fichiers.niovarpaie.ca/uploads/file-1661999118517.j
 import { registerLocale, setDefaultLocale } from  "react-datepicker";
 import fr from 'date-fns/locale/fr';
 registerLocale('fr', fr)
-	
-
 
 // Helper: get parametter from url
 function getUrlParametter( name, url ) {
@@ -36,6 +34,7 @@ function getUrlParametter( name, url ) {
     var results = regex.exec( url );
     return results == null ? null : results[1];
 }
+
 // Example: getUrlParametter('q', 'hxxp://example.com/?q=abc')
 
 
@@ -136,7 +135,6 @@ console.log( "id: " + id );
 		// setAccountId( userid );
 		accountId = userid;
 }
-
 
 
 // get current url
@@ -448,12 +446,7 @@ console.log( json );
 		return validation;
 	}
 	
-	const validationEmail = (email) => {
-		var re 	= /\S+@\S+\.\S+/;
-        var rep = re.test(email);
-		
-		return rep;
-	};
+	rol
 	
 	const validationPhoneNumber = (number) => {
 		var re 	= /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
@@ -994,7 +987,7 @@ console.log( "photo_url:" + photo_url );
         <div className="col-xl-4">
          
             <div className="card mb-4 mb-xl-0">
-                <div className="card-header">Photo du Profile</div>
+                <div className="card-header">Photo</div>
                 <div className="card-body text-center">
                     
                     <img 
@@ -1007,12 +1000,24 @@ console.log( "photo_url:" + photo_url );
 						Changer l'image
 					</label>
                 </div>
+				<div className="card mb-4 mb-xl-0">
+                <div className="card-header">Photo</div>
+                <div className="card-body text-center">
+                    
+                    Status: Actif<br>
+					Rôle: <select className="custom-select" >
+							<option Employer</option>
+							<option Repartiteur</option>
+							<option Gestionnaire</option>
+							<option Administrateur</option>
+						  </select>
+                </div>
             </div>
         </div>
         <div className="col-xl-8">
            
             <div className="card mb-4">
-                <div className="card-header">Détails de votre profile</div>
+                <div className="card-header">Détails du profile</div>
                 <div className="card-body">
                     <form>
                        <div className="row gx-3 mb-3">
@@ -1065,7 +1070,7 @@ console.log( "photo_url:" + photo_url );
 						
 						<div className="row gx-3 mb-3">
 							<div className="col-md-6">
-                                <Users /> <label className="small mb-1" >Genre </label>
+                                <Users /> <label className="small mb-1" >Sexe </label>
 								<select 
 								className="custom-select" 
 								value = { sexeId } 
