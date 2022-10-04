@@ -1006,10 +1006,10 @@ console.log( "photo_url:" + photo_url );
                     
                     Status: Actif<br>
 					Rôle: <select className="custom-select" >
-							<option Employer</option>
-							<option Repartiteur</option>
-							<option Gestionnaire</option>
-							<option Administrateur</option>
+							<option> Employer</option>
+							<option> Repartiteur</option>
+							<option> Gestionnaire</option>
+							<option> Administrateur</option>
 						  </select>
                 </div>
             </div>
