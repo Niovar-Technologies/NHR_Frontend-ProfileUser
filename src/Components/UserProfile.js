@@ -1003,7 +1003,6 @@ console.log( "photo_url:" + photo_url );
 				<div className="card mb-4 mb-xl-0">
                 <div className="card-header">Photo</div>
                 <div className="card-body text-center">
-                    
                     Status: Actif<br>
 					Rôle: <select className="custom-select" >
 							<option> Employer</option>
@@ -1012,6 +1011,7 @@ console.log( "photo_url:" + photo_url );
 							<option> Administrateur</option>
 						  </select>
                 </div>
+				</div>
             </div>
         </div>
         <div className="col-xl-8">
