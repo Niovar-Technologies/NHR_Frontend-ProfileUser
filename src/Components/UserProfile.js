@@ -999,15 +999,23 @@ console.log( "photo_url:" + photo_url );
 					</label>
                 </div>
 				<div className="card mb-4 mb-xl-0">
-                <div className="card-header">Photo</div>
+                <div className="card-header">Rôle</div>
                 <div className="card-body text-center">
-                    Status: Actif<br/>
-					Rôle: <select className="custom-select" >
-							<option> Employer</option>
-							<option> Repartiteur</option>
-							<option> Gestionnaire</option>
-							<option> Administrateur</option>
-						  </select>
+					<select className="custom-select" >
+						<option> Employer</option>
+						<option> Repartiteur</option>
+						<option> Gestionnaire</option>
+						<option> Administrateur</option>
+					</select>
+                </div>
+				</div>
+				<div className="card mb-4 mb-xl-0">
+                <div className="card-header">Status</div>
+                <div className="card-body text-center">
+					<select className="custom-select" >
+						<option> Activer</option>
+						<option> Desactiver</option>
+					</select>
                 </div>
 				</div>
             </div>
