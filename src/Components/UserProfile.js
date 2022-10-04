@@ -446,8 +446,6 @@ console.log( json );
 		return validation;
 	}
 	
-	rol
-	
 	const validationPhoneNumber = (number) => {
 		var re 	= /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
         var rep = re.test(number);
