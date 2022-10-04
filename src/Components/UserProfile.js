@@ -1012,6 +1012,7 @@ console.log( "photo_url:" + photo_url );
 						  </select>
                 </div>
 				</div>
+				</div>
             </div>
         </div>
         <div className="col-xl-8">
