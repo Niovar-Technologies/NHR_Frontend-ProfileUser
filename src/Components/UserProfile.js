@@ -16,7 +16,7 @@ const cookies = new Cookies();
 
 import moment from 'moment';
 
-let appdomain 	= "https://niovarpaie.ca"; // app domainn
+let appdomain 	= "https://niovarpaie.ca"; // app domain
 let lbdomain 	= "https://loadbalancer.niovarpaie.ca"; // load balancer domain
 let compagnie 	=  cookies.get( "compagnie" );
 let appfichierUrl   = "https://fichiers.niovarpaie.ca";
@@ -35,36 +35,35 @@ function getUrlParametter( name, url ) {
     return results == null ? null : results[1];
 }
 
+
 // Example: getUrlParametter('q', 'hxxp://example.com/?q=abc')
-
-
 const days = [
 	{
-		id: 1,
+		id: 0,
 		name: "Dimanche"
 	},
 	{
-		id: 2,
+		id: 1,
 		name: "Lundi"
 	},
 	{
-		id: 3,
+		id: 2,
 		name: "Mardi"
 	},
 	{
-		id: 4,
+		id: 3,
 		name: "Mercredi"
 	},
 	{
-		id: 5,
+		id: 4,
 		name: "Jeudi"
 	},
 	{
-		id: 6,
+		id: 5,
 		name: "Vendredi"
 	},
 	{
-		id: 7,
+		id: 6,
 		name: "Samedi"
 	}
 ];
@@ -80,29 +79,6 @@ const SexeList= [
 	},
 ];
 	
-// Status
-const StatusList= [
-	{
-		id: 0,
-		name: " Employé activé"
-	},
-	{
-		id: 1,
-		name: " Employé desactivé"
-	},
-	{
-		id: 2,
-		name: " Repartiteur"
-	},
-	{
-		id: 3,
-		name: " Gestionnaire"
-	},
-	{
-		id: 4,
-		name: " Administrateur"
-	},
-];
 
 // Todo: set a backend
 const SalaireTypeList = [
@@ -118,9 +94,14 @@ const SalaireTypeList = [
 
 // Get account id to query ( user id ) 
 var accountId = "";
-var role	= cookies.get( "role" );
-var userid 	= cookies.get( "userid" );
-if( role == "User" ){
+var JsonRoles = cookies.get( "roles" ) ? 
+				cookies.get( "roles" ) 
+				: JSON.stringify( "['Employe', 'Repartiteur', 'Gestionnaire', 'Administrateur' ]" );
+console.log( JsonRoles );
+var roles = JSON.parse( JsonRoles );
+console.log( roles );
+var userid 	= cookies.get( "userid" ) ? cookies.get( "userid" ) : 10;
+if( !roles.includes( "Administrateur" ) ){
 	// setAccountId( userid );	// Id of connected user from the users cookie session
 	accountId = userid;
 }
@@ -129,13 +110,29 @@ else{
 	let query 	= 'employee_id'
 	let id  	= getUrlParametter( query, url );
 console.log( "id: " + id );
-	if( id )
+	if( !id == null )
 		accountId = id;
 	else
 		// setAccountId( userid );
 		accountId = userid;
 }
 
+
+var defaultRole = "";
+function getUserDefaultRole(){
+	if( roles.includes( "Administrateur" ) )
+		defaultRole = "Administrateur"
+	
+	if( roles.includes( "Gestionnaire" ) )
+		defaultRole = "Gestionnaire"
+	
+	if( roles.includes( "Repartiteur" ) )
+		defaultRole = "Repartiteur"
+	
+		if( roles.includes( "Employe" ) )
+		defaultRole = "Employe"
+}
+getUserDefaultRole()
 
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
@@ -175,6 +172,8 @@ const UserProfile = () => {
 	
 	const [ nomEntreprise, setNomEntreprise ]= useState(''); //	
 	
+	const [ role, setRole ]= useState(''); //	
+	
 	const [ profileId, setProfileId ] =  useState( '' );
 	const [ dateEmbauche, setDateEmbauche ] =  useState( '' );
 	const [ dateDepart, setDateDepart ]  =  useState( '' );  
@@ -190,7 +189,9 @@ const UserProfile = () => {
 	const [ departementId, setDepartementId ] =  useState( '' );
 	const [ salaryTypeName, setSalaryTypeName ] =  useState( '' );
 	const [ salaire, setSalaire ] = useState( '' );	
-											
+		
+	const [ activation , setActivation  ] = useState( '' );		
+		
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
@@ -242,7 +243,7 @@ const UserProfile = () => {
 	// Handle input change
 	const handleChangeSalaire = (value) => {
 		
-		if( role == "Admin" ){
+		if( roles.includes( "Administrateur" ) ){	// only role Administrateur can change salaire
 			setSalaire( value );
 		}
 	}
@@ -250,7 +251,7 @@ const UserProfile = () => {
 	// Handle input change
 	const handleChangeMatricule = (value) => {
 		
-		if( role == "Admin" ){
+		if( roles.includes( "Administrateur" ) ){
 			setMatricule( value );
 		}
 	}
@@ -282,9 +283,8 @@ const UserProfile = () => {
 		width: '120px'
 	}
 	
-	
-	
-	// Handles
+
+	// Save profile
 	const handleClickSave = async (e) => {
 		
 		e.preventDefault();
@@ -312,6 +312,7 @@ const UserProfile = () => {
 					"telephone01": telephone01,
 					"telephone02": telephone02,
 					"sexeId": sexeId,
+					"matricule": matricule,
 					"departementId": departementId,
 					"posteId": posteId,
 					"typeSalaireId": salaryTypeid,
@@ -322,7 +323,6 @@ const UserProfile = () => {
 					"paysId": paysId,
 					"provinceId": provinceId,
 					"villeId": villeId,
-					"statutId": 1,
 					"photoUrl": "foo.jpg",
 					"userProfileJour": []
 				};
@@ -349,7 +349,7 @@ console.log( json );
 
 				saveUserJour( resJson.userProfileId ); //
 				
-				alert( "Votre profile a bien été enregistré" );
+				alert( "Profile enregistré." );
 			}
 		}
 		catch (err) {
@@ -373,7 +373,7 @@ console.log( json );
 				body: JSON.stringify({
 					'accountId': accountId,
 					'fullName': fullName,
-					'role': role, // getRoleId( role )
+					'role': role,
 					'email': email,
 					'password': password,
 					'confirmPassword': repeatPassword
@@ -408,12 +408,12 @@ console.log( json );
 		// telephone01
 		var validationTelephone01 = validationPhoneNumber( telephone01 );
 		if( !validationTelephone01 )
-			validation = "Numéro de téléphone non valide";
+			validation = "Le numéro de téléphone n'est pas valide";
 		
 		// telephone02
 		var validationTelephone02 = validationPhoneNumber( telephone02 );
 		if( telephone02 && !validationTelephone02 ) // not mandatory
-			validation = "Numéro de téléphone de domicile non valide";
+			validation = "Le numéro de téléphone du domicile n'est pas valide";
 		
 		// salaire
 		if( salaire && salaire.isNaN ) // not mandatory
@@ -429,13 +429,13 @@ console.log( json );
 			validation = "Homme ou femme?"; 
 		}
 	
-		// departementId // posteId
+		// departementId, posteId
 		if( departementId === '' )
 			validation = "Choisissez un Département de travail"; 
 		else if( posteId === '' )
 			validation = "Choisissez un Poste de travail"; 
 		
-		// paysId // provinceId // villeId
+		// paysId, provinceId, villeId
 		if( paysId === '' )
 			validation = "Choisissez un Pays"; 
 		else if( provinceId === '' )
@@ -445,6 +445,12 @@ console.log( json );
 		
 		return validation;
 	}
+	
+	const validationEmail = (email) => {
+		var re 	= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var rep = re.test(email);
+		return rep;
+	};
 	
 	const validationPhoneNumber = (number) => {
 		var re 	= /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;
@@ -461,22 +467,10 @@ console.log( json );
 			validation = "Mot de passe trop long"
 		if( password != repeatPassword)
 			validation = "Mots de passe differents"
-		
+
 		return validation;
 	};
 	
-	// Roles
-	const getRoleId = (role) => {
-		var id = "";
-	
-		if( role == "Admin" )
-			id = 0;
-
-		if( role == "User" )
-			id = 1;
-	
-		return id;
-	};
 	
 	// Save user jours. Delete and recreate.
 	async function saveUserJour( userProfileId ){	
@@ -501,7 +495,7 @@ console.log( json );
 // console.log( userWeekDays );
 // console.log( userWeekDays.length );
 		// Create user jours
-		for( var i = 1; i < userWeekDays.length + 1; i++ ){  // Todo: ajust i nidx dynamicaly
+		for( var i = 0; i < userWeekDays.length; i++ ){  // Todo: ajust i nidx dynamicaly
 			
 			if( userWeekDays[i] === false )
 				continue;
@@ -561,20 +555,31 @@ console.log( json );
 	}
 	
 	const handleSelectSalaireType = (value) => {
-		let salaireTypeId = value;
-		setSalaryTypeid( salaireTypeId );
+		if( roles.includes( "Administrateur" ) ){	// only role Administrateur can change salairy type
+			setSalaryTypeid( value );
+		}
 	}
 	
-	const handleSelectStatus= (value) => {
+	const handleSelectStatus = (value) => {
 		let statusId = value;
 		setStatusId( statusId );
 	}
 	
-	const handleSelectVille= (value) => {
+	const handleSelectVille = (value) => {
 		let villeId = value;
 		setVilleId( villeId );
 	}
 	
+	const handleSelectRole = (value) => {
+		setRole( value );
+		updateRole( value );
+	}
+	
+	const handleSelectActivation = (value) => {
+		setActivation( value );
+		let activate = ( value == "Activé" ) ? 1 : 0;
+		updateActivation( accountId, activate );
+	}
 	
 	// Get pays
 	async function getPays(){
@@ -652,19 +657,22 @@ console.log( json );
 						setVilleId( userProfileData.villeId );	// Villes select's default value
 					}
 					
-					setStatusId( userProfileData.statutId );
+
 					setTelephone01( userProfileData.telephone01 );
 					setTelephone02( userProfileData.telephone02 );
 					setSexeId( userProfileData.sexeId );
-					setPosteId( userProfileData.posteId );
+					setMatricule( userProfileData.matricule );
+					
 					setDepartementId( userProfileData.departementId );
-					if( userProfileData.salaryTypeid )
-						setSalaryTypeName( SalaireTypeList[ userProfileData.salaryTypeid ] );
-					else
-						setSalaryTypeName( 'Non defini' );
+					
+					await GetPostes( userProfileData.departementId )
+					
+					setPosteId( userProfileData.posteId );
+
+					setSalaryTypeid( userProfileData.typeSalaireId );
 			
 					setSalaire( userProfileData.salaire );
-					setStatusId( userProfileData.statutId );
+					setStatusId( userProfileData.activation );
 					setFormType( '1' );
 				}
 				else{
@@ -701,13 +709,15 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.accountId ) {
 				accountInfo   = resJson;
-				// setUserProfile( result );
-				setMatricule( accountInfo.matricule );
-				setSalaryTypeid( accountInfo.salaryTypeid );
 				setFullName( accountInfo.fullName );
 				setEmail( accountInfo.email );
-			
+				let activated = accountInfo.activation;
+				let activation =  ( activated ) ? "Activé" : "Désactivé"
+				setActivation( activation );
+				setRole( accountInfo.role );
+				
 				getUserProfile();
+				
 			}
 			else {
 				alert( "Compte non trouvé" );
@@ -741,8 +751,9 @@ console.log( json );
 					let jourId = result[i].jourId;
 					userProfilJours.push( jourId );
 				}
-		
+// console.log( userProfilJours );
 				setUserCheckedDaysArray( userProfilJours );
+				
 				// setWeekDays( userWeekDays ); 
 			}
 			else {
@@ -767,9 +778,11 @@ console.log( json );
 				to_check = true;
 			
 			userWeekDaysArray.push( to_check );
+			
+console.log( i );
 		}
 		setUserWeekDays( userWeekDaysArray );
-		console.log( userWeekDays );
+		console.log( userWeekDaysArray );
 	}
 	
 	
@@ -786,6 +799,7 @@ console.log( json );
 			if( resJson.statusCode === 200 ) {
 				let departements = resJson.departement;
 				setDepartementList( departements );
+				 
 			}
 			else {
 				alert( "Un probleme est survenu" );
@@ -813,7 +827,7 @@ console.log( json );
 			if( resJson.statusCode === 200 ) {
 				let postes = resJson.poste;
 				
-				if( !postes.length == 0 )	// Departement Non attribue
+				if( !postes.length == 0 )
 					setPosteList( postes );
 			}
 			else {
@@ -940,8 +954,57 @@ console.log( "photo_url:" + photo_url );
 	
 		
 		
+	async function updateRole( role ){
+		try {
+			var res = await fetch( lbdomain + "/Accounts/" + accountId, {
+				method: "PUT",
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					'role': role, 
+				}),
+			});
+			
+			let resJson = await res.json();
+			if( resJson.statusCode === 200 ) {
+				console.log('Userrole  updated');
+			}
+		} 
+		catch (err) {
+			//alert( "Vérifiez votre connexion internet svp" );
+			console.log(err);
+		};
+	}
 		
-		
+	async function updateActivation( employee_id, value ){
+		try {
+		let res = await fetch( lbdomain + "/NiovarRH/EmployeeListMicroservices/EmployeeList/EmployeeActivation/" + employee_id + "/" + value + "", {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
+
+		let resJson = await res.json();
+		if( res.status === 200 ) {
+			if( resJson.result == 1 ){
+				if( value == 0 )
+					alert( "Employé désactivé" )
+				else if ( value == 1 )
+					alert( "Employé activé" )
+			}
+			else{
+				alert( "Un probleme est survenu" );
+			}
+		}
+		else {
+			alert( "Un probleme est survenu" );
+				// setErrorColor( "red" );
+				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
+	}
 		
 	useEffect(() => {
 		getAccountInfo();
@@ -995,13 +1058,17 @@ console.log( "photo_url:" + photo_url );
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
 						<input type="file" id="uploadInput" hidden />
-						Changer l'image
+						&nbsp; Changer l'image &nbsp;
 					</label>
                 </div>
 				<div className="card mb-4 mb-xl-0">
                 <div className="card-header">Rôle</div>
                 <div className="card-body text-center">
-					<select className="custom-select" >
+					<select 
+						className="custom-select"
+						value = { role } 
+						onChange={e => handleSelectRole( e.target.value )}						
+					>
 						<option> Employer</option>
 						<option> Repartiteur</option>
 						<option> Gestionnaire</option>
@@ -1012,9 +1079,13 @@ console.log( "photo_url:" + photo_url );
 				<div className="card mb-4 mb-xl-0">
                 <div className="card-header">Status</div>
                 <div className="card-body text-center">
-					<select className="custom-select" >
-						<option> Activer</option>
-						<option> Desactiver</option>
+					<select 
+						className="custom-select" 
+						value = { activation } 
+						onChange={e => handleSelectActivation( e.target.value )}	
+					>
+						<option> Activé</option>
+						<option> Désactivé</option>
 					</select>
                 </div>
 				</div>
@@ -1099,7 +1170,7 @@ console.log( "photo_url:" + photo_url );
                                 <input 
 									className="form-control" 
 									type="text" 
-									placeholder="Numéro d'employé" 
+									placeholder="Numéro de l'employé" 
 									value = { matricule }
 									onChange={e => handleChangeMatricule(e.target.value)} 
 								/>
@@ -1149,7 +1220,7 @@ console.log( "photo_url:" + photo_url );
 							
                             <div className="col-md-6">
                                 <Trello /> <label className="small mb-1" >Type de salaire</label>
-							{ role == "User" ? 
+							{ !roles.includes( "Administrateur" ) ? 
 								<input
 									onChange={e => handleChangeSalaire(e.target.value)}
 									className="form-control" 
@@ -1158,9 +1229,10 @@ console.log( "photo_url:" + photo_url );
 									value = { salaryTypeName } />					
 							:
 								<select 
-								className="custom-select" 
-								value = { salaryTypeid } 
-								onChange={e => handleSelectSalaireType(e.target.value)} >
+									className="custom-select" 
+									value = { salaryTypeid } 
+									onChange={e => handleSelectSalaireType(e.target.value)} 
+								>
 									{ !salaryTypeid ? 
 										<option value="choisir">choisir</option> 
 									: 
@@ -1263,7 +1335,7 @@ console.log( "photo_url:" + photo_url );
 						<>&nbsp;</> 
 						:
 						<div className="mb-3">
-                            <Map /> <label className="small mb-1" >Ville</label>
+                            <MapPin /> <label className="small mb-1" >Ville</label>
 							<select 
 								className="custom-select" 
 								value = { villeId } 
@@ -1284,7 +1356,7 @@ console.log( "photo_url:" + photo_url );
 						}
 						<div className="mb-3">
                             <Sun /> <label className="small mb-1" >Vos jours de disponibilité</label>
-							<div className="col-sm-8 checkbox-wrapper list-unstyled">
+							<div className="col-sm-18 checkbox-wrapper list-unstyled">
 							{weekDays.map((obj, index) => (
 								<li key={index}>
 									<div className="checkbox-inline">
@@ -1302,29 +1374,7 @@ console.log( "photo_url:" + photo_url );
 							))}
 							</div>
                         </div>
-						{ role == 'admin' ?
-						<div className="mb-3">
-                            <ToggleLeft /> <label className="small mb-1" >Statut</label>
-							<select 
-								className="custom-select" 
-								value = { statutId } 
-								onChange={e => handleSelectStatus(e.target.value)} >
-									{ !statutId ? 
-										<option value="choisir">choisir</option> 
-									: 
-										"" 
-									}
-									{ StatusList.map((obj, index) => (
-										<option 
-											key={index} 
-											value={obj.id}>{obj.name}
-										</option>
-									))}
-							</select>
-                        </div>
-						: 
-							"" 
-						}
+						
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" >Mot de passe</label>
@@ -1354,12 +1404,12 @@ console.log( "photo_url:" + photo_url );
 							className="btn btn-primary" 
 							type="button"  
 							onClick={handleClickSave}
-							>
+							>&nbsp;
 							{ !formType ? 
-									"Enregistrer" 
+								"Enregistrer"
 								: 
-									"Modifier" 
-							}
+								"Modifier"
+							}&nbsp;
 						</button>
                     </form>
             </div>
