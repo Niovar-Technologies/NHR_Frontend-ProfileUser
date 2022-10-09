@@ -92,15 +92,18 @@ const SalaireTypeList = [
 	},
 ];
 
-// Get account id to query ( user id ) 
-var accountId = "";
-var JsonRoles = cookies.get( "roles" ) ? 
+
+// Get user roles
+var JsonRoles = cookies.get( "roles" ) != null ? 
 				cookies.get( "roles" ) 
-				: JSON.stringify( "['Employe', 'Repartiteur', 'Gestionnaire', 'Administrateur' ]" );
-console.log( JsonRoles );
+				: 
+				JSON.stringify( "['Employe', 'Repartiteur', 'Gestionnaire', 'Administrateur' ]" );
 var roles = JSON.parse( JsonRoles );
 console.log( roles );
+
+// Get account id to query ( user id ) 
 var userid 	= cookies.get( "userid" ) ? cookies.get( "userid" ) : 10;
+var accountId = "";
 if( !roles.includes( "Administrateur" ) ){
 	// setAccountId( userid );	// Id of connected user from the users cookie session
 	accountId = userid;
