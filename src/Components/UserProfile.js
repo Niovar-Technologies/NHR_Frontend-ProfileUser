@@ -98,9 +98,10 @@ var JsonRoles = cookies.get( "roles" ) != null ?
 				cookies.get( "roles" ) 
 				: 
 				JSON.stringify( ["Employe", "Repartiteur", "Gestionnaire", "Administrateur" ] );
+console.log( JsonRoles );
 var roles = JSON.parse( JsonRoles );
 
-console.log( roles );
+
 
 // Get account id to query ( user id ) 
 var userid 	= cookies.get( "userid" ) ? cookies.get( "userid" ) : 10;
