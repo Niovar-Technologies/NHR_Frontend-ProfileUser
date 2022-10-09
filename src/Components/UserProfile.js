@@ -97,8 +97,9 @@ const SalaireTypeList = [
 var JsonRoles = cookies.get( "roles" ) != null ? 
 				cookies.get( "roles" ) 
 				: 
-				JSON.stringify( "['Employe', 'Repartiteur', 'Gestionnaire', 'Administrateur' ]" );
+				JSON.stringify( ["Employe", "Repartiteur", "Gestionnaire", "Administrateur" ] );
 var roles = JSON.parse( JsonRoles );
+
 console.log( roles );
 
 // Get account id to query ( user id ) 
