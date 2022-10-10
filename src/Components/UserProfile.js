@@ -674,7 +674,7 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 			 
-				var userProfileData		= resJson.userProfile[0];
+				var userProfileData	= resJson.userProfile[0];
 				if( userProfileData != null ){
 					
 					let userProfileId 	= userProfileData.id;
@@ -713,15 +713,8 @@ console.log( json );
 					setTelephone01( userProfileData.telephone01 );
 					setTelephone02( userProfileData.telephone02 );
 					setSexeId( userProfileData.sexeId );
-					var userMatricule = '';
-					if( userProfileData.matricule ){
-						userMatricule = userProfileData.matricule;
-					}
-					else{
-						userMatricule = generateMatricule();
-					}
-alert( userMatricule );
-					setMatricule( userMatricule );
+					
+					setMatricule( userProfileData.matricule );
 					
 					setDepartementId( userProfileData.departementId );
 					
@@ -738,8 +731,22 @@ alert( userMatricule );
 				else{
 					setUserCheckedDaysArray( [] );
 					setSalaryTypeName( 'Non defini' );
+					
+					var userMatricule = generateMatricule();
+					setMatricule( userMatricule );
+console.log( userMatricule );
+
 				}
 				
+				var userMatricule = '';
+				if( userProfileData.matricule ){
+					userMatricule = userProfileData.matricule;
+				}
+				else{
+					userMatricule = generateMatricule();
+				}
+alert( userMatricule );
+
 				// setPassword( userProfileData.password );
 				// setRepeatPassword( userProfileData.password );
 			
