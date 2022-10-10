@@ -969,41 +969,38 @@ console.log( i );
 		};
 	}
 	
-	// file validation
-	Filevalidation = ( userfile ) => {
+	// file validation 
+	const Filevalidation = ( userfile ) => {
+		var filePath = userfile.name;
 
-        const fsize = userfile.item(i).size;
-        const file = Math.round((fsize / 1024));
+        // Allowing file type
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+             
+        if (!allowedExtensions.exec(filePath)) {
+            return('Type de fichier invalide ( .jpg et .png uniquement )');    
+        }
+			
+        const fsize = userfile.size;
+        // const file = Math.round((fsize / 1024));
         // The size of the file.
-        if (file >= 31457280) {
+        if ( fsize >= 31457280 ) {
             return(
             "Taille de fichier superieure à 30 MO");
-        } else if (file < 1024 ) {
+        } 
+		else if ( fsize < 1024 ) {
             return(
                 "Taille de fichier inférieure à 1 KO");
-        } else {
-            var filePath = userfile.value;
-         
-            // Allowing file type
-            var allowedExtensions =
-                    /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-             
-            if (!allowedExtensions.exec(filePath)) {
-                return('Type de fichier invalide');
-               
-            }
-        }
-           
+        }  
     }
 	
 	// Post photo profile 
 	const handleChangeFile = async (event) => {
 		const file = event.target.files[0];
 		
-		let fileValidation = Filevalidation( file );
+		let validation = Filevalidation( file );
 		
-		if( fileValidation ){
-			alert( fileValidation );
+		if( validation ){
+			alert( validation );
 			return;
 		}
 		
@@ -1161,7 +1158,7 @@ console.log( i );
 						style={ circleImageCropedStyle } 
 						src={ photoUrl }
 						alt="" />
-                    <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 10 MB</div>
+                    <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 30 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
 						<input type="file" id="uploadInput" hidden />
 						&nbsp; Changer l'image &nbsp;
