@@ -186,6 +186,26 @@ async function GetNomEntreprise(){
 }
 
 
+function rndNumbers(length) {
+	return Math.floor(Math.pow(10, length-1) + Math.random() * 9 * Math.pow(10, length-1));
+}
+
+function rndLetter(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+
+function generateMatricule(){
+	var matricule = rndLetter(3) + "" + rndNumbers(5);
+	return matricule;
+}
+
 	
 const UserProfile = () => {
 	const history = useHistory();
@@ -693,7 +713,15 @@ console.log( json );
 					setTelephone01( userProfileData.telephone01 );
 					setTelephone02( userProfileData.telephone02 );
 					setSexeId( userProfileData.sexeId );
-					setMatricule( userProfileData.matricule );
+					var userMatricule = '';
+					if( userProfileData.matricule ){
+						userMatricule = userProfileData.matricule;
+					}
+					else{
+						userMatricule = generateMatricule();
+					}
+
+					setMatricule( userMatricule );
 					
 					setDepartementId( userProfileData.departementId );
 					
