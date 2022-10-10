@@ -821,7 +821,7 @@ console.log( i );
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let departements = resJson.departement;
-console.log( departements );
+// console.log( departements );
 				setDepartementList( departements );
 				 
 			}
@@ -965,7 +965,7 @@ console.log( departements );
 			let resJson = await res.json();
 			// get the uploaded file name
 			var photo_url = resJson.photoPath;
-console.log( "photo_url:" + photo_url );
+// console.log( "photo_url:" + photo_url );
 			if( photo_url )
 				setPhotoUrl( photo_url );
 			
@@ -1096,7 +1096,7 @@ console.log( "photo_url:" + photo_url );
 						{ RoleList.map((obj, index) => (
 							<option 
 								key={index} 
-								value={obj.id}>{obj.name}
+								value={obj.name}>{obj.name}
 							</option>
 						))}
 					</select>
