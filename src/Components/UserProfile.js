@@ -390,7 +390,7 @@ const UserProfile = () => {
 		if( !formType ) // Nouveau
 			delete json.id;
 
-console.log( json );
+// console.log( json );
 
 		// save or modify profile
 		try {
@@ -443,6 +443,7 @@ console.log( json );
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				console.log('User updated');
+				cookies.set( "nom", fullName, { path: "/" } ); // update fulName in the cookie
 			}
 		}
 		catch (err) {
