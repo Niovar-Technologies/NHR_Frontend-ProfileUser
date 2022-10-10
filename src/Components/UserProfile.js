@@ -146,14 +146,11 @@ var defaultRole = "";
 function getUserDefaultRole(){
 	if( roles.includes( "Administrateur" ) )
 		defaultRole = "Administrateur"
-	
-	if( roles.includes( "Gestionnaire" ) )
+	else if( roles.includes( "Gestionnaire" ) )
 		defaultRole = "Gestionnaire"
-	
-	if( roles.includes( "Repartiteur" ) )
+	else if( roles.includes( "Repartiteur" ) )
 		defaultRole = "Repartiteur"
-	
-		if( roles.includes( "Employe" ) )
+	else if( roles.includes( "Employe" ) )
 		defaultRole = "Employe"
 }
 getUserDefaultRole()
@@ -219,7 +216,6 @@ const UserProfile = () => {
 	const [ PaysList, setPaysList ] 		= useState( [] ); 	// Pays array's values top map
 	const [ ProvinceList, setProvinceList ] = useState( [] ); 	// Provinces array's values to map
 	const [ VilleList, setVilleList ] 		= useState( [] ); 	// Ville array's values to map
-
 
 	const [ userWeekDays, setUserWeekDays ] = useState( '' );	// Default users days to checked
 
