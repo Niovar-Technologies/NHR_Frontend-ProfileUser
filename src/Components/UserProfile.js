@@ -71,13 +71,32 @@ const days = [
 const SexeList= [
 	{
 		id: 0,
-		name: " Homme"
+		name: "Homme"
 	},
 	{
 		id: 1,
-		name: " Femme"
+		name: "Femme"
 	},
 ];
+
+const RoleList[
+	{
+		id: 0,
+		name: "Employer"
+	},
+	{
+		id: 1,
+		name: "Repartiteur"
+	},
+	{
+		id: 2,
+		name: "Gestionnaire"
+	},
+	{
+		id: 3,
+		name: "Administrateur"
+	}
+]
 	
 
 // Todo: set a backend
@@ -1075,10 +1094,12 @@ console.log( "photo_url:" + photo_url );
 						value = { role } 
 						onChange={e => handleSelectRole( e.target.value )}						
 					>
-						<option> Employer</option>
-						<option> Repartiteur</option>
-						<option> Gestionnaire</option>
-						<option> Administrateur</option>
+						{ RoleList.map((obj, index) => (
+							<option 
+								key={index} 
+								value={obj.id}>{obj.name}
+							</option>
+						))}
 					</select>
                 </div>
 				</div>
@@ -1206,7 +1227,7 @@ console.log( "photo_url:" + photo_url );
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
-								value = { departementId == 1 ? 1 : posteId } 
+								value = { posteId } 
 								onChange={e => handleSelectPoste(e.target.value)} >
 									{ !posteId ? 
 										<option value="choisir">choisir</option> 
