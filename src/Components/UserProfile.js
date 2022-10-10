@@ -803,6 +803,7 @@ console.log( i );
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				let departements = resJson.departement;
+console.log( departements );
 				setDepartementList( departements );
 				 
 			}
@@ -1205,7 +1206,7 @@ console.log( "photo_url:" + photo_url );
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
-								value = { posteId } 
+								value = { departementId == 1 ? 1 : posteId } 
 								onChange={e => handleSelectPoste(e.target.value)} >
 									{ !posteId ? 
 										<option value="choisir">choisir</option> 
