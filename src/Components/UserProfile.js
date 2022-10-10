@@ -732,7 +732,7 @@ console.log( json );
 
 					let userTypeSalaireId = userProfileData.typeSalaireId;
 					setSalaryTypeid( userTypeSalaireId );
-					let salaryTypeName = getSalaryTypeName( setSalaryTypeid );
+					let salaryTypeName = getSalaryTypeName( userTypeSalaireId );
 					setSalaryTypeName( salaryTypeName ); // for employee input type
 			
 					setSalaire( userProfileData.salaire );
