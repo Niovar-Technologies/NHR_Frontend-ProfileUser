@@ -1087,6 +1087,7 @@ console.log( i );
                 </div>
 				<div className="card mb-4 mb-xl-0">
 			{ roles.includes( "Administrateur" ) ? 
+			<>
                 <div className="card-header">Rôle</div>
                 <div className="card-body text-center">
 					<select 
@@ -1102,13 +1103,16 @@ console.log( i );
 						))}
 					</select>
                 </div>
-				</div>
+			</>
 			:
 				""
 			}
+			
+				</div>
 				<div className="card mb-4 mb-xl-0">
 			{ !roles.includes( "Administrateur" ) ? 
-                <div className="card-header">Status</div>
+            <>    
+				<div className="card-header">Status</div>
                 <div className="card-body text-center">
 					<select 
 						className="custom-select" 
@@ -1119,10 +1123,11 @@ console.log( i );
 						<option> Désactivé</option>
 					</select>
                 </div>
-				</div>
+			</>
 			:
 				""
 			}
+				</div>
             </div>
         </div>
         <div className="col-xl-8">
