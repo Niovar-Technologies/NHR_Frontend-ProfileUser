@@ -443,6 +443,7 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.statusCode === 200 ) {
 				console.log('User updated');
+alert( fullName );
 				cookies.set( "nom", fullName, { path: "/" } ); // update fulName in the cookie
 			}
 		}
@@ -851,7 +852,6 @@ const UserProfile = () => {
 			
 			userWeekDaysArray.push( to_check );
 			
-console.log( i );
 		}
 		setUserWeekDays( userWeekDaysArray );
 		console.log( userWeekDaysArray );
