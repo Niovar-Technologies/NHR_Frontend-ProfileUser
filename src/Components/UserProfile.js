@@ -720,7 +720,7 @@ console.log( json );
 					else{
 						userMatricule = generateMatricule();
 					}
-
+alert( userMatricule );
 					setMatricule( userMatricule );
 					
 					setDepartementId( userProfileData.departementId );
