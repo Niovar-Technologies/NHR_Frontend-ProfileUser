@@ -736,7 +736,7 @@ console.log( json );
 				let activated = accountInfo.activation;
 				let activation =  ( activated ) ? "Activé" : "Désactivé"
 				setActivation( activation );
-alert( accountInfo.role );
+// alert( accountInfo.role );
 				setRole( accountInfo.role );
 				
 				getUserProfile();
@@ -1086,6 +1086,7 @@ console.log( i );
 					</label>
                 </div>
 				<div className="card mb-4 mb-xl-0">
+			{ roles.includes( "Administrateur" ) ? 
                 <div className="card-header">Rôle</div>
                 <div className="card-body text-center">
 					<select 
@@ -1102,6 +1103,11 @@ console.log( i );
 					</select>
                 </div>
 				</div>
+			:
+				""
+			}
+			
+			{ roles.includes( "Administrateur" ) ? 
 				<div className="card mb-4 mb-xl-0">
                 <div className="card-header">Status</div>
                 <div className="card-body text-center">
@@ -1115,7 +1121,10 @@ console.log( i );
 					</select>
                 </div>
 				</div>
-            </div>
+				</div>
+			:
+				""
+			}
         </div>
         <div className="col-xl-8">
            
