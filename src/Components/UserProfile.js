@@ -737,14 +737,6 @@ console.log( json );
 
 				}
 				
-				var userMatricule = '';
-				if( userProfileData.matricule ){
-					userMatricule = userProfileData.matricule;
-				}
-				else{
-					userMatricule = generateMatricule();
-				}
-alert( userMatricule );
 
 				// setPassword( userProfileData.password );
 				// setRepeatPassword( userProfileData.password );
