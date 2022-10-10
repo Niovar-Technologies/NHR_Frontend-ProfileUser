@@ -441,7 +441,7 @@ const UserProfile = () => {
 			});
 			
 			let resJson = await res.json();
-			if( resJson.statusCode === 200 ) {
+			if( resJson.accountId ) {
 				console.log('User updated');
 alert( fullName );
 				cookies.set( "nom", fullName, { path: "/" } ); // update fulName in the cookie
@@ -854,7 +854,6 @@ alert( fullName );
 			
 		}
 		setUserWeekDays( userWeekDaysArray );
-		console.log( userWeekDaysArray );
 	}
 	
 	
