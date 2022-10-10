@@ -103,11 +103,11 @@ const RoleList = [
 const SalaireTypeList = [
 	{
 		id: 0,
-		name: " Salaire horaire"
+		name: "Salaire horaire"
 	},
 	{
 		id: 1,
-		name: " Salaire annuel"
+		name: "Salaire annuel"
 	},
 ];
 
@@ -730,12 +730,12 @@ console.log( json );
 				}
 				else{
 					setUserCheckedDaysArray( [] );
-					setSalaryTypeName( 'Non defini' );
+					setSalaryTypeName( 'Horaire' );
 					
 					var userMatricule = generateMatricule();
 					setMatricule( userMatricule );
 
-					setSalaryTypeid( 'Horaire' );
+					setSalaryTypeid( 0 );
 				}
 				
 
@@ -1316,7 +1316,7 @@ console.log( i );
 									className="form-control" 
 									type="text" 
 									placeholder="Type de salaire" 
-									value = { salaryTypeid } />					
+									value = { salaryTypeName } />					
 							:
 								<select 
 									className="custom-select" 
