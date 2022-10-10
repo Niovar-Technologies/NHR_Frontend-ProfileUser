@@ -152,8 +152,10 @@ function getUserDefaultRole(){
 		defaultRole = "Repartiteur"
 	else if( roles.includes( "Employe" ) )
 		defaultRole = "Employe"
+	
+	return defaultRole
 }
-getUserDefaultRole()
+getUserDefaultRole();
 
 // get current url
 let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise' ) : "2020"; //
@@ -592,7 +594,7 @@ console.log( json );
 	
 	const handleSelectRole = (value) => {
 		setRole( value );
-		updateRole( value );
+		updateRole( value );	// save to backend
 	}
 	
 	const handleSelectActivation = (value) => {
@@ -734,6 +736,7 @@ console.log( json );
 				let activated = accountInfo.activation;
 				let activation =  ( activated ) ? "Activé" : "Désactivé"
 				setActivation( activation );
+alert( accountInfo.role );
 				setRole( accountInfo.role );
 				
 				getUserProfile();
