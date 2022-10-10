@@ -443,7 +443,6 @@ const UserProfile = () => {
 			let resJson = await res.json();
 			if( resJson.accountId ) {
 				console.log('User updated');
-alert( fullName );
 				cookies.set( "nom", fullName, { path: "/" } ); // update fulName in the cookie
 			}
 		}
