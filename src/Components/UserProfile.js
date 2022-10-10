@@ -969,10 +969,44 @@ console.log( i );
 		};
 	}
 	
+	// file validation
+	Filevalidation = ( userfile ) => {
+
+        const fsize = userfile.item(i).size;
+        const file = Math.round((fsize / 1024));
+        // The size of the file.
+        if (file >= 31457280) {
+            return(
+            "Taille de fichier superieure à 30 MO");
+        } else if (file < 1024 ) {
+            return(
+                "Taille de fichier inférieure à 1 KO");
+        } else {
+            var filePath = userfile.value;
+         
+            // Allowing file type
+            var allowedExtensions =
+                    /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+             
+            if (!allowedExtensions.exec(filePath)) {
+                return('Type de fichier invalide');
+               
+            }
+        }
+           
+    }
 	
 	// Post photo profile 
 	const handleChangeFile = async (event) => {
 		const file = event.target.files[0];
+		
+		let fileValidation = Filevalidation( file );
+		
+		if( fileValidation ){
+			alert( fileValidation );
+			return;
+		}
+		
 		let formData = new FormData();
 		formData.append('file', file);
 		formData.append('userid', accountId);
@@ -1127,7 +1161,7 @@ console.log( i );
 						style={ circleImageCropedStyle } 
 						src={ photoUrl }
 						alt="" />
-                    <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 5 MB</div>
+                    <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 10 MB</div>
 					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
 						<input type="file" id="uploadInput" hidden />
 						&nbsp; Changer l'image &nbsp;
