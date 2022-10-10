@@ -298,6 +298,16 @@ const UserProfile = () => {
 		setTelephone02( value );
 	}
 	
+	// Handle Role input change
+	const handleChangeRole = (value) => {
+		// never change
+	}
+	
+	// Handle Satus input change
+		const handleChangeStatus = (value) => {
+		// never change
+	}
+	
 	const circleImageCropedStyle = {
 		objectFit: 'cover',
 		borderRadius: '50%',
@@ -1086,9 +1096,10 @@ console.log( i );
 					</label>
                 </div>
 				<div className="card mb-4 mb-xl-0">
+				<div className="card-header">Rôle</div>
 			{ roles.includes( "Administrateur" ) ? 
 			<>
-                <div className="card-header">Rôle</div>
+                
                 <div className="card-body text-center">
 					<select 
 						className="custom-select"
@@ -1105,14 +1116,21 @@ console.log( i );
                 </div>
 			</>
 			:
-				""
+			<input
+				onChange={e => handleChangeRole(e.target.value)}
+									className="form-control" 
+									type="text" 
+									placeholder="Type de salaire" 
+									value = { role }
+			/>
 			}
 			
 				</div>
 				<div className="card mb-4 mb-xl-0">
-			{ !roles.includes( "Administrateur" ) ? 
-            <>    
 				<div className="card-header">Status</div>
+			{ roles.includes( "Administrateur" ) ? 
+            <>    
+				
                 <div className="card-body text-center">
 					<select 
 						className="custom-select" 
@@ -1125,7 +1143,13 @@ console.log( i );
                 </div>
 			</>
 			:
-				""
+				<input
+				onChange={e => handleChangeStatus(e.target.value)}
+									className="form-control" 
+									type="text" 
+									placeholder="Activation" 
+									value = { activation }
+				/>
 			}
 				</div>
             </div>
