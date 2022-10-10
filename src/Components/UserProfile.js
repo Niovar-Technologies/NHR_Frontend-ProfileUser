@@ -735,6 +735,7 @@ console.log( json );
 					var userMatricule = generateMatricule();
 					setMatricule( userMatricule );
 
+					setSalaryTypeid( 0 );
 				}
 				
 
