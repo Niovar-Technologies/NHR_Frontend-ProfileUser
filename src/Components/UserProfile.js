@@ -79,7 +79,7 @@ const SexeList= [
 	},
 ];
 
-const RoleList[
+const RoleList = [
 	{
 		id: 0,
 		name: "Employer"
