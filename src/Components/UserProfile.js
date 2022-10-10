@@ -111,6 +111,14 @@ const SalaireTypeList = [
 	},
 ];
 
+// Calculate salary type for employee's input value
+function getSalaryTypeName( SalaireTypeId ){
+	for( var i = 0; i < SalaireTypeList.length; i++ ){
+		let id = SalaireTypeList[ i ].id;
+		if( id == SalaireTypeId )
+			return SalaireTypeList[ i ].name;
+	}
+}
 
 // Get user roles
 var JsonRoles = cookies.get( "roles" ) != null ? 
@@ -722,7 +730,10 @@ console.log( json );
 					
 					setPosteId( userProfileData.posteId );
 
-					setSalaryTypeid( userProfileData.typeSalaireId );
+					let userTypeSalaireId = userProfileData.typeSalaireId;
+					setSalaryTypeid( userTypeSalaireId );
+					let salaryTypeName = getSalaryTypeName( setSalaryTypeid );
+					setSalaryTypeName( salaryTypeName ); // for employee input type
 			
 					setSalaire( userProfileData.salaire );
 					setStatusId( userProfileData.activation );
