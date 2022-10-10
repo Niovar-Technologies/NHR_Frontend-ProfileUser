@@ -1149,7 +1149,7 @@ const UserProfile = () => {
         <a className="nav-link active ms-0" href="#" target="__blank">Profile</a>
         <a className="nav-link" href="#" target="__blank">Activité récente</a>
         <a className="nav-link" href="#" target="__blank">Performance</a>
-        <a className="nav-link" href="#"  target="__blank">Dcuments</a>
+        <a className="nav-link" href="#"  target="__blank">Documents</a>
     </nav>
     <hr className="mt-0 mb-4" />
     <div className="row">
