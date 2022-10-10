@@ -1316,7 +1316,7 @@ console.log( i );
 									className="form-control" 
 									type="text" 
 									placeholder="Type de salaire" 
-									value = { salaryTypeName } />					
+									value = { salaryTypeid } />					
 							:
 								<select 
 									className="custom-select" 
