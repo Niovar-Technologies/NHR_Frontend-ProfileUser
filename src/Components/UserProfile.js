@@ -366,6 +366,7 @@ const UserProfile = () => {
 			method 	= "PUT";
 			path 	= "/NiovarRH/UserProfileMicroservices/UserProfile/modifier/" + profileId;
 		}
+
 		var json = {
 					"id" : ( profileId ) ? profileId : "undefined",
 					"accountId": accountId,
@@ -377,8 +378,13 @@ const UserProfile = () => {
 					"posteId": posteId,
 					"typeSalaireId": salaryTypeid,
 					"salaire": salaire,
-					"dateEmbauche": "2022-09-24T23:01:27.829Z",
-					"dateDepart": "2022-09-24T23:01:27.829Z",
+					"dateEmbauche": dateEmbauche ? moment( dateEmbauche ).format( 'YYYY-MM-DDTHH:mm:ss' ) : 
+					moment().format( 'YYYY-MM-DDTHH:mm:ss' ),
+					"dateDepart": dateDepart ? 
+						moment( dateDepart ).format( 'YYYY-MM-DDTHH:mm:ss' ) : 
+						dateEmbauche ? 
+							moment( dateEmbauche ).format( 'YYYY-MM-DDTHH:mm:ss' ) : 
+							moment().format( 'YYYY-MM-DDTHH:mm:ss' ) ,
 					"dateNaissance": "2022-09-24T23:01:27.829Z",
 					"paysId": paysId,
 					"provinceId": provinceId,
