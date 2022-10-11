@@ -269,6 +269,8 @@ const UserProfile = () => {
 	const [ fullName, setFullName ] = useState( '' );
 	const [ email, setEmail ] = useState( '' );
 	
+	const [ acceptCheckbox, setAcceptCheckbox ] = useState( false );
+	
 	const [ photoUrl, setPhotoUrl ] = useState( nopicPhotoUrl );
 	
 	
@@ -289,6 +291,12 @@ const UserProfile = () => {
 		userWeekDayCopy[index]  = !check;
 		setUserWeekDays( userWeekDayCopy );
 	}
+	
+	// Handle checkbox accept conditions
+	const handleCheckAccept = (e) => {
+		let check = !acceptCheckbox;
+		setAcceptCheckbox( check ) ;
+	} 
 	
 	// Handle input change
 	const handleChangeSalaire = (value) => {
@@ -1541,13 +1549,22 @@ const UserProfile = () => {
 							className="btn btn-primary" 
 							type="button"  
 							onClick={handleClickSave}
-							>&nbsp;
+							disabled={ !acceptCheckbox }
+						>&nbsp;
 							{ !formType ? 
 								"Enregistrer"
 								: 
 								"Modifier"
 							}&nbsp;
-						</button>
+						</button>&nbsp;
+						<input 
+							type="checkbox"
+							id='cbaccept'
+							name='cbaccept'
+							value='cbaccept'
+							checked= { acceptCheckbox }
+							onChange={e => handleCheckAccept(e)} 
+						/> &nbsp;<a href = "#">Accepter les termes et conditions d'utilisation</a>
                     </form>
             </div>
         </div>
