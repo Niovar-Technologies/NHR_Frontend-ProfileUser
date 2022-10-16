@@ -237,6 +237,9 @@ const UserProfile = () => {
 	const [ spin02, setSpin02 ] = useState( false );
 	const [ spin03, setSpin03 ] = useState( false );
 	const [ spin04, setSpin04 ] = useState( false );
+	const [ spin05, setSpin05 ] = useState( false );
+	const [ spin06, setSpin06 ] = useState( false );
+	const [ spin07, setSpin07 ] = useState( false );
 
 	const history = useHistory();
 
@@ -680,7 +683,7 @@ const UserProfile = () => {
 	
 	// Get pays
 	async function getPays(){
-
+		setSpin05( true );
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays", {
 				method: "GET",
@@ -702,6 +705,7 @@ const UserProfile = () => {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
+		setSpin05( false );
 	}
 	
 
@@ -894,7 +898,7 @@ const UserProfile = () => {
 	
 	// departement List
 	async function getDepartements(){
-
+		setSpin06( true );
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Departement/Entreprise/" + code, {
 				method: "GET",
@@ -918,12 +922,13 @@ const UserProfile = () => {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
+		setSpin06( false );
 	}
 	
 
 	// get Postes
 	async function GetPostes( departementId ){
-
+		setSpin07( true );
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/DepartementMicroservices/Poste/Departement/" + departementId, {
 				method: "GET",
@@ -947,6 +952,7 @@ const UserProfile = () => {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
+		setSpin07( false );
 	}
 	
 	// Get ville
@@ -1192,7 +1198,7 @@ const UserProfile = () => {
             <div className="card mb-4 mb-xl-0">
                 <div className="card-header">
 					<CameraOutlined
-						style={{ color: 'blue' }}
+						style={{  color: 'blue'  }}
 					/>&nbsp;
 					Photo
 				</div>
@@ -1224,7 +1230,7 @@ const UserProfile = () => {
 				<div className="card mb-4 mb-xl-0">
 				<div className="card-header">
 					<UserSwitchOutlined 
-						style={{ color: 'blue' }}
+						style={{  color: 'blue;'  }}
 					/>&nbsp;
 					Rôle
 				</div>
@@ -1294,7 +1300,7 @@ const UserProfile = () => {
             <div className="card mb-4">
                 <div className="card-header">
 					<ProfileOutlined 
-						style={{ color: 'blue' }}
+						style={{  color: 'blue'   }}
 					/>&nbsp;
 					Détails du profile</div>
                 <div className="card-body">
@@ -1380,6 +1386,15 @@ const UserProfile = () => {
                         </div>
                         <div className="row gx-3 mb-3">
 							<div className="col-md-6">
+								<Spin 
+									indicator={antIcon} 
+									spinning={spin06} 
+									style={{ 
+										width: '30px', 
+										float: 'left',
+										display: spin06 ? 'inline' : 'none',
+									}} 
+								/>
                                 <Clipboard /> <label className="small mb-1" >Département</label>
 								<select 
 								className="custom-select" 
@@ -1399,6 +1414,15 @@ const UserProfile = () => {
 								</select>
                             </div>
 							<div className="col-md-6">
+								<Spin 
+									indicator={antIcon} 
+									spinning={spin07} 
+									style={{ 
+										width: '30px', 
+										float: 'left',
+										display: spin07 ? 'inline' : 'none',
+									}} 
+								/>
                                 <Briefcase /> <label className="small mb-1" >Poste</label>
 								<select 
 								className="custom-select" 
@@ -1491,6 +1515,15 @@ const UserProfile = () => {
 							
                         </div>
 						<div className="mb-3">
+							<Spin 
+								indicator={antIcon} 
+								spinning={spin05} 
+								style={{ 
+									width: '30px', 
+									float: 'left',
+									display: spin05 ? 'inline' : 'none',
+								}} 
+							/>
                             <Globe /> <label className="small mb-1" >Pays</label>
 							<select 
 								className="custom-select" 
@@ -1625,6 +1658,9 @@ const UserProfile = () => {
 							type="button"  
 							onClick={handleClickSave}
 							disabled={ !acceptCheckbox }
+							style={{ 
+								width: '100%', 
+							}} 
 						>
 							<Spin 
 									indicator={antIcon} 
