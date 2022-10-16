@@ -152,18 +152,19 @@ var accountId = "";
 if( !roles.includes( "Administrateur" ) ){
 	// setAccountId( userid );	// Id of connected user from the users cookie session
 	accountId = userid;
-console.log( "foo" );
 }
 else{
 	let url 	= window.location.href;
 	let query 	= 'employee_id'
 	let id  	= getUrlParametter( query, url );
 
+console.log( "id: " + id );
+
 	if( !id == null )
 		accountId = id;
 	else
-		// setAccountId( userid );
 		accountId = userid;
+
 console.log( "bar" );
 }
 
