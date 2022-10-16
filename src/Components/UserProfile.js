@@ -385,6 +385,7 @@ const UserProfile = () => {
 		let validation = validations();
 		if ( validation ){
 			alert( validation );
+			setSpin01( false );
 			return;
 		}
 		
@@ -456,13 +457,14 @@ const UserProfile = () => {
 			
 		// update account info
 		updateUser();
-			
+		setSpin01( false );
 	}
 	
 	
 	// Update a user
 	const updateUser = async() => {
 		// Update Account
+		setSpin01( true );
 		try {
 			var res = await fetch( lbdomain + "/Accounts/" + accountId, {
 				method: "PUT",
