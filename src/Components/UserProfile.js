@@ -1230,7 +1230,7 @@ const UserProfile = () => {
 				<div className="card mb-4 mb-xl-0">
 				<div className="card-header">
 					<UserSwitchOutlined 
-						style={{  color: 'blue;'  }}
+						style={{ color: 'blue' }}
 					/>&nbsp;
 					Rôle
 				</div>
