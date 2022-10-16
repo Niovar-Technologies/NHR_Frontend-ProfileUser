@@ -16,7 +16,11 @@ import {
 	UserOutlined,
 	MailOutlined,
 	LockOutlined,
-	UnlockOutlined
+	UnlockOutlined,
+	CameraOutlined,
+	SettingOutlined,
+	UserSwitchOutlined,
+	ProfileOutlined
   } from '@ant-design/icons';
 
 import { Spin } from 'antd';
@@ -153,7 +157,7 @@ else{
 	let url 	= window.location.href;
 	let query 	= 'employee_id'
 	let id  	= getUrlParametter( query, url );
-console.log( "id: " + id );
+
 	if( !id == null )
 		accountId = id;
 	else
@@ -231,6 +235,8 @@ const UserProfile = () => {
 	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 	const [ spin01, setSpin01 ] = useState( false );
 	const [ spin02, setSpin02 ] = useState( false );
+	const [ spin03, setSpin03 ] = useState( false );
+	const [ spin04, setSpin04 ] = useState( false );
 
 	const history = useHistory();
 
@@ -945,7 +951,7 @@ const UserProfile = () => {
 	
 	// Get ville
 	async function GetVilles( provinceId ){
-
+		setSpin04( true );
 		try {
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Province/VillesProvince/" + provinceId, {
 				method: "GET",
@@ -968,11 +974,12 @@ const UserProfile = () => {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
+		setSpin04( false );
 	}
 	
 	// Get provinces
 	async function GetProvinces( paysId ){
-
+		setSpin03( true );
 		try {
 
 			let res = await fetch( lbdomain + "/NiovarRH/UserAdressMicroservices/Pays/ProvincesPays/" + paysId, {
@@ -996,6 +1003,7 @@ const UserProfile = () => {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		};
+		setSpin03( false );
 	}
 	
 	// file validation 
@@ -1182,7 +1190,12 @@ const UserProfile = () => {
         <div className="col-xl-4">
          
             <div className="card mb-4 mb-xl-0">
-                <div className="card-header"><CameraOutlined/>Photo</div>
+                <div className="card-header">
+					<CameraOutlined
+						style={{ color: 'blue' }}
+					/>&nbsp;
+					Photo
+				</div>
                 <div className="card-body text-center">
                     
                     <img 
@@ -1204,12 +1217,17 @@ const UserProfile = () => {
 								float: 'left',
 								display: spin01 ? 'inline' : 'none',
 							}} 
-						/>&nbsp;
+						/>
 						&nbsp; Changer l'image &nbsp;
 					</label>
                 </div>
 				<div className="card mb-4 mb-xl-0">
-				<div className="card-header">Rôle</div>
+				<div className="card-header">
+					<UserSwitchOutlined 
+						style={{ color: 'blue' }}
+					/>&nbsp;
+					Rôle
+				</div>
 			{ roles.includes( "Administrateur" ) ? 
 			<>
                 <div className="card-body text-center">
@@ -1240,7 +1258,9 @@ const UserProfile = () => {
 				</div>
 				<div className="card mb-4 mb-xl-0">
 				<div className="card-header">
-					<SettingOutlined />&nbsp;
+					<SettingOutlined 
+						style={{ color: 'blue' }}
+					/>&nbsp;
 					Status
 				</div>
 			{ roles.includes( "Administrateur" ) ? 
@@ -1272,7 +1292,11 @@ const UserProfile = () => {
         <div className="col-xl-8">
            
             <div className="card mb-4">
-                <div className="card-header">Détails du profile</div>
+                <div className="card-header">
+					<ProfileOutlined 
+						style={{ color: 'blue' }}
+					/>&nbsp;
+					Détails du profile</div>
                 <div className="card-body">
                     <form>
                        <div className="row gx-3 mb-3">
@@ -1490,6 +1514,15 @@ const UserProfile = () => {
 						<>&nbsp;</> 
 						:
 						<div className="mb-3">
+							<Spin 
+								indicator={antIcon} 
+								spinning={spin03} 
+								style={{ 
+									width: '30px', 
+									float: 'left',
+									display: spin03 ? 'inline' : 'none',
+								}} 
+							/>
                             <Map /> <label className="small mb-1" >Province</label>
                            	<select 
 								className="custom-select" 
@@ -1513,6 +1546,15 @@ const UserProfile = () => {
 						<>&nbsp;</> 
 						:
 						<div className="mb-3">
+							<Spin 
+								indicator={antIcon} 
+								spinning={spin04} 
+								style={{ 
+									width: '30px', 
+									float: 'left',
+									display: spin04 ? 'inline' : 'none',
+								}} 
+							/>
                             <MapPin /> <label className="small mb-1" >Ville</label>
 							<select 
 								className="custom-select" 
