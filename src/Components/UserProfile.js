@@ -152,6 +152,7 @@ var accountId = "";
 if( !roles.includes( "Administrateur" ) ){
 	// setAccountId( userid );	// Id of connected user from the users cookie session
 	accountId = userid;
+console.log( "foo" );
 }
 else{
 	let url 	= window.location.href;
@@ -163,8 +164,10 @@ else{
 	else
 		// setAccountId( userid );
 		accountId = userid;
+console.log( "bar" );
 }
 
+console.log( accountId );
 
 var defaultRole = "";
 function getUserDefaultRole(){
