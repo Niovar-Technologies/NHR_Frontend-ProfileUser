@@ -158,17 +158,12 @@ else{
 	let query 	= 'employee_id'
 	let id  	= getUrlParametter( query, url );
 
-console.log( "id: " + id );
-
-	if( !id == null )
+	if( id != null )
 		accountId = id;
 	else
 		accountId = userid;
-
-console.log( "bar" );
 }
 
-console.log( accountId );
 
 var defaultRole = "";
 function getUserDefaultRole(){
