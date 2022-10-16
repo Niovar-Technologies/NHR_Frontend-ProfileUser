@@ -11,6 +11,18 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { parseISO } from 'date-fns'
 
+import {
+	LoadingOutlined, 
+	UserOutlined,
+	MailOutlined,
+	LockOutlined,
+	UnlockOutlined
+  } from '@ant-design/icons';
+
+import { Spin } from 'antd';
+import { Space } from 'antd';
+
+
 import Cookies from 'universal-cookie';
 const cookies = new Cookies(); 
 
@@ -170,27 +182,27 @@ let code = ( cookies.get( 'code_entreprise' ) ) ? cookies.get( 'code_entreprise'
 	
 // get company name
 async function GetNomEntreprise(){
-
-		try {
-			let res = await fetch( lbdomain + "/NiovarRH/EntrepriseMicroservices/Entreprise/nomEntreprise/" + UserProfileId , {
-				method: "GET",
-				headers: {'Content-Type': 'application/json'},
-			});
+	
+	try {
+		let res = await fetch( lbdomain + "/NiovarRH/EntrepriseMicroservices/Entreprise/nomEntreprise/" + UserProfileId , {
+			method: "GET",
+			headers: {'Content-Type': 'application/json'},
+		});
 			
-			let resJson = await res.json();
-			if( res.status === 200 ) {
-				setNomEntreprise(resJson.entreprise_nom);
-			}
-			else {
-				alert( "Un probleme est survenu" );
-				// setErrorColor( "red" );
-				// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
-			}
-		} 
-		catch (err) {
-			//alert( "Vérifiez votre connexion internet svp" );
-			console.log(err);
-		};
+		let resJson = await res.json();
+		if( res.status === 200 ) {
+			setNomEntreprise(resJson.entreprise_nom);
+		}
+		else {
+			alert( "Un probleme est survenu" );
+			// setErrorColor( "red" );
+			// setErrorMessage( "Erreur de connexion. Reessayer plus tard" );
+		}
+	} 
+	catch (err) {
+		//alert( "Vérifiez votre connexion internet svp" );
+		console.log(err);
+	};
 }
 
 
@@ -216,6 +228,10 @@ function generateMatricule(){
 
 	
 const UserProfile = () => {
+	const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+	const [ spin01, setSpin01 ] = useState( false );
+	const [ spin02, setSpin02 ] = useState( false );
+
 	const history = useHistory();
 
 	const [ password, setPassword ]= useState(''); //	
@@ -354,7 +370,7 @@ const UserProfile = () => {
 
 	// Save profile
 	const handleClickSave = async (e) => {
-		
+		setSpin01( true );
 		e.preventDefault();
 		
 		// validation
@@ -404,7 +420,6 @@ const UserProfile = () => {
 		if( !formType ) // Nouveau
 			delete json.id;
 
-// console.log( json );
 
 		// save or modify profile
 		try {
@@ -464,6 +479,7 @@ const UserProfile = () => {
 			//alert( "Vérifiez votre connexion internet svp" );
 			console.log(err);
 		}
+		setSpin01( false );
 	}
 	
 	
@@ -496,7 +512,7 @@ const UserProfile = () => {
 		
 		// password
 		var validationPass = validationPassword( password, repeatPassword );
-		if( password && validationPass )
+		if( validationPass )
 			validation = validationPass;
 	
 		// sexeId
@@ -1008,6 +1024,8 @@ const UserProfile = () => {
 	
 	// Post photo profile 
 	const handleChangeFile = async (event) => {
+		
+		setSpin02( true );
 		const file = event.target.files[0];
 		
 		let validation = Filevalidation( file );
@@ -1164,7 +1182,7 @@ const UserProfile = () => {
         <div className="col-xl-4">
          
             <div className="card mb-4 mb-xl-0">
-                <div className="card-header">Photo</div>
+                <div className="card-header"><CameraOutlined/>Photo</div>
                 <div className="card-body text-center">
                     
                     <img 
@@ -1172,8 +1190,21 @@ const UserProfile = () => {
 						src={ photoUrl }
 						alt="" />
                     <div className="small font-italic text-muted mb-4">JPG ou PNG de moins de 30 MB</div>
-					<label className="btn btn-primary" onChange={e => handleChangeFile(e)} htmlFor="uploadInput">
+					<label 
+						className="btn btn-primary" 
+						onChange={e => handleChangeFile(e)} 
+						htmlFor="uploadInput"
+					>
 						<input type="file" id="uploadInput" hidden />
+						<Spin 
+							indicator={antIcon} 
+							spinning={spin02} 
+							style={{ 
+								width: '30px', 
+								float: 'left',
+								display: spin01 ? 'inline' : 'none',
+							}} 
+						/>&nbsp;
 						&nbsp; Changer l'image &nbsp;
 					</label>
                 </div>
@@ -1181,7 +1212,6 @@ const UserProfile = () => {
 				<div className="card-header">Rôle</div>
 			{ roles.includes( "Administrateur" ) ? 
 			<>
-                
                 <div className="card-body text-center">
 					<select 
 						className="custom-select"
@@ -1209,7 +1239,10 @@ const UserProfile = () => {
 			
 				</div>
 				<div className="card mb-4 mb-xl-0">
-				<div className="card-header">Status</div>
+				<div className="card-header">
+					<SettingOutlined />&nbsp;
+					Status
+				</div>
 			{ roles.includes( "Administrateur" ) ? 
             <>    
 				
@@ -1550,7 +1583,17 @@ const UserProfile = () => {
 							type="button"  
 							onClick={handleClickSave}
 							disabled={ !acceptCheckbox }
-						>&nbsp;
+						>
+							<Spin 
+									indicator={antIcon} 
+									spinning={spin01} 
+									style={{ 
+										width: '30px', 
+										float: 'left',
+										display: spin01 ? 'inline' : 'none',
+									}} 
+								/>
+							&nbsp;
 							{ !formType ? 
 								"Enregistrer"
 								: 
