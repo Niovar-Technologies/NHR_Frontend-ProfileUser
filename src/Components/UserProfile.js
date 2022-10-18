@@ -20,7 +20,8 @@ import {
 	CameraOutlined,
 	SettingOutlined,
 	UserSwitchOutlined,
-	ProfileOutlined
+	ProfileOutlined,
+	EyeOutlined,
   } from '@ant-design/icons';
 
 import { Spin } from 'antd';
@@ -299,15 +300,27 @@ const UserProfile = () => {
 	
 	
 	// Handle password change
-	const handleChangePassword = (value) => {
+	const handleChangePassword = ( value ) => {
 		setPassword( value );
 	}
 	
 	// Handle password repeat change
-	const handleChangePasswordRepeat = (value) => {
+	const handleChangePasswordRepeat = ( value ) => {
 		setRepeatPassword( value );
 	}
 	
+	// view password
+	const [passwordShown01, setPasswordShown01] = useState(false);
+	const togglePasswordVisiblity01 = () => {
+		setPasswordShown01(passwordShown01 ? false : true);
+	};
+
+	// view confirmation
+	const [passwordShown02, setPasswordShown02] = useState(false);
+	const togglePasswordVisiblity02 = () => {
+		setPasswordShown02(passwordShown02 ? false : true);
+	};
+
 	// Handle checkbox change
 	const handleCheck = (index) => {
 		let check = userWeekDays[index];
@@ -363,6 +376,9 @@ const UserProfile = () => {
 		// never change
 	}
 	
+	const [errorMessage, setErrorMessage] = useState('');
+	const [errorMessageColor, setErrorMessageColor] = useState('');
+
 	// Handle Satus input change
 		const handleChangeStatus = (value) => {
 		// never change
@@ -384,7 +400,9 @@ const UserProfile = () => {
 		// validation
 		let validation = validations();
 		if ( validation ){
-			alert( validation );
+			// alert( validation );
+			setErrorMessageColor( "red" );
+			setErrorMessage( validation );
 			setSpin01( false );
 			return;
 		}
@@ -447,7 +465,9 @@ const UserProfile = () => {
 
 				saveUserJour( resJson.userProfileId ); //
 				
-				alert( "Profile enregistré." );
+				// alert( "Profile enregistré." );
+				setErrorMessageColor( "green" );
+				setErrorMessage( "Profile sauvegardé." );
 			}
 		}
 		catch (err) {
@@ -559,18 +579,32 @@ const UserProfile = () => {
 		
 		return rep;
 	};
-	
-	const validationPassword = (password, repeatPassword) => {
-		let validation = "";
-		if( password.length < 6 )
-			validation = "Mot de passe trop court"
-		if( password.length > 70 )
-			validation = "Mot de passe trop long"
-		if( password != repeatPassword)
-			validation = "Mots de passe differents"
 
-		return validation;
+	/** password between 7 to 16 characters which contain only characters, numeric digits, underscore and first character must be a letter **/ 
+	const validationPassword = ( password, passwordConfirmation ) => {
+		let validation 	= "";
+		var validator	=  /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+		var length = password.length;
+
+		if( password == "" && passwordConfirmation == "" )
+			return ""
+		else if( length == 0 )
+			return "Saisir un mot de passe"
+		else if( length < 7 )
+			return "Le mot de passe doit avoir plus de 6 caractères"
+		else if( length > 16 )
+			return "Le mot de passe doit avoir moins de 16 caractères"
+		else if( password != repeatPassword )
+			return "Les mots de passe sont différents"
+		else{
+			var rep = validator.test(password);
+			if( rep === false )
+				return "Le mot de passe doit commençer par une lettre. Il peut être alphabétiqe, numérique et avec les caracteres !, @, #, $, %, ^, &, * .";
+		}
+
+		return validation
 	};
+	
 	
 	
 	// Save user jours. Delete and recreate.
@@ -1271,8 +1305,7 @@ const UserProfile = () => {
 					Status
 				</div>
 			{ roles.includes( "Administrateur" ) ? 
-            <>    
-				
+            <>   
                 <div className="card-body text-center">
 					<select 
 						className="custom-select" 
@@ -1631,29 +1664,85 @@ const UserProfile = () => {
 						
 						<div className="row gx-3 mb-3">
                             <div className="col-md-6">
-                                <Lock /> <label className="small mb-1" >Mot de passe</label>
-                                <input 
-									className="form-control" 
-									id="password" 
-									type="password" 
-									placeholder="Mot de passe" 
-									value = { password }
-									onChange={e => handleChangePassword(e.target.value)}
-								/>
+                                <UnlockOutlined /> <label className="small mb-1" >Mot de passe</label>
+								<div className="pass-group"
+									style={{ 
+										display: 'flex'
+									}}
+								>
+									<input 
+										value = { password }
+										id="password" 
+										placeholder="Mot de passe" 
+										onChange={e => handleChangePassword(e.target.value)}
+										name="motDePasse" 
+										type= {passwordShown01 ? "" : "password"}
+										className="form-control pass-input" 
+										style={{ 
+											width: '95%', 
+											float: 'left'
+										}}
+									/> &nbsp;
+									<i 
+										onClick={togglePasswordVisiblity01}
+										style={{ 
+											width: '15px', 
+											cursor: 'pointer',
+											float: 'left',
+											marginLeft: '2px'
+										}}
+									>
+										<EyeOutlined 
+										/>
+									</i> 
+                                </div>
+
                             </div>
 							
                             <div className="col-md-6">
                                 <Lock /> <label className="small mb-1" >Repeter le mot de passe</label>
-                                <input 
-									className="form-control" 
-									id="repeatPassword" 
-									type="password" 
-									placeholder="Repetition du mot de passe" 
-									value = { repeatPassword }
-									onChange={e => handleChangePasswordRepeat(e.target.value)} 
-								/>
+                                
+								<div className="pass-group"
+									style={{ 
+										display: 'flex'
+									}}
+								>
+									<input 
+										value = { repeatPassword }
+										id="repeatPassword" 
+										placeholder="Répétition du mot de passe" 
+										onChange={e => handleChangePasswordRepeat(e.target.value)} 
+										name="motDePasse" 
+										type= {passwordShown01 ? "" : "password"}
+										className="form-control pass-input" 
+										style={{ 
+											width: '95%', 
+											float: 'left'
+										}}
+									/> &nbsp;
+									<i 
+										onClick={togglePasswordVisiblity02}
+										style={{ 
+											width: '15px', 
+											cursor: 'pointer',
+											float: 'left',
+											marginLeft: '2px'
+										}}
+									>
+										<EyeOutlined 
+										/>
+									</i> 
+                                </div>
                             </div>
                         </div>
+						<input 
+							type="checkbox"
+							id='cbaccept'
+							name='cbaccept'
+							value='cbaccept'
+							checked= { acceptCheckbox }
+							onChange={e => handleCheckAccept(e)} 
+						/> &nbsp;<a href = "#">Accepter les termes et conditions d'utilisation</a>
                         <button 
 							className="btn btn-primary" 
 							type="button"  
@@ -1679,14 +1768,10 @@ const UserProfile = () => {
 								"Modifier"
 							}&nbsp;
 						</button>&nbsp;
-						<input 
-							type="checkbox"
-							id='cbaccept'
-							name='cbaccept'
-							value='cbaccept'
-							checked= { acceptCheckbox }
-							onChange={e => handleCheckAccept(e)} 
-						/> &nbsp;<a href = "#">Accepter les termes et conditions d'utilisation</a>
+
+						{errorMessage && (
+							<p style={{color: errorMessageColor}}> {errorMessage} </p>
+						)}<br/>
                     </form>
             </div>
         </div>
