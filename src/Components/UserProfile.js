@@ -629,7 +629,7 @@ const UserProfile = () => {
 		
 // console.log( userWeekDays );
 // console.log( userWeekDays.length );
-		// Create user jours
+		// Create user jours 
 		for( var i = 0; i < userWeekDays.length; i++ ){  // Todo: ajust i nidx dynamicaly
 			
 			if( userWeekDays[i] === false )
@@ -1669,7 +1669,7 @@ const UserProfile = () => {
 									style={{ 
 										display: 'flex'
 									}}
-								>
+								> 
 									<input 
 										value = { password }
 										id="password" 
