@@ -1713,7 +1713,7 @@ const UserProfile = () => {
 										placeholder="Répétition du mot de passe" 
 										onChange={e => handleChangePasswordRepeat(e.target.value)} 
 										name="motDePasse" 
-										type= {passwordShown01 ? "" : "password"}
+										type= {setPasswordShown02 ? "" : "password"}
 										className="form-control pass-input" 
 										style={{ 
 											width: '95%', 
