@@ -142,7 +142,7 @@ var JsonRoles = cookies.get( "roles" ) != null ?
 				cookies.get( "roles" ) 
 				: 
 				JSON.stringify( ["Employe", "Repartiteur", "Gestionnaire", "Administrateur" ] );
-console.log( JsonRoles );
+// console.log( JsonRoles );
 // var roles = JSON.parse( JsonRoles );
 var roles = JsonRoles;
 
