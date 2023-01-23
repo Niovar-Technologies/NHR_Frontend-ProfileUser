@@ -3,12 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const commonConfig = require('./webpack.common')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 const packageJson = require('../package.json')
-
+ 
 const devConfig = {
     mode: 'development',
     output: {
-	// publicPath: 'http://localhost:8081/',
-       publicPath: 'https://profileuser.niovarpaie.ca/',
+	// publicPath: 'http://localhost:8080/',
+    // publicPath: 'http://localhost:8081/',
+    publicPath: 'https://userprofile.niovarpaie.ca/',
     },
     devServer: {
         port: 8080, 
@@ -44,10 +45,10 @@ const devConfig = {
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: 'ProfileUser',
+            name: 'UserProfile',
             filename: 'remoteEntry.js',
             exposes: {
-                './ProfileUserApp': './src/bootstrap'
+                './UserProfileApp': './src/bootstrap'
             },
             shared: packageJson.dependencies
         }),

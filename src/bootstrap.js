@@ -16,7 +16,7 @@ const mount = (el) => {
 }
 
 if (process.env.NODE_ENV === 'development') {
-    const devRoot = document.querySelector('#NRH_Frontend_ProfileUser')
+    const devRoot = document.querySelector('#NRH_Frontend_UserProfile')
     if (devRoot) {
         mount(devRoot)
     }

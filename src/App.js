@@ -7,7 +7,7 @@ import "./static/css/select2.min.css"
 import "./static/css/style.css"
 
 // import TalonPaie from "./Components/TalonPaie";
-import ProfileUser from "./Components/ProfileUser";
+import UserProfile from "./Components/UserProfile";
 
 const Hello = () => (<div>Hello Niovar!</div>)
 
@@ -17,7 +17,7 @@ const history = createBrowserHistory()
 function App() {
 	return (
 		<Router history={history}>
-			<ProfileUser />
+			<UserProfile />
         </Router>
     );
 }
